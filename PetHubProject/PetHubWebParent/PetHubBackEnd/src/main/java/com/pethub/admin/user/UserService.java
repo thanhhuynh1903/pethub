@@ -13,12 +13,13 @@ import com.pethub.common.entity.User;
 public class UserService {
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
-	private RoleRepository roleRepo; 
-	
+	private RoleRepository roleRepo;
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
 	public List<User> listAll() {
 		return (List<User>) userRepo.findAll();
 	}
@@ -31,9 +32,15 @@ public class UserService {
 		encodePassword(user);
 		userRepo.save(user);
 	}
-	
+
 	private void encodePassword(User user) {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
+	}
+
+	public boolean isEmailUnique(String email) {
+		User userByEmail = userRepo.getUserByEmail(email);
+		
+		return userByEmail == null; // if return true == user is unique and so on
 	}
 }

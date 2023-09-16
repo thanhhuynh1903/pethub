@@ -71,7 +71,7 @@ public class UserRepositoryTests {
 	
 	@Test
 	public void testUpdateUserRoles() {
-		User userThanh = repo.findById(2).get();
+		User userThanh = repo.findById(3).get();
 		Role roleEditor = new Role(3);
 		Role roleSaleperson = new  Role(2);
 		userThanh.getRoles().remove(roleEditor);

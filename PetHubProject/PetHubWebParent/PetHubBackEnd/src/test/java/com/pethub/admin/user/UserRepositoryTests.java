@@ -65,25 +65,34 @@ public class UserRepositoryTests {
 		User userHuyennt = repo.findById(1).get();
 		userHuyennt.setEnabled(true);
 		userHuyennt.setEmail("huyenntse161803@fpt.edu.vn");
-		
+
 		repo.save(userHuyennt);
 	}
-	
+
 	@Test
 	public void testUpdateUserRoles() {
 		User userThanh = repo.findById(3).get();
 		Role roleEditor = new Role(3);
-		Role roleSaleperson = new  Role(2);
+		Role roleSaleperson = new Role(2);
 		userThanh.getRoles().remove(roleEditor);
 		userThanh.addRole(roleSaleperson);
-		
+
 		repo.save(userThanh);
 	}
-	
+
 	@Test
 	public void testDeleteUser() {
-		Integer userId=2;
+		Integer userId = 2;
 		repo.deleteById(userId);
-		
+
 	}
+
+	@Test
+	public void testGetUserByEmail() {
+		String email = "huyenntse161803@fpt.edu.vn";
+		User user = repo.getUserByEmail(email);
+		
+		assertThat(user).isNotNull();
+	}
+
 }

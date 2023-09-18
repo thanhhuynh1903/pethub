@@ -35,13 +35,13 @@ public class UserService {
 
 		if (isUpdatingUser) {
 			User existingUser = userRepo.findById(user.getId()).get();
-		
-			if (user.getPassword().isEmpty()) { //user leave password field blank (unchange password)
+
+			if (user.getPassword().isEmpty()) { // user leave password field blank (unchange password)
 				user.setPassword(existingUser.getPassword());
-			}else {
+			} else {
 				encodePassword(user);
 			}
-		
+
 		} else {
 			encodePassword(user);
 		}
@@ -80,5 +80,13 @@ public class UserService {
 		} catch (NoSuchElementException ex) {
 			throw new UserNotFoundException("Could not find any user with ID: " + id);
 		}
+	}
+
+	public void delete(Integer id) throws UserNotFoundException {
+		Long countById = userRepo.countById(id); //return full User object with all details
+		if (countById == null || countById == 0) { // not exist in db
+			throw new UserNotFoundException("Could not find any user with ID: " + id);
+		}
+		userRepo.deleteById(id);
 	}
 }

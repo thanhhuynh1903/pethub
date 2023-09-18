@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.pethub.common.entity.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer>{
+public interface UserRepository extends CrudRepository<User, Integer> {
 	@Query("SELECT u FROM User u WHERE u.email = :email")
 	public User getUserByEmail(@Param("email") String email);
+
+	public Long countById(Integer id);
 }

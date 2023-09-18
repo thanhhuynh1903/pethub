@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import com.pethub.common.entity.Role;
 import com.pethub.common.entity.User;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class UserService {
 	@Autowired
 	private UserRepository userRepo;
@@ -83,10 +86,15 @@ public class UserService {
 	}
 
 	public void delete(Integer id) throws UserNotFoundException {
-		Long countById = userRepo.countById(id); //return full User object with all details
+		Long countById = userRepo.countById(id); // return full User object with all details
 		if (countById == null || countById == 0) { // not exist in db
 			throw new UserNotFoundException("Could not find any user with ID: " + id);
 		}
 		userRepo.deleteById(id);
 	}
+
+	public void updateUserEnabledStatus(Integer id, boolean enabled ) {
+		userRepo.updateEnabledStatus(id, enabled);
+	}
 }
+

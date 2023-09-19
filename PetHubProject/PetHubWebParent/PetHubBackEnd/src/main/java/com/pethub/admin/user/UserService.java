@@ -33,7 +33,7 @@ public class UserService {
 		return (List<Role>) roleRepo.findAll();
 	}
 
-	public void save(User user) {
+	public User save(User user) {
 		boolean isUpdatingUser = (user.getId() != null); // in Updating mode
 
 		if (isUpdatingUser) {
@@ -49,7 +49,7 @@ public class UserService {
 			encodePassword(user);
 		}
 
-		userRepo.save(user);
+		return userRepo.save(user);
 	}
 
 	private void encodePassword(User user) {
@@ -93,8 +93,7 @@ public class UserService {
 		userRepo.deleteById(id);
 	}
 
-	public void updateUserEnabledStatus(Integer id, boolean enabled ) {
+	public void updateUserEnabledStatus(Integer id, boolean enabled) {
 		userRepo.updateEnabledStatus(id, enabled);
 	}
 }
-

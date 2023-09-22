@@ -39,8 +39,11 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
 				.anyRequest().authenticated())
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email").permitAll())
-				.logout(logout -> logout.logoutUrl("/logout") // specify your logout URL here, if different from default
-						.permitAll());
+				.logout(logout -> logout.logoutUrl("/logout").permitAll())
+				.rememberMe(rememberMe -> rememberMe.key("$2a$10$Pxeg5oCBEHaxcROzD5gy5e7T6Q.mxLI9hPdPznDQ/5zJXcusv8VEm")
+						.tokenValiditySeconds(7 * 24 * 60 * 60) // specify token validity time in seconds
+						.userDetailsService(userDetailsService()) // specify your UserDetailsService here
+				);
 		return http.build();
 	}
 

@@ -50,7 +50,6 @@ public class UserController {
 
 		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
 
-		
 		model.addAttribute("currentPage", pageNum);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("startCount", startCount);
@@ -100,7 +99,12 @@ public class UserController {
 
 		redirectAttributes.addFlashAttribute("message", "The user has been saved successfully.");
 
-		return "redirect:/users"; // = respond.sendRedirect
+		return getRedirectURLtoAffectedUser(user);
+	}
+
+	private String getRedirectURLtoAffectedUser(User user) {
+		String firstPartOfEmail = user.getEmail().split("@")[0];
+		return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail; // = respond.sendRedirect
 	}
 
 	@GetMapping("/users/edit/{id}")

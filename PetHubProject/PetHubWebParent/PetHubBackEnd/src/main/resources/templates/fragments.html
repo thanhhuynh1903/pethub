@@ -12,10 +12,17 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/common.js}"></script>
 </head>
 
 
 <body>
+
+
+	<div th:fragment="footer" class=" text-center m-3">
+		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
+	</div>
+
 	<th th:fragment="column_link(fieldName, columnLabel)">
 		<a class="text-dark"
 			th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">

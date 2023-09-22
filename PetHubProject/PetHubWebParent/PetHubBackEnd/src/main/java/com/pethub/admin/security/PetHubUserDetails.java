@@ -24,6 +24,7 @@ public class PetHubUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<Role> roles = user.getRoles();
+
 		List<SimpleGrantedAuthority> authories = new ArrayList<>();
 
 		for (Role role : roles) {
@@ -62,4 +63,7 @@ public class PetHubUserDetails implements UserDetails {
 		return user.isEnabled();
 	}
 
+	public String getFullname() {
+		return this.user.getFirstName() + " " + this.user.getLastName();
+	}
 }

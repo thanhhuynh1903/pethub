@@ -38,7 +38,9 @@ public class WebSecurityConfig {
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
 				.anyRequest().authenticated())
-				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email").permitAll());
+				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email").permitAll())
+				.logout(logout -> logout.logoutUrl("/logout") // specify your logout URL here, if different from default
+						.permitAll());
 		return http.build();
 	}
 

@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -18,13 +17,14 @@ public class WebSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-	
-	@Bean   
+	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	http
-	.authorizeHttpRequests(authz -> authz
-	.anyRequest().permitAll());
-	return http.build();
+		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
+				.anyRequest().anonymous())
+				.formLogin(formLogin -> formLogin.loginPage("/login")
+				.usernameParameter("email")
+				.permitAll());
+		return http.build();
 	}
-}
 
+}

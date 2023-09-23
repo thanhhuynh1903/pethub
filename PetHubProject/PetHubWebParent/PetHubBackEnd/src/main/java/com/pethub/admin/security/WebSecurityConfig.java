@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,8 +37,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
-				.requestMatchers("/users/**", "/settings/**").hasAuthority("Admin")
+		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**", "/login.css").permitAll()
 				.anyRequest().authenticated())
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email").permitAll())
 				.logout(logout -> logout.logoutUrl("/logout").permitAll())
@@ -47,5 +47,6 @@ public class WebSecurityConfig {
 				);
 		return http.build();
 	}
+
 
 }

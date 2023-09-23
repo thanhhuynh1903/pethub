@@ -7,56 +7,82 @@
 	<title>Login - PetHub Admin</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/login.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
-<body>
-	<div class="text-center">
-		<img style="width: 170px; height: 100px;" th:src="@{images/logo_pethub.png}" />
-		<p>Welcome to Cat&Dog Lover Place </br> Feel free to communicate with each other!!!</p>
-	</div>
+<body class="img js-fullheight"
+	style=" background-size: cover ;background-image: url(https://hips.hearstapps.com/hmg-prod/images/dogs-good-with-cats-1572920219.jpg?crop=0.668xw:1.00xh;0.223xw,0&resize=1200:*);">
 
-	<div class="text-center">
-		<form th:action="@{/login}" method="post" style="max-width: 40%; margin: 0 auto;">
-			<div th:if="${param.error}">
-				<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 text-center mb-5">
+						<h2 class="heading-section">Access to PetHub Control Panel</h2>
+				</div>
 			</div>
 
-			<div th:if="${param.logout}">
-				<p class="text-warning">You have been logged out.</p>
-			</div>
+			<img class="mx-auto d-block mb-5" width="150px" height="90px" th:src="@{/images/logo_pethub.png}" />
 
-			<div class="border border-secondary rounded p-3">
-				<h5>Access to PetHub Control Panel</h5>
-				<div class="form-group row">
-					<label class="col-sm-4 col-form-label">Gmail: </label>
-					<div class="col-sm-8">
-						<input type="email" name="email" class="form-control" placeholder="abc@gmail.com"
-							required />
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+						<h3 class="mb-4 text-center">Have an account?</h3>
+						<form th:action="@{/login}" method="post" class="signin-form">
+							<div th:if="${param.error}" class="text-center">
+								<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+							</div>
+							<div th:if="${param.logout}" class="text-center">
+								<p class="text-warning">You have been logged out.</p>
+							</div>
+							<div class="form-group">
+								<input type="email" name="email" class="form-control" placeholder="abc@gmail.com"
+									required />
+							</div>
+							<div class="form-group">
+								<input id="password-field" type="password" name="password" class="form-control"
+									placeholder="8 - 20 characters" required />
+								<span toggle="#password-field"
+									class="fa fa-fw fa-eye field-icon toggle-password"></span>
+							</div>
+							<div class="form-group d-md-flex">
+								<input type="submit" value="Login" class="form-control btn btn-primary submit px-3" />
+							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-50 text-md-left">
+									<input type="checkbox" name="remember-me" />&nbsp;Remember me
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="#" style="color: #fff">Forgot Password</a>
+								</div>
+							</div>
+						</form>
+
+						<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+						<div class="social d-flex text-center">
+							<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>
+								Facebook</a>
+							<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span>
+								Twitter</a>
+						</div>
 					</div>
 				</div>
-				<div class="form-group row">
-					<label class="col-sm-4 col-form-label">Password: </label>
-					<div class="col-sm-8">
-						<input type="password" name="password" class="form-control" placeholder="8 - 20 characters" required />
-					</div>
-				</div>
-				<p>
-					<input type="checkbox" name="remember-me" />&nbsp;Remember Me
-				</p>
-				<p>
-					<input type="submit" value="Login" class="btn btn-primary" />
-				</p>
 			</div>
-		</form>
-	</div>
+		</div>
+	</section>
 
-	<div class="text-center">
-		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
-	</div>
-	</div>
+	<!-- Footer -->
+	<footer class="page-footer font-small">
+		<div class="footer-copyright text-center py-3">
+			<p class="text-light">PetHub Control Panel - Copyright &copy; PetHub</p>
+		</div>
+		<!-- Copyright -->
+	</footer>
+	<!-- Footer -->
+
 </body>
 
 </html>

@@ -37,6 +37,7 @@ public class WebSecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
+				.requestMatchers("/users/**", "/settings/**").hasAuthority("Admin")
 				.anyRequest().authenticated())
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email").permitAll())
 				.logout(logout -> logout.logoutUrl("/logout").permitAll())

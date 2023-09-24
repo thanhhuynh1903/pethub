@@ -21,6 +21,8 @@ import com.pethub.admin.FileUploadUtil;
 import com.pethub.common.entity.Role;
 import com.pethub.common.entity.User;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
 public class UserController {
 	@Autowired
@@ -143,5 +145,12 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", message);
 
 		return "redirect:/users";
+	}
+
+	@GetMapping("/users/export/csv")
+	public void exportToCSV(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserCsvExporter exporter = new UserCsvExporter();
+		exporter.export(listUsers, response);
 	}
 }

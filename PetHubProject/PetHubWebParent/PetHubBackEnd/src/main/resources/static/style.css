@@ -62,11 +62,19 @@
 }
 
 
-@media screen and (max-width: 768px) {
-    .server-error__image {
-        width: 400px;
-    }
+.unauthorized-image {
+    width: 400px;
+}
 
+.server-error__image {
+    width: 400px;
+}
+
+.not-found-image {
+    width: 400px;
+}
+
+@media screen and (max-width: 768px) {
     .not-found-image {
         width: 300px;
     }

@@ -25,3 +25,49 @@
 .contact-content {
 	width: 200px;
 }
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.not-found__title {
+    color: #E74646;
+    font-size: 160px;
+    font-weight: 600;
+}
+
+.not-found__title2 {
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 20px;
+    line-height: 2;
+}
+
+.button-primary {
+    background-color: #E74646;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.carousel-item {
+    height: 400px;
+}
+
+.carousel-item img {
+    height: 400px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .server-error__image {
+        width: 400px;
+    }
+
+    .not-found-image {
+        width: 300px;
+    }
+}

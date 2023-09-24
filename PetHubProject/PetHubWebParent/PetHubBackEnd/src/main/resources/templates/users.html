@@ -13,6 +13,8 @@
 			<a th:href="@{/users/new}">Create New User</a>
 			&nbsp;|&nbsp;
 			<a th:href="@{/users/export/csv}">Export To CSV</a>
+			&nbsp;|&nbsp;
+			<a th:href="@{/users/export/excel}">Export To Excel</a>
 		</div>
 		<div th:if="${message != null}" class="alert alert-success text-center">
 			[[${message}]]

@@ -9,3 +9,19 @@
 *.icon-dark {
 	color: gray
 }
+
+.footer {
+	background-color: black;
+	color: white;
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+}
+
+.footer-content {
+	width: 80%;
+}
+
+.contact-content {
+	width: 200px;
+}

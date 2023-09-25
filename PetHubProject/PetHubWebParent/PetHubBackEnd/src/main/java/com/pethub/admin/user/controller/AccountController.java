@@ -1,4 +1,4 @@
-package com.pethub.admin.user;
+package com.pethub.admin.user.controller;
 
 import java.io.IOException;
 
@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pethub.admin.FileUploadUtil;
 import com.pethub.admin.security.PetHubUserDetails;
+import com.pethub.admin.user.UserService;
 import com.pethub.common.entity.User;
 
 @Controller

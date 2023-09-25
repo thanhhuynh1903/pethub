@@ -49,20 +49,4 @@
 		display: table-cell;
 	}
 
-
-
-	.footer {
-		background-color: black;
-		color: white;
-		width: 100vw;
-		bottom: 0;
-	}
-
-	.footer-content {
-		width: 80%;
-	}
-
-	.contact-content {
-		width: 200px;
-	}
 }

@@ -32,10 +32,6 @@
 	div.less-details {
 		display: none;
 	}
-
-	.hideable-column {
-		display: none
-	}
 }
 
 @media screen and (min-width: 1024px) {
@@ -43,10 +39,6 @@
 	/* small screen */
 	div.less-details {
 		display: none;
-	}
-
-	.hideable-column {
-		display: table-cell;
 	}
 
 }

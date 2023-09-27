@@ -35,7 +35,10 @@
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>ID</th>
 					<th>Category Image</th>
-					<th>Category Name</th>
+					<th>
+						<a class="text-dark" th:href="@{'/categories?sortDir='+${reverseSortDir}}">Category Name</a>
+						<span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+					</th>
 					<th>Alias</th>
 					<th>Enabled</th>
 					<th>Action</th>

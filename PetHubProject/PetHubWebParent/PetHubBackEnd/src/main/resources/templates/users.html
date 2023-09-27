@@ -47,15 +47,11 @@
 							</div>
 						</div>
 
-<<<<<<< Updated upstream:PetHubProject/PetHubWebParent/PetHubBackEnd/src/main/resources/templates/users.html
-		<div>
-			<h2>Manage Users</h2>
-			<a th:href="@{/users/new}">Create New User</a>
-		</div>
-		<div th:if="${message != null}" class="alert alert-success text-center">
-			[[${message}]]
-		</div>
-=======
+
+						<div th:if="${message != null}" class="alert alert-success text-center">
+							[[${message}]]
+						</div>
+
 						<!--<div>
 				<h2>Manage Users</h2>
 				<a th:href="@{/users/new}">Create New User</a>
@@ -66,10 +62,7 @@
 				&nbsp;|&nbsp;
 				<a th:href="@{/users/export/pdf}">Export To PDF</a>
 			</div>-->
-						<div th:if="${message != null}" class="alert alert-success text-center">
-							[[${message}]]
-						</div>
->>>>>>> Stashed changes:PetHubProject/PetHubWebParent/PetHubBackEnd/src/main/resources/templates/users/users.html
+
 
 						<!--<div>
 			<form th:action="@{/users/page/1}" class="form-inline m-3">
@@ -85,51 +78,55 @@
 			</form>
 		</div>-->
 
-<<<<<<< Updated upstream:PetHubProject/PetHubWebParent/PetHubBackEnd/src/main/resources/templates/users.html
-		<div>
-			<table class="table table-bordered table-striped table-hover table-responsive-xl">
-				<thead style="background-color: rgb(228, 228, 228);" class="thead">
-					<th th:replace="~{fragments :: column_link('id', 'User ID')}" />
-					<th>Photos</th>
-					<th th:replace="~{fragments :: column_link('email', 'Email')}" />
-					<th th:replace="~{fragments :: column_link('firstName', 'First Name')}" />
-					<th th:replace="~{fragments :: column_link('lastName', 'Last Name')}" />
-					<th>Roles</th>
-					<th th:replace="~{fragments :: column_link('enabled', 'Enabled')}" />
-					<th>Action</th>
-				</thead>
-				<tbody>
-					<tr th:each="user : ${listUsers}">
-						<td>[[${user.id}]]</td>
-						<td>
-							<span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-							<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
-								th:src="@{${user.photosImagePath}}" />
-						</td>
-						<td>[[${user.email}]]</td>
-						<td>[[${user.firstName}]]</td>
-						<td>[[${user.lastName}]]</td>
-						<td>[[${user.roles}]]</td>
-						<td>
-							<a th:if="${user.enabled ==true}" class="fas fa-check-circle fa-2x icon-green"
-								th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user"></a>
-							<a th:if="${user.enabled ==false}" class="fas fa-circle fa-2x icon-dark"
-								th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Enable this user"></a>
-						</td>
-						<td>
-							<a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' +${user.id}}"
-								title="Edit this user"></a>
-							&nbsp;
-							<a class="fas fa-trash fa-2x icon-dark link-delete"
-								th:href="@{'/users/delete/' +${user.id}}" th:userId="${user.id}"
-								title="Delete this user"></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-=======
-						<div class="full-details">
+
+						<div>
+							<table class="table table-bordered table-striped table-hover table-responsive-xl">
+								<thead style="background-color: rgb(228, 228, 228);" class="thead">
+									<th th:replace="~{fragments :: column_link('id', 'User ID')}" />
+									<th>Photos</th>
+									<th th:replace="~{fragments :: column_link('email', 'Email')}" />
+									<th th:replace="~{fragments :: column_link('firstName', 'First Name')}" />
+									<th th:replace="~{fragments :: column_link('lastName', 'Last Name')}" />
+									<th>Roles</th>
+									<th th:replace="~{fragments :: column_link('enabled', 'Enabled')}" />
+									<th>Action</th>
+								</thead>
+								<tbody>
+									<tr th:each="user : ${listUsers}">
+										<td>[[${user.id}]]</td>
+										<td>
+											<span th:if="${user.photos == null}"
+												class="fas fa-portrait fa-3x icon-silver"></span>
+											<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
+												th:src="@{${user.photosImagePath}}" />
+										</td>
+										<td>[[${user.email}]]</td>
+										<td>[[${user.firstName}]]</td>
+										<td>[[${user.lastName}]]</td>
+										<td>[[${user.roles}]]</td>
+										<td>
+											<a th:if="${user.enabled ==true}"
+												class="fas fa-check-circle fa-2x icon-green"
+												th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+												title="Disable this user"></a>
+											<a th:if="${user.enabled ==false}" class="fas fa-circle fa-2x icon-dark"
+												th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+												title="Enable this user"></a>
+										</td>
+										<td>
+											<a class="fas fa-edit fa-2x icon-green"
+												th:href="@{'/users/edit/' +${user.id}}" title="Edit this user"></a>
+											&nbsp;
+											<a class="fas fa-trash fa-2x icon-dark link-delete"
+												th:href="@{'/users/delete/' +${user.id}}" th:userId="${user.id}"
+												title="Delete this user"></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!--<div class="full-details">
 							<table class="table table-bordered table-striped table-hover">
 								<thead style="background-color: rgb(228, 228, 228);">
 									<th>
@@ -141,36 +138,45 @@
 									<th>
 										<th th:replace="~{fragments :: column_link('email', 'Email','tag')}" />
 									</th>
->>>>>>> Stashed changes:PetHubProject/PetHubWebParent/PetHubBackEnd/src/main/resources/templates/users/users.html
+
 
 									<th th:replace="~{fragments :: column_link('firstName', 'First Name', 'none')}" />
 									<th th:replace="~{fragments :: column_link('lastName', 'Last Name', 'none')}" />
+-->
+						<div class="text-center m-1" th:if="${totalItems >0}">
+							<span>
+								Showing users #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]].
+							</span>
+						</div>
+						<div class="text-center m-1" th:unless="${totalItems >0}">
+							<span>
+								No user found.
+							</span>
+						</div>
+						<div th:if="${totalPages>1}">
+							<nav>
+								<ul class="pagination justify-content-center">
+									<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+										<a th:replace="~{fragments :: page_link(1, 'First')}" />
+									</li>
+									<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+										<a th:replace="~{fragments :: page_link(${currentPage -1}, 'Previous')}" />
+									</li>
+									<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+										th:each="i : ${#numbers.sequence(1, totalPages)}">
+										<a th:replace="~{fragments :: page_link(${i}, ${i})}" />
+									</li>
+									<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+										<a th:replace="~{fragments :: page_link(${currentPage + 1}, 'Next')}" />
+									</li>
+									<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+										<a th:replace="~{fragments :: page_link(${totalPages}, 'Last')}" />
+									</li>
+								</ul>
+							</nav>
+						</div>
 
-<<<<<<< Updated upstream:PetHubProject/PetHubWebParent/PetHubBackEnd/src/main/resources/templates/users.html
-		<div th:if="${totalPages>1}">
-			<nav>
-				<ul class="pagination justify-content-center">
-					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(1, 'First')}" />
-					</li>
-					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${currentPage -1}, 'Previous')}" />
-					</li>
-					<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-						th:each="i : ${#numbers.sequence(1, totalPages)}">
-						<a th:replace="~{fragments :: page_link(${i}, ${i})}" />
-					</li>
-					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${currentPage + 1}, 'Next')}" />
-					</li>
-					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${totalPages}, 'Last')}" />
-					</li>
-				</ul>
-			</nav>
-		</div>
-=======
-									<th>Roles</th>
+						<!--<th>Roles</th>
 									<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
 									<th>Action</th>
 								</thead>
@@ -207,9 +213,9 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
+						</div>-->
 
-						<div class="text-center m-1" th:if="${totalItems >0}">
+						<!--<div class="text-center m-1" th:if="${totalItems >0}">
 							<span>
 								Showing users #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]].
 							</span>
@@ -218,8 +224,8 @@
 							<span>
 								No user found.
 							</span>
-						</div>
-
+						</div>-->
+						<!--
 						<div th:if="${totalPages>1}">
 							<nav>
 								<ul class="pagination justify-content-center flex-wrap">
@@ -242,7 +248,7 @@
 								</ul>
 							</nav>
 						</div>
->>>>>>> Stashed changes:PetHubProject/PetHubWebParent/PetHubBackEnd/src/main/resources/templates/users/users.html
+-->
 
 
 						<div class="modal fade text-center" id="confirmModal">

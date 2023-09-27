@@ -5,7 +5,7 @@
 
 <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid mt-3">
 
 		<div th:replace="~{navigation :: menu}"></div>
 
@@ -76,8 +76,10 @@
 						<input type="hidden" th:field="*{photos}" />
 
 						<input type="file" id="fileImage" name="image" accept="image/png, image/jpeg" class="mb-2" />
-						<img id="thumbnail" alt="Photos preview" th:src="@{${user.photosImagePath}}"
-							class="img-fluid" />
+						<div class="mt-2">
+							<img id="thumbnail" alt="Photos preview" th:src="@{${user.photosImagePath}}"
+								class="img-fluid" />
+						</div>
 					</div>
 				</div>
 

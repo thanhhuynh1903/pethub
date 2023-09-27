@@ -15,6 +15,10 @@
 			<a th:href="@{/categories/export/csv}">Export To CSV</a>
 		</div>
 
+		<div th:if="${message != null}" class="alert alert-success text-center">
+			[[${message}]]
+		</div>
+
 		<div>
 			<form th:action="@{/categories/page/1}" class="form-inline m-3">
 				Filter:
@@ -47,7 +51,8 @@
 								th:href="@{'/categories/' + ${cat.id} + '/enabled/false'}"
 								title="Disable this category"></a>
 							<a th:if="${cat.enabled ==false}" class="fas fa-circle fa-2x icon-dark"
-								th:href="@{'/categories/' + ${cat.id} + '/enabled/true'}" title="Enable this category"></a>
+								th:href="@{'/categories/' + ${cat.id} + '/enabled/true'}"
+								title="Enable this category"></a>
 						</td>
 						<td>
 							<a class="fas fa-edit fa-2x icon-green" th:href="@{'/categories/edit/' +${cat.id}}"

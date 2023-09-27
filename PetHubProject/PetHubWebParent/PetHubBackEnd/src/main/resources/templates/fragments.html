@@ -6,7 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
 	<title>[[${title}]]</title>
-
+	<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
@@ -19,9 +22,9 @@
 <body>
 
 
-	<div th:fragment="footer" class=" text-center m-3">
+	<!--<div th:fragment="footer" class=" text-center m-3 w-100">
 		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
-	</div>
+	</div>-->
 
 	<th th:fragment="column_link(fieldName, columnLabel)">
 		<a class="text-dark"

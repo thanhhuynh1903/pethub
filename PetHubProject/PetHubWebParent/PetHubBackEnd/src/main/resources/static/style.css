@@ -10,6 +10,7 @@
 	color: gray
 }
 
+<<<<<<< Updated upstream
 .footer {
 	background-color: black;
 	color: white;
@@ -79,3 +80,199 @@
         width: 300px;
     }
 }
+=======
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+	padding: 0px;
+    margin: 0px;
+    min-height: 100vh;
+    background-color: white ;
+}
+
+.logo-header img{
+    width: 50%;
+    height: 100;
+    top: 0;
+}
+
+.logo-header img:hover{
+    width: 20%;
+    height: 20%;
+    overflow: nowrap;
+    }
+
+.sidebar{
+	/*position: relative;
+    top: 0;
+    left: 0;*/
+    display: block;	
+    height: 100vh;
+    width: 12%;
+    z-index: 1;
+    background: #4e73df;
+    overflow: hidden; /* Add scrollbar for vertical overflow */
+   
+}
+
+.sidebar .border-line {
+    border-radius: 20px 20px 0 0;
+    margin: 0px 5px;
+    padding: 5px;
+}
+
+.sidebar ul {
+    margin-top: 10px;
+    position: relative;
+}
+.sidebar ul li 
+{   
+    list-style: none;
+    height: 40px;
+}
+
+.sidebar ul li:hover{
+    background-color: rgb(136, 178, 215);
+}
+.sidebar ul li a{
+ 
+    position: relative;
+    display:flex;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.sidebar ul li a .icon {
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    padding-bottom: 15px;
+}
+.sidebar ul li a .text{
+    padding-bottom: 15px;
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: white;
+    text-transform: uppercase;
+    
+
+}
+
+/* .sidebar ul li .logo{
+    margin-bottom: 50px;
+} */
+
+/* .sidebar ul li .logo:hover{
+    background-color: rgb(85, 167, 221);
+} */
+.sidebar ul li .logo .icon{
+     font-size: 2em;
+}
+.sidebar ul li .logo .text{
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.header-bar{
+	align-items: center;
+    position: static;
+    background-color: #ffffff;
+    width: auto;
+    height: 10%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.header-bar .search-bar {
+    width: 200px;
+    height: 40px;
+    background: white; 
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 150px;
+}
+
+.image-container {
+    padding-top:10px;
+    max-width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+/* Responsive image styles */
+.responsive-image {
+    margin-left: 20px;
+    max-width: 70%;
+    height: 12%;
+    
+}
+
+.header-bar{
+	float: right;
+    width: 88%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.table{
+	margin-left: auto;
+  	margin-right: auto;
+	width: 75%;
+}
+
+.header-bar .item-container .icon-note{
+        margin-left: 50px;
+    }
+
+
+
+.container-fluid{
+	padding: 0px;
+	
+}
+
+.table-title {
+	margin-left: auto;
+  	margin-right: auto;
+	width: 75%;
+    padding-bottom: 15px;
+    background:#f8f9fc;
+    color: #fff;
+    padding: 16px 30px;
+    border-radius: 3px 3px 0 0;
+}
+
+.table-title .item-ex .btn{
+	margin-top: 10px;
+	color: #566787;
+    background: #f2f2f2;
+}
+
+.table-title .btn {
+    color:#fff;
+    float: right;
+    font-size: 13px;
+    background:#0062cc;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+>>>>>>> Stashed changes

@@ -28,7 +28,7 @@ public class Category {
 	@Column(length = 64, nullable = false, unique = true)
 	private String alias;
 
-	@Column(length = 128, nullable = false)
+	@Column(length = 128)
 	private String image;
 
 	private boolean enabled;
@@ -41,6 +41,24 @@ public class Category {
 	// a parent category can have many sub category
 	@OneToMany(mappedBy = "parent")
 	private Set<Category> children = new HashSet<>();
+
+	public Category() {
+	}
+
+	public Category(Integer id) {
+		this.id = id;
+	}
+
+	public Category(String name) {
+		this.name = name;
+		this.alias = name;
+		this.image = "default.png";
+	}
+
+	public Category(String name, Category parent) {
+		this(name);
+		this.parent = parent;
+	}
 
 	public Integer getId() {
 		return id;

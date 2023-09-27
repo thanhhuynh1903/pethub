@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="full-details">
-			<table class="table table-bordered table-striped table-hover table-responsive-xl">
+			<table class="table table-bordered table-striped table-hover">
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>
 						<th th:replace="~{fragments :: column_link('id', 'User ID','tag')}" />
@@ -85,34 +85,6 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-
-		<div class="less-details">
-			<div th:each="user : ${listUsers}" class="row m-1">
-				<div class="col-4">
-					<span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-					<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
-						th:src="@{${user.photosImagePath}}" />
-				</div>
-				<div class="col-8">
-					<div>[[${user.fullName}]]</div>
-					<div>[[${user.roles}]]</div>
-					<div class="mt-2">
-						<a th:if="${user.enabled ==true}" class="fas fa-check-circle fa-2x icon-green"
-							th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user"></a>
-						&nbsp;
-						<a th:if="${user.enabled ==false}" class="fas fa-circle fa-2x icon-dark"
-							th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Enable this user"></a>
-						&nbsp;
-						<a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' +${user.id}}"
-							title="Edit this user"></a>
-						&nbsp;
-						<a class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{'/users/delete/' +${user.id}}"
-							th:userId="${user.id}" title="Delete this user"></a>
-					</div>
-				</div>
-				<div>&nbsp;</div>
-			</div>
 		</div>
 
 		<div class="text-center m-1" th:if="${totalItems >0}">

@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 
 import com.pethub.common.entity.Category;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class CategoryService {
 
 	@Autowired
@@ -169,6 +172,19 @@ public class CategoryService {
 		sortedChildren.addAll(children);
 
 		return sortedChildren;
+	}
+
+	public void updateCategoryEnabledStatus(Integer id, boolean enabled) {
+		repo.updateEnabledStatus(id, enabled);
+	}
+
+	public void delete(Integer id) throws CategoryNotFoundException {
+		Long countById = repo.countById(id);
+		if (countById == null || countById == 0) {
+			throw new CategoryNotFoundException("Could not find any category with ID " + id);
+		}
+
+		repo.deleteById(id);
 	}
 
 }

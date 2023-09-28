@@ -69,24 +69,24 @@
 						<td>[[${user.lastName}]]</td>
 						<td>[[${user.roles}]]</td>
 						<td>
-							<div th:replace="fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})" />
+							<div th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
 						</td>
 						<td>
-							<div th:replace="fragments :: edit('user', '/users/edit/' + ${user.id})" />
+							<div th:replace="~{fragments :: edit('user', '/users/edit/' + ${user.id})}" />
 							&nbsp;
 							<div
-								th:replace="fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)" />
+								th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}" />
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div th:replace="fragments :: pagination('/users','users')"></div>
+		<div th:replace="~{fragments :: pagination('/users','users')}"></div>
 
-		<div th:replace="modal_fragments :: confirm_modal" />
+		<div th:replace="~{modal_fragments :: confirm_modal}" />
 
-		<div th:replace="fragments :: footer"></div>
+		<div th:replace="~{fragments :: footer}"></div>
 
 	</div>
 	<script th:src="@{/js/common_list.js}"></script>

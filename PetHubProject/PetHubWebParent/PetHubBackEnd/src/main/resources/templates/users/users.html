@@ -19,35 +19,29 @@
 			<a th:href="@{/users/export/pdf}">Export To PDF</a>
 		</div>
 
-		<!--message begin-->
-		<div th:if="${message != null}" class="alert alert-success text-center">
-			[[${message}]]
-		</div>
-		<!--end message-->
-
-		<!--begin filter-->
-		<div th:replace="~{fragments :: search_form('/users/page/1')}" />
-		<!--end filter-->
+		<!--begin filter and message-->
+		<div th:replace="~{fragments :: search_form_and_message('/users/page/1')}" />
+		<!--end filter and message-->
 
 
 		<div class="full-details">
 			<table class="table table-bordered table-striped table-hover">
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>
-						<th th:replace="~{fragments :: column_link('id', 'User ID','tag')}" />
+						<th th:replace="~{fragments :: column_link('/users','id', 'User ID','tag')}" />
 					</th>
 
 					<th>Photos</th>
 
 					<th>
-						<th th:replace="~{fragments :: column_link('email', 'Email','tag')}" />
+						<th th:replace="~{fragments :: column_link('/users','email', 'Email','tag')}" />
 					</th>
 
-					<th th:replace="~{fragments :: column_link('firstName', 'First Name', 'none')}" />
-					<th th:replace="~{fragments :: column_link('lastName', 'Last Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/users', 'firstName', 'First Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/users', 'lastName', 'Last Name', 'none')}" />
 
 					<th>Roles</th>
-					<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/users','enabled', 'Enabled', 'none')}" />
 					<th>Action</th>
 				</thead>
 				<tbody>

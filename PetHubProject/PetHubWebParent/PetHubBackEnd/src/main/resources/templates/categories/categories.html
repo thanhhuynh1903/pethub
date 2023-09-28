@@ -15,13 +15,10 @@
 			<a th:href="@{/categories/export/csv}">Export To CSV</a>
 		</div>
 
-		<div th:if="${message != null}" class="alert alert-success text-center">
-			[[${message}]]
-		</div>
 
-		<!--begin filter-->
-		<div th:replace="~{fragments :: search_form('/categories/page/1')}" />
-		<!--end filter-->
+		<!--begin filter and message-->
+		<div th:replace="~{fragments :: search_form_and_message('/categories/page/1')}" />
+		<!--end filter and message-->
 
 
 		<!--begin table-->
@@ -30,15 +27,8 @@
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>ID</th>
 					<th>Category Image</th>
-					<th>
-						<a class="text-dark"
-							th:href="@{'/categories/page/'+${currentPage} + '?sortDir='+${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Category
-							Name</a>
-						<span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-					</th>
-					<th>
-						Alias
-					</th>
+					<th th:replace="~{fragments :: column_link('/categories','name', 'Category Name','none')}" />
+					<th>Alias</th>
 					<th>Enabled</th>
 					<th>Action</th>
 				</thead>
@@ -53,10 +43,14 @@
 						<td>[[${cat.name}]]</td>
 						<td>[[${cat.alias}]]</td>
 						<td>
-							<div th:replace="~{fragments::category_status}"></div>
+							<div
+								th:replace="~{fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})}" />
 						</td>
 						<td>
-							<div th:replace="~{fragments::category_actions}"></div>
+							<div th:replace="~{fragments :: edit('category', '/categories/edit/' + ${cat.id})}" />
+							&nbsp;
+							<div th:replace="~{fragments :: delete('category', ${cat.id}, '/categories/delete/' + ${cat.id},
+								${!cat.hasChildren})}" />
 						</td>
 					</tr>
 				</tbody>

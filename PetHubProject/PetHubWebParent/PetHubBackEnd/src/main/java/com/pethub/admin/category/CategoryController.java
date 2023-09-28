@@ -17,8 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pethub.admin.FileUploadUtil;
 import com.pethub.common.entity.Category;
+import com.pethub.common.entity.User;
 
 import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class CategoryController {
@@ -86,11 +88,19 @@ public class CategoryController {
 			FileUploadUtil.cleanDir(uploadDir);
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		} else {
+			if (category.getImage().isEmpty()) {
+				category.setImage(null);
+			}
 			service.save(category);
 		}
 
 		ra.addFlashAttribute("message", "The category has been saved successfully.");
-		return "redirect:/categories";
+		return getRedirectURLtoAffectedCategory(category);
+	}
+
+	private String getRedirectURLtoAffectedCategory(Category category) {
+		String name = category.getName();
+		return "redirect:/categories/page/1?sortField=id&sortDir=asc&keyword=" + name; // = respond.sendRedirect
 	}
 
 	@GetMapping("/categories/edit/{id}")
@@ -134,6 +144,13 @@ public class CategoryController {
 		}
 
 		return "redirect:/categories";
+	}
+
+	@GetMapping("/categories/export/csv")
+	public void exportToCSV(HttpServletResponse response) throws IOException {
+		List<Category> listCategories = service.listCategoriesUsedInForm();
+		CategoryCsvExporter exporter = new CategoryCsvExporter();
+		exporter.export(listCategories, response);
 	}
 
 }

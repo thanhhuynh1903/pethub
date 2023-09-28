@@ -46,7 +46,9 @@
 					<tr th:each="cat : ${listCategories}">
 						<td>[[${cat.id}]]</td>
 						<td>
-							<img height="90px" width="90px" th:src="@{${cat.imagePath}}" />
+							<img height="90px" width="90px" th:if="${cat.image == null}"
+								th:src="@{/images/image-thumbnail.png}" />
+							<img height="90px" width="90px" th:if="${cat.image !=null}" th:src="@{${cat.imagePath}}" />
 						</td>
 						<td>[[${cat.name}]]</td>
 						<td>[[${cat.alias}]]</td>

@@ -18,18 +18,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.pethub.admin.FileUploadUtil;
 import com.pethub.common.entity.Category;
 
+import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
+
 @Controller
 public class CategoryController {
 	@Autowired
 	private CategoryService service;
 
 	@GetMapping("/categories")
-	public String listFirstPage(String sortDir, Model model) {
+	public String listFirstPage(@Param("sortDir") String sortDir, Model model) {
 		return listByPage(1, sortDir, null, model);
 	}
 
 	@GetMapping("/categories/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum, String sortDir, String keyword, Model model) {
+	public String listByPage(@PathVariable(name = "pageNum") int pageNum, @Param("sortDir") String sortDir,
+			@Param("keyword") String keyword, Model model) {
 		if (sortDir == null || sortDir.isEmpty()) {
 			sortDir = "asc";
 		}

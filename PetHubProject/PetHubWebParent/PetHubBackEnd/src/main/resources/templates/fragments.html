@@ -17,8 +17,22 @@
 
 
 <body>
+	<!--begin filter-->
+	<div th:fragment="search_form(moduleURL)">
+		<form th:action="@{${moduleURL}}" class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}" required />
+			<input type="hidden" name="sortDir" th:value="${sortDir}" required />
 
-
+			Filter:
+			<input type="search" name="keyword" th:value="${keyword}" class="form-control m-3" required />
+			&nbsp;&nbsp;
+			<input type="submit" value="Search" class="btn btn-primary" />
+			&nbsp;&nbsp;
+			<input type="button" value="Clear" class="btn btn-dark" onclick="clearFilter()" />
+		</form>
+	</div>
+	<!--end filter-->
+	<!--begin pagination-->
 	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
 		<div class="text-center m-1" th:if="${totalItems >0}">
 			<span>
@@ -54,29 +68,48 @@
 			</nav>
 		</div>
 	</div>
+	<!--end pagination-->
 
-
+	<!--begin update status-->
 	<div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
 		<a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green"
 			th:href="@{${entityURL} + '/enabled/false'}" th:title="'Disable this ' + ${entityName}"></a> <a
 			th:if="${enabled == false}" class="fas fa-circle fa-2x icon-dark"
 			th:href="@{${entityURL} + '/enabled/true'}" th:title="'Enable this ' + ${entityName}"></a>
 	</div>
+	<!--end update status-->
 
+
+
+	<!--begin edit button-->
 	<div th:fragment="edit(entityName, editURL)" th:remove="tag">
 		<a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}" th:title="'Edit this ' + ${entityName}"></a>
 	</div>
+	<!--end edit button-->
 
+
+
+	<!--begin delete button-->
 	<div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
 		<th:block th:if="${visible}">
 			<a class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
 				th:title="'Delete this ' + ${entityName}"></a>
 		</th:block>
 	</div>
+	<!--end delete button-->
+
+
+
+	<!-- begin footer-->
 	<div th:fragment="footer" class=" text-center m-3">
 		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
 	</div>
+	<!--end footer-->
 
+
+
+
+	<!-- begin column link-->
 	<th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
 		<a class="text-dark"
 			th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
@@ -85,7 +118,11 @@
 		<span th:if=" ${sortField==fieldName}"
 			th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 	</th>
+	<!--end column link-->
 
+
+
+	<!--begin category-->
 	<div th:fragment="category_status" th:remove="tag">
 		<a th:if="${cat.enabled ==true}" class="fas fa-check-circle fa-2x icon-green"
 			th:href="@{'/categories/' + ${cat.id} + '/enabled/false'}" title="Disable this category"></a>
@@ -103,10 +140,14 @@
 		</th:block>
 
 	</div>
+	<!--end category-->
 
+
+
+	<!--begin page link-->
 	<a th:fragment="page_link(moduleURL, pageNum, label)" class="page-link"
 		th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
-
+	<!--end page link-->
 </body>
 
 </html>

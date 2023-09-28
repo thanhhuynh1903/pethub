@@ -19,6 +19,60 @@
 <body>
 
 
+	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
+		<div class="text-center m-1" th:if="${totalItems >0}">
+			<span>
+				Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]].
+			</span>
+		</div>
+		<div class="text-center m-1" th:unless="${totalItems >0}">
+			<span>
+				No [[${entityName}]] found.
+			</span>
+		</div>
+
+		<div th:if="${totalPages>1}">
+			<nav>
+				<ul class="pagination justify-content-center flex-wrap">
+					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}" />
+					</li>
+					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}" />
+					</li>
+					<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+						th:each="i : ${#numbers.sequence(1, totalPages)}">
+						<a th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}" />
+					</li>
+					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}" />
+					</li>
+					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}" />
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
+	<div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
+		<a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green"
+			th:href="@{${entityURL} + '/enabled/false'}" th:title="'Disable this ' + ${entityName}"></a> <a
+			th:if="${enabled == false}" class="fas fa-circle fa-2x icon-dark"
+			th:href="@{${entityURL} + '/enabled/true'}" th:title="'Enable this ' + ${entityName}"></a>
+	</div>
+
+	<div th:fragment="edit(entityName, editURL)" th:remove="tag">
+		<a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}" th:title="'Edit this ' + ${entityName}"></a>
+	</div>
+
+	<div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
+		<th:block th:if="${visible}">
+			<a class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
+				th:title="'Delete this ' + ${entityName}"></a>
+		</th:block>
+	</div>
 	<div th:fragment="footer" class=" text-center m-3">
 		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
 	</div>
@@ -31,25 +85,27 @@
 		<span th:if=" ${sortField==fieldName}"
 			th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 	</th>
-	
+
 	<div th:fragment="category_status" th:remove="tag">
 		<a th:if="${cat.enabled ==true}" class="fas fa-check-circle fa-2x icon-green"
 			th:href="@{'/categories/' + ${cat.id} + '/enabled/false'}" title="Disable this category"></a>
 		<a th:if="${cat.enabled ==false}" class="fas fa-circle fa-2x icon-dark"
 			th:href="@{'/categories/' + ${cat.id} + '/enabled/true'}" title="Enable this category"></a>
 	</div>
-	
-	<div th:fragment = "category_actions" th:remove="tag">
+
+	<div th:fragment="category_actions" th:remove="tag">
 		<a class="fas fa-edit fa-2x icon-green" th:href="@{'/categories/edit/' +${cat.id}}"
-								title="Edit this category"></a>
-							&nbsp;
-							<a class="fas fa-trash fa-2x icon-dark link-delete"
-								th:href="@{'/categories/delete/' +${cat.id}}" th:userId="${cat.id}"
-								title="Delete this category"></a>
+			title="Edit this category"></a>
+		&nbsp;
+		<th:block th:if="${cat.hasChildren==false}">
+			<a class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{'/categories/delete/' +${cat.id}}"
+				th:entityId="${cat.id}" title="Delete this category"></a>
+		</th:block>
+
 	</div>
 
-	<a th:fragment="page_link(pageNum, label)" class="page-link"
-		th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
+	<a th:fragment="page_link(moduleURL, pageNum, label)" class="page-link"
+		th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
 </body>
 

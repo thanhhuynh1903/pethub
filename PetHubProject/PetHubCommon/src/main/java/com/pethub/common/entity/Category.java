@@ -3,7 +3,6 @@ package com.pethub.common.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -71,6 +69,7 @@ public class Category {
 		copyCategory.setImage(category.getImage());
 		copyCategory.setAlias(category.getAlias());
 		copyCategory.setEnabled(category.isEnabled());
+		copyCategory.setHasChildren(category.getChildren().size() > 0);
 		return copyCategory;
 	}
 
@@ -91,7 +90,6 @@ public class Category {
 		this.parent = parent;
 	}
 
-	
 	public Category(Integer id, String name, String alias) {
 		super();
 		this.id = id;
@@ -157,10 +155,21 @@ public class Category {
 
 	@Transient
 	public String getImagePath() {
-		if (this.id==null) {
+		if (this.id == null) {
 			return "/images/image-thumbnail.png";
 		}
 		return "/category-images/" + this.id + "/" + this.image;
+	}
+
+	@Transient
+	private boolean hasChildren;
+
+	public boolean isHasChildren() {
+		return hasChildren;
+	}
+
+	public void setHasChildren(boolean hasChildren) {
+		this.hasChildren = hasChildren;
 	}
 
 }

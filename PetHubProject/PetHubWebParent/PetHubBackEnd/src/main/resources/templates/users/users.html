@@ -18,23 +18,17 @@
 			&nbsp;|&nbsp;
 			<a th:href="@{/users/export/pdf}">Export To PDF</a>
 		</div>
+
+		<!--message begin-->
 		<div th:if="${message != null}" class="alert alert-success text-center">
 			[[${message}]]
 		</div>
+		<!--end message-->
 
-		<div>
-			<form th:action="@{/users/page/1}" class="form-inline m-3">
-				<input type="hidden" name="sortField" th:value="${sortField}" required />
-				<input type="hidden" name="sortDir" th:value="${sortDir}" required />
+		<!--begin filter-->
+		<div th:replace="~{fragments :: search_form('/users/page/1')}" />
+		<!--end filter-->
 
-				Filter:
-				<input type="search" name="keyword" th:value="${keyword}" class="form-control m-3" required />
-				&nbsp;&nbsp;
-				<input type="submit" value="Search" class="btn btn-primary" />
-				&nbsp;&nbsp;
-				<input type="button" value="Clear" class="btn btn-dark" onclick="clearFilter()" />
-			</form>
-		</div>
 
 		<div class="full-details">
 			<table class="table table-bordered table-striped table-hover">

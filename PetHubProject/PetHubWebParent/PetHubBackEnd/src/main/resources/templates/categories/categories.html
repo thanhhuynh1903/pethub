@@ -19,17 +19,12 @@
 			[[${message}]]
 		</div>
 
-		<div>
-			<form th:action="@{/categories/page/1}" class="form-inline m-3">
-				Filter:
-				<input type="search" name="keyword" th:value="${keyword}" class="form-control m-3" required />
-				&nbsp;&nbsp;
-				<input type="submit" value="Search" class="btn btn-primary" />
-				&nbsp;&nbsp;
-				<input type="button" value="Clear" class="btn btn-dark" onclick="clearFilter()" />
-			</form>
-		</div>
+		<!--begin filter-->
+		<div th:replace="~{fragments :: search_form('/categories/page/1')}" />
+		<!--end filter-->
 
+
+		<!--begin table-->
 		<div>
 			<table class="table table-bordered table-striped table-hover">
 				<thead style="background-color: rgb(228, 228, 228);">
@@ -37,11 +32,13 @@
 					<th>Category Image</th>
 					<th>
 						<a class="text-dark"
-							th:href="@{'/categories/page/'+${pageNum} + '?sortDir='+${reverseSortDir}}">Category
+							th:href="@{'/categories/page/'+${currentPage} + '?sortDir='+${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Category
 							Name</a>
 						<span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					<th>Alias</th>
+					<th>
+						Alias
+					</th>
 					<th>Enabled</th>
 					<th>Action</th>
 				</thead>
@@ -63,7 +60,16 @@
 				</tbody>
 			</table>
 		</div>
-		<div th:replace="~{fragments :: pagination('/categories','top-level categories')}"></div>
+		<!--end table-->
+
+		<div th:if="${keyword !=null}" class="text-center">
+			<span>Search result does not show categories in hierachical form.</span>
+			<div th:replace="~{fragments :: pagination('/categories','categories')}"></div>
+		</div>
+
+		<th:block th:unless="${keyword !=null}">
+			<div th:replace="~{fragments :: pagination('/categories','top-level categories')}"></div>
+		</th:block>
 
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 

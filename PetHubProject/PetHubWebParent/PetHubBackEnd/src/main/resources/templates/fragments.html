@@ -22,7 +22,7 @@
 <body>
 
 	<!--begin filter-->
-	<div th:fragment="search_form_and_message(moduleURL)">
+	<div th:fragment="search_form_and_message(moduleURL)" class="d-flex">
 		<form th:action="@{${moduleURL}}" class="form-inline m-3">
 			<input type="hidden" name="sortField" th:value="${sortField}" required />
 			<input type="hidden" name="sortDir" th:value="${sortDir}" required />
@@ -116,7 +116,7 @@
 
 
 	<!-- begin footer-->
-	<div th:fragment="footer" class=" text-center m-3">
+	<div th:fragment="footer" class=" text-center m-3 col-6">
 		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
 	</div>
 	<!--end footer-->

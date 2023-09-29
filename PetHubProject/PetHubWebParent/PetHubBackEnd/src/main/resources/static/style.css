@@ -92,8 +92,9 @@ body{
 	padding: 0px;
     margin: 0px;
     min-height: 100vh;
-    background-color: white ;
+    background:#e8e9eb;
 }
+
 
 .logo-header img{
     width: 50%;
@@ -108,15 +109,12 @@ body{
     }
 
 .sidebar{
-	/*position: relative;
-    top: 0;
-    left: 0;*/
     display: block;	
-    height: 100vh;
+    min-height: 100vh;
     width: 12%;
     z-index: 1;
     background: #4e73df;
-    overflow: hidden; /* Add scrollbar for vertical overflow */
+    overflow: hidden; 
    
 }
 
@@ -229,6 +227,7 @@ body{
 }
 
 .table{
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	margin-left: auto;
   	margin-right: auto;
 	width: 100%;
@@ -245,12 +244,14 @@ body{
 	
 }
 
+
 .table-title {
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 	margin-left: auto;
   	margin-right: auto;
 	width: 75%;
     padding-bottom: 15px;
-    background:rgb(0, 128, 192);
+    background: rgb(125 150 160);
     color: #fff;
     padding: 16px 30px;
     border-radius: 3px 3px 0 0;
@@ -274,3 +275,6 @@ body{
     outline: none !important;
     margin-left: 10px;
 }
+
+
+

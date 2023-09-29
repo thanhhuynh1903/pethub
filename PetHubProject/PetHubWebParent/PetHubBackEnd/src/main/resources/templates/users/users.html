@@ -7,10 +7,10 @@
 	<div class="w-100">
 		<div class="d-flex w-100">
 			<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
-			<div class="w-75 d-flex flex-column">
+			<div class="d-flex flex-column" style="width: 88%;">
 				<div th:replace="~{navigation :: menu}"></div>
 				<div class="w-100">
-					<div class="px-5">
+					<div class="p-5">
 						<h2 style="color:#74797d">Manage Users</h2>
 						<div class="table-title w-100 ">
 							<div class="row">
@@ -31,16 +31,16 @@
 									</div>
 								</div>
 								<div class="col-sm-7 item-ex">
-									<a th:href="@{/users/new}" class="btn btn-secondary"><span>Create New
+									<a th:href="@{/users/new}" class="btn btn-secondary btn btn-dark"><span>Create New
 											User</span></a>
 									&nbsp;&nbsp;
-									<a th:href="@{/users/export/csv}" class="btn btn-secondary"><span>Export To
+									<a th:href="@{/users/export/csv}" class="btn btn-secondary btn btn-dark"><span>Export To
 											CSV</span></a>
 									&nbsp;&nbsp;
-									<a th:href="@{/users/export/excel}" class="btn btn-secondary"><span>Export To
+									<a th:href="@{/users/export/excel}" class="btn btn-secondary btn btn-dark"><span>Export To
 											Excel</span></a>
 									&nbsp;&nbsp;
-									<a th:href="@{/users/export/pdf}" class="btn btn-secondary"><span>Export To
+									<a th:href="@{/users/export/pdf}" class="btn btn-secondary btn btn-dark"><span>Export To
 											PDF</span></a>
 								</div>
 							</div>
@@ -256,91 +256,5 @@
 		window.location = "[[@{/users}]]";
 	}
 </script>
-
-<body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: menu}"></div>
-
-		<div>
-			<h2>Manage Users</h2>
-			<a th:href="@{/users/new}">Create New User</a>
-			&nbsp;|&nbsp;
-			<a th:href="@{/users/export/csv}">Export To CSV</a>
-			&nbsp;|&nbsp;
-			<a th:href="@{/users/export/excel}">Export To Excel</a>
-			&nbsp;|&nbsp;
-			<a th:href="@{/users/export/pdf}">Export To PDF</a>
-		</div>
-
-		<!--begin filter and message-->
-		<div th:replace="~{fragments :: search_form_and_message('/users/page/1')}" />
-		<!--end filter and message-->
-
-
-		<div class="full-details">
-			<table class="table table-bordered table-striped table-hover">
-				<thead style="background-color: rgb(228, 228, 228);">
-					<th>
-						<th th:replace="~{fragments :: column_link('/users','id', 'User ID','tag')}" />
-					</th>
-
-					<th>Photos</th>
-
-					<th>
-						<th th:replace="~{fragments :: column_link('/users','email', 'Email','tag')}" />
-					</th>
-
-					<th th:replace="~{fragments :: column_link('/users', 'firstName', 'First Name', 'none')}" />
-					<th th:replace="~{fragments :: column_link('/users', 'lastName', 'Last Name', 'none')}" />
-
-					<th>Roles</th>
-					<th th:replace="~{fragments :: column_link('/users','enabled', 'Enabled', 'none')}" />
-					<th>Action</th>
-				</thead>
-				<tbody>
-					<tr th:each="user : ${listUsers}">
-						<td class="hideable-column">[[${user.id}]]</td>
-						<td>
-							<span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-							<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
-								th:src="@{${user.photosImagePath}}" />
-						</td>
-						<td class="hideable-column">[[${user.email}]]</td>
-						<td>[[${user.firstName}]]</td>
-						<td>[[${user.lastName}]]</td>
-						<td>[[${user.roles}]]</td>
-						<td>
-							<div th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
-						</td>
-						<td>
-							<div th:replace="~{fragments :: edit('user', '/users/edit/' + ${user.id})}" />
-							&nbsp;
-							<div
-								th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div th:replace="~{fragments :: pagination('/users','users')}"></div>
-
-		<div th:replace="~{modal_fragments :: confirm_modal}" />
-
-		<div th:replace="~{fragments :: footer}"></div>
-
-	</div>
-	<script th:src="@{/js/common_list.js}"></script>
-	<script type="text/javascript">
-		moduleURL = "[[@{/users}]]";
-
-		$(document).ready(function () {
-			$(".link-delete").on("click", function (e) {
-				e.preventDefault();
-				showDeleteConfirmModal($(this), 'user');
-			});
-		});
-	</script>
-</body>
 
 </html>

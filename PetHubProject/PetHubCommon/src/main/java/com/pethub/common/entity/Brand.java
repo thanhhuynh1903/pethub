@@ -84,4 +84,5 @@ public class Brand {
 		}
 		return "/category-images/" + this.id + "/" + this.logo;
 	}
+
 }

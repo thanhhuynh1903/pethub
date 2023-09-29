@@ -15,4 +15,6 @@ public class BrandService {
 	public List<Brand> listAll() {
 		return (List<Brand>) repo.findAll();
 	}
+public class BrandService {
+
 }

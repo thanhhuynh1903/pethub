@@ -14,7 +14,8 @@
 			</button>-->
 
 				<ul>
-					<li sec:authorize="hasAuthority('Admin')">
+					<div sec:authorize="hasAuthority('Admin')">
+					<li >
 
 						<a th:href="@{/users}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
@@ -50,9 +51,9 @@
 	
 						<!--		<a class="nav-link" th:href="@{/users}">Users</a>-->
 					</li>
-
-
-					<li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					<li >
 						<a th:href="@{/categories}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 47 40"
@@ -71,12 +72,13 @@
 									</svg> </i></span>
 							<span class="text">Categories</span>
 						</a>
-
+		
 
 						<!--<a class="nav-link" th:href="@{/categories}">Categories</a>-->
 					</li>
-
-					<li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+					<li >
 						<a th:href="@{/brands}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 46 48"
@@ -96,11 +98,11 @@
 							<span class="text">Brands</span>
 						</a>
 					</li>
-
+					</div>
 
 					<!--<a class="nav-link" th:href="@{/brands}">Brands</a>-->
-
-					<li sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Editor', 'Shipper')">
+					<div sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Editor', 'Shipper')">
+					<li >
 						<a th:href="@{/products}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 71 70"
@@ -129,7 +131,9 @@
 
 						<!--<a class="nav-link" th:href="@{/products}">Products</a>-->
 					</li>
-					<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+					<li>
 						<a th:href="@{/customers}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 34 38"
@@ -147,7 +151,9 @@
 						</a>
 						<!--<a class="nav-link" th:href="@{/customers}">Customers</a>-->
 					</li>
-					<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+					<li >
 						<a th:href="@{/shipping}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 65 43"
@@ -175,7 +181,9 @@
 						</a>
 						<!--<a class="nav-link" th:href="@{/shipping}">Shipping</a>-->
 					</li>
-					<li sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Shipper')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Shipper')">
+					<li >
 						<a th:href="@{/orders}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 53 62"
@@ -202,7 +210,10 @@
 
 						<!--<a class="nav-link" th:href="@{/orders}">Orders</a>-->
 					</li>
-					<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+					</div>
+					
+					<div sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+					<li >
 						<a th:href="@{/report}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 36 41"
@@ -216,7 +227,9 @@
 
 						<!--<a class="nav-link" th:href="@{/report}">Sales Report</a>-->
 					</li>
-					<li sec:authorize="hasAnyAuthority('Admin','Editor')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin','Editor')">
+					<li >
 						<a th:href="@{/articles}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 48 35"
@@ -237,7 +250,9 @@
 
 						<!--<a class="nav-link" th:href="@{/articles}">Articles</a>-->
 					</li>
-					<li sec:authorize="hasAnyAuthority('Admin','Editor')">
+					</div>
+					<div sec:authorize="hasAnyAuthority('Admin','Editor')">
+					<li >
 						<a th:href="@{/menus}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 40 40"
@@ -266,7 +281,9 @@
 
 						<!--<a class="nav-link" th:href="@{/menus}">Menus</a>-->
 					</li>
-					<li sec:authorize="hasAuthority('Admin')">
+					</div>
+					<div sec:authorize="hasAuthority('Admin')">
+					<li >
 						<a th:href="@{/settings}" class="logo" style="margin-bottom: 0px">
 							<span class="icon"><i class="fa-solid">
 									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 41 33"
@@ -285,6 +302,7 @@
 
 						<!--<a class="nav-link" th:href="@{/settings}">Settings</a>-->
 					</li>
+					</div>
 					<!--<li>
 					<span class="fas fa-user fa-2x icon-silver"></span>
 				</li>-->

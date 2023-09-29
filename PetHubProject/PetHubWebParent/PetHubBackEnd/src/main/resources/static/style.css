@@ -84,7 +84,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-size: 10px;
+    font-size: 10.5px;
     font-family: 'Inter', sans-serif;
 }
 
@@ -231,7 +231,11 @@ body{
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	margin-left: auto;
   	margin-right: auto;
-	width: 100%;
+	width: 90%;
+}
+
+.table thead th {
+    text-align: center;
 }
 
 .header-bar .item-container .icon-note{
@@ -250,7 +254,6 @@ body{
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 	margin-left: auto;
   	margin-right: auto;
-	width: 75%;
     padding-bottom: 15px;
     background: rgb(125 150 160);
     color: #fff;
@@ -263,6 +266,17 @@ body{
 	color: #566787;
     background: #f2f2f2;
 }
+
+.table-bordered td:nth-child(n+7):nth-child(-n+8){
+	text-align: center;
+} 
+
+ .position-footer {
+            position: relative;
+            bottom: 50;
+            text-align: center; /* Optional: Center the content horizontally */
+        }
+
 
 .table-title .btn {
     color:#fff;

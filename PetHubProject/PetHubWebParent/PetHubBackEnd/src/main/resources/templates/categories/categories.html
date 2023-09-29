@@ -14,8 +14,8 @@
 					<div class="w-100">
 						<div class="p-5">
 
-							<h2>Manage Categories</h2>
-							<div class="table-title w-100 ">
+							<h2 class="m-2" style="text-align: center;">Manage Categories</h2>
+							<div class="table-title" style="width: 90%;">
 								<div class="row">
 									<div class="col-sm-5">
 										<div>
@@ -61,11 +61,11 @@
 											</td>
 											<td>[[${cat.name}]]</td>
 											<td>[[${cat.alias}]]</td>
-											<td>
+											<td style="text-align: center;">
 												<div
 													th:replace="~{fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})}" />
 											</td>
-											<td>
+											<td style="text-align: center;">
 												<div
 													th:replace="~{fragments :: edit('category', '/categories/edit/' + ${cat.id})}" />
 												&nbsp;

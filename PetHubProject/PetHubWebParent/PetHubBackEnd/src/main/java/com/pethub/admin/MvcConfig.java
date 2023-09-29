@@ -22,6 +22,14 @@ public class MvcConfig implements WebMvcConfigurer {
 		// map directory to the physical - the absolute path on the file system
 		// with the prefix if file
 		// /** allow all the files under this directory will be available to web clients
+
+		String categoryImagesDirName = "../category-images";
+		Path categoryImagesDir = Paths.get(categoryImagesDirName);
+
+		String categoryImagesPath = categoryImagesDir.toFile().getAbsolutePath();
+
+		registry.addResourceHandler("/category-images/**")
+				.addResourceLocations("file:/" + categoryImagesPath + "/");
 	}
 
 }

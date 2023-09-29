@@ -1,7 +1,6 @@
-package com.pethub.admin.user;
+package com.pethub.admin.user.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pethub.admin.FileUploadUtil;
+import com.pethub.admin.user.UserNotFoundException;
+import com.pethub.admin.user.UserService;
+import com.pethub.admin.user.export.UserCsvExporter;
+import com.pethub.admin.user.export.UserExcelExporter;
+import com.pethub.admin.user.export.UserPdfExporter;
 import com.pethub.common.entity.Role;
 import com.pethub.common.entity.User;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
@@ -62,7 +68,7 @@ public class UserController {
 		model.addAttribute("reverseSortDir", reverseSortDir);
 		model.addAttribute("keyword", keyword);
 
-		return "users";
+		return "users/users";
 	}
 
 	@GetMapping("/users/new")
@@ -73,7 +79,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("listRoles", listRoles);
 		model.addAttribute("pageTitle", "Create New User");
-		return "user_form";
+		return "users/user_form";
 	}
 
 	@PostMapping("/users/save") // handling HTTP post request
@@ -116,7 +122,7 @@ public class UserController {
 			model.addAttribute("listRoles", listRoles);
 
 			model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
-			return "user_form";
+			return "users/user_form";
 		} catch (UserNotFoundException ex) {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 			return "redirect:/users";
@@ -143,5 +149,26 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", message);
 
 		return "redirect:/users";
+	}
+
+	@GetMapping("/users/export/csv")
+	public void exportToCSV(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserCsvExporter exporter = new UserCsvExporter();
+		exporter.export(listUsers, response);
+	}
+
+	@GetMapping("/users/export/excel")
+	public void exportToExcel(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserExcelExporter exporter = new UserExcelExporter();
+		exporter.export(listUsers, response);
+	}
+
+	@GetMapping("/users/export/pdf")
+	public void exportToPDF(HttpServletResponse response) throws IOException {
+		List<User> listUsers = service.listAll();
+		UserPdfExporter exporter = new UserPdfExporter();
+		exporter.export(listUsers, response);
 	}
 }

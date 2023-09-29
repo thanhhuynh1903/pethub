@@ -1,9 +1,11 @@
-package com.pethub.admin.user;
+package com.pethub.admin.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.pethub.admin.user.UserService;
 
 @RestController
 public class UserRestController {

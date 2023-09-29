@@ -18,10 +18,11 @@
 							</div>
 
 
-						
+
 							<form th:action="@{/categories/save}" method="post"
-								style="max-width: 500px; margin: 0 auto; background: white; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;border-radius: 10px;" enctype="multipart/form-data"
-								onsubmit="return checkUnique(this)" th:object="${category}">
+								style="max-width: 500px; margin: 0 auto; background: white; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;border-radius: 10px;"
+								enctype="multipart/form-data" onsubmit="return checkUnique(this)"
+								th:object="${category}">
 								<input type="hidden" th:field="*{id}" />
 								<div class="p-3">
 									<div class="form-group row">
@@ -84,13 +85,16 @@
 								</div>
 
 							</form>
+							<div th:replace="~{modal_fragments :: modal_dialog}"></div>
+							<div class="vw-80 d-flex justify-content-center mt-1">
+							<div th:replace="~{fragments :: footer}"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div th:replace="~{modal_fragments :: modal_dialog}"></div>
-		<div th:replace="~{fragments :: footer}"></div>
+
 
 	</div>
 </body>

@@ -52,7 +52,7 @@
 									</thead>
 									<tbody>
 										<tr th:each="cat : ${listCategories}">
-											<td>[[${cat.id}]]</td>
+											<td class="hideable-column text-center">[[${cat.id}]]</td>
 											<td>
 												<img height="90px" width="90px" th:if="${cat.image == null}"
 													th:src="@{/images/image-thumbnail.png}" />

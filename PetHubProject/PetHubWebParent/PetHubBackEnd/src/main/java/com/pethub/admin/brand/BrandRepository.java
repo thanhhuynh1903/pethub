@@ -7,4 +7,7 @@ import com.pethub.common.entity.Brand;
 
 public interface BrandRepository extends CrudRepository<Brand, Integer>, PagingAndSortingRepository<Brand, Integer> {
 
+	public Long countById(Integer id);
+
+	public Brand findByName(String name);
 }

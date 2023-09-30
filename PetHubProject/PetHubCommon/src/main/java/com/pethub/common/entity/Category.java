@@ -82,7 +82,7 @@ public class Category {
 	public Category(String name) {
 		this.name = name;
 		this.alias = name;
-		this.image = "default.png";
+		this.image = "image-thumbnail.png";
 	}
 
 	public Category(String name, Category parent) {
@@ -170,6 +170,11 @@ public class Category {
 
 	public void setHasChildren(boolean hasChildren) {
 		this.hasChildren = hasChildren;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 
 }

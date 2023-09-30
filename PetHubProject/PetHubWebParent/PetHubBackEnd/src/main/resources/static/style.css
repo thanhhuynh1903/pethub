@@ -114,7 +114,7 @@ body{
     width: 12%;
     z-index: 1;
     background: #4e73df;
-    overflow: hidden; 
+   
    
 }
 
@@ -262,11 +262,14 @@ body{
     border-radius: 3px 3px 0 0;
 }
 
+
 .table-title .item-ex .btn{
 	margin-top: 10px;
 	color: #566787;
     background: #f2f2f2;
 }
+
+
 
 .table  td {
 	font-size: 13.5px;

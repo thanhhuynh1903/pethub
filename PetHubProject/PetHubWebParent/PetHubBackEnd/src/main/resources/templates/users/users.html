@@ -11,28 +11,10 @@
 				<div th:replace="~{navigation :: menu}"></div>
 				<div class="w-100">
 					<div class="p-5">
-						<h2 style="color:#74797d;text-align: center;">Manage Users</h2>
+						<h2 style="text-align: center;margin: 25px;">Manage Users</h2>
 						<div class="table-title" style="width: 90%;">
 							<div class="row">
-								<div class="col-sm-5">
-									<div>
-										<form th:action="@{/users/page/1}" class="form-inline m-1">
-											<input type="hidden" name="sortField" th:value="${sortField}" required />
-											<input type="hidden" name="sortDir" th:value="${sortDir}" required />
-											Filter:
-											<input type="search" name="keyword" th:value="${keyword}"
-												class="form-control m-3" required />
-											&nbsp;&nbsp;
-											<input type="submit" value="Search" class="btn btn-primary" />
-											&nbsp;&nbsp;
-											<input type="button" value="Clear" class="btn btn-dark"
-												onclick="clearFilter()" />
-										</form>
-									</div>
-								</div>
-								<div class="col-sm-7 item-ex">
-									<a th:href="@{/users/new}" class="btn btn-secondary btn btn-dark"><span>Create New
-											User</span></a>
+								<div class="col-sm-5 item-ex">
 									&nbsp;&nbsp;
 									<a th:href="@{/users/export/csv}"
 										class="btn btn-secondary btn btn-dark"><span>Export To
@@ -45,12 +27,32 @@
 									<a th:href="@{/users/export/pdf}"
 										class="btn btn-secondary btn btn-dark"><span>Export To
 											PDF</span></a>
+									<a th:href="@{/users/new}" class="btn btn-secondary btn btn-dark" style="background: #27374D;color: white;font-weight: bold;"><span>Create New
+											User</span></a>
 								</div>
+								<div class="col-sm-7" style="display: flex;justify-content: end;">
+									<div>
+										<form th:action=" @{/users/page/1}" class="form-inline m-1">
+											<input type="hidden" name="sortField" th:value="${sortField}" required />
+											<input type="hidden" name="sortDir" th:value="${sortDir}" required />
+											Filter:
+											<input type="search" name="keyword" th:value="${keyword}"
+												class="form-control m-3" required />
+											&nbsp;&nbsp;
+											<input type="submit" value="Search" class="btn btn-primary" />
+											&nbsp;&nbsp;
+											<input type="button" value="Clear" class="btn btn-dark" style="background:#343a40;"
+												onclick="clearFilter()" />
+										</form>
+									</div>
+								</div>
+
 							</div>
 						</div>
 
 
-						<div th:if="${message != null}" class="alert alert-success text-center" style="width: 90%;margin: 0 auto;">
+						<div th:if="${message != null}" class="alert alert-success text-center"
+							style="width: 90%;margin: 0 auto;">
 							[[${message}]]
 						</div>
 
@@ -106,7 +108,7 @@
 								</thead>
 								<tbody>
 									<tr th:each="user : ${listUsers}">
-										<td class="hideable-column text-center" >[[${user.id}]]</td>
+										<td class="hideable-column text-center">[[${user.id}]]</td>
 										<td>
 											<span th:if="${user.photos == null}"
 												class="fas fa-portrait fa-3x icon-silver"></span>

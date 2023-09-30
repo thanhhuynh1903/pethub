@@ -14,21 +14,25 @@
 					<div class="w-100">
 						<div class="p-5">
 
-							<h2 class="m-2" style="text-align: center;">Manage Categories</h2>
+							<h2 style="text-align: center; margin: 25px;">Manage Categories</h2>
 							<div class="table-title" style="width: 90%;">
 								<div class="row">
-									<div class="col-sm-5">
+									<div class="col-sm-3 item-ex" style="padding-top: 10px;">
+										<a th:href="@{/categories/export/csv}" class="btn btn-secondary"><span>Export To
+												CSV</span></a>
+										<a th:href="@{/categories/new}" class="btn btn-dark" style="background:#343a40;color: white;font-weight: bold;"><span>Create New
+												Category</span></a>
+										&nbsp;&nbsp;
+									</div>
+
+									<div class="col-sm-9" style="display: flex;justify-content: end;">
 										<div>
 											<div
 												th:replace="~{fragments :: search_form_and_message('/categories/page/1')}">
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-7 item-ex">
-										<a th:href="@{/categories/new}" class="btn btn-secondary"><span>Create New Category</span></a>
-										&nbsp;&nbsp;
-										<a th:href="@{/categories/export/csv}" class="btn btn-secondary"><span>Export To CSV</span></a>
-									</div>
+
 								</div>
 							</div>
 
@@ -53,7 +57,7 @@
 									<tbody>
 										<tr th:each="cat : ${listCategories}">
 											<td class="hideable-column text-center">[[${cat.id}]]</td>
-											<td>
+											<td class="text-center">
 												<img height="90px" width="90px" th:if="${cat.image == null}"
 													th:src="@{/images/image-thumbnail.png}" />
 												<img height="90px" width="90px" th:if="${cat.image !=null}"
@@ -92,14 +96,14 @@
 
 						</div>
 						<div class="vw-80 d-flex justify-content-center pt-1">
-						<div th:replace="~{fragments :: footer}" ></div>
+							<div th:replace="~{fragments :: footer}"></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			
-			
+
+
+
 		</div>
 		<script th:src="@{/js/common_list.js}"></script>
 		<script type="text/javascript">

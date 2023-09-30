@@ -11,15 +11,20 @@
 				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
 				<div class="d-flex flex-column" style="width: 88%;">
 					<div th:replace="~{navigation :: menu}"></div>
-					<div class="m-5"style="text-align: center;" >
-						<h2 >PetHub Control Panel</h2>
-						Welcome <a sec:authentication="principal.fullname" th:href="@{/account}"></a>
-						<span sec:authentication="principal.authorities"></span>
+					<div class="m-5" style="text-align: center;">
+						<div class="w-100">
+							<div class="p-5">
+								<h2>PetHub Control Panel</h2>
+								Welcome <a sec:authentication="principal.fullname" th:href="@{/account}"></a>
+								<span sec:authentication="principal.authorities"></span>
+							</div>
+							<div class="d-flex justify-content-center align-item-end">
+								<div class="text-end" th:replace=" ~{fragments :: footer}"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div th:replace=" ~{fragments :: footer}">
 		</div>
 	</div>
 </body>

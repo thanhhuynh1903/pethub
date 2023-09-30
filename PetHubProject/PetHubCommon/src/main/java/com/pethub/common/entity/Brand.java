@@ -40,6 +40,11 @@ public class Brand {
 		this.logo = "brand-logo.png";
 	}
 
+	public Brand(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -82,7 +87,7 @@ public class Brand {
 		if (this.id == null) {
 			return "/images/image-thumbnail.png";
 		}
-		return "/category-images/" + this.id + "/" + this.logo;
+		return "/brand-logos/" + this.id + "/" + this.logo;
 	}
 
 }

@@ -27,14 +27,16 @@
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>Brand ID</th>
 					<th>Logo</th>
-					<th th:replace="~{fragments :: column_link('/brands','name', 'Brand Name','none')}" />
+					<th>Name</th>
 					<th>Categories</th>
 					<th>Action</th>
 				</thead>
 				<tbody>
 					<tr th:each="brand : ${listBrands}">
 						<td>[[${brand.id}]]</td>
-						<td></td>
+						<td>
+							<img th:src="@{${brand.logoPath}}" width="90px" height="90px"/>
+						</td>
 						<td>[[${brand.name}]]</td>
 
 						<td>

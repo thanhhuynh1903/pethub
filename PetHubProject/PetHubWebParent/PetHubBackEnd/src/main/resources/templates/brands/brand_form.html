@@ -16,7 +16,7 @@
 
 
 		<form th:action="@{/brands/save}" method="post" style="max-width: 600px; margin: 0 auto  ;"
-			enctype="multipart/form-data" th:object="${brand}" onsubmit="return checkUnique(this)">
+			enctype="multipart/form-data" th:object="${brand}">
 			<input type="hidden" th:field="*{id}" />
 			<div class="border border-secondary rounded p-3">
 				<div class="form-group row">
@@ -33,10 +33,9 @@
 					<div class="col-sm-8">
 						<input type="hidden" th:field="*{logo}" />
 						<input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" class="mb-2"
-							required />
-
+							required="${brand.id ==null}" />
 						<div class="mt-2">
-							<img id="thumbnail" alt="Image preview" th:src="@{${brand.logoPath}}" class="img-fluid" />
+							<img id="thumbnail" alt="Image preview" th:src="@{${brand.logoPath}}" />
 						</div>
 					</div>
 				</div>
@@ -85,6 +84,8 @@
 			divchosenCategories.empty();
 			showChosenCategories();
 		});
+		
+			showChosenCategories();
 	});
 
 
@@ -92,40 +93,12 @@
 		dropdownCategories.children("option:selected").each(function () {
 			selectedCategory = $(this);
 			catId = selectedCategory.val();
-			catName = selectedCategory.text().replace(/-/g,"");
+			catName = selectedCategory.text().replace(/-/g, "");
 
 			divchosenCategories.append("<span class='badge badge-secondary'>" + catName + "</span> &nbsp");
 		});
 	}
 
-	function checkUnique(form) {
-		catId = $('#id').val();
-		catName = $('#name').val();
-		catAlias = $('#alias').val();
-
-		csrfValue = $("input[name='_csrf']").val();
-
-		url = "[[@{/brands/check_unique}]]";
-
-		params = {id: catId, name: catName, alias: catAlias, _csrf: csrfValue};
-
-		$.post(url, params, function (response) {
-			if (response == "OK") {
-				form.submit();
-			} else if (response == "DuplicateName") {
-				showWarningModal("There is another category having the same name " + catName);
-			} else if (response == "DuplicateAlias") {
-				showWarningModal("There is another category having the same alias " + catAlias);
-			}
-			else {
-				showErrorModal("Unknown response from server");
-			}
-		}).fail(function () {
-			showErrorModal("Could not connect to the server");
-		});
-
-		return false;
-	}
 </script>
 <script th:src="@{/js/common_form.js}"></script>
 

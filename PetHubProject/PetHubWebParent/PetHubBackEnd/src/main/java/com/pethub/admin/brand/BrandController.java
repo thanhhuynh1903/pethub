@@ -17,10 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pethub.admin.FileUploadUtil;
+import com.pethub.admin.category.CategoryCsvExporter;
 import com.pethub.admin.category.CategoryPageInfo;
 import com.pethub.admin.category.CategoryService;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class BrandController {
@@ -133,5 +136,12 @@ public class BrandController {
 		}
 
 		return "redirect:/brands";
+	}
+
+	@GetMapping("/brands/export/csv")
+	public void exportToCSV(HttpServletResponse response) throws IOException {
+		List<Brand> listBrands = brandService.listAll();
+		BrandCsvExporter exporter = new BrandCsvExporter();
+		exporter.export(listBrands, response);
 	}
 }

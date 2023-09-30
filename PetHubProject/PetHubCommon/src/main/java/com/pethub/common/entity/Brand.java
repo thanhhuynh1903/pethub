@@ -37,6 +37,7 @@ public class Brand {
 
 	public Brand(String name) {
 		this.name = name;
+		this.logo = "brand-logo.png";
 	}
 
 	public Integer getId() {

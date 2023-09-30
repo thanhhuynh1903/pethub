@@ -27,7 +27,8 @@
 									<a th:href="@{/users/export/pdf}"
 										class="btn btn-secondary btn btn-dark"><span>Export To
 											PDF</span></a>
-									<a th:href="@{/users/new}" class="btn btn-secondary btn btn-dark" style="background: #27374D;color: white;font-weight: bold;"><span>Create New
+									<a th:href="@{/users/new}" class="btn btn-secondary btn btn-dark"
+										style="background: #27374D;color: white;font-weight: bold;"><span>Create New
 											User</span></a>
 								</div>
 								<div class="col-sm-7" style="display: flex;justify-content: end;">
@@ -41,8 +42,8 @@
 											&nbsp;&nbsp;
 											<input type="submit" value="Search" class="btn btn-primary" />
 											&nbsp;&nbsp;
-											<input type="button" value="Clear" class="btn btn-dark" style="background:#343a40;"
-												onclick="clearFilter()" />
+											<input type="button" value="Clear" class="btn btn-dark"
+												style="background:#343a40;" onclick="clearFilter()" />
 										</form>
 									</div>
 								</div>
@@ -140,10 +141,15 @@
 						<div th:replace="~{modal_fragments :: confirm_modal}" />
 
 
-						<div class="d-flex justify-content-center align-item-end">
+
+					</div>
+
+					<footer class="sticky-footer ">
+						<div class="container my-auto"></div>
+						<div class="copyright text-center my-auto">
 							<div th:replace="~{fragments :: footer}"></div>
 						</div>
-					</div>
+					</footer>
 				</div>
 			</div>
 		</div>

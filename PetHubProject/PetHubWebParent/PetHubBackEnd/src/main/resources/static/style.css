@@ -302,7 +302,7 @@ body{
 /*style css register*/
 
 
-body{
+.body-2{
     padding: 0;
     margin: 0;
     box-sizing: border-box ;
@@ -310,16 +310,6 @@ body{
     font-weight: 400;
     font-size: 14px;
 
-}
-
-
-img {
-    border-radius: 20px 0px 0px 20px;
-    height: 100%;
-    width: 100%;
-    object-fit: fill;
-    vertical-align: middle;
-    border-style: none;
 }
 
 .wrapper {
@@ -351,7 +341,10 @@ img {
     width: 96%;
 }
 
-input{
+.input-2{
+	border: none;
+    outline: none;
+    border-bottom: 2px solid black;
     background: grey    ;
 }
 
@@ -388,10 +381,4 @@ input{
     border-radius: 5px;
 }*/
 
-
-input{
-    border: none;
-    outline: none;
-    border-bottom: 2px solid black;
-}
 

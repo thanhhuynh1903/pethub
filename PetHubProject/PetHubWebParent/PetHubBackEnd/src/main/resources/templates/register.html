@@ -15,15 +15,20 @@
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
-<body style="background:#dee0df">
+<body style="background:#dee0df" class="body-2">
 	<div class="d-flex justify-content-center align-items-center">
 		<div class="d-flex m-5 w-75"
 			style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;border-radius: 20px 20px 20px 20px;">
 			<div class="col-6" style="padding-right: 0px; padding-left: 0px;">
-				<img th:src="@{/images/register-img.jpg}" alt="">
+				<img th:src="@{/images/register-img.jpg}" alt="" style="border-radius: 20px 0px 0px 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    vertical-align: middle;
+    border-style: none;">
 			</div>
 			<div class="col-6" style="padding-left: 0px; padding-right: 0px;">
-				<div class="wrapper" >
+				<div class="wrapper">
 					<div class="card card-4" style="border-radius: 0px 20px 20px 0px;">
 						<div class="card-body">
 							<h2 class="card-title">Register Form</h2>
@@ -33,7 +38,7 @@
 										<label class="label" for>First name</label>
 										<div class="input-group">
 
-											<input class="input--style-4" type="text" name="first_name"
+											<input class="input--style-4 input-2" type="text" name="first_name"
 												fdprocessedid="f095pm" style="
                                     width: 90%;">
 										</div>
@@ -42,7 +47,7 @@
 										<label class="label" for>Last name</label>
 										<div class="input-group">
 
-											<input class="input--style-4" type="text" name="last_name"
+											<input class="input--style-4 input-2" type="text" name="last_name"
 												fdprocessedid="f095pm" style="
                                     width: 95%;">
 										</div>
@@ -53,7 +58,7 @@
 										<label class="label" for>Email</label>
 										<div class="input-group">
 
-											<input class="input--style-4 w-100" type="text" name="first_name"
+											<input class="input--style-4 w-100 input-2" type="text" name="first_name"
 												fdprocessedid="f095pm">
 										</div>
 									</div>
@@ -63,7 +68,7 @@
 										<label class="label" for>Password</label>
 										<div class="input-group">
 
-											<input class="input--style-4 w-100" type="password" name="first_name"
+											<input class="input--style-4 w-100 input-2" type="password" name="first_name"
 												fdprocessedid="f095pm">
 										</div>
 									</div>
@@ -71,13 +76,14 @@
 										<label class="label" for>Confirm password</label>
 										<div class="input-group">
 
-											<input class="input--style-4 w-100" type="password" name="last_name"
+											<input class="input--style-4 w-100 input-2" type="password" name="last_name"
 												fdprocessedid="f095pm">
 										</div>
 									</div>
 								</div>
 								<div class="pt-2">
-									<button class="btn btn-primary text-light" type="submit" style=" line-height: 50px;padding: 0 50px;font-size: 18px;color: #fff;">
+									<button class="btn btn-primary text-light" type="submit"
+										style=" line-height: 50px;padding: 0 50px;font-size: 18px;color: #fff;">
 										Submit
 									</button>
 								</div>

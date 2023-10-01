@@ -218,6 +218,11 @@ body{
     
 }
 
+label{
+	font-size: 14px;
+	font-weight: bold;
+}
+
 .header-bar{
 	float: right;
     width: 88%;

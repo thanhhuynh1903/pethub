@@ -39,7 +39,7 @@
 							<div>
 								<table class="table table-bordered table-striped table-hover">
 									<thead style="background-color: rgb(228, 228, 228);">
-										<th>Brand ID</th>
+										<th style="width: 8%;">Brand ID</th>
 										<th>Logo</th>
 										<th th:replace="~{fragments :: column_link('/brands','name', 'Brand Name', 'none')}" />
 					</th>
@@ -48,7 +48,7 @@
 									</thead>
 									<tbody>
 										<tr th:each="brand : ${listBrands}">
-											<td class="text-center">[[${brand.id}]]</td>
+											<td class="text-center w-1">[[${brand.id}]]</td>
 											<td class="text-center">
 												<img th:src="@{${brand.logoPath}}" width="90px" height="90px"  />
 											</td>

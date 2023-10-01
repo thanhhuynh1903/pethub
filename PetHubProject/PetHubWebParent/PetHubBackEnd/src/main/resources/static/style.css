@@ -299,5 +299,99 @@ body{
     margin-left: 10px;
 }
 
+/*style css register*/
 
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box ;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+
+}
+
+
+img {
+    border-radius: 20px 0px 0px 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    vertical-align: middle;
+    border-style: none;
+}
+
+.wrapper {
+    border-radius: 0px 20px 20px 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}   
+
+.card{
+    border-radius: 0px 20px 20px 0px;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.card-title{
+    font-size: 24px;
+    color: #525252;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+.card-4 .card-body {
+    border-radius: 0px 20px 20px 0px;
+    padding: 57px 65px;
+    padding-bottom: 65px;
+}
+
+.input-group{
+    width: 96%;
+}
+
+input{
+    background: grey    ;
+}
+
+.input--style-4 {
+    line-height: 50px;
+    background: #fafafa;
+    -webkit-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+    -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+    box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+    padding: 0 5px;
+    font-size: 16px;
+    color: #666;
+    -webkit-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+.label {
+    font-size: 16px;
+    color: #555;
+    text-transform: capitalize;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+/*.btn--blue {
+    background: #4272d7;
+}
+.btn--radius-2 {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}*/
+
+
+input{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+}
 

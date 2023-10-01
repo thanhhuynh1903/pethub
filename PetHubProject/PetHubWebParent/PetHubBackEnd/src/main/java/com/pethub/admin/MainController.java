@@ -8,7 +8,7 @@ public class MainController {
 
 	@GetMapping("")
 	public String viewHomePage() {
-		return "index";
+		return "register";
 	}
 
 	@GetMapping("/login")

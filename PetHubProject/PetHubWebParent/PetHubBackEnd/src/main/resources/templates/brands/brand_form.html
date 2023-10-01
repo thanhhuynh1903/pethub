@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head(${pageTitle})}" />
+<head th:replace="~{fragments :: page_head(${pageTitle},'none')}" />
 
 <body>
 
@@ -133,8 +133,9 @@
 		}).fail(function () {
 			showErrorModal("Could not connect to the server");
 		});
-	}
 
+		return false;
+	}
 
 </script>
 <script th:src="@{/js/common_form.js}"></script>

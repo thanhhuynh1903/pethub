@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head('Brands - PetHub Admin')}" />
+<head th:replace="~{fragments :: page_head('Brands - PetHub Admin','none')}" />
 
 
 <body>
@@ -41,7 +41,8 @@
 									<thead style="background-color: rgb(228, 228, 228);">
 										<th>Brand ID</th>
 										<th>Logo</th>
-										<th>Name</th>
+										<th th:replace="~{fragments :: column_link('/brands','name', 'Brand Name', 'none')}" />
+					</th>
 										<th>Categories</th>
 										<th>Action</th>
 									</thead>
@@ -49,7 +50,7 @@
 										<tr th:each="brand : ${listBrands}">
 											<td class="text-center">[[${brand.id}]]</td>
 											<td class="text-center">
-												<img th:src="@{${brand.logoPath}}" width="90px" height="90px" />
+												<img th:src="@{${brand.logoPath}}" width="90px" height="90px"  />
 											</td>
 											<td>[[${brand.name}]]</td>
 

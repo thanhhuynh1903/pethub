@@ -20,7 +20,8 @@
 
 
 
-		<form th:action="@{/products/save}" method="post" th:object="${product}" onsubmit="return checkUnique(this)">
+		<form th:action="@{/products/save}" method="post" th:object="${product}" onsubmit="return checkUnique(this)"
+			enctype="multipart/form-data">
 			<!-- Product tabs -->
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
@@ -71,7 +72,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	MAX_FILE_SIZE = 502400; //; 500kb
+	MAX_FILE_SIZE = 1048576; //; 1MB
 	moduleURL = "[[@{/products}]]";
 	brandModuleURL = "[[@{/brands}]]";
 

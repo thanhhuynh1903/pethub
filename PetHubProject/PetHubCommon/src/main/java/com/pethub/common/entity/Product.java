@@ -252,6 +252,6 @@ public class Product {
 		if (id == null || mainImage == null) {
 			return "/images/image-thumbnail.png";
 		}
-		return "/product-images" + this.id + "/" + this.mainImage;
+		return "/product-images/" + this.id + "/" + this.mainImage;
 	}
 }

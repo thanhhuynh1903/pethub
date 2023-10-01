@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head('Products - PetHub Admin')}" />
+<head th:replace="~{fragments :: page_head('Products - PetHub Admin','none')}" />
 
 
 <body>
@@ -45,8 +45,7 @@
 								th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
 						</td>
 						<td>
-							<a class="fas fa-file-alt fa-2x icon-green"
-								th:href="@{'/products/detail/' +${product.id}}"
+							<a class="fas fa-file-alt fa-2x icon-green" th:href="@{'/products/detail/' +${product.id}}"
 								title="View the detail of this product"></a>
 							&nbsp;
 							<div th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />

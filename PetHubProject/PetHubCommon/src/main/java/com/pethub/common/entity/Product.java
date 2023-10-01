@@ -65,31 +65,6 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(Integer id, String name, String alias, String shortDescription, String fullDescription,
-			Date createdTime, Date updatedTime, boolean enabled, boolean inStock, float cost, float price,
-			float discountPercent, float length, float width, float height, float weight, Category category,
-			Brand brand) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.alias = alias;
-		this.shortDescription = shortDescription;
-		this.fullDescription = fullDescription;
-		this.createdTime = createdTime;
-		this.updatedTime = updatedTime;
-		this.enabled = enabled;
-		this.inStock = inStock;
-		this.cost = cost;
-		this.price = price;
-		this.discountPercent = discountPercent;
-		this.length = length;
-		this.width = width;
-		this.height = height;
-		this.weight = weight;
-		this.category = category;
-		this.brand = brand;
-	}
-
 	public Integer getId() {
 		return id;
 	}

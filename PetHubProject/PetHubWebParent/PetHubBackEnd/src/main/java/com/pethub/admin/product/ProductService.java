@@ -1,5 +1,6 @@
 package com.pethub.admin.product;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,4 +18,19 @@ public class ProductService {
 		return (List<Product>) repo.findAll();
 	}
 
+	public Product save(Product product) {
+		if (product.getId() == null) {
+			product.setCreatedTime(new Date());
+		}
+		if (product.getAlias() == null || product.getAlias().isEmpty()) {
+			String defaultAlias = product.getName().replaceAll(" ", "-");
+			product.setAlias(defaultAlias);
+		} else {
+			product.setAlias(product.getAlias().replaceAll("", "-"));
+		}
+
+		product.setUpdatedTime(new Date());
+
+		return repo.save(product);
+	}
 }

@@ -96,7 +96,7 @@ public class ProductController {
 				if (!product.containsImageName(fileName)) {
 					try {
 						Files.delete(file);
-						LOGGER.info("Deleted extra image: " +fileName);
+						LOGGER.info("Deleted extra image: " + fileName);
 					} catch (IOException e) {
 						LOGGER.error("Could not delete extra image: " + fileName);
 					}
@@ -232,6 +232,21 @@ public class ProductController {
 			model.addAttribute("numberOfExistingExtraImages", numberOfExistingExtraImages);
 
 			return "products/product_form";
+
+		} catch (ProductNotFoundException e) {
+			ra.addFlashAttribute("message", e.getMessage());
+
+			return "redirect:/products";
+		}
+	}
+
+	@GetMapping("/products/detail/{id}")
+	public String viewProductDetails(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+		try {
+			Product product = productService.get(id);
+			model.addAttribute("product", product);
+
+			return "products/product_detail_modal";
 
 		} catch (ProductNotFoundException e) {
 			ra.addFlashAttribute("message", e.getMessage());

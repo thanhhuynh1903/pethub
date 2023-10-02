@@ -37,9 +37,16 @@
 					<tr th:each="product : ${listProducts}">
 						<td>[[${product.id}]]</td>
 						<td>
-							<img th:src="@{${product.mainImagePath}}"  width="120px" height="120px"/>
+							<img th:src="@{${product.mainImagePath}}" width="120px" height="120px" />
 						</td>
-						<td>[[${product.name}]]</td>
+						<td>
+							<!--Khong sua class= link-detail thanh cai khac-->
+							<!--Khong sua class= link-detail thanh cai khac-->
+							<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
+								title="View the detail of this product">[[${product.name}]]</a>
+							<!--Khong sua class= link-detail thanh cai khac-->
+							<!--Khong sua class= link-detail thanh cai khac-->
+						</td>
 						<td>[[${product.brand.name}]]</td>
 						<td>[[${product.category.name}]]</td>
 						<td>
@@ -47,8 +54,14 @@
 								th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
 						</td>
 						<td>
-							<a class="fas fa-file-alt fa-2x icon-green" th:href="@{'/products/detail/' +${product.id}}"
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<a class="fas fa-file-alt fa-2x icon-green link-detail"
+								th:href="@{'/products/detail/' +${product.id}}"
 								title="View the detail of this product"></a>
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+
 							&nbsp;
 							<div th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />
 							&nbsp;
@@ -63,16 +76,32 @@
 
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 
+
+		<!--No edit-->
+		<div class="modal fade" id="detailModal">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+				</div>
+			</div>
+		</div>
+		<!--No edit-->
+
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
-		moduleURL = "[[@{/brands}]]";
+		moduleURL = "[[@{/products}]]";
 
 		$(document).ready(function () {
 			$(".link-delete").on("click", function (e) {
 				e.preventDefault();
 				showDeleteConfirmModal($(this), 'product');
+			});
+
+			$(".link-detail").on("click", function (e) {
+				e.preventDefault();
+				linkDetailURL = $(this).attr("href");
+				$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
 			});
 		});
 	</script>

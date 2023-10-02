@@ -12,6 +12,10 @@
 				<div class="w-100">
 					<div class="p-5">
 						<h2 style="text-align: center;margin: 25px;">Manage Users</h2>
+						<div th:if="${message != null}" class="alert alert-success text-center"
+							style="width: 90%;margin: 0 auto;">
+							[[${message}]]
+						</div>
 						<div class="table-title" style="width: 90%;">
 							<div class="row">
 								<div class="col-sm-5 item-ex">
@@ -51,11 +55,6 @@
 							</div>
 						</div>
 
-
-						<div th:if="${message != null}" class="alert alert-success text-center"
-							style="width: 90%;margin: 0 auto;">
-							[[${message}]]
-						</div>
 
 						<!--<div>
 				<h2>Manage Users</h2>

@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-PetHubBackEndApplication<PetHubBackEnd>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pethub.admin.PetHubBackEndApplication",
+      "projectName": "PetHubBackEnd",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

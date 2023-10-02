@@ -6,6 +6,7 @@
 	<head th:replace="~{fragments :: page_head(${pageTitle}, 'tag')}" />
 	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
 	<script th:src="@{/richtext/jquery.richtext.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-product-form.css}" />
 </head>
 
 <body>
@@ -16,40 +17,36 @@
 				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
 				<div class="d-flex flex-column" style="width: 88%;">
 					<div th:replace="~{navigation :: menu}"></div>
-					<div class="w-100">
+					<div class="w-80">
 						<div class="p-5">
-							<div>
-								<h2 class="text-center;">Manage Products | [[${pageTitle}]]</h2>
-							</div>
-
-
+							<h2 style="text-align: center;">Manage Products | [[${pageTitle}]]</h2>
 
 							<form th:action="@{/products/save}" method="post" th:object="${product}"
-								onsubmit="return checkUnique(this)">
+								onsubmit="return checkUnique(this)" >
 								<!-- Product tabs -->
-								<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item">
+								<ul class="nav nav-tabs" id="myTab" role="tablist" style="background: darkgrey;font-size: 14px;font-weight: bold;border-radius: 15px 15px 0px 0px;">
+									<li class="nav-item" >
 										<a class="nav-link active" data-toggle="tab" href="#overview"
-											role="tab">Overview</a>
+											role="tab" style="border-radius: 15px 15px 15px 0px;">Overview</a>
 									</li>
-									<li class="nav-item">
+									<li class="nav-item" >
 										<a class="nav-link" data-toggle="tab" href="#description"
-											role="tab">Description</a>
+											role="tab" style="border-radius: 15px 15px 15px 15px;">Description</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#images" role="tab">Images</a>
+										<a class="nav-link" data-toggle="tab" href="#images" role="tab" style="border-radius: 15px 15px 15px 15px;">Images</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#details" role="tab">Details</a>
+										<a class="nav-link" data-toggle="tab" href="#details" role="tab" style="border-radius: 15px 15px 15px 15px;">Details</a>
 									</li>
 
 									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#shipping" role="tab">Shipping</a>
+										<a class="nav-link" data-toggle="tab" href="#shipping" role="tab" style="border-radius: 15px 15px 15px 15px;">Shipping</a>
 									</li>
 								</ul>
 
 								<!-- Tab panes -->
-								<div class="tab-content">
+								<div class="tab-content p-3" >
 									<div class="tab-pane active p-3" id="overview" role="tabpanel">
 										<div th:replace="~{products/product_overview :: content}" />
 									</div>

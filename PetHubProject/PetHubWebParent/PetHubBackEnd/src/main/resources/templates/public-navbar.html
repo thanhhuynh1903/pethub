@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: page_head('Error - PetHub Admin')}">
+	<style>
+		.navbar-fixed-top.scrolled {
+			
+			transition: background-color 200ms linear;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #E74646;"
+		th:fragment="header">
+		<a class="navbar-brand" href="#"><img th:src="@{/images/logo-2.png}" alt="Logo" style="width: 70px;"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse w-100 d-flex justify-content-between" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto w-100 px-2">
+					<li class="nav-item active">
+						<a class="nav-link text-light" style="font-size: medium;" href="#">Home<span
+								class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-light" style="font-size: medium;" href="#">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-light" style="font-size: medium;" href="#">Articles</a>
+					</li>
+					<li class="nav-item dropdown ml-sm-auto">
+						<a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style="font-size: medium;">
+							<i class="bi bi-person" style="font-size: medium;"></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#">Profile</a>
+							<a class="dropdown-item" href="#">Logout</a>
+						</div>
+					</li>
+			</ul>
+		</div>
+	</nav>
+	<script>
+		const navLinks = document.querySelectorAll('.nav-item')
+const menuToggle = document.getElementById('navbarSupportedContent')
+const bsCollapse = new bootstrap.Collapse(menuToggle)
+navLinks.forEach((l) => {
+    l.addEventListener('click', () => { bsCollapse.toggle() })
+})
+	</script>
+</body>
+
+</html>

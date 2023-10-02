@@ -87,7 +87,7 @@ public class ProductController {
 	}
 
 	static void deleteExtraImagesWeredRemovedOnForm(Product product) {
-		String extraImageDir = "product-images/" + product.getId() + "/extras";
+		String extraImageDir = "../product-images/" + product.getId() + "/extras";
 		Path dirPath = Paths.get(extraImageDir);
 		try {
 			Files.list(dirPath).forEach(file -> {

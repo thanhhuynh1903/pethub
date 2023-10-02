@@ -25,12 +25,12 @@
 		<div>
 			<table class="table table-bordered table-striped table-hover">
 				<thead style="background-color: rgb(228, 228, 228);">
-					<th>ID</th>
+					<th th:replace="~{fragments :: column_link('/products','id', 'ID', 'none')}" />
 					<th>Main Image</th>
-					<th>Product Name</th>
-					<th>Brand</th>
-					<th>Categories</th>
-					<th>Enabled</th>
+					<th th:replace="~{fragments :: column_link('/products','name', 'Product Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/products','brand', 'Brand', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/products','category', 'Category', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/products','enabled', 'Enabled', 'none')}" />
 					<th>Action</th>
 				</thead>
 				<tbody>
@@ -43,7 +43,7 @@
 							<!--Khong sua class= link-detail thanh cai khac-->
 							<!--Khong sua class= link-detail thanh cai khac-->
 							<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
-								title="View the detail of this product">[[${product.name}]]</a>
+								th:title="${product.name}">[[${product.shortName}]]</a>
 							<!--Khong sua class= link-detail thanh cai khac-->
 							<!--Khong sua class= link-detail thanh cai khac-->
 						</td>
@@ -85,6 +85,7 @@
 			</div>
 		</div>
 		<!--No edit-->
+		<div th:replace="~{fragments :: pagination('/products','products')}"></div>
 
 		<div th:replace="~{fragments :: footer}"></div>
 	</div>

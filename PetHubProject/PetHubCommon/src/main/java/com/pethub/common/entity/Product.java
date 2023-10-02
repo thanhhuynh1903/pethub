@@ -77,8 +77,8 @@ public class Product {
 	// persited as well
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProductImage> images = new HashSet<>();
-	
-	//child collections will be deleted when it's deleted by parent node
+
+	// child collections will be deleted when it's deleted by parent node
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProductDetail> details = new ArrayList<>();
 
@@ -289,4 +289,11 @@ public class Product {
 		return false;
 	}
 
+	@Transient
+	public String getShortName() {
+		if (name.length() > 70) {
+			return name.substring(0, 70).concat("...");
+		}
+		return name;
+	}
 }

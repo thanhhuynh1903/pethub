@@ -22,7 +22,7 @@
 		<form th:action="@{/brands/save}" method="post" style="max-width: 600px; margin: 0 auto  ;"
 			onsubmit="return checkUnique(this)" enctype="multipart/form-data" th:object="${brand}">
 			<input type="hidden" th:field="*{id}" />
-			<div class="border border-secondary rounded p-3">
+			<div class="p-3 " style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;border-radius: 15px;background: white;">
 				<div class="form-group row">
 					<label class="col-sm-4 col-form-label">Brand Name:</label>
 					<div class="col-sm-8">

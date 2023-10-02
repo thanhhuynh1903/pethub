@@ -11,61 +11,72 @@
 <body>
 
 	<div class="container-fluid">
+		<div class="w-100">
+			<div class="d-flex w-100">
+				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
+				<div class="d-flex flex-column" style="width: 88%;">
+					<div th:replace="~{navigation :: menu}"></div>
+					<div class="w-100">
+						<div class="p-5">
+							<div>
+								<h2 class="text-center;">Manage Products | [[${pageTitle}]]</h2>
+							</div>
 
-		<div th:replace="~{navigation :: menu}"></div>
 
-		<div>
-			<h2>Manage Products | [[${pageTitle}]]</h2>
+
+							<form th:action="@{/products/save}" method="post" th:object="${product}"
+								onsubmit="return checkUnique(this)">
+								<!-- Product tabs -->
+								<ul class="nav nav-tabs" id="myTab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" data-toggle="tab" href="#overview"
+											role="tab">Overview</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#description"
+											role="tab">Description</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#images" role="tab">Images</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#details" role="tab">Details</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#shipping" role="tab">Shipping</a>
+									</li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active p-3" id="overview" role="tabpanel">
+										<div th:replace="~{products/product_overview :: content}" />
+									</div>
+									<div class="tab-pane" id="description" role="tabpanel">
+										<div th:replace="~{products/product_description :: content}" />
+									</div>
+									<div class="tab-pane" id="images" role="tabpanel">Images</div>
+									<div class="tab-pane" id="details" role="tabpanel">Details</div>
+									<div class="tab-pane p-3" id="shipping" role="tabpanel">
+										<div th:replace="~{products/product_shipping :: content}" />
+									</div>
+								</div>
+
+								<!--Action-->
+								<div class="text-center">
+									<input type="submit" value="Save" class="btn btn-primary m-3" />
+									<input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel" />
+								</div>
+							</form>
+
+							<div th:replace="~{modal_fragments :: modal_dialog}"></div>
+							<div th:replace="~{fragments :: footer}"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-
-
-		<form th:action="@{/products/save}" method="post" th:object="${product}" onsubmit="return checkUnique(this)">
-			<!-- Product tabs -->
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#overview" role="tab">Overview</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#description" role="tab">Description</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#images" role="tab">Images</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#details" role="tab">Details</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#shipping" role="tab">Shipping</a>
-				</li>
-			</ul>
-
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div class="tab-pane active p-3" id="overview" role="tabpanel">
-					<div th:replace="~{products/product_overview :: content}" />
-				</div>
-				<div class="tab-pane" id="description" role="tabpanel">
-					<div th:replace="~{products/product_description :: content}" />
-				</div>
-				<div class="tab-pane" id="images" role="tabpanel">Images</div>
-				<div class="tab-pane" id="details" role="tabpanel">Details</div>
-				<div class="tab-pane p-3" id="shipping" role="tabpanel">
-					<div th:replace="~{products/product_shipping :: content}" />
-				</div>
-			</div>
-
-			<!--Action-->
-			<div class="text-center">
-				<input type="submit" value="Save" class="btn btn-primary m-3" />
-				<input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel" />
-			</div>
-		</form>
-
-		<div th:replace="~{modal_fragments :: modal_dialog}"></div>
-		<div th:replace="~{fragments :: footer}"></div>
-
 	</div>
 </body>
 <script type="text/javascript">

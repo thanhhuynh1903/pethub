@@ -8,32 +8,36 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "product_images")
-public class ProductImage {
+@Table(name = "product_details")
+public class ProductDetail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 255)
 	private String name;
 
-	// product can have one or more extra images
+	@Column(nullable = false, length = 255)
+	private String value;
+
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	public ProductImage() {
+	public ProductDetail() {
 	}
 
-	public ProductImage(String name, Product product) {
+
+	public ProductDetail(String name, String value, Product product) {
 		this.name = name;
+		this.value = value;
 		this.product = product;
 	}
 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -50,6 +54,14 @@ public class ProductImage {
 		this.name = name;
 	}
 
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	public Product getProduct() {
 		return product;
 	}
@@ -58,8 +70,4 @@ public class ProductImage {
 		this.product = product;
 	}
 
-	@Transient
-	public String getImagePath() {
-		return "/product-images/" + product.getId() + "/extras/" + this.name;
-	}
 }

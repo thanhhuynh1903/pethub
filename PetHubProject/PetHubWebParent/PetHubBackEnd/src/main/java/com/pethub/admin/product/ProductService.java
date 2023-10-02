@@ -30,7 +30,7 @@ public class ProductService {
 			String defaultAlias = product.getName().replaceAll(" ", "-");
 			product.setAlias(defaultAlias);
 		} else {
-			product.setAlias(product.getAlias().replaceAll("", "-"));
+			product.setAlias(product.getAlias().replaceAll(" ", "-"));
 		}
 
 		product.setUpdatedTime(new Date());

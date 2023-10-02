@@ -14,7 +14,7 @@
 					<div class="w-100">
 						<div class="p-5">
 							<h2 style="text-align: center;margin: 25px;">Manage Products</h2>
-							<div class="table-title" style="width: 90%;">
+							<div class="table-title" style="width: 1147px;">
 								<div class="row">
 									<div class="col-sm-3 item-ex" style="padding-top: 10px;">
 										<a th:href="@{/products/export/csv}" class="btn btn-secondary"><span>Export To
@@ -36,7 +36,7 @@
 
 		<!--begin table-->
 		<div>
-			<table class="table table-bordered table-striped table-hover">
+			<table class="table table-bordered table-striped table-hover" style="width: 1147px;">
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>ID</th>
 					<th>Main Image</th>
@@ -49,13 +49,13 @@
 				<tbody>
 					<tr th:each="product : ${listProducts}">
 						<td>[[${product.id}]]</td>
-						<td>
+						<td >
 							<img th:src="@{${product.mainImagePath}}"  width="120px" height="120px"/>
 						</td>
 						<td>[[${product.name}]]</td>
 						<td>[[${product.brand.name}]]</td>
 						<td>[[${product.category.name}]]</td>
-						<td>
+						<td style="text-align: center;">
 							<div
 								th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
 						</td>

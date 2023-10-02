@@ -242,6 +242,10 @@ label{
 	width: 90%;
 }
 
+.table  tbody tr td:nth-child(2){
+	text-align: center;
+}
+
 .table thead th {
 	font-size: 12px;
     text-align: center;

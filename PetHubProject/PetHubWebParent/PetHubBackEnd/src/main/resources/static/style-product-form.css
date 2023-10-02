@@ -18,3 +18,11 @@ span{
 .container-fluid{
 	width: 100%;
 }
+
+form ul li a{
+	color: white;
+}
+
+form ul li a:hover{
+	color:white;
+}

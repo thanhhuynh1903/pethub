@@ -28,7 +28,10 @@
 									</div>
 									<!--begin filter and message-->
 									<div class="col-sm-9" style="display: flex;justify-content: end;">
-										<div th:replace="~{fragments :: search_form_and_message('/brands/page/1')}" />
+										<div>
+											<div
+												th:replace="~{fragments :: search_form_and_message('/brands/page/1')}" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -41,8 +44,9 @@
 									<thead style="background-color: rgb(228, 228, 228);">
 										<th style="width: 8%;">Brand ID</th>
 										<th>Logo</th>
-										<th th:replace="~{fragments :: column_link('/brands','name', 'Brand Name', 'none')}" />
-					</th>
+										<th
+											th:replace="~{fragments :: column_link('/brands','name', 'Brand Name', 'none')}" />
+										</th>
 										<th>Categories</th>
 										<th>Action</th>
 									</thead>
@@ -50,7 +54,7 @@
 										<tr th:each="brand : ${listBrands}">
 											<td class="text-center w-1">[[${brand.id}]]</td>
 											<td class="text-center">
-												<img th:src="@{${brand.logoPath}}" width="90px" height="90px"  />
+												<img th:src="@{${brand.logoPath}}" width="90px" height="90px" />
 											</td>
 											<td>[[${brand.name}]]</td>
 

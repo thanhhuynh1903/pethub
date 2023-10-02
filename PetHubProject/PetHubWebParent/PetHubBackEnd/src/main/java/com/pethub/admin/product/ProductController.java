@@ -1,10 +1,15 @@
 package com.pethub.admin.product;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +29,9 @@ import com.pethub.common.entity.ProductImage;
 
 @Controller
 public class ProductController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+
 	@Autowired
 	private ProductService productService;
 
@@ -72,8 +80,31 @@ public class ProductController {
 
 		saveUploadedImages(mainImageMultipart, extraImageMultiparts, savedProduct);
 
+		deleteExtraImagesWeredRemovedOnForm(product);
+
 		ra.addFlashAttribute("message", "The product has been saved successfully.");
 		return "redirect:/products";
+	}
+
+	static void deleteExtraImagesWeredRemovedOnForm(Product product) {
+		String extraImageDir = "product-images/" + product.getId() + "/extras";
+		Path dirPath = Paths.get(extraImageDir);
+		try {
+			Files.list(dirPath).forEach(file -> {
+				String fileName = file.toFile().getName();
+
+				if (!product.containsImageName(fileName)) {
+					try {
+						Files.delete(file);
+						LOGGER.info("Deleted extra image: " +fileName);
+					} catch (IOException e) {
+						LOGGER.error("Could not delete extra image: " + fileName);
+					}
+				}
+			});
+		} catch (Exception e) {
+		}
+
 	}
 
 	static void setExistingExtraImageNames(String[] imageIDs, String[] imageNames, Product product) {

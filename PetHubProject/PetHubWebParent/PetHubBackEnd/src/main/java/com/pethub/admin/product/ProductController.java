@@ -1,7 +1,9 @@
 package com.pethub.admin.product;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import com.pethub.admin.FileUploadUtil;
 import com.pethub.admin.brand.BrandService;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Product;
+import com.pethub.common.entity.ProductImage;
 
 @Controller
 public class ProductController {
@@ -54,29 +57,54 @@ public class ProductController {
 	public String saveProduct(Product product, RedirectAttributes ra,
 			@RequestParam("fileImage") MultipartFile mainImageMultipart,
 			@RequestParam("extraImage") MultipartFile[] extraImageMultiparts,
+			@RequestParam(name = "detailIDs", required = false) String[] detailIDs,
 			@RequestParam(name = "detailNames", required = false) String[] detailNames,
-			@RequestParam(name = "detailValues", required = false) String[] detailValues) throws IOException {
+			@RequestParam(name = "detailValues", required = false) String[] detailValues,
+			@RequestParam(name = "imageIDs", required = false) String[] imageIDs,
+			@RequestParam(name = "imageNames", required = false) String[] imageNames) throws IOException {
+
 		setMainImageName(mainImageMultipart, product);
-		setExtraImageNames(extraImageMultiparts, product);
-		setProductDetails(detailNames, detailValues, product);
+		setExistingExtraImageNames(imageIDs, imageNames, product);
+		setNewExtraImageNames(extraImageMultiparts, product);
+		setProductDetails(detailIDs, detailNames, detailValues, product);
 
 		Product savedProduct = productService.save(product);
 
 		saveUploadedImages(mainImageMultipart, extraImageMultiparts, savedProduct);
 
-		ra.addFlashAttribute("message", "The brand has been saved successfully.");
+		ra.addFlashAttribute("message", "The product has been saved successfully.");
 		return "redirect:/products";
 	}
 
-	private void setProductDetails(String[] detailNames, String[] detailValues, Product product) {
+	static void setExistingExtraImageNames(String[] imageIDs, String[] imageNames, Product product) {
+		if (imageIDs == null || imageIDs.length == 0)
+			return;
+
+		Set<ProductImage> images = new HashSet<>();
+
+		for (int count = 0; count < imageIDs.length; count++) {
+			Integer id = Integer.parseInt(imageIDs[count]);
+			String name = imageNames[count];
+
+			images.add(new ProductImage(id, name, product));
+		}
+
+		product.setImages(images);
+
+	}
+
+	private void setProductDetails(String[] detailIDs, String[] detailNames, String[] detailValues, Product product) {
 		if (detailNames == null || detailNames.length == 0) {
 			return;
 		}
 		for (int count = 0; count < detailNames.length; count++) {
 			String name = detailNames[count];
 			String value = detailValues[count];
+			Integer id = Integer.parseInt(detailIDs[count]);
 
-			if (!name.isEmpty() && !value.isEmpty()) {
+			if (id != 0) {
+				product.addDetail(id, name, value);
+			} else if (!name.isEmpty() && !value.isEmpty()) {
 				product.addDetail(name, value);
 			}
 		}
@@ -108,19 +136,21 @@ public class ProductController {
 		}
 	}
 
-	private void setExtraImageNames(MultipartFile[] extraImageMultiparts, Product product) {
+	static void setNewExtraImageNames(MultipartFile[] extraImageMultiparts, Product product) {
 		if (extraImageMultiparts.length > 0) {
 			for (MultipartFile multipartFile : extraImageMultiparts) {
 				if (!multipartFile.isEmpty()) {
 					String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-					product.addExtraImage(fileName);
+
+					if (!product.containsImageName(fileName)) {
+						product.addExtraImage(fileName);
+					}
 				}
 			}
 		}
-
 	}
 
-	private void setMainImageName(MultipartFile mainImageMultipart, Product product) {
+	static void setMainImageName(MultipartFile mainImageMultipart, Product product) {
 		if (!mainImageMultipart.isEmpty()) {
 			String fileName = StringUtils.cleanPath(mainImageMultipart.getOriginalFilename());
 			product.setMainImage(fileName);

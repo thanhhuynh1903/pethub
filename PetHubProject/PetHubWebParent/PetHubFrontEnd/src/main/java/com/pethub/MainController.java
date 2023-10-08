@@ -1,4 +1,4 @@
-package com.pethub.site;
+package com.pethub;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

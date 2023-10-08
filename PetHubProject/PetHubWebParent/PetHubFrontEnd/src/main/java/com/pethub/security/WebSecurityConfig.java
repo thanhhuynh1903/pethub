@@ -1,4 +1,4 @@
-package com.pethub.site.security;
+package com.pethub.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

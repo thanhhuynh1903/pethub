@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<div th:fragment="header_menu">
+		<div>
+			<nav style="background-color: rgb(238, 238, 238)" class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand" th:href="@{/}">
+					<img height="50px" width="90px" th:src="@{/images/logo_pethub.png}" />
+				</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="topNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="">Careers</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Payments</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Shipping &AMP; Delivery</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Register</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<div th:fragment="footer_menu">
+		<div>
+			<nav style="background-color: rgb(238, 238, 238)" class="navbar navbar-expand-lg navbar-light">
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bottomNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="bottomNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="">About Us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Privacy Notice</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Return &AMP; Refunds</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- begin footer-->
+		<div th:fragment="footer" class=" text-center m-3">
+			<p>PetHub - Copyright &copy; PetHub Ltd.</p>
+		</div>
+		<!--end footer-->
+	</div>
+</body>
+
+</html>

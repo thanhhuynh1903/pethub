@@ -54,6 +54,13 @@
 						<img width="150px" th:src="@{${product.mainImagePath}}" /><br />
 						<b>[[${product.name}]]</b>
 					</div>
+					<div th:if="${product.discountPercent <= 0}">
+						<span> $ [[${product.price}]]</span>
+					</div>
+					<div th:if="${product.discountPercent > 0}">
+						<span style="font-size: larger; color: darkred;"> $ [[${product.discountPrice}]]</span>
+						<del><span> $ [[${product.price}]]</span></del>
+					</div>
 				</div>
 			</th:block>
 		</div>

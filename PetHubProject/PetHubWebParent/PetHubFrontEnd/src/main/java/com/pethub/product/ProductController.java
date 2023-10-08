@@ -1,5 +1,7 @@
 package com.pethub.product;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +23,10 @@ public class ProductController {
 			return "error/404";
 		}
 
-		model.addAttribute("pageTitle", category.getName());
+		List<Category> listCategoryParents = categoryService.getCategoryParents(category);
 
+		model.addAttribute("pageTitle", category.getName());
+		model.addAttribute("listCategoryParents", listCategoryParents);
 		return "products_by_category";
 	}
 

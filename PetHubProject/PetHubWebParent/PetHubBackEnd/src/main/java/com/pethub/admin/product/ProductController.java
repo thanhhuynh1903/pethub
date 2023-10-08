@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.pethub.admin.FileUploadUtil;
 import com.pethub.admin.brand.BrandService;
 import com.pethub.admin.category.CategoryService;
+import com.pethub.admin.security.PetHubUserDetails;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
 import com.pethub.common.entity.Product;
@@ -106,13 +108,20 @@ public class ProductController {
 
 	@PostMapping("/products/save")
 	public String saveProduct(Product product, RedirectAttributes ra,
-			@RequestParam("fileImage") MultipartFile mainImageMultipart,
-			@RequestParam("extraImage") MultipartFile[] extraImageMultiparts,
+			@RequestParam(value = "fileImage", required = false) MultipartFile mainImageMultipart,
+			@RequestParam(value = "extraImage", required = false) MultipartFile[] extraImageMultiparts,
 			@RequestParam(name = "detailIDs", required = false) String[] detailIDs,
 			@RequestParam(name = "detailNames", required = false) String[] detailNames,
 			@RequestParam(name = "detailValues", required = false) String[] detailValues,
 			@RequestParam(name = "imageIDs", required = false) String[] imageIDs,
-			@RequestParam(name = "imageNames", required = false) String[] imageNames) throws IOException {
+			@RequestParam(name = "imageNames", required = false) String[] imageNames,
+			@AuthenticationPrincipal PetHubUserDetails loggedUser) throws IOException {
+
+		if (loggedUser.hasRole("Salesperson")) {
+			productService.saveProductPrice(product);
+			ra.addFlashAttribute("message", "The product has been saved successfully.");
+			return "redirect:/products";
+		}
 
 		setMainImageName(mainImageMultipart, product);
 		setExistingExtraImageNames(imageIDs, imageNames, product);
@@ -126,13 +135,8 @@ public class ProductController {
 		deleteExtraImagesWeredRemovedOnForm(product);
 
 		ra.addFlashAttribute("message", "The product has been saved successfully.");
-		return getRedirectURLtoAffectedProduct(product);
+		return "redirect:/products";
 	}
-
-	private String getRedirectURLtoAffectedProduct(Product product) {
-		String name = product.getName();
-		return "redirect:/products/page/1?sortField=id&sortDir=asc&keyword=" + name;
-	}//
 
 	static void deleteExtraImagesWeredRemovedOnForm(Product product) {
 		String extraImageDir = "../product-images/" + product.getId() + "/extras";

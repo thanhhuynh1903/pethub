@@ -2,7 +2,6 @@ package com.pethub.admin.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +14,7 @@ import com.pethub.common.entity.User;
 
 public class PetHubUserDetails implements UserDetails {
 
+	private static final long serialVersionUID = 1L;
 	private User user;
 
 	public PetHubUserDetails(User user) {
@@ -73,6 +73,10 @@ public class PetHubUserDetails implements UserDetails {
 
 	public void setLastName(String lastName) {
 		this.user.setLastName(lastName);
+	}
+
+	public boolean hasRole(String roleName) {
+		return user.hasRole(roleName);
 	}
 
 }

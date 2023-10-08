@@ -29,6 +29,21 @@
 		</div>
 		<!--breadcrumb-->
 
+		<!--product in category-->
+		<div class="row">
+			<th:block th:each="product : ${listProducts}">
+				<div class="col">
+					<div>
+						<img width="150px" th:src="@{${product.mainImagePath}}" /><br />
+						<b>[[${product.name}]]</b>
+					</div>
+				</div>
+			</th:block>
+		</div>
+		<!--product in category-->
+
+		<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product')}"></div>
+
 		<div th:replace="~{navigation :: footer_menu}"></div>
 	</div>
 </body>

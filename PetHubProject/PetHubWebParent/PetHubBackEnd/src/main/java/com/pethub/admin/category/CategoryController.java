@@ -93,12 +93,7 @@ public class CategoryController {
 		}
 
 		ra.addFlashAttribute("message", "The category has been saved successfully.");
-		return getRedirectURLtoAffectedCategory(category);
-	}
-
-	private String getRedirectURLtoAffectedCategory(Category category) {
-		String name = category.getName();
-		return "redirect:/categories/page/1?sortField=id&sortDir=asc&keyword=" + name; // = respond.sendRedirect
+		return "redirect:/categories";
 	}
 
 	@GetMapping("/categories/edit/{id}")

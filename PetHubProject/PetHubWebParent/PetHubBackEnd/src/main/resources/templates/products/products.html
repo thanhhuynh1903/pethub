@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:replace="~{fragments :: page_head('Products - PetHub Admin','none')}" />
 
@@ -27,6 +27,16 @@
 												Product</span></a>
 										&nbsp;&nbsp;
 									</div>
+		<div th:replace="~{navigation :: menu}"></div>
+
+		<div>
+			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+				<h2>Manage Products</h2>
+				<a th:href="@{/products/new}">Create New Product</a>
+				&nbsp;|&nbsp;
+				<a th:href="@{/products/export/csv}">Export To CSV</a>
+			</th:block>
+		</div>
 
 
 									<!--begin filter and message-->
@@ -124,6 +134,69 @@
 								</table>
 							</div>
 							<!--end table-->
+		<!--begin table-->
+		<div>
+			<table class="table table-bordered table-striped table-hover">
+				<thead style="background-color: rgb(228, 228, 228);">
+					<th th:replace="~{fragments :: column_link('/products','id', 'ID', 'none')}" />
+					<th>Main Image</th>
+					<th th:replace="~{fragments :: column_link('/products','name', 'Product Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/products','brand', 'Brand', 'none')}" />
+					<th th:replace="~{fragments :: column_link('/products','category', 'Category', 'none')}" />
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						<th th:replace="~{fragments :: column_link('/products','enabled', 'Enabled', 'none')}" />
+					</th:block>
+					<th>Action</th>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${listProducts}">
+						<td>[[${product.id}]]</td>
+						<td>
+							<img th:src="@{${product.mainImagePath}}" width="120px" height="120px" />
+						</td>
+						<td>
+							<!--Khong sua class= link-detail thanh cai khac-->
+							<!--Khong sua class= link-detail thanh cai khac-->
+							<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
+								th:title="${product.name}">[[${product.shortName}]]</a>
+							<!--Khong sua class= link-detail thanh cai khac-->
+							<!--Khong sua class= link-detail thanh cai khac-->
+						</td>
+						<td>[[${product.brand.name}]]</td>
+						<td>[[${product.category.name}]]</td>
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+							<td>
+								<div
+									th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
+							</td>
+						</th:block>
+						<td>
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<a class="fas fa-file-alt fa-2x icon-green link-detail"
+								th:href="@{'/products/detail/' +${product.id}}"
+								title="View the detail of this product"></a>
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+
+							&nbsp;
+							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson')">
+								<div th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />
+							</th:block>
+							&nbsp;
+
+							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+								<div
+									th:replace="~{fragments :: delete('product', ${product.id}, '/products/delete/' + ${product.id},true)}" />
+								<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--end table-->
 
 							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 

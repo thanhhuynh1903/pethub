@@ -6,8 +6,7 @@
 <body>
 	<div class="container-fluid">
 		<div th:replace="~{navigation :: header_menu}"></div>
-
-
+		<div th:replace="~{navigation :: search_nav}"></div>
 		<!--breadcrumb-->
 		<div th:replace="~{breadcrumb :: content}"></div>
 		<!--breadcrumb-->
@@ -47,6 +46,7 @@
 						<del><span> $ [[${product.price}]]</span></del>
 					</div>
 				</div>
+				<div th:replace="~{product/product_fragment :: content}" />
 			</th:block>
 		</div>
 		<!--product in category-->

@@ -23,6 +23,7 @@ import com.pethub.admin.security.PetHubUserDetails;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
 import com.pethub.common.entity.Product;
+import com.pethub.common.exception.ProductNotFoundException;
 
 @Controller
 public class ProductController {

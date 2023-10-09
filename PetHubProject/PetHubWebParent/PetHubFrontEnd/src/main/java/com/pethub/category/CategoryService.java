@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pethub.common.entity.Category;
+import com.pethub.common.exception.CategoryNotFoundException;
 
 @Service
 public class CategoryService {
@@ -30,10 +31,13 @@ public class CategoryService {
 		return listNoChildrenCategories;
 	}
 
-	public Category getCategory(String alias) {
+	public Category getCategory(String alias) throws CategoryNotFoundException {
 
-		return repo.findByAliasEnabled(alias);
-
+		Category category = repo.findByAliasEnabled(alias);
+		if (category == null) {
+			throw new CategoryNotFoundException("Could not find any categories with alias " + alias);
+		}
+		return category;
 	}
 
 	public List<Category> getCategoryParents(Category child) {

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pethub.common.entity.Category;
+import com.pethub.common.exception.CategoryNotFoundException;
 
 import jakarta.transaction.Transactional;
 

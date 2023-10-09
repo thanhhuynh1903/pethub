@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pethub.admin.FileUploadUtil;
 import com.pethub.common.entity.Category;
+import com.pethub.common.exception.CategoryNotFoundException;
 
 import jakarta.servlet.http.HttpServletResponse;
 

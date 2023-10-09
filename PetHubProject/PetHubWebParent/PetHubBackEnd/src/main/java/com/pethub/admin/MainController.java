@@ -20,4 +20,8 @@ public class MainController {
 	public String viewLandingPage() {
 		return "landing";
 	}
+	
+	/*
+	 * @GetMapping("/register") public String registerPage() { return "register"; }
+	 */
 }

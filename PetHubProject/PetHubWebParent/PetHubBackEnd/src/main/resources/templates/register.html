@@ -32,7 +32,7 @@
 					<div class="card card-4" style="border-radius: 0px 20px 20px 0px;">
 						<div class="card-body">
 							<h2 class="card-title">Register Form</h2>
-							<form action method="post">
+							<form th:action = "" method="post" th:object = "${user}" onsubmit = "return checkEmailUnique(this)">
 								<div class="row py-3">
 									<div class="col-lg-6">
 										<label class="label" for>First name</label>

@@ -96,7 +96,8 @@ body{
 }
 
 h2{
-	padding-bottom: 30px;
+	font-size: 32px;
+	padding-bottom: 25px;
 }
 
 .logo-header img{
@@ -242,13 +243,21 @@ label{
 	width: 90%;
 }
 
-.table  tbody tr td:nth-child(2){
+.table  tbody tr td{
 	text-align: center;
 }
 
+.table tbody td{
+	font-size: 14px;
+}
+
 .table thead th {
-	font-size: 12px;
+	font-size: 14px;
     text-align: center;
+}
+
+.table thead a {
+	font-size: 14px;
 }
 
 .header-bar .item-container .icon-note{

@@ -48,4 +48,11 @@ public class SettingRepositoryTests {
 
 	}
 
+	@Test
+	public void testListSettingsByCategory() {
+		List<Setting> settings = repo.findByCategory(SettingCategory.GENERAL);
+
+		settings.forEach(System.out::println);
+	}
+
 }

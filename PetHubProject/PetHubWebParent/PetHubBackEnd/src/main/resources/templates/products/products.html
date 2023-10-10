@@ -5,7 +5,7 @@
 
 
 <body>
-	<div class="container-fluid">
+	<div class="">
 		<div class="w-100">
 			<div class="d-flex w-100">
 				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
@@ -13,21 +13,23 @@
 					<div th:replace="~{navigation :: menu}"></div>
 					<div class="w-100">
 						<div class="p-5">
-							<h2 style="text-align: center;margin: 25px;">Manage Products</h2>
+							<h2 style="text-align: center;margin: 25px;font-size: 32px;">Manage Products</h2>
 							<div th:if="${message != null}" class="alert alert-success text-center" style="width: 89%;margin: 0 auto;">
 											[[${message}]]
 										</div>
 							<div class="table-title" style="width: 1147px;">
 								<div class="row">
 									<div class="col-sm-3 item-ex" style="padding-top: 10px;">
+										<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 										<a th:href="@{/products/export/csv}" class="btn btn-secondary"><span>Export To
 												CSV</span></a>
 										<a th:href="@{/products/new}" class="btn btn-dark"
 											style="background:#343a40;color: white;font-weight: bold;"><span>Create New
 												Product</span></a>
 										&nbsp;&nbsp;
+										</th:block>
 									</div>
-		<div th:replace="~{navigation :: menu}"></div>
+		<!--<div th:replace="~{navigation :: menu}"></div>
 
 		<div>
 			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
@@ -37,7 +39,7 @@
 				<a th:href="@{/products/export/csv}">Export To CSV</a>
 			</th:block>
 		</div>
-
+-->
 
 									<!--begin filter and message-->
 									<div class="col-sm-9" style="display: flex;justify-content: end;">
@@ -77,66 +79,13 @@
 
 
 							<!--begin table-->
-							<div>
-								<table class="table table-bordered table-striped table-hover" style="width: 1147px;">
-									<thead style="background-color: rgb(228, 228, 228);">
-										<th th:replace="~{fragments :: column_link('/products','id', 'ID', 'none')}" />
-										<th>Main Image</th>
-										<th
-											th:replace="~{fragments :: column_link('/products','name', 'Product Name', 'none')}" />
-										<th
-											th:replace="~{fragments :: column_link('/products','brand', 'Brand', 'none')}" />
-										<th
-											th:replace="~{fragments :: column_link('/products','category', 'Category', 'none')}" />
-										<th
-											th:replace="~{fragments :: column_link('/products','enabled', 'Enabled', 'none')}" />
-										<th>Action</th>
-									</thead>
-									<tbody>
-										<tr th:each="product : ${listProducts}">
-											<td class="text-center">[[${product.id}]]</td>
-											<td>
-												<img th:src="@{${product.mainImagePath}}" width="120px"
-													height="120px" />
-											</td>
-											<td>
-												<!--Khong sua class= link-detail thanh cai khac-->
-												<!--Khong sua class= link-detail thanh cai khac-->
-												<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
-													th:title="${product.name}" style="font-size: 14px;">[[${product.shortName}]]</a>
-												<!--Khong sua class= link-detail thanh cai khac-->
-												<!--Khong sua class= link-detail thanh cai khac-->
-											</td>
-											<td>[[${product.brand.name}]]</td>
-											<td>[[${product.category.name}]]</td>
-											<td style="text-align: center;">
-												<div
-													th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
-											</td>
-											<td>
-												<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-												<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-												<a class="fas fa-file-alt fa-2x icon-green link-detail"
-													th:href="@{'/products/detail/' +${product.id}}"
-													title="View the detail of this product"></a>
-												<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-												<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-
-												&nbsp;
-												<div
-													th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />
-												&nbsp;
-												<div
-													th:replace="~{fragments :: delete('product', ${product.id}, '/products/delete/' + ${product.id},true)}" />
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							<!--<div>
+								
+							</div>-->
 							<!--end table-->
 		<!--begin table-->
 		<div>
-			<table class="table table-bordered table-striped table-hover">
+			<table class="table table-bordered table-striped table-hover" style="width: 1147px;">
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th th:replace="~{fragments :: column_link('/products','id', 'ID', 'none')}" />
 					<th>Main Image</th>
@@ -155,13 +104,13 @@
 						<td>
 							<img th:src="@{${product.mainImagePath}}" width="120px" height="120px" />
 						</td>
-						<td>
-							<!--Khong sua class= link-detail thanh cai khac-->
-							<!--Khong sua class= link-detail thanh cai khac-->
-							<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
+						<td style="width: 25%;">
+							<!--Khong sua class= link-detail thanh cai khac
+							Khong sua class= link-detail thanh cai khac-->
+							<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}" style="font-size: 16px;"
 								th:title="${product.name}">[[${product.shortName}]]</a>
-							<!--Khong sua class= link-detail thanh cai khac-->
-							<!--Khong sua class= link-detail thanh cai khac-->
+							<!--Khong sua class= link-detail thanh cai khac
+							Khong sua class= link-detail thanh cai khac-->
 						</td>
 						<td>[[${product.brand.name}]]</td>
 						<td>[[${product.category.name}]]</td>
@@ -172,14 +121,14 @@
 							</td>
 						</th:block>
 						<td>
-							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
+							<!--Khong sua class= link-detail/link-delete thanh cai khac
+							Khong sua class= link-detail/link-delete thanh cai khac-->
 							<a class="fas fa-file-alt fa-2x icon-green link-detail"
 								th:href="@{'/products/detail/' +${product.id}}"
 								title="View the detail of this product"></a>
-							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-							<!--Khong sua class= link-detail/link-delete thanh cai khac-->
-
+							<!--Khong sua class= link-detail/link-delete thanh cai khac
+							Khong sua class= link-detail/link-delete thanh cai khac
+-->
 							&nbsp;
 							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson')">
 								<div th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />
@@ -198,9 +147,6 @@
 		</div>
 		<!--end table-->
 
-							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
-
-
 							<!--No edit-->
 							<div class="modal fade" id="detailModal">
 								<div class="modal-dialog modal-xl">
@@ -212,6 +158,7 @@
 							<div th:replace="~{fragments :: pagination('/products','products')}"></div>
 
 							<div th:replace="~{fragments :: footer}"></div>
+							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 						</div>
 					</div>
 				</div>

@@ -6,17 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
 	<title>[[${title}]]</title>
-	<link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/common.js}"></script>
-	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+		rel="stylesheet">
+
 </head>
 
 
@@ -24,20 +25,23 @@
 
 	<!--begin filter-->
 	<div th:fragment="search_form_and_message(moduleURL)" class="d-flex">
-		<form th:action="@{${moduleURL}}" class="form-inline m-3">
+		<form th:action="@{${moduleURL}}" class="form-inline w-100">
 			<input type="hidden" name="sortField" th:value="${sortField}" required />
 			<input type="hidden" name="sortDir" th:value="${sortDir}" required />
-
-			Filter:
-			<input type="search" name="keyword" th:value="${keyword}" class="form-control m-3" required />
-			&nbsp;&nbsp;
-			<input type="submit" value="Search" class="btn btn-primary" />
-			&nbsp;&nbsp;
+			<div class="d-flex">
+				<input type="search" name="keyword" th:value="${keyword}" class="form-control py-2 rounded w-75"
+					style="height: 40px; font-size: 18px; border-radius: 6px 0 0 6px !important;" />
+				<input type="submit" value="Search" class="btn btn-primary w-25"
+					style="margin-left: 0; font-size: 16px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+			</div>
+			<!-- no need
 			<input type="button" value="Clear" class="btn btn-dark" style="background:#343a40;" onclick="clearFilter()" />
+			-->
 		</form>
 
 		<!--message begin-->
-		<div th:if="${message != null}" class="alert alert-success text-center" style="position: absolute;top: -47px;left:-295px;width: 1147px;">
+		<div th:if="${message != null}" class="alert alert-success text-center"
+			style="position: absolute;top: -47px;left:-295px;width: 1147px;">
 			[[${message}]]
 		</div>
 		<!--end message-->
@@ -49,38 +53,48 @@
 
 	<!--begin pagination-->
 	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
-		<div class="text-center m-1" th:if="${totalItems >0}">
+
+		<div class="d-flex justify-content-end my-4" th:if="${totalItems >0}">
+			<div th:if="${totalPages>1}" class="col-5">
+				<nav>
+					<ul class="pagination justify-content-center flex-wrap">
+						<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}" />
+						</li>
+						<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}" />
+						</li>
+						<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+							th:each="i : ${#numbers.sequence(1, totalPages)}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}" />
+						</li>
+						<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}" />
+						</li>
+						<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}" />
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-1 d-flex justify-content-end" th:if="${totalItems >0}" style="padding: 0">
+				<div class="d-flex align-items-center justify-content-center w-75"
+					style="background-color: #fff; border-radius: 6px; border: 1px solid #ccc; color: #594F66; height: 30px; font-size: 14px;">
+					[[${startCount}]] - [[${endCount}]] / [[${totalItems}]]
+				</div>
+				<!--
 			<span>
 				Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]].
 			</span>
+			-->
+			</div>
 		</div>
-		<div class="text-center m-1" th:unless="${totalItems >0}">
-			<span>
-				No [[${entityName}]] found.
+		<div th:unless="${totalItems >0}" class="d-flex flex-column justify-content-center align-items-center"
+			style="background-color: #fff; height: 170px;">
+			<i class="bi bi-inbox" style="font-size: 70px; color: #E0E0E0"></i>
+			<span class="text-center" style="color: #9096C6; font-size: 14px;">
+				No [[${entityName}]] found
 			</span>
-		</div>
-
-		<div th:if="${totalPages>1}">
-			<nav>
-				<ul class="pagination justify-content-center flex-wrap">
-					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}" />
-					</li>
-					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}" />
-					</li>
-					<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-						th:each="i : ${#numbers.sequence(1, totalPages)}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}" />
-					</li>
-					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}" />
-					</li>
-					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}" />
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</div>
 	<!--end pagination-->
@@ -99,7 +113,9 @@
 
 	<!--begin edit button-->
 	<div th:fragment="edit(entityName, editURL)" th:remove="tag">
-		<a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}" th:title="'Edit this ' + ${entityName}"></a>
+		<a class="icon-blue" th:href="@{${editURL}}" th:title="'Edit this ' + ${entityName}">
+			<i class="bi bi-pencil-square" style="font-size: 24px"></i>
+		</a>
 	</div>
 	<!--end edit button-->
 
@@ -108,8 +124,10 @@
 	<!--begin delete button-->
 	<div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
 		<th:block th:if="${visible}">
-			<a class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
-				th:title="'Delete this ' + ${entityName}"></a>
+			<a class="icon-blue link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
+				th:title="'Delete this ' + ${entityName}">
+				<i class="bi bi-trash-fill" style="font-size: 24px"></i>
+			</a>
 		</th:block>
 	</div>
 	<!--end delete button-->
@@ -117,17 +135,19 @@
 
 
 	<!-- begin footer-->
-	<div th:fragment="footer" class=" text-center m-3">
-		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
-	</div>
+	<footer th:fragment="footer" style="background-color: #fff; margin-top: auto; padding: 22px 0; text-align: center;">
+		<span className="text-secondary-custom" style="color: #9096C6; font-size: 14px;">
+			Copyright &copy; PetHub 2023
+		</span>
+	</footer>
 	<!--end footer-->
 
 
 
 
 	<!-- begin column link-->
-	<th th:fragment="column_link(moduleURL, fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
-		<a class="text-dark"
+	<th th:fragment="column_link(moduleURL, fieldName, columnLabel, removeTag)" th:remove="${removeTag}" class="py-4">
+		<a class="text-dark text-decoration-none"
 			th:href="@{${moduleURL}+'/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}+ ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
 			[[${columnLabel}]]
 		</a>
@@ -141,6 +161,13 @@
 	<a th:fragment="page_link(moduleURL, pageNum, label)" class="page-link"
 		th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${label}]]</a>
 	<!--end page link-->
+
+	<!--nav-brand-admin-start-->
+	<a class="nav-brand text-decoration-none" href="/index" th:fragment="logo_admin">
+		<span style="font-size: 20px; color: #594F66; font-weight: bold;">Pet</span>
+		<span style="font-size: 20px; color: #4E73DF; font-weight: bold;">Hub</span>
+	</a>
+	<!--nav-brand-admin-end-->
 </body>
 
 </html>

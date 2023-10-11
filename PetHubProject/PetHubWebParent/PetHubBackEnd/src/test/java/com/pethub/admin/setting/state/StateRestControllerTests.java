@@ -2,6 +2,7 @@ package com.pethub.admin.setting.state;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -100,7 +101,7 @@ public class StateRestControllerTests {
 		Integer stateId = 6;
 		String uri = "/states/delete/" + stateId;
 
-		mockMvc.perform(get(uri)).andExpect(status().isOk());
+		mockMvc.perform(delete(uri).with(csrf())).andExpect(status().isOk());
 
 		Optional<State> findById = stateRepo.findById(stateId);
 

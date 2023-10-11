@@ -29,10 +29,10 @@
 			<input type="hidden" name="sortField" th:value="${sortField}" required />
 			<input type="hidden" name="sortDir" th:value="${sortDir}" required />
 			<div class="d-flex">
-				<input type="search" name="keyword" th:value="${keyword}" class="form-control py-2 rounded w-75"
-					style="height: 40px; font-size: 15px; border-radius: 6px 0 0 6px !important;" />
+				<input type="search" placeholder="Search for..." name="keyword" th:value="${keyword}" class="form-control py-2 rounded w-75"
+					style="height: 34px; font-size: 13px; border-radius: 6px 0 0 6px !important;" />
 				<input type="submit" value="Search" class="btn btn-primary w-25"
-					style="margin-left: 0; font-size: 16px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+					style="margin-left: 0; font-size: 14px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
 			</div>
 			<!-- no need
 			<input type="button" value="Clear" class="btn btn-dark" style="background:#343a40;" onclick="clearFilter()" />

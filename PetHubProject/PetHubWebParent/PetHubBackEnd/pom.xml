@@ -25,6 +25,10 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>net.sf.supercsv</groupId>
@@ -37,7 +41,7 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>4.0.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.github.librepdf</groupId>
 			<artifactId>openpdf</artifactId>

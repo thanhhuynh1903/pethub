@@ -32,7 +32,7 @@
 					<a class="nav-link" data-toggle="tab" href="#countries" role="tab">Countries</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#state" role="tab">State</a>
+					<a class="nav-link" data-toggle="tab" href="#states" role="tab">State</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#mailServer" role="tab">Mail Server</a>
@@ -40,6 +40,10 @@
 
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#mailTemplate" role="tab">Mail Template</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#payment" role="tab">Payment</a>
 				</li>
 			</ul>
 
@@ -59,6 +63,9 @@
 				</div>
 				<div class="tab-pane p-3" id="mailTemplate" role="tabpanel">
 					<div th:replace="~{settings/mail_templates/mail_templates :: content}"></div>
+				</div>
+				<div class="tab-pane p-3" id="payment" role="tabpanel">
+					<div th:replace="~{settings/payment :: content}"></div>
 				</div>
 			</div>
 

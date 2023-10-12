@@ -5,81 +5,93 @@
 
 
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid bg-admin">
 		<div class="w-100">
 			<div class="d-flex w-100">
 				<div th:replace="~{sidebar :: sidebar}" class="w-25" style="height: 100vh;"></div>
-				<div class="d-flex flex-column" style="width: 88%;">
+				<div class="d-flex flex-column" style="width: 100%;">
 					<div th:replace="~{navigation :: menu}"></div>
-					<div class="w-100">
-						<div class="p-5">
-
-							<h2 style="text-align: center; margin: 25px;">Manage Categories</h2>
-							<div class="table-title" style="width: 1147px;">
-								<div class="row">
-									<div class="col-sm-3 item-ex" style="padding-top: 10px;">
-										<a th:href="@{/categories/export/csv}" class="btn btn-secondary"><span>Export To
-												CSV</span></a>
-										<a th:href="@{/categories/new}" class="btn btn-dark"
-											style="background:#343a40;color: white;font-weight: bold;"><span>Create New
-												Category</span></a>
-										&nbsp;&nbsp;
-									</div>
-
-									<div class="col-sm-9" style="display: flex;justify-content: end;">
-										<div>
-											<div
-												th:replace="~{fragments :: search_form_and_message('/categories/page/1')}">
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 5rem;">
+								<div class="d-flex justify-content-between w-100">
+									<h2 style="color: #494A6B; font-size: 26px;">Manage Categories</h2>
+									<a th:href="@{/categories/new}"
+										class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+										style="background: #4E73DF;color: white; height: 30px; border: none; font-size: 18px;
+										padding: 16px; border-radius: 10px;">
+										<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"
+											style="font-size: 18px;"></i>
+										<span style="font-size: 13px;">Create New Category</span>
+									</a>
+								</div>
+								&nbsp;&nbsp;
+								<!--begin filter and message-->
+								<div class="w-100 table-container">
+									<div class="table-title w-100">
+										<div class="d-flex w-100">
+											<div class="col-sm-9">
+												<div>
+													<div
+														th:replace="~{fragments :: search_form_and_message('/categories/page/1')}">
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-3 item-ex d-flex justify-content-end">
+												<div>
+													<a th:href="@{/categories/export/csv}"
+														class="btn btn-primary-outline px-3 py-2">
+														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+														<span class="text-export-dark" style="font-size: 14px;">Export
+															To
+															CSV</span></a>
+												</div>
 											</div>
 										</div>
 									</div>
 
-								</div>
-							</div>
+									<!--end filter and message-->
 
 
-							<!--begin filter and message-->
-
-							<!--end filter and message-->
-
-
-							<!--begin table-->
-							<div>
-								<table class="table table-bordered table-striped table-hover" style="width: 1147px;">
-									<thead style="background-color: rgb(228, 228, 228);">
-										<th>ID</th>
-										<th>Category Image</th>
-										<th
-											th:replace="~{fragments :: column_link('/categories','name', 'Category Name','none')}" />
-										<th>Alias</th>
-										<th>Enabled</th>
-										<th>Action</th>
-									</thead>
-									<tbody>
-										<tr th:each="cat : ${listCategories}">
-											<td class="hideable-column text-center">[[${cat.id}]]</td>
-											<td class="text-center">
-												<img height="90px" width="90px" th:if="${cat.image == null}"
-													th:src="@{/images/image-thumbnail.png}" />
-												<img height="90px" width="90px" th:if="${cat.image !=null}"
-													th:src="@{${cat.imagePath}}" />
-											</td>
-											<td>[[${cat.name}]]</td>
-											<td>[[${cat.alias}]]</td>
-											<td style="text-align: center;">
-												<div
-													th:replace="~{fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})}" />
-											</td>
-											<td style="text-align: center;">
-												<div
-													th:replace="~{fragments :: edit('category', '/categories/edit/' + ${cat.id})}" />
-												&nbsp;
-												<div th:replace="~{fragments :: delete('category', ${cat.id}, '/categories/delete/' + ${cat.id},
+									<!--begin table-->
+									<div>
+										<table class="table table-striped table-hover w-100 borderless">
+											<thead style="background-color: rgb(228, 228, 228);">
+												<th>ID</th>
+												<th>Category Image</th>
+												<th
+													th:replace="~{fragments :: column_link('/categories','name', 'Category Name','none')}" />
+												<th>Alias</th>
+												<th>Enabled</th>
+												<th>Action</th>
+											</thead>
+											<tbody>
+												<tr th:each="cat : ${listCategories}">
+													<td class="hideable-column text-center">[[${cat.id}]]</td>
+													<td class="text-center">
+														<img height="90px" width="90px" th:if="${cat.image == null}"
+															th:src="@{/images/image-thumbnail.png}" />
+														<img height="90px" width="90px" th:if="${cat.image !=null}"
+															th:src="@{${cat.imagePath}}" />
+													</td>
+													<td>[[${cat.name}]]</td>
+													<td>[[${cat.alias}]]</td>
+													<td style="text-align: center;">
+														<div
+															th:replace="~{fragments :: status(${cat.enabled}, 'category', '/categories/' + ${cat.id})}" />
+													</td>
+													<td style="text-align: center;">
+														<div
+															th:replace="~{fragments :: edit('category', '/categories/edit/' + ${cat.id})}" />
+														&nbsp;
+														<div th:replace="~{fragments :: delete('category', ${cat.id}, '/categories/delete/' + ${cat.id},
 								${!cat.hasChildren})}" />
-											</td>
-										</tr>
-									</tbody>
-								</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</div>
 							<!--end table-->
 
@@ -96,27 +108,30 @@
 							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 
 						</div>
-						<div class="vw-80 d-flex justify-content-center pt-1">
-							<div th:replace="~{fragments :: footer}"></div>
-						</div>
+					</div>
+					<div class="w-100 d-flex justify-content-center">
+						<div th:replace="~{fragments :: footer}"></div>
 					</div>
 				</div>
+
 			</div>
-
-
-
 		</div>
-		<script th:src="@{/js/common_list.js}"></script>
-		<script type="text/javascript">
-			moduleURL = "[[@{/categories}]]";
+	</div>
 
-			$(document).ready(function () {
-				$(".link-delete").on("click", function (e) {
-					e.preventDefault();
-					showDeleteConfirmModal($(this), 'category');
-				});
+
+
+	</div>
+	<script th:src="@{/js/common_list.js}"></script>
+	<script type="text/javascript">
+		moduleURL = "[[@{/categories}]]";
+
+		$(document).ready(function () {
+			$(".link-delete").on("click", function (e) {
+				e.preventDefault();
+				showDeleteConfirmModal($(this), 'category');
 			});
-		</script>
+		});
+	</script>
 </body>
 
 </html>

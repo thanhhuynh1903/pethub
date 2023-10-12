@@ -4,56 +4,83 @@
 <head th:replace="~{fragments :: page_head('User - PetHub Admin','none')}" />
 
 <body class="w-100">
-	<div class="w-100">
+	<div class="container-fluid bg-admin">
 		<div class="d-flex w-100">
-			<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
-			<div class="d-flex flex-column" style="width: 88%;">
+			<div th:replace="~{sidebar :: sidebar}" class="w-25" style="height: 100vh;"></div>
+			<div class="d-flex flex-column" style="width: 100%;">
 				<div th:replace="~{navigation :: menu}"></div>
-				<div class="w-100">
-					<div class="p-5">
-						<h2 style="text-align: center;margin: 25px;">Manage Users</h2>
-						<div th:if="${message != null}" class="alert alert-success text-center"
-							style="width: 90%;margin: 0 auto;">
-							[[${message}]]
-						</div>
-						<div class="table-title" style="width: 90%;">
-							<div class="row">
-								<div class="col-sm-5 item-ex">
-									&nbsp;&nbsp;
-									<a th:href="@{/users/export/csv}"
-										class="btn btn-secondary btn btn-dark"><span>Export To
-											CSV</span></a>
-									&nbsp;&nbsp;
-									<a th:href="@{/users/export/excel}"
-										class="btn btn-secondary btn btn-dark"><span>Export To
-											Excel</span></a>
-									&nbsp;&nbsp;
-									<a th:href="@{/users/export/pdf}"
-										class="btn btn-secondary btn btn-dark"><span>Export To
-											PDF</span></a>
-									<a th:href="@{/users/new}" class="btn btn-secondary btn btn-dark"
-										style="background: #27374D;color: white;font-weight: bold;"><span>Create New
-											User</span></a>
-								</div>
-								<div class="col-sm-7" style="display: flex;justify-content: end;">
-									<div>
-										<form th:action=" @{/users/page/1}" class="form-inline m-1">
-											<input type="hidden" name="sortField" th:value="${sortField}" required />
-											<input type="hidden" name="sortDir" th:value="${sortDir}" required />
-											Filter:
-											<input type="search" name="keyword" th:value="${keyword}"
-												class="form-control m-3" required />
-											&nbsp;&nbsp;
-											<input type="submit" value="Search" class="btn btn-primary" />
-											&nbsp;&nbsp;
-											<input type="button" value="Clear" class="btn btn-dark"
-												style="background:#343a40;" onclick="clearFilter()" />
-										</form>
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+					<div class="main-content-container">
+						<div style="margin-top: 5rem;">
+							<div class="d-flex justify-content-between w-100">
+								<h2 style="color: #494A6B; font-size: 26px;">Manage Users</h2>
+								<a th:href="@{/users/new}"
+									class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+									style="background: #4E73DF;color: white; height: 30px; border: none; font-size: 18px;
+										padding: 16px; border-radius: 10px;">
+									<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"
+										style="font-size: 18px;"></i>
+									<span style="font-size: 13px;">Create
+										New
+										User</span></a>
+							</div>
+							<div th:if="${message != null}" class="alert alert-success text-center"
+								style="width: 100%;margin: 0 auto;">
+								[[${message}]]
+							</div>
+							<div class="w-100 table-container">
+								<div class="table-title w-100">
+									<div class="d-flex w-100">
+										<div class="col-sm-6">
+											<div>
+												<form th:action=" @{/users/page/1}" class="form-inline m-1">
+													<input type="hidden" name="sortField" th:value="${sortField}"
+														required />
+													<input type="hidden" name="sortDir" th:value="${sortDir}"
+														required />
+													<div class="d-flex">
+														<input type="search" name="keyword" th:value="${keyword}"
+															class="form-control py-2 rounded w-75"
+															style="height: 40px; font-size: 15px; border-radius: 6px 0 0 6px !important;" />
+														<input type="submit" value="Search" class="btn btn-primary w-25"
+															style="margin-left: 0; font-size: 16px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+													</div>
+													<!--<input type="button" value="Clear" class="btn btn-dark"
+												style="background:#343a40;" onclick="clearFilter()" />-->
+												</form>
+											</div>
+										</div>
+											<div class="col-sm-6 item-ex d-flex justify-content-end">
+												<div>
+													&nbsp;&nbsp;
+													<a th:href="@{/users/export/csv}"
+														class="btn btn-primary-outline px-3 py-2">
+														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+														<span class="text-export-dark" style="font-size: 14px;">Export
+															To
+															CSV</span></a>
+													&nbsp;&nbsp;
+													<a th:href="@{/users/export/excel}"
+														class="btn btn-primary-outline px-3 py-2">
+														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+														<span class="text-export-dark" style="font-size: 14px;">Export
+															To
+															Excel</span></a>
+													&nbsp;&nbsp;
+													<a th:href="@{/users/export/pdf}"
+														class="btn btn-primary-outline px-3 py-2">
+														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+														<span class="text-export-dark" style="font-size: 14px;">Export
+															To
+															PDF</span></a>
+
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 
-							</div>
-						</div>
+							
 
 
 						<!--<div>
@@ -134,24 +161,28 @@
 								</tbody>
 							</table>
 						</div>
-
-						<div th:replace="~{fragments :: pagination('/users','users')}"></div>
-
-						<div th:replace="~{modal_fragments :: confirm_modal}" />
-
-
-
 					</div>
-
-					<footer class="sticky-footer ">
-						<div class="container my-auto"></div>
-						<div class="copyright text-center my-auto">
-							<div th:replace="~{fragments :: footer}"></div>
-						</div>
-					</footer>
+					<div th:replace="~{fragments :: pagination('/users','users')}"></div>
+					<div th:replace="~{modal_fragments :: confirm_modal}" />
 				</div>
+				
+
+				
+
+				<footer class="sticky-footer ">
+					<div class="container my-auto"></div>
+					<div class="copyright text-center my-auto">
+						<div th:replace="~{fragments :: footer}"></div>
+					</div>
+				</footer>
+
+			</div>
 			</div>
 		</div>
+
+		</div>
+	</div>
+	</div>
 
 	</div>
 

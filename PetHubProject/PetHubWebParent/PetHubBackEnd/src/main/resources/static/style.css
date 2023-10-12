@@ -1,6 +1,9 @@
 * {
-	font-family: sans-serif;
-	font-size: 16px;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-size: 12.5px;
+	font-family:'M PLUS Rounded 1c', sans-serif;
 }
 
 *.icon-silver {
@@ -14,6 +17,7 @@
 *.icon-dark {
 	color: gray
 }
+
 
 .footer {
 	background-color: black;
@@ -83,14 +87,6 @@
 	.not-found-image {
 		width: 300px;
 	}
-}
-
-* {
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
-	font-size: 10.5px;
-	font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -199,7 +195,7 @@ h2 {
 
 .sidebar ul li .logo .text {
 	font-size: 1.2em;
-	font-weight: 500;
+
 }
 
 .header-bar {
@@ -267,7 +263,8 @@ label {
 }
 
 .table thead th {
-	font-size: 14px;
+	font-size: 16px;
+	vertical-align: middle!important;
 	text-align: center;
 }
 

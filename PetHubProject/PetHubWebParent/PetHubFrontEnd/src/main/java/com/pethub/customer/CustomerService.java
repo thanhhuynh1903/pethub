@@ -1,5 +1,6 @@
 package com.pethub.customer;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.pethub.common.entity.Customer;
 import com.pethub.setting.CountryRepository;
 
 import jakarta.transaction.Transactional;
+import net.bytebuddy.utility.RandomString;
 
 @Service
 @Transactional
@@ -28,6 +30,18 @@ public class CustomerService {
 	public boolean isEmailUnique(String email) {
 		Customer customer = customerRepo.findByEmail(email);
 		return customer == null;
+	}
+	
+	public void registerCustomer(Customer customer) {
+		
+		customer.setEnabled(false);
+		customer.setCreatedTime(new Date());
+		
+		String randomCode = RandomString.make(64);
+		customer.setVerificationCode(randomCode);
+		
+		customerRepo.save(customer);
+		
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.pethub.setting;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +11,17 @@ import com.pethub.common.entity.SettingCategory;
 @Service
 public class SettingService {
 	@Autowired
-	private SettingRepository repo;
+	private SettingRepository settingRepo;
 
 	public List<Setting> getGeneralSettings() {
 
-		List<Setting> settings = new ArrayList<>();
-
-		List<Setting> generalSettings = repo.findByCategory(SettingCategory.GENERAL);
-		List<Setting> currencySettings = repo.findByCategory(SettingCategory.CURRENCY);
-
-		settings.addAll(generalSettings);
-		settings.addAll(currencySettings);
-
-		return settings;
+		return settingRepo.findByTwoCategories(SettingCategory.GENERAL, SettingCategory.CURRENCY);
 	}
 
+	public EmailSettingBag getEmailSettings() {
+		List<Setting> settings = settingRepo.findByCategory(SettingCategory.MAIL_SERVER);
+		settings.addAll(settingRepo.findByCategory(SettingCategory.MAIL_TEMPLATES));
+
+		return new EmailSettingBag(settings);
+	}
 }

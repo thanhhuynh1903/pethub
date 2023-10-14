@@ -48,7 +48,7 @@ public class CustomerController {
 
 		model.addAttribute("pageTitle", "Registration Succeeded!");
 
-		return "/register/register_success";
+		return "register/register_success";
 	}
 
 	private void sendVerificationEmail(HttpServletRequest request, Customer customer)
@@ -81,4 +81,10 @@ public class CustomerController {
 		System.out.println("Verify URL: " + verifyURL);
 	}
 
+	@GetMapping("/verify")
+	public String verifyAccount(String code, Model model) {
+		boolean verified = customerService.verify(code);
+
+		return "register/" + (verified ? "verify_success" : "verify_fail");
+	}
 }

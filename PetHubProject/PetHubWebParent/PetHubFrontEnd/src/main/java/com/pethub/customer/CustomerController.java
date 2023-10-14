@@ -1,6 +1,5 @@
 package com.pethub.customer;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +35,12 @@ public class CustomerController {
 	}
 
 	@PostMapping("/create_customer")
-	public String createCustomer(Customer customer, Model model, HttpServletRequest request) {
+	public String createCustomer(Customer customer, Model model) {
 		customerService.registerCustomer(customer);
 
 		model.addAttribute("pageTitle", "Registration Succeeded!");
 
-		return "register/register_success";
+		return "/register/register_success";
 	}
 
 }

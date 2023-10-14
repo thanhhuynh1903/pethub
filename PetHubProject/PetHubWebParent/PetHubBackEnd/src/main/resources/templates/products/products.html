@@ -12,8 +12,6 @@
 			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 				<h2>Manage Products</h2>
 				<a th:href="@{/products/new}">Create New Product</a>
-				&nbsp;|&nbsp;
-				<a th:href="@{/products/export/csv}">Export To CSV</a>
 			</th:block>
 		</div>
 

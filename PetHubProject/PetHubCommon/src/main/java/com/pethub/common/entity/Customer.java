@@ -65,6 +65,10 @@ public class Customer {
 
 	}
 
+	public Customer(Integer id) {
+		this.id = id;
+	}
+
 	public Customer(Integer id, String email) {
 		this.id = id;
 		this.email = email;
@@ -209,7 +213,6 @@ public class Customer {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
-	
 
 	@Override
 	public String toString() {

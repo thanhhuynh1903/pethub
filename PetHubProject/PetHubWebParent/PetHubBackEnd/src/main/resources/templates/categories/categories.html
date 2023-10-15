@@ -15,7 +15,7 @@
 
 
 		<!--begin filter and message-->
-		<div th:replace="~{fragments :: search_form_and_message('/categories/page/1')}" />
+		<div th:replace="~{fragments :: search_form_and_message}" />
 		<!--end filter and message-->
 
 
@@ -25,7 +25,7 @@
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>ID</th>
 					<th>Category Image</th>
-					<th th:replace="~{fragments :: column_link('/categories','name', 'Category Name','none')}" />
+					<th th:replace="~{fragments :: column_link('name', 'Category Name','none')}" />
 					<th>Alias</th>
 					<th>Enabled</th>
 					<th>Action</th>
@@ -58,11 +58,11 @@
 
 		<div th:if="${keyword !=null}" class="text-center">
 			<span>Search result does not show categories in hierachical form.</span>
-			<div th:replace="~{fragments :: pagination('/categories','categories')}"></div>
+			<div th:replace="~{fragments :: pagination('categories')}"></div>
 		</div>
 
 		<th:block th:unless="${keyword !=null}">
-			<div th:replace="~{fragments :: pagination('/categories','top-level categories')}"></div>
+			<div th:replace="~{fragments :: pagination('top-level categories')}"></div>
 		</th:block>
 
 		<div th:replace="~{modal_fragments :: confirm_modal}"></div>

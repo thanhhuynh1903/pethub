@@ -20,7 +20,7 @@
 		</div>
 
 		<!--begin filter and message-->
-		<div th:replace="~{fragments :: search_form_and_message('/users/page/1')}" />
+		<div th:replace="~{fragments :: search_form_and_message}" />
 		<!--end filter and message-->
 
 
@@ -28,20 +28,20 @@
 			<table class="table table-bordered table-striped table-hover">
 				<thead style="background-color: rgb(228, 228, 228);">
 					<th>
-						<th th:replace="~{fragments :: column_link('/users','id', 'User ID','tag')}" />
+						<th th:replace="~{fragments :: column_link('id', 'User ID','tag')}" />
 					</th>
 
 					<th>Photos</th>
 
 					<th>
-						<th th:replace="~{fragments :: column_link('/users','email', 'Email','tag')}" />
+						<th th:replace="~{fragments :: column_link('email', 'Email','tag')}" />
 					</th>
 
-					<th th:replace="~{fragments :: column_link('/users', 'firstName', 'First Name', 'none')}" />
-					<th th:replace="~{fragments :: column_link('/users', 'lastName', 'Last Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link('firstName', 'First Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link('lastName', 'Last Name', 'none')}" />
 
 					<th>Roles</th>
-					<th th:replace="~{fragments :: column_link('/users','enabled', 'Enabled', 'none')}" />
+					<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
 					<th>Action</th>
 				</thead>
 				<tbody>
@@ -70,7 +70,7 @@
 			</table>
 		</div>
 
-		<div th:replace="~{fragments :: pagination('/users','users')}"></div>
+		<div th:replace="~{fragments :: pagination('users')}"></div>
 
 		<div th:replace="~{modal_fragments :: confirm_modal}" />
 

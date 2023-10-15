@@ -75,6 +75,7 @@ public class ProductController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("listCategories", listCategories);
 		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("moduleURL", "/products");
 
 		return "products/products";
 	}

@@ -53,6 +53,7 @@ public class CustomerController {
 
 		model.addAttribute("startCount", startCount);
 		model.addAttribute("endCount", endCount);
+		model.addAttribute("moduleURL", "/customers");
 
 		return "customers/customers";
 	}

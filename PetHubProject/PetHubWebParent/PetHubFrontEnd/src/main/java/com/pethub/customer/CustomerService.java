@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.pethub.common.entity.AuthenticationType;
 import com.pethub.common.entity.Country;
 import com.pethub.common.entity.Customer;
 import com.pethub.setting.CountryRepository;
@@ -63,6 +64,12 @@ public class CustomerService {
 		} else {
 			customerRepo.enable(customer.getId());
 			return true;
+		}
+	}
+
+	public void updateAuthenticationType(Customer customer, AuthenticationType type) {
+		if (!customer.getAuthenticationType().equals(type)) {
+			customerRepo.updateAuthenticationType(customer.getId(), type);
 		}
 	}
 }

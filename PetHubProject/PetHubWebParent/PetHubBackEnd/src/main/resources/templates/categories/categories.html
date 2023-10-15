@@ -60,7 +60,7 @@
 												<th>ID</th>
 												<th>Category Image</th>
 												<th
-													th:replace="~{fragments :: column_link('/categories','name', 'Category Name','none')}" />
+													th:replace="~{fragments :: column_link('name', 'Category Name','none')}" />
 												<th>Alias</th>
 												<th>Enabled</th>
 												<th>Action</th>
@@ -97,11 +97,11 @@
 
 							<div th:if="${keyword !=null}" class="text-center">
 								<span>Search result does not show categories in hierachical form.</span>
-								<div th:replace="~{fragments :: pagination('/categories','categories')}"></div>
+								<div th:replace="~{fragments :: pagination('categories')}"></div>
 							</div>
 
 							<th:block th:unless="${keyword !=null}">
-								<div th:replace="~{fragments :: pagination('/categories','top-level categories')}">
+								<div th:replace="~{fragments :: pagination('top-level categories')}">
 								</div>
 							</th:block>
 

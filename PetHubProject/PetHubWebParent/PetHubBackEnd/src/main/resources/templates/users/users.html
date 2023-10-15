@@ -114,75 +114,53 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead style="background-color: rgb(228, 228, 228);">
 									<th>
-										<th th:replace="~{fragments :: column_link('/users','id', 'User ID','tag')}" />
+										<th th:replace="~{fragments :: column_link('id', 'User ID','tag')}" />
 									</th>
 
 									<th>Photos</th>
 
-									<th>
-										<th th:replace="~{fragments :: column_link('/users','email', 'Email','tag')}" />
-									</th>
+					<th>
+						<th th:replace="~{fragments :: column_link('email', 'Email','tag')}" />
+					</th>
 
-									<th
-										th:replace="~{fragments :: column_link('/users', 'firstName', 'First Name', 'none')}" />
-									<th
-										th:replace="~{fragments :: column_link('/users', 'lastName', 'Last Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link( 'firstName', 'First Name', 'none')}" />
+					<th th:replace="~{fragments :: column_link( 'lastName', 'Last Name', 'none')}" />
 
-									<th>Roles</th>
-									<th
-										th:replace="~{fragments :: column_link('/users','enabled', 'Enabled', 'none')}" />
-									<th>Action</th>
-								</thead>
-								<tbody>
-									<tr th:each="user : ${listUsers}">
-										<td class="hideable-column text-center">[[${user.id}]]</td>
-										<td>
-											<span th:if="${user.photos == null}"
-												class="fas fa-portrait fa-3x icon-silver"></span>
-											<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
-												th:src="@{${user.photosImagePath}}" />
-										</td>
-										<td class="hideable-column">[[${user.email}]]</td>
-										<td>[[${user.firstName}]]</td>
-										<td>[[${user.lastName}]]</td>
-										<td>[[${user.roles}]]</td>
-										<td>
-											<div
-												th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
-										</td>
-										<td>
-											<div
-												th:replace="~{fragments :: edit('user', '/users/edit/' + ${user.id})}" />
-											&nbsp;
-											<div
-												th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}" />
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div th:replace="~{fragments :: pagination('/users','users')}"></div>
-					<div th:replace="~{modal_fragments :: confirm_modal}" />
-				</div>
-				
-
-				
-
-				<footer class="sticky-footer ">
-					<div class="container my-auto"></div>
-					<div class="copyright text-center my-auto">
-						<div th:replace="~{fragments :: footer}"></div>
-					</div>
-				</footer>
-
-			</div>
-			</div>
+					<th>Roles</th>
+					<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
+					<th>Action</th>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${listUsers}">
+						<td class="hideable-column">[[${user.id}]]</td>
+						<td>
+							<span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
+							<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
+								th:src="@{${user.photosImagePath}}" />
+						</td>
+						<td class="hideable-column">[[${user.email}]]</td>
+						<td>[[${user.firstName}]]</td>
+						<td>[[${user.lastName}]]</td>
+						<td>[[${user.roles}]]</td>
+						<td>
+							<div th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
+						</td>
+						<td>
+							<div th:replace="~{fragments :: edit('user', '/users/edit/' + ${user.id})}" />
+							&nbsp;
+							<div
+								th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
-		</div>
-	</div>
-	</div>
+		<div th:replace="~{fragments :: pagination('/users','users')}"></div>
+
+		<div th:replace="~{modal_fragments :: confirm_modal}" />
+
+		<div th:replace="~{fragments :: footer}"></div>
 
 	</div>
 

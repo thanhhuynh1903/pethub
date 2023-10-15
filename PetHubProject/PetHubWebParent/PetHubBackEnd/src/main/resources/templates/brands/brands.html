@@ -58,7 +58,7 @@
 												<th class="py-4">Brand ID</th>
 												<th class="py-4">Logo</th>
 												<th
-													th:replace="~{fragments :: column_link('/brands','name', 'Brand Name', 'none')}" />
+													th:replace="~{fragments :: column_link('name', 'Brand Name', 'none')}" />
 												</th>
 												<th class="py-4">Categories</th>
 												<th class="py-4">Action</th>
@@ -91,7 +91,7 @@
 								</div>
 							</div>
 							<!--end table-->
-							<div th:replace="~{fragments :: pagination('/brands','brands')}"></div>
+							<div th:replace="~{fragments :: pagination('brands')}"></div>
 							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 						</div>
 					</div>

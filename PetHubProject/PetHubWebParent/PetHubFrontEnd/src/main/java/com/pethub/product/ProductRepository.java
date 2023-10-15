@@ -2,7 +2,6 @@ package com.pethub.product;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -19,7 +18,4 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "MATCH(name, short_description, full_description) AGAINST (?1)", nativeQuery = true)
 	public Page<Product> search(String keyword, Pageable pageable);
-
-	@Query("SELECT p FROM Product p WHERE p.enabled=true AND p.brand.id=?1")
-	public Page<Product> listByBrand(Integer brandId, Pageable pageable);
 }

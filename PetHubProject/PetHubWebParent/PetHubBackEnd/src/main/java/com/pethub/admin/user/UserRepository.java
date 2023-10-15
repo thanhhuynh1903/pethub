@@ -9,10 +9,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.pethub.admin.paging.SearchRepository;
 import com.pethub.common.entity.User;
 
 @Repository
-public interface UserRepository extends PagingAndSortingRepository<User, Integer>, CrudRepository<User, Integer> {
+public interface UserRepository extends SearchRepository<User, Integer> {
 	@Query("SELECT u FROM User u WHERE u.email = :email")
 	public User getUserByEmail(@Param("email") String email);
 

@@ -11,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.common.entity.Product;
+import com.pethub.common.exception.ProductNotFoundException;
 
 import jakarta.transaction.Transactional;
 
@@ -27,28 +29,28 @@ public class ProductService {
 		return (List<Product>) repo.findAll();
 	}
 
-	public Page<Product> listByPage(int pageNum, String sortField, String sortDir, String keyword, Integer categoryId) {
-		Sort sort = Sort.by(sortField);
+	public void listByPage(int pageNum, PagingAndSortingHelper helper, Integer categoryId) {
 
-		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-
-		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE, sort);
+		Pageable pageable = helper.createPageable(PRODUCTS_PER_PAGE, pageNum);
+		String keyword = helper.getKeyword();
+		Page<Product> page = null;
 
 		if (keyword != null && !keyword.isEmpty()) {
 			if (categoryId != null && categoryId > 0) {
 				String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
-				return repo.searchInCategory(categoryId, categoryIdMatch, keyword, pageable);
+				page = repo.searchInCategory(categoryId, categoryIdMatch, keyword, pageable);
 			} else {
-				return repo.findAll(keyword, pageable);
+				page = repo.findAll(keyword, pageable);
 			}
 		} else {
 			if (categoryId != null && categoryId > 0) {
 				String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
-				return repo.findAllInCategory(categoryId, categoryIdMatch, pageable);
+				page = repo.findAllInCategory(categoryId, categoryIdMatch, pageable);
 			} else {
-				return repo.findAll(pageable);
+				page = repo.findAll(pageable);
 			}
 		}
+		helper.updateModelAttributes(pageNum, page);
 	}
 
 	public Product save(Product product) {

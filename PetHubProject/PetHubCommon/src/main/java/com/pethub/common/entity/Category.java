@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -32,9 +33,9 @@ public class Category {
 
 	private boolean enabled;
 
-	@Column(name = "all_parent_ids", length =256, nullable = true)
+	@Column(name = "all_parent_ids", length = 256, nullable = true)
 	private String allParentIDs;
-	
+
 	// a sub category can just be a child of one parent category
 	@ManyToOne
 	@JoinColumn(name = "parent_id")
@@ -42,6 +43,7 @@ public class Category {
 
 	// a parent category can have many sub category
 	@OneToMany(mappedBy = "parent")
+	@OrderBy("name asc")
 	private Set<Category> children = new HashSet<>();
 
 	public Category() {

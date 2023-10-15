@@ -37,7 +37,7 @@ public class Customer {
 	@Column(nullable = false, length = 64)
 	private String addressLine1;
 
-	@Column(name = "address_line_2", nullable = true, length = 64)
+	@Column(name = "address_line_2", length = 64)
 	private String addressLine2;
 
 	@Column(nullable = false, length = 45)
@@ -49,7 +49,7 @@ public class Customer {
 	@Column(name = "postal_code", nullable = false, length = 10)
 	private String postalCode;
 
-	@Column(name = "verification_code", length = 10)
+	@Column(name = "verification_code", length = 64)
 	private String verificationCode;
 
 	private boolean enabled;
@@ -72,26 +72,6 @@ public class Customer {
 	public Customer(Integer id, String email) {
 		this.id = id;
 		this.email = email;
-	}
-
-	public Customer(Integer id, String email, String password, String firstName, String lastName, String phoneNumber,
-			String addressLine1, String addressLine2, String city, String state, String postalCode,
-			String verificationCode, boolean enabled, Date createdTime, Country country) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.addressLine1 = addressLine1;
-		this.addressLine2 = addressLine2;
-		this.city = city;
-		this.state = state;
-		this.postalCode = postalCode;
-		this.verificationCode = verificationCode;
-		this.enabled = enabled;
-		this.createdTime = createdTime;
-		this.country = country;
 	}
 
 	public Integer getId() {

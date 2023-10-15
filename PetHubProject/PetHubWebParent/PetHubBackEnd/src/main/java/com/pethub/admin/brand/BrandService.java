@@ -4,15 +4,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.common.entity.Brand;
-import com.pethub.common.entity.User;
 
 @Service
 public class BrandService {
@@ -26,19 +21,7 @@ public class BrandService {
 	}
 
 	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
-		Sort sort = Sort.by(helper.getSortField());
-
-		sort = helper.getSortDir().equals("asc") ? sort.ascending() : sort.descending();
-
-		Pageable pageable = PageRequest.of(pageNum - 1, BRANDS_PER_PAGE, sort);
-		Page<Brand> page = null;
-
-		if (helper.getKeyword() != null) {
-			page = repo.findAll(helper.getKeyword(), pageable);
-		} else {
-			page = repo.findAll(pageable);
-		}
-		helper.updateModelAttributes(pageNum, page);
+		helper.listEntities(pageNum, BRANDS_PER_PAGE, repo);
 	}
 
 	public Brand save(Brand brand) {

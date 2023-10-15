@@ -4,11 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,19 +40,7 @@ public class UserService {
 	}
 
 	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
-		Sort sort = Sort.by(helper.getSortField());
-
-		sort = helper.getSortDir().equals("asc") ? sort.ascending() : sort.descending();
-
-		Pageable pageable = PageRequest.of(pageNum - 1, USERS_PER_PAGE, sort);
-		Page<User> page = null;
-
-		if (helper.getKeyword() != null) {
-			page = userRepo.findAll(helper.getKeyword(), pageable);
-		} else {
-			page = userRepo.findAll(pageable);
-		}
-		helper.updateModelAttributes(pageNum, page);
+		helper.listEntities(pageNum, USERS_PER_PAGE, userRepo);
 	}
 
 	public User save(User user) {

@@ -8,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-
 public class PagingAndSortingHelper {
-
 	private ModelAndViewContainer model;
 	private String listName;
 	private String sortField;

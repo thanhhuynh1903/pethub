@@ -26,24 +26,22 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class BrandController {
 
+	private String defaultRedirectURL = "redirect:/brands/page/1?sortField=name&sortDir=asc";
 	@Autowired
 	private BrandService brandService;
-
 	@Autowired
 	private CategoryService categoryService;
 
 	@GetMapping("/brands")
 	public String listFirstPage() {
-		return "redirect:/brands/page/1?sortField=name&sortDir=asc";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/brands/page/{pageNum}")
 	public String listByPage(
 			@PagingAndSortingParam(listName = "listBrands", moduleURL = "/brands") PagingAndSortingHelper helper,
 			@PathVariable(name = "pageNum") int pageNum) {
-
 		brandService.listByPage(pageNum, helper);
-
 		return "brands/brands";
 	}
 

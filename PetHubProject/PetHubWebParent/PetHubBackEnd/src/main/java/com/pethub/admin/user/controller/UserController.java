@@ -31,19 +31,19 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
+	private String defaultRedirectURL = "redirect:/users/page/1?sortField=firstName&sortDir=asc";
 	@Autowired
 	private UserService service;
 
-	@GetMapping("/users") // handling HTTP get request
+	@GetMapping("/users")
 	public String listFirstPage() {
-		return "redirect:/users/page/1?sortField=firstName&sortDir=asc";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/users/page/{pageNum}")
 	public String listByPage(
 			@PagingAndSortingParam(listName = "listUsers", moduleURL = "/users") PagingAndSortingHelper helper,
 			@PathVariable(name = "pageNum") int pageNum) {
-
 		service.listByPage(pageNum, helper);
 
 		return "users/users";

@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.pethub.admin.FileUploadUtil;
 import com.pethub.admin.brand.BrandService;
 import com.pethub.admin.category.CategoryService;
+import com.pethub.admin.paging.PagingAndSortingHelper;
+import com.pethub.admin.paging.PagingAndSortingParam;
 import com.pethub.admin.security.PetHubUserDetails;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
@@ -27,55 +29,31 @@ import com.pethub.common.exception.ProductNotFoundException;
 
 @Controller
 public class ProductController {
+	private String defaultRedirectURL = "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
 	@Autowired
 	private ProductService productService;
-
 	@Autowired
 	private BrandService brandService;
-
 	@Autowired
 	private CategoryService categoryService;
 
 	@GetMapping("/products")
 	public String listFirstPage(Model model) {
-		return listByPage(1, model, "name", "asc", null, 0);
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/products/page/{pageNum}")
-	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,
-			@Param("sortField") String sortField, @Param("sortDir") String sortDir, @Param("keyword") String keyword,
-			@Param("categoryId") Integer categoryId) {
+	public String listByPage(
+			@PagingAndSortingParam(listName = "listProducts", moduleURL = "/products") PagingAndSortingHelper helper,
+			@PathVariable(name = "pageNum") int pageNum, Model model, Integer categoryId) {
 
-		System.out.println("Selected category ID: " + categoryId);
-		Page<Product> page = productService.listByPage(pageNum, sortField, sortDir, keyword, categoryId);
-		List<Product> listProducts = page.getContent();
+		productService.listByPage(pageNum, helper, categoryId);
 
 		List<Category> listCategories = categoryService.listCategoriesUsedInForm();
 
-		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
-		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
-		if (endCount > page.getTotalElements()) {
-			endCount = page.getTotalElements();
-		}
-
-		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
-
-		if (categoryId != null) {
+		if (categoryId != null)
 			model.addAttribute("categoryId", categoryId);
-		}
-
-		model.addAttribute("currentPage", pageNum);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("startCount", startCount);
-		model.addAttribute("endCount", endCount);
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", reverseSortDir);
-		model.addAttribute("keyword", keyword);
 		model.addAttribute("listCategories", listCategories);
-		model.addAttribute("listProducts", listProducts);
-		model.addAttribute("moduleURL", "/products");
 
 		return "products/products";
 	}

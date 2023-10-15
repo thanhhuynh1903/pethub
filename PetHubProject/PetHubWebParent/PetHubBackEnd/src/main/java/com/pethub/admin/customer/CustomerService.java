@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.admin.setting.country.CountryRepository;
 import com.pethub.common.entity.Country;
 import com.pethub.common.entity.Customer;
@@ -30,18 +31,8 @@ public class CustomerService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public Page<Customer> listByPage(int pageNum, String sortField, String sortDir, String keyword) {
-		Sort sort = Sort.by(sortField);
-
-		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-
-		Pageable pageable = PageRequest.of(pageNum - 1, CUSTOMERS_PER_PAGE, sort);
-
-		if (keyword != null) {
-			return customerRepo.findAll(keyword, pageable);
-		}
-
-		return customerRepo.findAll(pageable);
+	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+		helper.listEntities(pageNum, CUSTOMERS_PER_PAGE, customerRepo);
 	}
 
 	public void updateCustomerEnabledStatus(Integer id, boolean enabled) {

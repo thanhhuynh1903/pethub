@@ -1,4 +1,4 @@
-package com.pethub.admin.brand;
+package com.pethub.common.exception;
 
 public class BrandNotFoundException extends Exception {
 

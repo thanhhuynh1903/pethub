@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -21,13 +19,8 @@ import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.admin.paging.PagingAndSortingParam;
 import com.pethub.admin.user.UserNotFoundException;
 import com.pethub.admin.user.UserService;
-import com.pethub.admin.user.export.UserCsvExporter;
-import com.pethub.admin.user.export.UserExcelExporter;
-import com.pethub.admin.user.export.UserPdfExporter;
 import com.pethub.common.entity.Role;
 import com.pethub.common.entity.User;
-
-import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
@@ -127,26 +120,5 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message", message);
 
 		return "redirect:/users";
-	}
-
-	@GetMapping("/users/export/csv")
-	public void exportToCSV(HttpServletResponse response) throws IOException {
-		List<User> listUsers = service.listAll();
-		UserCsvExporter exporter = new UserCsvExporter();
-		exporter.export(listUsers, response);
-	}
-
-	@GetMapping("/users/export/excel")
-	public void exportToExcel(HttpServletResponse response) throws IOException {
-		List<User> listUsers = service.listAll();
-		UserExcelExporter exporter = new UserExcelExporter();
-		exporter.export(listUsers, response);
-	}
-
-	@GetMapping("/users/export/pdf")
-	public void exportToPDF(HttpServletResponse response) throws IOException {
-		List<User> listUsers = service.listAll();
-		UserPdfExporter exporter = new UserPdfExporter();
-		exporter.export(listUsers, response);
 	}
 }

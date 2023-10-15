@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.common.entity.Brand;
+import com.pethub.common.exception.BrandNotFoundException;
 
 @Service
 public class BrandService {

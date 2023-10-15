@@ -20,6 +20,7 @@ import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.admin.paging.PagingAndSortingParam;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
+import com.pethub.common.exception.BrandNotFoundException;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -112,12 +113,5 @@ public class BrandController {
 		}
 
 		return "redirect:/brands";
-	}
-
-	@GetMapping("/brands/export/csv")
-	public void exportToCSV(HttpServletResponse response) throws IOException {
-		List<Brand> listBrands = brandService.listAll();
-		BrandCsvExporter exporter = new BrandCsvExporter();
-		exporter.export(listBrands, response);
 	}
 }

@@ -3,10 +3,40 @@
 	
 
 }
-.product-container .product-grid{
-	
-}
+
 
 .img-h{
 	height: 100px;
+}
+
+
+
+.header-content{
+	height: fit-content;
+}
+.description{
+	padding-left: 2px;
+	color: #4a4347;
+	font-size: 13px;	
+}
+.description span{
+	text-overflow: ellipsis;
+	min-width: 100%;
+    overflow: hidden;
+}
+
+.product-detail a:hover{
+	text-decoration: none;
+}
+
+.description p{
+	margin-bottom: 0px!important;
+}
+.description .money{
+	font-size: 20px;
+	font-weight: 700;
+}
+.description i {
+	color: yellow;
+	font-size: 12px;
 }

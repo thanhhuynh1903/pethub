@@ -1,4 +1,5 @@
 .sidebar {
+	position: sticky;
 	color: white;
 	top: 0;
 	display: flex;
@@ -6,8 +7,8 @@
 	z-index: 1;
 	color: black	;
 	overflow: auto;
-	min-height: 200px;
-	margin-left: 60px;
+	height: 100%;
+	margin: 0 15px 0px 0px
 }
 
 .sidebar div{
@@ -23,7 +24,7 @@
 .sidebar a:hover{
 	text-decoration: none;
 }
-main{
+.main{
 	margin: 0px 50px;
 	display: flex;
 }

@@ -1,26 +1,87 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head th:replace="~{fragments :: page_head('PetHub','none')}" />
+<head>
+
+	<head th:replace="~{fragments :: page_head('PetHub','tag')}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-main-homepage.css}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
 
 <body>
 	<div class="container-fluid">
 		<div th:replace="~{navigation :: header_menu}"></div>
-		<div th:replace="~{navigation :: search_nav}"></div>
 
-		<div>
-			<h1>Shopping by Categories</h1>
-		</div>
+		<main class="d-flex navbar-expand-lg navbar-light py-4">
+			<nav class="sidebar" th:fragment="sidebar" style="width: 18%;">
+				<div class="sidebar-container">
+					<span class="p-3" style="font-size: 20px; font-weight: bold;">Category</span>
+					<div class="col item-cate p-3" th:each="cat: ${listCategories}">
 
-		<div class="row">
-			<div class="col" th:each="cat: ${listCategories}">
-				<div><img th:src="@{${cat.imagePath}}" width="80px" /></div>
-				<div><a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a></div>
+						<div><img th:src="@{${cat.imagePath}}" width="30px" /></div>
+						<div><a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a></div>
+
+					</div>
+				</div>
+			</nav>
+
+			<div class="d-flex " style="width: 82%;">
+				<div class="w-100 d-flex">
+					<div class="d-flex w-100 " style="height: 280px;">
+						<div class="w-50" style="height: 100%;">
+							<div th:replace="~{slider :: slider}"></div>
+						</div>
+						<div class="d-flex flex-wrap">
+							<div class="h-100">
+								<div th:each="i : ${#numbers.sequence(0, 1)}"
+									style="object-fit: contain;width: 100%;height: 50% ;">
+										<img th:src=@{/images/download.png} alt="med"
+											style="width: 100%;height: 100%;object-fit: contain;" />			
+								</div>
+							</div>
+							<div>
+
+							</div>
+						</div>
+						<div class="d-flex flex-wrap w-40">
+							<!--<div th:each="i : ${#numbers.sequence(0, 3)}" style="width: 200px;height: 100px;">
+								<div>
+									<img th:src=@{/images/download.png} alt="med" style="width: 200px" />
+								</div>
+							</div>-->
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-
-
-		<div th:replace="~{navigation :: footer_menu}"></div>
+			<!--<div class="img-responsive">
+				<img th:src=@{/images/download.png} alt="med" class="d-block w-100"
+							style="width: 100px" />
+			</div>
+			<div class="img-responsive">
+				<img th:src=@{/images/download.png} alt="med" class="d-block w-100"
+							style="width: 100px" />
+			</div>
+			<div class="img-responsive">
+				<img th:src=@{/images/download.png} alt="med" class="d-block w-100"
+							style="width: 100px" />
+			</div>
+			<div class="img-responsive">
+				<img th:src=@{/images/download.png} alt="med" class="d-block w-100"
+							style="width: 100px" />
+			</div>
+			<div class="img-responsive">
+				<img th:src=@{/images/download.png} alt="med" class="d-block w-100"
+							style="width: 100px" />
+			</div>
+			<div class="img-responsive">
+				<img th:src=@{/images/download.png} alt="med" class="d-block w-100"
+							style="width: 100px" />
+			</div>-->
+		</main>
+		<!--<div th:replace="~{navigation :: footer_menu}"></div>-->
 	</div>
 </body>
 

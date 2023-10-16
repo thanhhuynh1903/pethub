@@ -3,13 +3,62 @@
 
 <body>
 
-	<div th:fragment="header_menu">
-		<div>
-			<nav style="background-color: rgb(238, 238, 238)" class="navbar navbar-expand-lg navbar-light">
-				<a class="navbar-brand" th:href="@{/}">
-					<img height="50px" width="90px" th:src="@{${SITE_LOGO}}" />
-				</a>
+	<div th:fragment="header_menu" class="navbar navbar-expand-lg navbar-light">
+		<nav style="background-color: rgb(238, 238, 238)" class="navbar navbar-expand-lg navbar-light">
+			<div th:replace="~{fragments :: logo_admin}"></div>
+			<nav class="navbar navbar-expand-lg navbar-light sticky-top py-2" style="background-color: #ffffff;"
+				th:fragment="header">
 
+				<div class="search d-flex">
+					<input class="search" type="text" placeholder>
+					<button class="">Search</button>
+				</div>
+
+				<div class="header-nav d-flex justify-content-between align-items-center pb-2"
+					id="navbarSupportedContent">
+					<div class="container-item">
+						<div class="item d-flex justify-content-center align-items-center px-3"><a href="#" class=""><i
+									class="bi bi-house-fill"></i><span>Home</span></a></div>
+					</div>
+					<div class="container-item">
+						<div class="item d-flex justify-content-center align-items-center px-1"><a href="#" class=""><i
+									class="bi bi-journals"></i><span>Career</span></a></div>
+					</div>
+					<div class="container-item">
+						<div class="item d-flex justify-content-center align-items-center px-1">
+							<a href="#"><i class="bi bi-emoji-smile"></i><span>Account</span></a>
+						</div>
+					</div>
+					<div class="container-item">
+						<div class="item d-flex justify-content-center align-items-center ml-2"><a href><i
+									class="bi bi-cart"></i></a></div>
+					</div>
+				</div>
+				<!-- <ul class="navbar-nav me-auto w-100 px-2">
+					<li class="nav-item active btn">
+						<a class="nav-link text-light" style="font-size: medium;" href="#"><i class="bi bi-house">Home</i><span
+								class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-light" style="font-size: medium;" href="#">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-light" style="font-size: medium;" href="#">Articles</a>
+					</li>
+					<li class="nav-item dropdown ml-sm-auto">
+						<a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" style="font-size: medium;">
+							<i class="bi bi-person" style="font-size: medium;"></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#">Profile</a>
+							<a class="dropdown-item" href="#">Logout</a>
+						</div>
+					</li>
+			</ul> -->
+			</nav>
+			<!--My edit-->
+			<!--admin edit
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#topNavbar, #searchNavbar">
 					<span class="navbar-toggler-icon"></span>
@@ -31,51 +80,55 @@
 
 						<li class="nav-item"><a class="nav-link" href="">Contact</a></li>
 					</ul>
-				</div>
+				</div>-->
 
-			</nav>
-		</div>
+		</nav>
+
 	</div>
 
-	<div th:fragment="search_nav" class="row">
-		<div class="col-md">
+	<div style="display: none;">
+		<div th:fragment="search_nav" class="row">
+			<div class="col-md">
 
-			<th:block sec:authorize="isAuthenticated()">
-				<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
-					<input type="submit" value="Logout" />
-				</form>
-			</th:block>
-
-			<nav class="navbar navbar-expand-sm bg-light">
-				<div class="collapse navbar-collapse" id="searchNavbar">
-					<form class="form-inline" th:action="@{/search}" method="get">
-						<input type="search" name="keyword" class="form-control mr-sm-2" th:value="${searchKeyword}"
-							placeholder="keyword" required /> <input type="submit" value="Search"
-							class="btn btn-outline-success" />
+				<th:block sec:authorize="isAuthenticated()">
+					<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+						<input type="submit" value="Logout" />
 					</form>
-					<ul class="navbar-nav">
-						<th:block sec:authorize="isAuthenticated()">
-							<li class="nav-item"><b><a class="nav-link" th:href="@{/account_details}"
-										sec:authentication="principal.fullName"></a></b></li>
+				</th:block>
 
-							<li class="nav-item"><a class="nav-link" th:href="@{/address_book}">Address Book</a></li>
+				<nav class="navbar navbar-expand-sm bg-light">
+					<div class="collapse navbar-collapse" id="searchNavbar">
+						<form class="form-inline" th:action="@{/search}" method="get">
+							<input type="search" name="keyword" class="form-control mr-sm-2" th:value="${searchKeyword}"
+								placeholder="keyword" required /> <input type="submit" value="Search"
+								class="btn btn-outline-success" />
+						</form>
+						<ul class="navbar-nav">
+							<th:block sec:authorize="isAuthenticated()">
+								<li class="nav-item"><b><a class="nav-link" th:href="@{/account_details}"
+											sec:authentication="principal.fullName"></a></b></li>
 
-							<li class="nav-item"><a class="nav-link" href="">Questions</a>
-							</li>
+								<li class="nav-item"><a class="nav-link" th:href="@{/address_book}">Address Book</a>
+								</li>
 
-							<li class="nav-item"><a class="nav-link" th:href="@{/reviews}">Reviews</a></li>
+								<li class="nav-item"><a class="nav-link" href="">Questions</a>
+								</li>
 
-							<li class="nav-item"><a class="nav-link" th:href="@{/orders}">Orders</a></li>
+								<li class="nav-item"><a class="nav-link" th:href="@{/reviews}">Reviews</a></li>
 
-							<li class="nav-item"><a class="nav-link fas fa-shopping-cart fa-2x" th:href="@{/cart}"></a>
-							</li>
+								<li class="nav-item"><a class="nav-link" th:href="@{/orders}">Orders</a></li>
 
-							<li class="nav-item"><a class="nav-link"
-									href="javascript: document.logoutForm.submit()">Logout</a></li>
-						</th:block>
-					</ul>
-				</div>
-			</nav>
+								<li class="nav-item"><a class="nav-link fas fa-shopping-cart fa-2x"
+										th:href="@{/cart}"></a>
+								</li>
+
+								<li class="nav-item"><a class="nav-link"
+										href="javascript: document.logoutForm.submit()">Logout</a></li>
+							</th:block>
+						</ul>
+					</div>
+				</nav>
+			</div>
 		</div>
 	</div>
 

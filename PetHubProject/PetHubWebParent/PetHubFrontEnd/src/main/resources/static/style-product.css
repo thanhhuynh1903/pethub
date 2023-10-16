@@ -1,0 +1,12 @@
+.product-container{
+	display: flex;
+	
+
+}
+.product-container .product-grid{
+	
+}
+
+.img-h{
+	height: 100px;
+}

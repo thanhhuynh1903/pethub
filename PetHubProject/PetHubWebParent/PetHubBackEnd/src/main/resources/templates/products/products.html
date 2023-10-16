@@ -18,7 +18,7 @@
 					<div th:replace="~{navigation :: menu}"></div>
 					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
 						<div class="main-content-container">
-							<div style="margin-top: 5rem;">
+							<div style="margin-top: 3rem;">
 								<div class="d-flex justify-content-between w-100">
 									<h2 style="color: #494A6B; font-size: 26px;">Manage Products</h2>
 									<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
@@ -68,7 +68,7 @@
 												<div>
 													<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 														<a th:href="@{/products/export/csv}"
-															class="btn btn-primary-outline px-3 py-2">
+															class="btn btn-primary-outline px-3 py-1">
 															<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
 															<span class="text-export-dark"
 																style="font-size: 14px;">Export

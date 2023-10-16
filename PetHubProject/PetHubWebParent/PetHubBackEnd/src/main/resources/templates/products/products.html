@@ -46,14 +46,14 @@
 														<div class="d-flex">
 															<input type="search" name="keyword" th:value="${keyword}"
 																class="form-control py-2 rounded w-75"
-																style="height: 40px; font-size: 15px; border-radius: 6px 0 0 6px !important;" />
+																style="height: 34px; font-size: 14px; border-radius: 6px 0 0 6px !important;" />
 															<input type="submit" value="Search"
 																class="btn btn-primary w-25"
-																style="margin-left: 0; font-size: 16px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+																style="margin-left: 0; font-size: 14px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
 														</div>
 														<select class="form-control m-3" name="categoryId"
 															id="dropdownCategory">
-															<option value="0"> All Categories</option>
+															<option value="0" style="font-size: 14px;"> All Categories</option>
 															<th:block th:each="cat:${listCategories}">
 																<option th:value="${cat.id}"
 																	th:selected="(${categoryId} == ${cat.id})">

@@ -297,7 +297,7 @@ label {
 
 .table-container {
 	background-color: #fff;
-	border-radius: 10px;
+	border-radius: 10px 10px 0 0;
 }
 
 .table-title {
@@ -428,6 +428,12 @@ label {
 	color: #4e73df;
 	border: 1px solid #4e73df;
 	border-radius: 20px;
+}
+
+.btn-primary-outline-2 {
+	background-color: #fff;
+	color: #4e73df;
+	border: 1px solid #4e73df;
 }
 
 

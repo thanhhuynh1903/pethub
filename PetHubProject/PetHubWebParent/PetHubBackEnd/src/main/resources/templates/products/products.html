@@ -8,142 +8,147 @@
 	<div class="">
 		<div class="w-100">
 			<div class="d-flex w-100">
+
 				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
-				<div class="d-flex flex-column" style="width: 88%;">
+				<div th:if="${message != null}" class="alert alert-success text-center"
+					style="width: 89%;margin: 0 auto;">
+					[[${message}]]
+				</div>
+				<div class="d-flex flex-column" style="width: 100%;">
 					<div th:replace="~{navigation :: menu}"></div>
-					<div class="w-100">
-						<div class="p-5">
-							<h2 style="text-align: center;margin: 25px;font-size: 32px;">Manage Products</h2>
-							<div th:if="${message != null}" class="alert alert-success text-center" style="width: 89%;margin: 0 auto;">
-											[[${message}]]
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 3rem;">
+								<div class="d-flex justify-content-between w-100">
+									<h2 style="color: #494A6B; font-size: 26px;">Manage Products</h2>
+									<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+										<a th:href="@{/products/new}"
+											class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+											style="background: #4E73DF;color: white; height: 30px; border: none; font-size: 18px;
+										padding: 16px; border-radius: 10px;">
+											<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"
+												style="font-size: 18px;"></i>
+											<span style="font-size: 13px;">Create New Product</span>
+										</a>
+									</th:block>
+								</div>
+								<div class="w-100 table-container">
+									<div class="table-title w-100">
+										<div class="d-flex w-100 align-items-center">
+											<div class="col-sm-9">
+												<div>
+													<form th:action="@{/products/page/1}" class="form-inline m-3"
+														id="searchForm">
+														<input type="hidden" name="sortField" th:value="${sortField}"
+															required />
+														<input type="hidden" name="sortDir" th:value="${sortDir}"
+															required />
+														<div class="d-flex">
+															<input type="search" name="keyword" th:value="${keyword}"
+																class="form-control py-2 rounded w-75"
+																style="height: 34px; font-size: 14px; border-radius: 6px 0 0 6px !important;" />
+															<input type="submit" value="Search"
+																class="btn btn-primary w-25"
+																style="margin-left: 0; font-size: 14px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+														</div>
+														<select class="form-control m-3" name="categoryId"
+															id="dropdownCategory">
+															<option value="0" style="font-size: 14px;"> All Categories</option>
+															<th:block th:each="cat:${listCategories}">
+																<option th:value="${cat.id}"
+																	th:selected="(${categoryId} == ${cat.id})">
+																	[[${cat.name}]]
+																</option>
+															</th:block>
+														</select>
+													</form>
+												</div>
+											</div>
+											<div class="col-sm-3 item-ex d-flex justify-content-end">
+												<div>
+													<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+														<a th:href="@{/products/export/csv}"
+															class="btn btn-primary-outline px-3 py-1">
+															<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+															<span class="text-export-dark"
+																style="font-size: 14px;">Export
+																To CSV</span>
+														</a>
+													</th:block>
+												</div>
+											</div>
 										</div>
-							<div class="table-title" style="width: 1147px;">
-								<div class="row">
-									<div class="col-sm-3 item-ex" style="padding-top: 10px;">
-										<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-										<a th:href="@{/products/export/csv}" class="btn btn-secondary"><span>Export To
-												CSV</span></a>
-										<a th:href="@{/products/new}" class="btn btn-dark"
-											style="background:#343a40;color: white;font-weight: bold;"><span>Create New
-												Product</span></a>
-										&nbsp;&nbsp;
-										</th:block>
 									</div>
-		<!--<div th:replace="~{navigation :: menu}"></div>
 
-		<div>
-			<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-				<h2>Manage Products</h2>
-				<a th:href="@{/products/new}">Create New Product</a>
-			</th:block>
-		</div>
--->
-
-									<!--begin filter and message-->
-									<div class="col-sm-9" style="display: flex;justify-content: end;">
-										<form th:action="@{/products/page/1}" class="form-inline m-3" id="searchForm">
-											<input type="hidden" name="sortField" th:value="${sortField}" required />
-											<input type="hidden" name="sortDir" th:value="${sortDir}" required />
-
-											Category:
-											<select class="form-control m-3" name="categoryId" id="dropdownCategory">
-												<option value="0"> All Categories</option>
-												<th:block th:each="cat:${listCategories}">
-													<option th:value="${cat.id}"
-														th:selected="(${categoryId} == ${cat.id})"> [[${cat.name}]]
-													</option>
-												</th:block>
-											</select>
-											&nbsp;&nbsp; &nbsp;&nbsp;
-
-
-											Filter:
-											<input type="search" name="keyword" th:value="${keyword}"
-												class="form-control m-3" required />
-											&nbsp;&nbsp;
-											<input type="submit" value="Search" class="btn btn-primary" />
-											&nbsp;&nbsp;
-											<input type="button" value="Clear" class="btn btn-dark"
-												style="background:#343a40;" onclick="clearFilter()" />
-										</form>
-
-										<!--message begin-->
-										
-										<!--end message-->
-									</div>
 								</div>
 							</div>
-							<!--end filter and message-->
+							<div>
+								<table class="table table-striped table-hover w-100 borderless">
+									<thead style="background-color: #FAFAFA; padding: 10px 0;" class="py-5">
+										<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
+										<th>Main Image</th>
+										<th th:replace="~{fragments :: column_link('name', 'Product Name', 'none')}" />
+										<th th:replace="~{fragments :: column_link('brand', 'Brand', 'none')}" />
+										<th th:replace="~{fragments :: column_link('category', 'Category', 'none')}" />
 
-
-							<!--begin table-->
-							<!--<div>
-								
-							</div>-->
-							<!--end table-->
-		<!--begin table-->
-		<div>
-			<table class="table table-bordered table-striped table-hover" style="width: 1147px;">
-				<thead style="background-color: rgb(228, 228, 228);">
-					<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-					<th>Main Image</th>
-					<th th:replace="~{fragments :: column_link('name', 'Product Name', 'none')}" />
-					<th th:replace="~{fragments :: column_link('brand', 'Brand', 'none')}" />
-					<th th:replace="~{fragments :: column_link('category', 'Category', 'none')}" />
-
-					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-						<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
-					</th:block>
-					<th>Action</th>
-				</thead>
-				<tbody>
-					<tr th:each="product : ${listProducts}">
-						<td>[[${product.id}]]</td>
-						<td>
-							<img th:src="@{${product.mainImagePath}}" width="120px" height="120px" />
-						</td>
-						<td style="width: 25%;">
-							<!--Khong sua class= link-detail thanh cai khac
+										<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+											<th
+												th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
+										</th:block>
+										<th>Action</th>
+									</thead>
+									<tbody>
+										<tr th:each="product : ${listProducts}">
+											<td>[[${product.id}]]</td>
+											<td>
+												<img th:src="@{${product.mainImagePath}}" width="120px"
+													height="120px" />
+											</td>
+											<td style="width: 25%;">
+												<!--Khong sua class= link-detail thanh cai khac
 							Khong sua class= link-detail thanh cai khac-->
-							<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}" style="font-size: 16px;"
-								th:title="${product.name}">[[${product.shortName}]]</a>
-							<!--Khong sua class= link-detail thanh cai khac
+												<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
+													style="font-size: 16px;"
+													th:title="${product.name}">[[${product.shortName}]]</a>
+												<!--Khong sua class= link-detail thanh cai khac
 							Khong sua class= link-detail thanh cai khac-->
-						</td>
-						<td>[[${product.brand.name}]]</td>
-						<td>[[${product.category.name}]]</td>
-						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-							<td>
-								<div
-									th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
-							</td>
-						</th:block>
-						<td>
-							<!--Khong sua class= link-detail/link-delete thanh cai khac
+											</td>
+											<td>[[${product.brand.name}]]</td>
+											<td>[[${product.category.name}]]</td>
+											<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+												<td>
+													<div
+														th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
+												</td>
+											</th:block>
+											<td>
+												<!--Khong sua class= link-detail/link-delete thanh cai khac
 							Khong sua class= link-detail/link-delete thanh cai khac-->
-							<a class="fas fa-file-alt fa-2x icon-green link-detail"
-								th:href="@{'/products/detail/' +${product.id}}"
-								title="View the detail of this product"></a>
-							<!--Khong sua class= link-detail/link-delete thanh cai khac
+												<a class="fas fa-file-alt fa-2x icon-green link-detail"
+													th:href="@{'/products/detail/' +${product.id}}"
+													title="View the detail of this product"></a>
+												<!--Khong sua class= link-detail/link-delete thanh cai khac
 							Khong sua class= link-detail/link-delete thanh cai khac
 -->
-							&nbsp;
-							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson')">
-								<div th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />
-							</th:block>
-							&nbsp;
+												&nbsp;
+												<th:block
+													sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Salesperson')">
+													<div
+														th:replace="~{fragments :: edit('product', '/products/edit/' + ${product.id})}" />
+												</th:block>
+												&nbsp;
 
-							<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-								<div
-									th:replace="~{fragments :: delete('product', ${product.id}, '/products/delete/' + ${product.id},true)}" />
-								<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+												<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+													<div
+														th:replace="~{fragments :: delete('product', ${product.id}, '/products/delete/' + ${product.id},true)}" />
+													<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!--end table-->
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--end table-->
 
 							<!--No edit-->
 							<div class="modal fade" id="detailModal">
@@ -155,9 +160,12 @@
 							<!--No edit-->
 							<div th:replace="~{fragments :: pagination('products')}"></div>
 
-							<div th:replace="~{fragments :: footer}"></div>
+
 							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 						</div>
+					</div>
+					<div class="w-100 mt-auto">
+						<div th:replace="~{fragments :: footer}"></div>
 					</div>
 				</div>
 			</div>

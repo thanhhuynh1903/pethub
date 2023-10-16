@@ -11,7 +11,7 @@
 				<div th:replace="~{navigation :: menu}"></div>
 				<div class="w-100 d-flex flex-column justify-content-center align-items-center">
 					<div class="main-content-container">
-						<div style="margin-top: 5rem;">
+						<div style="margin-top: 3rem;">
 							<div class="d-flex justify-content-between w-100">
 								<h2 style="color: #494A6B; font-size: 26px;">Manage Users</h2>
 								<a th:href="@{/users/new}"
@@ -41,128 +41,104 @@
 													<div class="d-flex">
 														<input type="search" name="keyword" th:value="${keyword}"
 															class="form-control py-2 rounded w-75"
-															style="height: 40px; font-size: 15px; border-radius: 6px 0 0 6px !important;" />
+															style="height: 34px; font-size: 14px; border-radius: 6px 0 0 6px !important;" />
 														<input type="submit" value="Search" class="btn btn-primary w-25"
-															style="margin-left: 0; font-size: 16px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+															style="margin-left: 0; font-size: 14px; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
 													</div>
 													<!--<input type="button" value="Clear" class="btn btn-dark"
 												style="background:#343a40;" onclick="clearFilter()" />-->
 												</form>
 											</div>
 										</div>
-											<div class="col-sm-6 item-ex d-flex justify-content-end">
-												<div>
-													&nbsp;&nbsp;
-													<a th:href="@{/users/export/csv}"
-														class="btn btn-primary-outline px-3 py-2">
-														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
-														<span class="text-export-dark" style="font-size: 14px;">Export
+										<div class="col-sm-6 item-ex d-flex justify-content-end">
+											<div class="dropdown">
+												<button class="btn btn-primary-outline px-3 py-1 dropdown-toggle"
+													type="button" id="dropdownMenuButton" data-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="false">
+													<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+													<span class="text-export-dark" style="font-size: 14px;">Export
+													</span>
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													<a th:href="@{/users/export/csv}" class="px-3 py-2 dropdown-item">
+														<span style="font-size: 14px;">Export
 															To
 															CSV</span></a>
-													&nbsp;&nbsp;
-													<a th:href="@{/users/export/excel}"
-														class="btn btn-primary-outline px-3 py-2">
-														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
-														<span class="text-export-dark" style="font-size: 14px;">Export
+													<a th:href="@{/users/export/excel}" class="px-3 py-2 dropdown-item">
+														<span style="font-size: 14px;">Export
 															To
 															Excel</span></a>
-													&nbsp;&nbsp;
-													<a th:href="@{/users/export/pdf}"
-														class="btn btn-primary-outline px-3 py-2">
-														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
-														<span class="text-export-dark" style="font-size: 14px;">Export
+													<a th:href="@{/users/export/pdf}" class="px-3 py-2 dropdown-item">
+
+														<span style="font-size: 14px;">Export
 															To
 															PDF</span></a>
-
 												</div>
+
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
+							<div>
+								<table class="table table-striped table-hover w-100 borderless">
+									<thead style="background-color: #FAFAFA; padding: 10px 0;" class="py-5">
+										<th>
+											<th th:replace="~{fragments :: column_link('id', 'User ID','tag')}" />
+										</th>
 
-							
+										<th>Photos</th>
 
+										<th>
+											<th th:replace="~{fragments :: column_link('email', 'Email','tag')}" />
+										</th>
 
-						<!--<div>
-				<h2>Manage Users</h2>
-				<a th:href="@{/users/new}">Create New User</a>
-				&nbsp;|&nbsp;
-				<a th:href="@{/users/export/csv}">Export To CSV</a>
-				&nbsp;|&nbsp;
-				<a th:href="@{/users/export/excel}">Export To Excel</a>
-				&nbsp;|&nbsp;
-				<a th:href="@{/users/export/pdf}">Export To PDF</a>
-			</div>-->
+										<th
+											th:replace="~{fragments :: column_link( 'firstName', 'First Name', 'none')}" />
+										<th
+											th:replace="~{fragments :: column_link( 'lastName', 'Last Name', 'none')}" />
 
+										<th>Roles</th>
+										<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
+										<th>Action</th>
+									</thead>
+									<tbody>
+										<tr th:each="user : ${listUsers}">
+											<td class="hideable-column">[[${user.id}]]</td>
+											<td>
+												<span th:if="${user.photos == null}"
+													class="fas fa-portrait fa-3x icon-silver"></span>
+												<img style="width: 100px; height: 100px ;"
+													th:if="${user.photos != null}"
+													th:src="@{${user.photosImagePath}}" />
+											</td>
+											<td class="hideable-column">[[${user.email}]]</td>
+											<td>[[${user.firstName}]]</td>
+											<td>[[${user.lastName}]]</td>
+											<td>[[${user.roles}]]</td>
+											<td>
+												<div
+													th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
+											</td>
+											<td>
+												<div
+													th:replace="~{fragments :: edit('user', '/users/edit/' + ${user.id})}" />
+												&nbsp;
+												<div
+													th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
-						<!--<div>
-			<form th:action="@{/users/page/1}" class="form-inline m-3">
-				<input type="hidden" name="sortField" th:value="${sortField}" required />
-				<input type="hidden" name="sortDir" th:value="${sortDir}" required />
+							<div th:replace="~{fragments :: pagination('users')}"></div>
 
-				Filter:
-				<input type="search" name="keyword" th:value="${keyword}" class="form-control m-3" required />
-				&nbsp;&nbsp;
-				<input type="submit" value="Search" class="btn btn-primary" />
-				&nbsp;&nbsp;
-				<input type="button" value="Clear" class="btn btn-dark" onclick="clearFilter()" />
-			</form>
-		</div>-->
+							<div th:replace="~{modal_fragments :: confirm_modal}" />
 
+							<div th:replace="~{fragments :: footer}"></div>
 
-						<div class="full-details">
-							<table class="table table-bordered table-striped table-hover">
-								<thead style="background-color: rgb(228, 228, 228);">
-									<th>
-										<th th:replace="~{fragments :: column_link('id', 'User ID','tag')}" />
-									</th>
-
-									<th>Photos</th>
-
-					<th>
-						<th th:replace="~{fragments :: column_link('email', 'Email','tag')}" />
-					</th>
-
-					<th th:replace="~{fragments :: column_link( 'firstName', 'First Name', 'none')}" />
-					<th th:replace="~{fragments :: column_link( 'lastName', 'Last Name', 'none')}" />
-
-					<th>Roles</th>
-					<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
-					<th>Action</th>
-				</thead>
-				<tbody>
-					<tr th:each="user : ${listUsers}">
-						<td class="hideable-column">[[${user.id}]]</td>
-						<td>
-							<span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-							<img style="width: 100px; height: 100px ;" th:if="${user.photos != null}"
-								th:src="@{${user.photosImagePath}}" />
-						</td>
-						<td class="hideable-column">[[${user.email}]]</td>
-						<td>[[${user.firstName}]]</td>
-						<td>[[${user.lastName}]]</td>
-						<td>[[${user.roles}]]</td>
-						<td>
-							<div th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
-						</td>
-						<td>
-							<div th:replace="~{fragments :: edit('user', '/users/edit/' + ${user.id})}" />
-							&nbsp;
-							<div
-								th:replace="~{fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div th:replace="~{fragments :: pagination('users')}"></div>
-
-		<div th:replace="~{modal_fragments :: confirm_modal}" />
-
-		<div th:replace="~{fragments :: footer}"></div>
-
-	</div>
+						</div>
 
 </body>
 <script type="text/javascript">

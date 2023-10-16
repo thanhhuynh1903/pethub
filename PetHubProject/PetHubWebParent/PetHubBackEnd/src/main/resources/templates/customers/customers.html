@@ -4,99 +4,144 @@
 <head th:replace="~{fragments :: page_head('Customers - PetHub Admin', 'none')}" />
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: menu}"></div>
-		<div>
-			<h2>Manage Customers</h2>
-		</div>
+	<div class="container-fluid bg-admin">
+		<div class="w-100">
+			<div class="d-flex w-100">
+				<div th:replace="~{sidebar :: sidebar}" class="w-25" style="height: 100vh;"></div>
+				<div class="d-flex flex-column" style="width: 100%;">
+					<div th:replace="~{navigation :: menu}"></div>
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 5rem;">
+								<div class="d-flex justify-content-between w-100">
+									<h2 style="color: #494A6B; font-size: 26px;">Manage Customers</h2>
+									<a th:href="@{/brands/new}"
+										class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+										style="background: #4E73DF;color: white; height: 30px; border: none; font-size: 18px;
+										padding: 16px; border-radius: 10px;">
+										<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"
+											style="font-size: 18px;"></i>
+										<span style="font-size: 13px;">Create New Customer</span>
+									</a>
+								</div>
+								<div class="w-100 table-container">
+									<div class="table-title w-100">
+										<div class="d-flex w-100">
+											<div class="col-sm-9">
+												<div>
+													<div th:replace="~{fragments :: search_form_and_message}" />
+												</div>
+											</div>
+											<div class="col-sm-3 item-ex d-flex justify-content-end">
+												<div>
+													<a th:href="@{/brands/export/csv}"
+														class="btn btn-primary-outline px-3 py-2">
+														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
+														<span class="text-export-dark" style="font-size: 14px;">Export
+															To CSV</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
 
-		<div th:replace="~{fragments :: search_form_and_message}" />
+									<div>
+										<table class="table table-striped table-hover w-100 borderless">
+											<thead style="background-color: #FAFAFA; padding: 10px 0;" class="py-5">
+												<tr>
+													<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
+													<th
+														th:replace="~{fragments :: column_link('firstName', 'First Name', 'none')}" />
+													<th
+														th:replace="~{fragments :: column_link('lastName', 'Last Name', 'none')}" />
 
-		<div>
-			<table class="table table-bordered table-striped table-hover">
-				<thead style="background-color: rgb(228, 228, 228);">
-					<tr>
-						<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-						<th th:replace="~{fragments :: column_link('firstName', 'First Name', 'none')}" />
-						<th th:replace="~{fragments :: column_link('lastName', 'Last Name', 'none')}" />
+													<th>
+														<th
+															th:replace="~{fragments :: column_link('email', 'E-mail', 'tag')}" />
+													</th>
 
-						<th>
-							<th th:replace="~{fragments :: column_link('email', 'E-mail', 'tag')}" />
-						</th>
+													<th>
+														<th
+															th:replace="~{fragments :: column_link('city', 'City', 'tag')}" />
+													</th>
 
-						<th>
-							<th th:replace="~{fragments :: column_link('city', 'City', 'tag')}" />
-						</th>
+													<th>
+														<th
+															th:replace="~{fragments :: column_link('state', 'State', 'tag')}" />
+													</th>
 
-						<th>
-							<th th:replace="~{fragments :: column_link('state', 'State', 'tag')}" />
-						</th>
+													<th
+														th:replace="~{fragments :: column_link('country', 'Country', 'none')}" />
+													<th
+														th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="customer : ${listCustomers}">
+													<td>[[${customer.id}]]</td>
+													<td>[[${customer.firstName}]]</td>
+													<td>[[${customer.lastName}]]</td>
+													<td>[[${customer.email}]]</td>
+													<td>[[${customer.city}]]</td>
+													<td>[[${customer.state}]]</td>
+													<td>[[${customer.country.name}]]</td>
+													<td>
+														<div
+															th:replace="~{fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})}" />
+													</td>
+													<td><a class="fas fa-file-alt fa-2x icon-green link-detail"
+															th:href="@{'/customers/detail/' + ${customer.id}}"
+															title="View details of this customer"></a>
+														&nbsp;
+														<div
+															th:replace="~{fragments :: edit('customer', '/customers/edit/' + ${customer.id})}" />
+														&nbsp;
+														<div
+															th:replace="~{fragments :: delete('customer', ${customer.id}, '/customers/delete/' + ${customer.id}, true)}" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
 
-						<th th:replace="~{fragments :: column_link('country', 'Country', 'none')}" />
-						<th th:replace="~{fragments :: column_link('enabled', 'Enabled', 'none')}" />
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="customer : ${listCustomers}">
-						<td>[[${customer.id}]]</td>
-						<td>[[${customer.firstName}]]</td>
-						<td>[[${customer.lastName}]]</td>
-						<td>[[${customer.email}]]</td>
-						<td>[[${customer.city}]]</td>
-						<td>[[${customer.state}]]</td>
-						<td>[[${customer.country.name}]]</td>
-						<td>
-							<div
-								th:replace="~{fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})}" />
-						</td>
-						<td><a class="fas fa-file-alt fa-2x icon-green link-detail"
-								th:href="@{'/customers/detail/' + ${customer.id}}"
-								title="View details of this customer"></a>
-							&nbsp;
-							<div th:replace="~{fragments :: edit('customer', '/customers/edit/' + ${customer.id})}" />
-							&nbsp;
-							<div
-								th:replace="~{fragments :: delete('customer', ${customer.id}, '/customers/delete/' + ${customer.id}, true)}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+								<div th:replace="~{fragments :: pagination('customers')}"></div>
 
-		<div th:replace="~{fragments :: pagination('customers')}"></div>
+								<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 
-		<div th:replace="~{modal_fragments :: confirm_modal}"></div>
+							</div>
+						</div>
 
-
-		<!--No edit-->
-		<div class="modal fade" id="detailModal">
-			<div class="modal-dialog modal-xl">
-				<div class="modal-content">
+						<!--No edit-->
+						<div class="modal fade" id="detailModal">
+							<div class="modal-dialog modal-xl">
+								<div class="modal-content">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-100 d-flex justify-content-center" th:replace="~{fragments :: footer}"></div>
 				</div>
 			</div>
 		</div>
+		<script th:src="@{/js/common_list.js}"></script>
+		<script type="text/javascript">
+			moduleURL = "[[@{/customers}]]";
 
-		<div th:replace="~{fragments :: footer}"></div>
+			$(document).ready(function () {
+				$(".link-delete").on("click", function (e) {
+					e.preventDefault();
+					showDeleteConfirmModal($(this), 'customer');
+				});
 
-	</div>
-	<script th:src="@{/js/common_list.js}"></script>
-	<script type="text/javascript">
-		moduleURL = "[[@{/customers}]]";
-
-		$(document).ready(function () {
-			$(".link-delete").on("click", function (e) {
-				e.preventDefault();
-				showDeleteConfirmModal($(this), 'customer');
+				$(".link-detail").on("click", function (e) {
+					e.preventDefault();
+					linkDetailURL = $(this).attr("href");
+					$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
+				});
 			});
-
-			$(".link-detail").on("click", function (e) {
-				e.preventDefault();
-				linkDetailURL = $(this).attr("href");
-				$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
-			});
-		});
-	</script>
+		</script>
 </body>
 
 </html>

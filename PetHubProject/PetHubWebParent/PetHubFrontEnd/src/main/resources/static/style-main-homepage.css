@@ -1,4 +1,6 @@
 .sidebar {
+	
+	background-color: #ffffff;
 	position: sticky;
 	color: white;
 	top: 0;
@@ -8,7 +10,8 @@
 	color: black	;
 	overflow: auto;
 	height: 100%;
-	margin: 0 15px 0px 0px
+	margin: 15px 15px 0px 0px;
+	border-radius: 8px;
 }
 
 .sidebar div{
@@ -25,6 +28,7 @@
 	text-decoration: none;
 }
 .main{
+	background-color: #f5f5fa;
 	margin: 0px 50px;
 	display: flex;
 }

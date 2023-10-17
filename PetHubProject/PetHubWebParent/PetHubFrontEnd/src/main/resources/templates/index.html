@@ -13,9 +13,9 @@
 </head>
 
 <body>
-	<div class="container-fluid">
+	<div>
 		<div th:replace="~{navigation :: header_menu}"></div>
-		<div class="main d-flex navbar-expand-lg navbar-light py-4">
+		<div class="main d-flex navbar-expand-lg navbar-light container-fluid">
 			<nav class="sidebar" th:fragment="sidebar" style="width: 18%;">
 				<div class="sidebar-container">
 					<span class="p-3" style="font-size: 20px; font-weight: bold;">Category</span>
@@ -30,26 +30,26 @@
 
 			<div class="d-block my-3" style="width: 82%;">
 				<div class="w-100 d-flex header-content">
-					<div class="d-flex w-100 " style="height: 300px;">
-						<div style="height: 100%;width: 55%;">
+					<div class="d-flex w-100 " style="height: 100%;background-color: #ffffff;">
+						<div style="height: 50%;width: 100%;">
 							<div th:replace="~{slider :: slider}"></div>
 						</div>
 
-						<div class="d-flex">
+						<!--<div class="d-flex justify-content-center align-item-center">
 							<div th:each="i : ${#numbers.sequence(0, 1)}"
-								style="width: 100%;height: 100%;margin: 3px 15px;">
-								<div class="h-100 w-100 mb-2 border">
-									<img th:src=@{/images/download.png} alt="med" style="width: 100%;height: 90%;" />
+								style="width: 100%;height: 100%;margin: 10px;">
+								<div class="h-100 w-100 justify-content-center align-item-center">
+									<img th:src=@{/images/Cute-Teddy-Bear-Pet-Bed-with-Bear-Toy-Dog-Cat-Bed.png} alt="med" style="width: 100%;height: 100%;" />
 								</div>
 							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
-				<div class="my-4">
+				<div class="my-4 p-3 color-bg">
 					<span style="font-size: 20px; font-weight: bold;">Best Seller</span>
 					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#"
-							style="width: 100%;height: 100%;cursor: pointer;margin: 2.5rem 12px 1.5rem 0px;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
+							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
 							<div class="h-100 w-100 mb-2">
 								<img th:src=@{/images/cute-animal-collection-four-seasons-pet-nest-pawpawup-2.png}
 									alt="med" style="width: 100%;height: 90%;border-radius: 8px;" />
@@ -75,11 +75,11 @@
 					</div>
 				</div>
 
-				<div class="my-4">
+				<div class="my-4 p-3 color-bg">
 					<span style="font-size: 20px; font-weight: bold;">Most popular</span>
 					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#"
-							style="width: 100%;height: 100%;cursor: pointer;margin: 2.5rem 12px 1.5rem 0px;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
+							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
 							<div class="h-100 w-100 mb-2">
 								<img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
 									style="width: 100%;height: 90%;border-radius: 8px;" />
@@ -104,8 +104,8 @@
 						</a>
 					</div>
 					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#"
-							style="width: 100%;height: 100%;cursor: pointer;margin: 2.5rem 12px 1.5rem 0px;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
+							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
 							<div class="h-100 w-100 mb-2">
 								<img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
 									style="width: 100%;height: 90%;border-radius: 8px;" />
@@ -130,11 +130,15 @@
 						</a>
 					</div>
 
-					<div class="my-4">
+					
+
+				</div>
+				
+				<div class="my-4 p-3 color-bg">
 						<span style="font-size: 20px; font-weight: bold;">All product </span>
 						<div class="d-flex product-detail">
-							<a th:each="i : ${#numbers.sequence(0, 5)}" href="#"
-								style="width: 100%;height: 100%;cursor: pointer;margin: 2.5rem 12px 1.5rem 0px;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+							<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
+								style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
 								<div class="h-100 w-100 mb-2">
 									<img th:src=@{/images/2dog.png} alt="med"
 										style="width: 100%;height: 90%;border-radius: 8px;" />
@@ -159,8 +163,8 @@
 							</a>
 						</div>
 						<div class="d-flex product-detail">
-							<a th:each="i : ${#numbers.sequence(0, 5)}" href="#"
-								style="width: 100%;height: 100%;cursor: pointer;margin: 2.5rem 12px 1.5rem 0px;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+							<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
+								style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
 								<div class="h-100 w-100 mb-2">
 									<img th:src=@{/images/2dog.png} alt="med"
 										style="width: 100%;height: 90%;border-radius: 8px;" />
@@ -185,8 +189,9 @@
 							</a>
 						</div>
 					</div>
-
-				</div>
+				
+				
+				
 				<div class="text-center">
 					<button type="button" class="btn btn-outline-primary text-center">View more</button>
 				</div>

@@ -26,7 +26,9 @@
 					</div>
 					<div class="container-item">
 						<div class="item d-flex justify-content-center align-items-center px-1">
-							<a href="#"><i class="bi bi-emoji-smile"></i><span>Account</span></a>
+							<th:block sec:authorize="!isAuthenticated()">
+							<a th:href="@{/login}"><i class="bi bi-emoji-smile"></i><span>Account</span></a>
+							</th:block>
 						</div>
 					</div>
 					<div class="container-item">

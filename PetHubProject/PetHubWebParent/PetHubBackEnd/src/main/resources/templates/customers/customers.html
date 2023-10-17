@@ -15,14 +15,6 @@
 							<div style="margin-top: 3rem;">
 								<div class="d-flex justify-content-between w-100">
 									<h2 style="color: #494A6B; font-size: 26px;">Manage Customers</h2>
-									<a th:href="@{/brands/new}"
-										class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
-										style="background: #4E73DF;color: white; height: 30px; border: none; font-size: 18px;
-										padding: 16px; border-radius: 10px;">
-										<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"
-											style="font-size: 18px;"></i>
-										<span style="font-size: 13px;">Create New Customer</span>
-									</a>
 								</div>
 								<div class="w-100 table-container">
 									<div class="table-title w-100">
@@ -30,16 +22,6 @@
 											<div class="col-sm-9">
 												<div>
 													<div th:replace="~{fragments :: search_form_and_message}" />
-												</div>
-											</div>
-											<div class="col-sm-3 item-ex d-flex justify-content-end">
-												<div>
-													<a th:href="@{/brands/export/csv}"
-														class="btn btn-primary-outline px-3 py-1">
-														<i class="bi bi-download mr-1" style="font-size: 15px;"></i>
-														<span class="text-export-dark" style="font-size: 14px;">Export
-															To CSV</span>
-													</a>
 												</div>
 											</div>
 										</div>

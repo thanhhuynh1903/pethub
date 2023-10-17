@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
 	background-color: #F5F5FA;
 }
 * {
@@ -9,19 +9,18 @@
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-.box-login-container {
-	width: 60%;
+.box-register-container {
+	width: 65%;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 	border-radius: 26px;
 	background-color: #FFFFFF;
-	max-height: 60%;
 }
 
-.login-right-container {
+.register-right-container {
 	padding: 30px 0;
 }
 
-.login-left-container img {
+.register-left-container img {
 	border-radius: 26px 0 0 26px;
 	object-fit: cover;
 	width: 100%;
@@ -29,5 +28,9 @@
 }
 
 .form-container {
-	width: 70%;
+	width: 90%;
+}
+
+.w-47 {
+	width: 47%;
 }

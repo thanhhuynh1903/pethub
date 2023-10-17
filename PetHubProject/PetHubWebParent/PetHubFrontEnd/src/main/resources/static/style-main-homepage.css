@@ -1,5 +1,5 @@
 .sidebar {
-	
+
 	background-color: #ffffff;
 	position: sticky;
 	color: white;
@@ -7,40 +7,45 @@
 	display: flex;
 	width: 12%;
 	z-index: 1;
-	color: black	;
+	color: black;
 	overflow: auto;
 	height: 100%;
 	margin: 15px 15px 0px 0px;
 	border-radius: 8px;
 }
 
-.sidebar div{
+
+.sidebar div {
 	text-decoration: none;
-	display: flex!important;
+	display: flex !important;
 }
 
-.sidebar a{
+.sidebar a {
 	text-decoration: none;
 	color: black;
 }
 
-.sidebar a:hover{
+.sidebar a:hover {
 	text-decoration: none;
 }
-.main{
+
+.main {
+	justify-content: center !important;
 	background-color: #f5f5fa;
-	margin: 0px 50px;
 	display: flex;
 }
-.sidebar-container{
+
+.sidebar-container {
 	display: flex;
-	flex-direction:column;
+	flex-direction: column;
 }
-.sidebar-container .item-cate a{
+
+.sidebar-container .item-cate a {
 	margin-left: 20px;
 	text-align: start;
 }
 
-.item-cate{
-	  
+.sidebar-container .item-cate:hover {
+	border-radius: 10px;
+	background-color: rgb(224, 224, 224);
 }

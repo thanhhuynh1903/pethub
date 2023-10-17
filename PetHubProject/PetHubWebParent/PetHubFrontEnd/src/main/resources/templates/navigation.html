@@ -10,24 +10,27 @@
 				th:fragment="header">
 
 				<div class="search d-flex">
-					<input class="search" type="text" placeholder>
-					<button class="">Search</button>
+					<form th:action="@{/search}" method="get" class="d-flex">
+					<input class="search" type="text"  placeholder="">
+					<button value="Search">Search</button>
+					</form>
 				</div>
 
 				<div class="header-nav d-flex justify-content-between align-items-center pb-2"
 					id="navbarSupportedContent">
 					<div class="container-item">
-						<div class="item d-flex justify-content-center align-items-center px-3"><a href="#" class=""><i
-									class="bi bi-house-fill"></i><span>Home</span></a></div>
+						<div class="item d-flex justify-content-center align-items-center px-3"><a th:href="@{/}"
+								id="home" class=""><i class="bi bi-house-fill"></i><span>Home</span></a></div>
 					</div>
 					<div class="container-item">
-						<div class="item d-flex justify-content-center align-items-center px-1"><a href="#" class=""><i
-									class="bi bi-journals"></i><span>Career</span></a></div>
+						<div class="item d-flex justify-content-center align-items-center px-1"><a href="#" id="career"
+								class=""><i class="bi bi-journals"></i><span>Career</span></a></div>
 					</div>
 					<div class="container-item">
 						<div class="item d-flex justify-content-center align-items-center px-1">
 							<th:block sec:authorize="!isAuthenticated()">
-							<a th:href="@{/login}"><i class="bi bi-emoji-smile"></i><span>Account</span></a>
+								<a th:href="@{/login}" id="Account"><i
+										class="bi bi-emoji-smile"></i><span>Account</span></a>
 							</th:block>
 						</div>
 					</div>

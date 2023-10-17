@@ -13,6 +13,7 @@ i {
 }
 
 .header-nav {
+	padding-bottom: 2px;
 	transform: translateX(30%);
 	width: 100%;
 }
@@ -28,13 +29,24 @@ i {
 .header-nav .item a span {
 	transform: translateY(25%);
 }
+.header-nav .container-item:hover{
+	border-radius: 10px ;
+	background-color: rgb(224, 224, 224);
+}
+
 
 .navbar {
 	padding: 0px 64px !important;
 
 }
 
+#home.active , #home.active i{
+    color:#0068ff;
+}
+
+
 .container-item {
+	padding-bottom: 4px;
 	height: 100%;
 }
 
@@ -45,6 +57,7 @@ i {
 
 
 .item {
+	padding-right: 10px;
 	width: 100%;
 	display: flex;
 }
@@ -90,7 +103,6 @@ i {
 	text-align: center;
 	border: 1px solid rgb(192, 192, 192);
 }
-
 
 
 .item-left {

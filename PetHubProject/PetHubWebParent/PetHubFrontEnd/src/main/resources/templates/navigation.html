@@ -2,55 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<nav class="navbar navbar-expand-md navbar-light pt-2 pb-5 w-100" th:fragment="header_menu">
-		<div th:replace="~{fragments :: logo_admin}"></div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<!--
-			<div class="navbar navbar-expand-lg navbar-light py-2" style="background-color: #ffffff;"
-				th:fragment="header">
-			-->
-			<form th:action="@{/search}" method="get" class="d-flex">
-				<div style="border: 1px solid rgb(221, 221, 227); border-radius: 8px;" class="py-2 d-flex">
-					<input class="search border-0 px-1" type="text" placeholder="" th:value="${searchKeyword}"
-						style="border-right: 1px solid rgb(221, 221, 227) !important;">
-					<input value="Search" type="submit" class="border-0 text-primary px-3"
-						style="background-color: #FFFFFF;"></input>
-				</div>
-			</form>
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link d-flex justify-content-center align-items-center" th:href="@{/}" id="home"><i
-							class="bi bi-house-fill"></i>Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" th:href="@{/}" id="career"><i class="bi bi-journals"></i>Career</a>
-				</li>
-				<li class="nav-item dropdown">
-					<th:block sec:authorize="!isAuthenticated()">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
-							<i class="bi bi-emoji-smile"></i>
-							Account
-						</a>
-					</th:block>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" th:href="@{/login}" id="login">Login</a>
-						<a class="dropdown-item" th:href="">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" th:href="">Something else here</a>
+	<nav class="navbar navbar-expand-md navbar-light py-3 w-100 d-flex align-items-center nav-container"
+		th:fragment="header_menu">
+		<div class="px-4 px-xl-5 px-lg-5 w-100 d-flex align-items-center">
+			<div class="w-10 d-flex justify-content-start align-items-center">
+				<div th:replace="~{fragments :: logo_admin}"></div>
+			</div>
+			<div class="w-90">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse d-flex align-items-start justify-content-between w-100"
+					id="navbarSupportedContent">
+					<div class="w-60">
+						<form th:action="@{/search}" method="get" class="d-flex">
+							<div class="d-flex search-container">
+								<input class="search px-1 search-input" type="text" placeholder=""
+									th:value="${searchKeyword}">
+								<input value="Search" type="submit"
+									class="border-0 text-primary px-4 search-button py-2"></input>
+							</div>
+						</form>
+						<div class="d-flex">
+							<span th:each="i : ${#numbers.sequence(0, 5)}" class="px-2 text-secondary my-2">title</span>
+						</div>
 					</div>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled" th:href=""><i class="bi bi-cart" style="color: #0361ff;"></i></a>
-				</li>
-			</ul>
-		</div>
-		<!--My edit-->
-		<!--admin edit
+					<ul class="navbar-nav me-auto w-40 d-flex justify-content-between" style="font-size: 20px;">
+						<li class="nav-item active">
+							<a class="nav-link d-flex justify-content-center align-items-center" th:href="@{/}"
+								id="home"><i
+									class="bi bi-house-fill d-flex align-items-center"></i><span>Home</span><span
+									class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item fs-1">
+							<a class="nav-link d-flex justify-content-center align-items-center" th:href="@{/}"
+								id="career"><i class="bi bi-journals d-flex align-items-center"></i>Career</a>
+						</li>
+						<li class="nav-item dropdown">
+							<th:block sec:authorize="!isAuthenticated()">
+								<a class="nav-link dropdown-toggle d-flex justify-content-center align-items-center"
+									href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<i class="bi bi-emoji-smile d-flex align-items-center"></i>
+									Account
+								</a>
+							</th:block>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" th:href="@{/login}" id="login">Login</a>
+								<a class="dropdown-item" th:href="@{/}">Logout</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" th:href="@{/}">Setting</a>
+							</div>
+						</li>
+						<li class="nav-item nav-last-item">
+							<a class="nav-link d-flex justify-content-center align-items-center" th:href="@{/}"><i
+									class="bi bi-cart d-flex align-items-center" style="color: #0361ff;"></i></a>
+						</li>
+					</ul>
+				</div>
+				<!--My edit-->
+				<!--admin edit
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#topNavbar, #searchNavbar">
 					<span class="navbar-toggler-icon"></span>
@@ -73,7 +86,8 @@
 						<li class="nav-item"><a class="nav-link" href="">Contact</a></li>
 					</ul>
 				</div>-->
-
+			</div>
+		</div>
 	</nav>
 
 	<div style="display: none;">

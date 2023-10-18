@@ -11,7 +11,7 @@
 
 				<div class="search d-flex">
 					<form th:action="@{/search}" method="get" class="d-flex">
-					<input class="search" type="text"  placeholder="">
+					<input class="search" type="text"  placeholder="" th:value="${searchKeyword}" >
 					<button value="Search">Search</button>
 					</form>
 				</div>

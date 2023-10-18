@@ -6,10 +6,11 @@
 	<!--breadcrumb-->
 	<div th:fragment="content" th:remove="tag">
 		<div th:if="${listCategoryParents!=null &&!listCategoryParents.empty}">
+			<div class="navbar navbar-expand-lg navbar-light" style="background: #f5f5fa; margin: 0 -15px;">
 			<div class="row">
 				<div class="col">
-					<nav>
-						<ol class="breadcrumb">
+					<nav style="transform: translateX(25px);">
+						<ol class="breadcrumb" style="background-color: #f5f5fa!important;margin-bottom: 0px;">
 							<li class="breadcrumb-item">
 								<a th:href="@{/}">Home</a>
 							</li>
@@ -26,6 +27,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!--breadcrumb-->
 </body>

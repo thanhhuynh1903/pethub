@@ -1,0 +1,28 @@
+.container-detail{
+	margin: 0px 15px;
+	border-radius: 10px;
+	
+	background-color: #ffffff;
+}
+
+.modify-name{
+	margin: 0px;
+    color: rgb(39, 39, 42);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 150%;
+    word-break: break-word;
+    white-space: break-spaces;
+}
+
+.price-modify{
+	font-size: 24px;
+    font-weight: 600;
+    line-height: 150%;
+}
+.font-mode{
+	    gap: 8px;
+	font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+}

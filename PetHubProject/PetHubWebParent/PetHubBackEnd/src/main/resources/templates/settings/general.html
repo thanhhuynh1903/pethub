@@ -6,22 +6,22 @@
 	<div th:fragment="content" th:remove="tag">
 		<form th:action="@{/settings/save_general}" method="post" enctype="multipart/form-data">
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Site Name:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Site Name:</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" name="SITE_NAME" th:value="${SITE_NAME}" required />
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Copyright:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Copyright:</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" name="COPYRIGHT" th:value="${COPYRIGHT}" required />
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Site Logo:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Site Logo:</label>
+				<div class="col-sm-9">
 					<img id="thumbnail" alt="Site Logo thumbnail" th:src="@{${SITE_LOGO}}" width="150" height="70" />
 					<input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" />
 				</div>
@@ -29,8 +29,8 @@
 
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Currency Type:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Currency Type:</label>
+				<div class="col-sm-9">
 					<select name="CURRENCY_ID" class="form-control">
 						<th:block th:each="currency : ${listCurrencies}">
 							<option th:value="${currency.id}" th:selected="(${currency.id} == ${CURRENCY_ID})">
@@ -41,8 +41,8 @@
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Currency Symbol Position:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Currency Symbol Position:</label>
+				<div class="col-sm-9">
 					<select name="CURRENCY_SYMBOL_POSITION" class="form-control">
 						<option value="Before price" th:selected="(${CURRENCY_SYMBOL_POSITION} == 'Before price')">
 							Before price</option>
@@ -53,8 +53,8 @@
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Decimal Point Type:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Decimal Point Type:</label>
+				<div class="col-sm-9">
 					<select name="DECIMAL_POINT_TYPE" class="form-control">
 						<option value="POINT" th:selected="(${DECIMAL_POINT_TYPE} == 'POINT')">Point
 							(.)</option>
@@ -65,8 +65,8 @@
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Decimal Digits:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Decimal Digits:</label>
+				<div class="col-sm-9">
 					<select name="DECIMAL_DIGITS" class="form-control">
 						<option value="0" th:selected="(${DECIMAL_DIGITS} == 0)">0</option>
 						<option value="1" th:selected="(${DECIMAL_DIGITS} == 1)">1</option>
@@ -78,8 +78,8 @@
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-4 col-form-label">Thousands Point Type:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 col-form-label">Thousands Point Type:</label>
+				<div class="col-sm-9">
 					<select name="THOUSANDS_POINT_TYPE" class="form-control">
 						<option value="POINT" th:selected="(${THOUSANDS_POINT_TYPE} == 'POINT')">Point
 							(.)</option>

@@ -2,68 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-
-	<div th:fragment="header_menu" class="navbar navbar-expand-lg navbar-light">
-		<nav class="navbar navbar-expand-lg navbar-light">
-			<div th:replace="~{fragments :: logo_admin}"></div>
-			<nav class="navbar navbar-expand-lg navbar-light sticky-top py-2" style="background-color: #ffffff;"
+	<nav class="navbar navbar-expand-md navbar-light pt-2 pb-5 w-100" th:fragment="header_menu">
+		<div th:replace="~{fragments :: logo_admin}"></div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<!--
+			<div class="navbar navbar-expand-lg navbar-light py-2" style="background-color: #ffffff;"
 				th:fragment="header">
-
-				<div class="search d-flex">
-					<form th:action="@{/search}" method="get" class="d-flex">
-					<input class="search" type="text"  placeholder="" th:value="${searchKeyword}" >
-					<button value="Search">Search</button>
-					</form>
+			-->
+			<form th:action="@{/search}" method="get" class="d-flex">
+				<div style="border: 1px solid rgb(221, 221, 227); border-radius: 8px;" class="py-2 d-flex">
+					<input class="search border-0 px-1" type="text" placeholder="" th:value="${searchKeyword}"
+						style="border-right: 1px solid rgb(221, 221, 227) !important;">
+					<input value="Search" type="submit" class="border-0 text-primary px-3"
+						style="background-color: #FFFFFF;"></input>
 				</div>
-
-				<div class="header-nav d-flex justify-content-between align-items-center pb-2"
-					id="navbarSupportedContent">
-					<div class="container-item">
-						<div class="item d-flex justify-content-center align-items-center px-3"><a th:href="@{/}"
-								id="home" class=""><i class="bi bi-house-fill"></i><span>Home</span></a></div>
-					</div>
-					<div class="container-item">
-						<div class="item d-flex justify-content-center align-items-center px-1"><a href="#" id="career"
-								class=""><i class="bi bi-journals"></i><span>Career</span></a></div>
-					</div>
-					<div class="container-item">
-						<div class="item d-flex justify-content-center align-items-center px-1">
-							<th:block sec:authorize="!isAuthenticated()">
-								<a th:href="@{/login}" id="Account"><i
-										class="bi bi-emoji-smile"></i><span>Account</span></a>
-							</th:block>
-						</div>
-					</div>
-					<div class="container-item">
-						<div class="item d-flex justify-content-center align-items-center ml-2"><a href><i
-									class="bi bi-cart" style="color: #0361ff;"></i></a></div>
-					</div>
-				</div>
-				<!-- <ul class="navbar-nav me-auto w-100 px-2">
-					<li class="nav-item active btn">
-						<a class="nav-link text-light" style="font-size: medium;" href="#"><i class="bi bi-house">Home</i><span
-								class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-light" style="font-size: medium;" href="#">About Us</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-light" style="font-size: medium;" href="#">Articles</a>
-					</li>
-					<li class="nav-item dropdown ml-sm-auto">
-						<a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false" style="font-size: medium;">
-							<i class="bi bi-person" style="font-size: medium;"></i>
+			</form>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link d-flex justify-content-center align-items-center" th:href="@{/}" id="home"><i
+							class="bi bi-house-fill"></i>Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/}" id="career"><i class="bi bi-journals"></i>Career</a>
+				</li>
+				<li class="nav-item dropdown">
+					<th:block sec:authorize="!isAuthenticated()">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<i class="bi bi-emoji-smile"></i>
+							Account
 						</a>
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Profile</a>
-							<a class="dropdown-item" href="#">Logout</a>
-						</div>
-					</li>
-			</ul> -->
-			</nav>
-			<!--My edit-->
-			<!--admin edit
+					</th:block>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" th:href="@{/login}" id="login">Login</a>
+						<a class="dropdown-item" th:href="">Another action</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" th:href="">Something else here</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link disabled" th:href=""><i class="bi bi-cart" style="color: #0361ff;"></i></a>
+				</li>
+			</ul>
+		</div>
+		<!--My edit-->
+		<!--admin edit
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#topNavbar, #searchNavbar">
 					<span class="navbar-toggler-icon"></span>
@@ -87,9 +74,7 @@
 					</ul>
 				</div>-->
 
-		</nav>
-
-	</div>
+	</nav>
 
 	<div style="display: none;">
 		<div th:fragment="search_nav" class="row">

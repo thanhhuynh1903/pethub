@@ -13,16 +13,12 @@ i {
 }
 
 .header-nav {
-	padding-bottom: 2px;
 	transform: translateX(30%);
-	width: 100%;
 }
 
 .header-nav .item a,
 .item-left .item a {
-
 	text-decoration: none;
-	display: flex;
 	color: #808089;
 }
 
@@ -32,12 +28,6 @@ i {
 .header-nav .container-item:hover{
 	border-radius: 10px ;
 	background-color: rgb(224, 224, 224);
-}
-
-
-.navbar {
-	padding: 0px 64px !important;
-
 }
 
 #home.active , #home.active i{
@@ -53,13 +43,6 @@ i {
 .container-item::after:hover {
 	cursor: pointer;
 	color: #BAD7E9;
-}
-
-
-.item {
-	padding-right: 10px;
-	width: 100%;
-	display: flex;
 }
 
 .box {

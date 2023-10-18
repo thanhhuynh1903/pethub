@@ -13,9 +13,9 @@
 </head>
 
 <body>
-	<div>
-		<div th:replace="~{navigation :: header_menu}"></div>
-		<div class="main d-flex navbar-expand-lg navbar-light container-fluid">
+	<div class="w-100">
+		<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
+		<div class="main d-flex navbar-expand-lg navbar-light w-100">
 			<nav class="sidebar" th:fragment="sidebar" style="width: 15%;">
 				<div class="sidebar-container">
 					<span class="p-3" style="font-size: 20px; font-weight: bold;">Category</span>
@@ -76,7 +76,7 @@
 					</div>
 				</div>
 
-				<div class="my-4 p-3 color-bg">
+				<div class="my-4 p-3 color-bg w-100">
 					<span style="font-size: 20px; font-weight: bold;">Most popular</span>
 					<div class="d-flex product-detail">
 						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
@@ -193,13 +193,13 @@
 
 
 
-				<div class="text-center">
+				<div class="text-center w-100">
 					<button type="button" class="btn btn-outline-primary text-center">View more</button>
 				</div>
 			</div>
 
 		</div>
-		<div class="text-center">
+		<div class="text-center w-100">
 			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
 	</div>

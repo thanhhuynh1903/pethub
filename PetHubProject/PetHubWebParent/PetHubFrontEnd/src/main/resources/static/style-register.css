@@ -34,3 +34,7 @@
 .w-47 {
 	width: 47%;
 }
+
+.form-container .btn-register {
+	border-radius: 30px;
+}

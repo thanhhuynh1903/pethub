@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
 	<head th:replace="~{fragments :: page_head('PetHub','tag')}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-login.css}" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -13,53 +14,65 @@
 	<div class="d-flex flex-column justify-content-center align-items-center vw-100 vh-100 login-container">
 		<div class="box-login-container d-flex justify-content-center">
 			<div class="w-50 login-left-container">
-				<img th:src=@{images/login/login.png} alt="Login">
+				<img th:src=@{images/login.jpg} alt="Login">
 			</div>
 			<div class="w-50 login-right-container">
 				<div class="d-flex flex-column justify-content-center h-100 align-items-center">
 					<div class="d-flex">
 						<div th:replace="~{fragments :: logo_admin}"></div>
 					</div>
-					<h3 class="text-center text-primary py-1">Login</h3>
-						<form th:action="@{/login}" method="post" class="form-container">
-							<p>
-								<input type="email" name="email" class="form-control" placeholder="E-mail" required
-									style="height: 34px;" />
-							</p>
-							<p>
-								<input type="password" name="password" class="form-control" placeholder="Password"
-									required style="height: 34px;" />
-							</p>
+					<h3 class="text-center text-primary py-1 mt-4 mb-2">Login</h3>
+					<form th:action="@{/login}" method="post" class="form-container mt-2">
+						<p>
+							<input type="email" name="email" class="form-control input-field rounded" placeholder="E-mail"
+								required style="height: 34px;" />
+						</p>
+						<p>
+							<input type="password" name="password" class="form-control input-field rounded"
+								placeholder="Password" required style="height: 34px;" />
+						</p>
+						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center my-2">
 								<input type="checkbox" name="remember-me" />
 								<span class="mx-1">Remember me</span>
 							</div>
-							<div th:if="${param.error}">
-								<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+							<div class="text-center">
+								<a th:href="@{/forgot_password}" class="text-decoration-none">Forgot Password?</a>
 							</div>
+						</div>
+						<div th:if="${param.error}">
+							<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+						</div>
+						<!-- No need
 							<div th:if="${param.logout}">
 								<p class="text-warning">You have been logged out.</p>
 							</div>
-							<input type="submit" value="Login" class="btn btn-primary w-100" />
-							<div class="d-flex my-3 justify-content-between w-100">
-								<a class="btn btn-google btn-warning text-light" th:href="@{/oauth2/authorization/google}">
-									<i class="bi bi-google"></i>
-									Login with Google</a>
-								<a class="btn btn-primary btn-facebook" th:href="@{/oauth2/authorization/facebook}">
-									<i class="bi bi-facebook"></i>
-									Login with Facebook</a>
-							</div>
-						</form>
-						<div class="text-center">
-							<span>
-								or <a th:href="@{/forgot_password}" class="text-decoration-none">Forgot Password</a>
-							</span>
+							-->
+						<input type="submit" value="Login" class="btn btn-primary w-100 btn-login my-3" />
+						<div class="d-flex w-100 mt-3">
+							<hr class="w-25">
+							<p class="text-center mx-1 text-secondary w-50">Or Login With</p>
+							<hr class="w-25">
 						</div>
-						<div class="text-center">
-							<span>
-								Don't have an account? <a th:href="@{/register}" class="text-decoration-none"><b>Sign up</b></a>
-							</span>
+						<div class="d-flex my-3 justify-content-between w-100">
+							<a class="btn btn-google d-flex justify-content-center align-items-center"
+								th:href="@{/oauth2/authorization/google}" style="width: 45%;">
+								<img th:src=@{images/login/logo-google.png} alt="Logo Google" class="mx-2">
+								<span>Google</span>
+							</a>
+							<a class="btn btn-primary btn-facebook d-flex justify-content-center align-items-center"
+								th:href="@{/oauth2/authorization/facebook}" style="width: 45%;">
+								<i class="bi bi-facebook d-flex align-items-center mx-2"></i>
+								Facebook</a>
 						</div>
+					</form>
+
+					<div class="text-center my-2">
+						<span>
+							Don't have an account? <a th:href="@{/register}" class="text-decoration-none"><b>Sign
+									up</b></a>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

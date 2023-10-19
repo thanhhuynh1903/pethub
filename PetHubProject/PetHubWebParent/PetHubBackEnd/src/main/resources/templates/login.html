@@ -12,79 +12,77 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/login.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 
-<body>
-	<div class="d-flex flex-column justify-content-center align-items-center vw-100 vh-100 login-container">
-		<div class="box-login-container d-flex justify-content-center">
-			<div class="w-50 login-left-container">
-				<img th:src=@{/images/login.jpg} alt="Login">
+<body class="img js-fullheight"
+	style=" background-size: cover ;background-image: url(https://hips.hearstapps.com/hmg-prod/images/dogs-good-with-cats-1572920219.jpg?crop=0.668xw:1.00xh;0.223xw,0&resize=1200:*);">
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 text-center mb-5">
+					<h2 class="heading-section">Access to PetHub Control Panel</h2>
+				</div>
 			</div>
-			<div class="w-50 login-right-container">
-				<div class="d-flex flex-column justify-content-center h-100 align-items-center">
-					<div class="d-flex">
-						<div th:replace="~{fragments :: logo_admin}"></div>
-					</div>
-					<h3 class="text-center text-primary py-1 mt-4">Login</h3>
-					<form th:action="@{/login}" method="post" class="form-container">
-						<div class="form-group">
-							<input type="email" id="email" name="email" class="form-control input-field"
-								placeholder="Email" required />
-						</div>
-						<div class="form-group">
-							<input id="password-field" type="password" name="password" class="form-control input-field"
-								placeholder="Password" required />
-							<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-						</div>
-						<div class="form-group d-flex justify-content-between">
-							<div class="d-flex align-items-center">
-								<input type="checkbox" name="remember-me" />
-								<span class="ml-1">Remember me</span>
+
+			<img class="mx-auto d-block mb-5" width="150px" height="90px" th:src="@{/images/logo_pethub.png}" />
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+						<h3 class="mb-4 text-center">Have an account?</h3>
+						<form th:action="@{/login}" method="post" class="signin-form">
+							<div th:if="${param.error}" class="text-center">
+								<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
 							</div>
-							<div>
-								<a th:href="@{/}" class="text-decoration-none">Forgot password?</a>
-							</div>
-							<!-- No need
 							<div th:if="${param.logout}" class="text-center">
 								<p class="text-warning">You have been logged out.</p>
 							</div>
-							-->
-						</div>
-						<div class="form-group d-md-flex my-4">
-							<input type="submit" value="Login"
-								class="form-control btn btn-primary submit px-3 btn-login" />
-						</div>
-						<div th:if="${param.error}" class="text-center">
-							<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
-						</div>
-						<div class="d-flex w-100 mt-3">
-							<hr class="w-25">
-							<p class="text-center mx-1 text-secondary w-50">Or Login With</p>
-							<hr class="w-25">
-						</div>
-						<div class="d-flex mb-3 justify-content-between w-100">
-							<a class="btn btn-facebook btn-primary d-flex justify-content-center align-items-center rounded"
-								th:href="@{/}" style="width: 45%;">
-								<i class="bi bi-facebook d-flex align-items-center mx-2 text-light"></i>
-								<span>Facebook</span>
-							</a>
-							<a class="btn btn-warning btn-facebook d-flex justify-content-center align-items-center rounded text-light"
-								th:href="@{/}" style="width: 45%;">
-								<i class="bi bi-twitter d-flex align-items-center mx-2 text-light"></i>
+							<div class="form-group">
+								<input type="email" name="email" class="form-control" placeholder="abc@gmail.com"
+									required />
+							</div>
+							<div class="form-group">
+								<input id="password-field" type="password" name="password" class="form-control"
+									placeholder="8 - 20 characters" required />
+								<span toggle="#password-field"
+									class="fa fa-fw fa-eye field-icon toggle-password"></span>
+							</div>
+							<div class="form-group d-md-flex">
+								<input type="submit" value="Login" class="form-control btn btn-primary submit px-3" />
+							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-50 text-md-left">
+									<input type="checkbox" name="remember-me" />&nbsp;Remember me
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="#" style="color: #fff">Forgot Password</a>
+								</div>
+							</div>
+						</form>
+
+						<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+						<div class="social d-flex text-center">
+							<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>
+								Facebook</a>
+							<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span>
 								Twitter</a>
 						</div>
-					</form>
-
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="page-footer font-small">
+		<div class="footer-copyright text-center py-3">
+			<p class="text-light">PetHub Control Panel - Copyright &copy; PetHub</p>
+		</div>
+		<!-- Copyright -->
+	</footer>
+	<!-- Footer -->
+
 </body>
 
 </html>

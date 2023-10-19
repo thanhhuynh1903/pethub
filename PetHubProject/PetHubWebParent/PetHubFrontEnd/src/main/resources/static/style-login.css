@@ -5,7 +5,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-size: 16px;
+	font-size: 13px;
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -14,7 +14,7 @@
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 	border-radius: 26px;
 	background-color: #FFFFFF;
-	max-height: 70%;
+	max-height: 60%;
 }
 
 .login-right-container {
@@ -30,29 +30,4 @@
 
 .form-container {
 	width: 70%;
-}
-
-.form-container .input-field {
-	border: none;
-	border-radius: 0;
-	background-color: #E8F0FE;
-}
-
-.form-container .btn-login {
-	border-radius: 30px;
-}
-
-.btn-google {
-	color: rgb(133, 133, 133) !important;
-	border-color: rgb(133, 133, 133) !important;
-}
-
-.btn-google img {
-	object-fit: cover;
-	width: 16px;
-	height: 16px;
-}
-
-.btn-google .btn-facebook {
-	width: 100px;
 }

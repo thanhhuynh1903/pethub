@@ -6,12 +6,6 @@ body {
 	font-size: 16px !important;
 }
 
-.product-container {
-	display: flex;
-
-
-}
-
 
 .img-h {
 	height: 100px;
@@ -68,16 +62,21 @@ body {
 }
 
 .category-container {
-	width: 14%;
+	width: 237px;
 	box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;
 	border-radius: 5px;
 	background-color: #ffffff;
 	height: fit-content;
 	padding-bottom: 20px;
+	min-width: 207px;
 }
 
 .product-container {
-	width: 86%;
+	width: 1448px;
+	background-color: #f5f5fa;
+}
+
+.product-container__header {
 	background-color: #ffffff;
 	border-radius: 5px;
 }

@@ -64,12 +64,13 @@
 				</span>
 			</div>
 		</div>
-		<div class="text-center m-1" th:unless="${totalItems >0}">
-			<span>
-				No [[${entityName}]] found.
+		<div th:unless="${totalItems >0}" class="d-flex flex-column justify-content-center align-items-center"
+			style="background-color: #fff; height: 170px;">
+			<i class="bi bi-inbox" style="font-size: 70px; color: #E0E0E0"></i>
+			<span class="text-center" style="color: #9096C6; font-size: 14px;">
+				No [[${entityName}]] found
 			</span>
 		</div>
-
 	</div>
 	<!--end pagination-->
 
@@ -117,8 +118,8 @@
 		<span style="font-size: 26px; color: #4E73DF; font-weight: bold;">Hub</span>
 	</a>
 	<a class="nav-brand text-decoration-none d-flex" th:href="@{/}" th:fragment="logo_admin_2">
-		<span style="font-size: 38px; color: #594F66; font-weight: bold;">Pet</span>
-		<span style="font-size: 38px; color: #4E73DF; font-weight: bold;">Hub</span>
+		<span style="font-size: 34px; color: #594F66; font-weight: bold;">Pet</span>
+		<span style="font-size: 34px; color: #4E73DF; font-weight: bold;">Hub</span>
 	</a>
 	<!--nav-brand-admin-end-->
 </body>

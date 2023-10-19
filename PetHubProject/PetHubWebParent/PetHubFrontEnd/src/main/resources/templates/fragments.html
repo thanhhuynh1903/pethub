@@ -10,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/common.js}"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
@@ -35,39 +34,44 @@
 	<!--end page link-->
 
 	<!--begin pagination-->
-	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
-		<div class="text-center m-1" th:if="${totalItems >0}">
-			<span>
-				Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]].
-			</span>
+	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag" class="d-flex">
+		<div class="d-flex justify-content-end my-4 align-items-center" th:if="${totalItems >0}">
+			<div th:if="${totalPages>1}" class="d-flex align-items-center">
+				<nav class="d-flex align-items-center">
+					<ul class="pagination flex-wrap m-0">
+						<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}" />
+						</li>
+						<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}" />
+						</li>
+						<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+							th:each="i : ${#numbers.sequence(1, totalPages)}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}" />
+						</li>
+						<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}" />
+						</li>
+						<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}" />
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="d-flex align-items-center justify-content-center px-2 ml-3"
+				style="background-color: #fff; border-radius: 6px; border: 1px solid #ccc; color: #594F66; height: 34px"
+				th:if="${totalItems >0}">
+				<span>
+					[[${startCount}]] - [[${endCount}]] / [[${totalItems}]]
+				</span>
+			</div>
 		</div>
-		<div class="text-center m-1" th:unless="${totalItems >0}">
-			<span>
-				No [[${entityName}]] found.
+		<div th:unless="${totalItems >0}" class="d-flex flex-column justify-content-center align-items-center"
+			style="background-color: #fff; height: 170px;">
+			<i class="bi bi-inbox" style="font-size: 70px; color: #E0E0E0"></i>
+			<span class="text-center" style="color: #9096C6; font-size: 14px;">
+				No [[${entityName}]] found
 			</span>
-		</div>
-
-		<div th:if="${totalPages>1}">
-			<nav>
-				<ul class="pagination justify-content-center flex-wrap">
-					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}" />
-					</li>
-					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}" />
-					</li>
-					<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-						th:each="i : ${#numbers.sequence(1, totalPages)}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}" />
-					</li>
-					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}" />
-					</li>
-					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-						<a th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}" />
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</div>
 	<!--end pagination-->
@@ -112,8 +116,12 @@
 	</div>
 	<!--nav-brand-admin-start-->
 	<a class="nav-brand text-decoration-none d-flex" th:href="@{/}" th:fragment="logo_admin">
-		<span style="font-size: 20px; color: #594F66; font-weight: bold;">Pet</span>
-		<span style="font-size: 20px; color: #4E73DF; font-weight: bold;">Hub</span>
+		<span style="font-size: 26px; color: #594F66; font-weight: bold;">Pet</span>
+		<span style="font-size: 26px; color: #4E73DF; font-weight: bold;">Hub</span>
+	</a>
+	<a class="nav-brand text-decoration-none d-flex" th:href="@{/}" th:fragment="logo_admin_2">
+		<span style="font-size: 34px; color: #594F66; font-weight: bold;">Pet</span>
+		<span style="font-size: 34px; color: #4E73DF; font-weight: bold;">Hub</span>
 	</a>
 	<!--nav-brand-admin-end-->
 </body>

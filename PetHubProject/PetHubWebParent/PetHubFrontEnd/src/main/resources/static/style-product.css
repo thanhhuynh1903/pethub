@@ -3,7 +3,7 @@ body {
 	margin: 0 !important;
 	background-color: #f5f5fa !important;
 	box-sizing: border-box;
-	font-size: 17px !important;
+	font-size: 16px !important;
 }
 
 .product-container {
@@ -158,4 +158,8 @@ body {
 	font-size: 21px;
 	font-weight: 400;
 	padding: 5px 0 15px 0;
+}
+
+.pagination-container {
+	background-color: #f5f5fa;
 }

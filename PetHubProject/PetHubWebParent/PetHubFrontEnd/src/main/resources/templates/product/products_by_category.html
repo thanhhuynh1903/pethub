@@ -72,8 +72,10 @@
 									</th:block>
 								</div>
 								<!--product in category-->
-
-								<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product')}"></div>
+								<div class="pagination-container">
+									<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product')}">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

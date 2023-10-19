@@ -164,6 +164,7 @@ i {
 
 .nav-link:hover {
 	background-color: #CBCBCC;
+	cursor: pointer;
 }
 
 .nav-item .active:hover {

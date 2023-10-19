@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<nav class="navbar navbar-expand-md navbar-light py-3 w-100 d-flex align-items-center nav-container"
-		th:fragment="header_menu">
+	<nav class="navbar navbar-expand-md navbar-light py-3 w-100 d-flex align-items-center nav-container shadow-sm"
+		th:fragment="header_menu" style="background-color: #FFFFFF;">
 		<div class="px-4 px-xl-5 px-lg-5 w-100 d-flex align-items-center">
 			<div class="w-10 d-flex justify-content-start align-items-center">
 				<div th:replace="~{fragments :: logo_admin_2}"></div>
@@ -19,7 +19,7 @@
 					<div class="w-60">
 						<form th:action="@{/search}" method="get" class="d-flex w-100">
 							<div class="d-flex search-container align-items-center w-90">
-								<input class="search px-1 search-input w-85" type="text" placeholder=""
+								<input class="search px-4 search-input w-85" type="text" placeholder=""
 									th:value="${searchKeyword}">
 								<input value="Search" type="submit"
 									class="border-0 text-primary px-4 search-button py-2 w-15"></input>
@@ -45,7 +45,7 @@
 							<li class="nav-item dropdown">
 								<th:block sec:authorize="!isAuthenticated()">
 									<a class="nav-link d-flex justify-content-center align-items-center"
-										href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+									id="navbarDropdown" role="button" data-toggle="dropdown"
 										aria-haspopup="true" aria-expanded="false">
 										<i class="bi bi-emoji-smile d-flex align-items-center"></i>
 										Account
@@ -100,21 +100,20 @@
 	</nav>
 
 	<div style="display: none;">
-		<div th:fragment="search_nav" class="row">
-			<div class="col-md">
-
+		<div th:fragment="search_nav">
+			<div class="search-bar">
 				<th:block sec:authorize="isAuthenticated()">
 					<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
 						<input type="submit" value="Logout" />
 					</form>
 				</th:block>
 
-				<nav class="navbar navbar-expand-sm bg-light">
+				<nav class="navbar navbar-expand-sm w-100">
 					<div class="collapse navbar-collapse" id="searchNavbar">
 						<form class="form-inline" th:action="@{/search}" method="get">
-							<input type="search" name="keyword" class="form-control mr-sm-2" th:value="${searchKeyword}"
-								placeholder="keyword" required /> <input type="submit" value="Search"
-								class="btn btn-outline-success" />
+							<input type="search" name="keyword" class="form-control" th:value="${searchKeyword}"
+								placeholder="Search for..." required style="border-radius: 3px 0 0 3px;" /> 
+								<input type="submit" value="Search" class="btn btn-outline-primary" style="border-radius: 0 3px 3px 0;" />
 						</form>
 						<ul class="navbar-nav">
 							<th:block sec:authorize="isAuthenticated()">

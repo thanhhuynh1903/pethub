@@ -19,26 +19,28 @@
 			<nav class="sidebar" th:fragment="sidebar" style="width: 15%;">
 				<div class="sidebar-container">
 					<span class="p-3" style="font-size: 20px; font-weight: bold;">Category</span>
-					
-						<div class="col item-cate p-3" th:each="cat: ${listCategories}">
 
-							<div><img th:src="@{${cat.imagePath}}" width="30px" /></div>
-							<div><a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a></div>
-						</div>
-					
+					<div class="col item-cate p-3" th:each="cat: ${listCategories}">
+
+						<div><img th:src="@{${cat.imagePath}}" width="30px" /></div>
+						<div><a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a></div>
+					</div>
+
 				</div>
 			</nav>
 
 			<div class="d-block my-3" style="width: 70%; height: 400px">
 				<div class="h-100 d-flex" style="width: 100%;">
-					<div class="h-100 d-flex" style="width: 100%;">
-						<div class="w-100 h-100">
+					<div class="h-100 d-flex" style="width: 100%; gap: 8px">
+						<div class="w-100 h-100 rounded">
 							<div th:replace="~{slider :: slider}"></div>
 						</div>
-						
-						<div style="width: 30%;" class="d-flex flex-column h-100">
-							<img th:src="@{/images/index-header-img.jpg}" style="height: 50%; object-fit: fill;" class="w-100">
-							<img th:src="@{/images/index-header-img2.jpg}" style="height: 50%; object-fit: fill;" class="w-100">
+
+						<div style="width: 30%; gap: 8px" class="d-flex flex-column h-100">
+							<img th:src="@{/images/index-header-img.jpg}" style="height: 49%; object-fit: fill;"
+								class="w-100 rounded">
+							<img th:src="@{/images/index-header-img2.jpg}" style="height: 49%; object-fit: fill;"
+								class="w-100 rounded">
 						</div>
 
 						<!--<div class="d-flex justify-content-center align-item-center">
@@ -49,7 +51,7 @@
 								</div>
 							</div>
 						</div>-->
-						</div>
+					</div>
 				</div>
 				<div class="my-4 p-3 color-bg">
 					<span style="font-size: 20px; font-weight: bold;">Best Seller</span>

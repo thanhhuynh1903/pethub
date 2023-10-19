@@ -52,7 +52,8 @@ public class WebSecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
-				.requestMatchers("/customer").authenticated().anyRequest().permitAll())
+				.requestMatchers("/account_details", "/update_account_details").authenticated().anyRequest()
+				.permitAll())
 				.oauth2Login(oauth2 -> oauth2.loginPage("/login").userInfoEndpoint().userService(oAuth2UserService)
 						.and().successHandler(oAuth2LoginSuccessHandler))
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email")

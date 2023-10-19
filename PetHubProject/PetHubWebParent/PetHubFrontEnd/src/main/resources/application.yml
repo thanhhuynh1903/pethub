@@ -1,0 +1,35 @@
+server:
+  port: 9999
+  servlet:
+    context-path: /PetHub
+spring:
+  datasource:
+    password: 12345678
+    url: jdbc:mysql://localhost:3306/pethubdb
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+    
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 826385386919-2fegndkpih9ovj2o4h6qnu0m6qnfma9b.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+            - email
+            - profile

@@ -1,58 +1,72 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+  <head>
+    <head th:replace="~{fragments :: page_head('PetHub','tag')}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/style-main-homepage.css}"
+    />
+    <link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+  </head>
 
-<head>
+  <body>
+    <div>
+      <div th:replace="~{navigation :: header_menu}"></div>
+      <div class="main d-flex navbar-expand-lg navbar-light container-fluid">
+        <nav class="sidebar" th:fragment="sidebar" style="width: 15%">
+          <div class="sidebar-container">
+            <span class="p-3" style="font-size: 20px; font-weight: bold"
+              >Category</span
+            >
 
-	<head th:replace="~{fragments :: page_head('PetHub','tag')}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-main-homepage.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-</head>
+            <div class="col item-cate p-3" th:each="cat: ${listCategories}">
+              <div><img th:src="@{${cat.imagePath}}" width="30px" /></div>
+              <div>
+                <a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a>
+              </div>
+            </div>
+          </div>
+        </nav>
 
-<body>
-	<div>
-		<div th:replace="~{navigation :: header_menu}"></div>
-		<div class="main d-flex navbar-expand-lg navbar-light container-fluid">
-			<nav class="sidebar" th:fragment="sidebar" style="width: 15%;">
-				<div class="sidebar-container">
-					<span class="p-3" style="font-size: 20px; font-weight: bold;">Category</span>
+        <div class="d-block my-3" style="width: 70%; height: 400px">
+          <div class="h-100 d-flex" style="width: 100%">
+            <div class="h-100 d-flex" style="width: 100%; gap: 8px">
+              <div class="w-100 h-100 rounded">
+                <div th:replace="~{slider :: slider}"></div>
+              </div>
 
-					<div class="col item-cate p-3" th:each="cat: ${listCategories}">
+              <div
+                style="width: 30%; gap: 8px"
+                class="d-flex flex-column h-100"
+              >
+                <img
+                  th:src="@{/images/index-header-img.jpg}"
+                  style="height: 49%; object-fit: fill"
+                  class="w-100 rounded"
+                />
+                <img
+                  th:src="@{/images/index-header-img2.jpg}"
+                  style="height: 49%; object-fit: fill"
+                  class="w-100 rounded"
+                />
+              </div>
 
-						<div><img th:src="@{${cat.imagePath}}" width="30px" /></div>
-						<div><a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a></div>
-					</div>
-
-				</div>
-			</nav>
-
-<<<<<<< HEAD
-			<div class="d-block my-3" style="width: 70%;">
-				<div class="w-100 d-flex header-content">
-					<div class="d-flex w-100 " style="height: 100%;background-color: #ffffff;">
-						<div style="height: 50%;width: 100%;">
-							<div th:replace="~{slider :: slider}"></div>
-						</div>
-=======
-			<div class="d-block my-3" style="width: 70%; height: 400px">
-				<div class="h-100 d-flex" style="width: 100%;">
-					<div class="h-100 d-flex" style="width: 100%; gap: 8px">
-						<div class="w-100 h-100 rounded">
-							<div th:replace="~{slider :: slider}"></div>
-						</div>
-
-						<div style="width: 30%; gap: 8px" class="d-flex flex-column h-100">
-							<img th:src="@{/images/index-header-img.jpg}" style="height: 49%; object-fit: fill;"
-								class="w-100 rounded">
-							<img th:src="@{/images/index-header-img2.jpg}" style="height: 49%; object-fit: fill;"
-								class="w-100 rounded">
-						</div>
->>>>>>> kim-fe-v3
-
-						<!--<div class="d-flex justify-content-center align-item-center">
+              <!--<div class="d-flex justify-content-center align-item-center">
 							<div th:each="i : ${#numbers.sequence(0, 1)}"
 								style="width: 100%;height: 100%;margin: 10px;">
 								<div class="h-100 w-100 justify-content-center align-item-center">
@@ -60,189 +74,234 @@
 								</div>
 							</div>
 						</div>-->
-					</div>
-				</div>
-				<div class="my-4 p-3 color-bg">
-					<span style="font-size: 20px; font-weight: bold;">Best Seller</span>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
-							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/cute-animal-collection-four-seasons-pet-nest-pawpawup-2.png}
-									alt="med" style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
+            </div>
+          </div>
+          <div class="my-4 p-3 color-bg">
+            <span style="font-size: 20px; font-weight: bold">Best Seller</span>
+            <div class="d-flex product-detail">
+              <a
+                th:each="i : ${#numbers.sequence(0, 5)}"
+                href="#"
+                class="img-id"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  cursor: pointer;
+                  border-radius: 8px;
+                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                "
+              >
+                <div class="h-100 w-100 mb-2">
+                  <img
+                  th:src=@{/images/cute-animal-collection-four-seasons-pet-nest-pawpawup-2.png}
+                  alt="med" style="width: 100%;height: 90%;border-radius: 8px;"
+                  />
+                  <div class="description">
+                    <span>
+                      vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
+                      stress
+                    </span>
+                    <div>
+                      <span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </span>
+                    </div>
+                    <div class="money">
+                      <span>1.200.200<sup>₫</sup></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
 
-						</a>
-					</div>
-				</div>
+          <div class="my-4 p-3 color-bg">
+            <span style="font-size: 20px; font-weight: bold">Most popular</span>
+            <div class="d-flex product-detail">
+              <a
+                th:each="i : ${#numbers.sequence(0, 5)}"
+                href="#"
+                class="img-id"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  cursor: pointer;
+                  border-radius: 8px;
+                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                "
+              >
+                <div class="h-100 w-100 mb-2">
+                  <img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
+                  style="width: 100%;height: 90%;border-radius: 8px;" />
+                  <div class="description">
+                    <span>
+                      vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
+                      stress
+                    </span>
+                    <div>
+                      <span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </span>
+                    </div>
+                    <div class="money">
+                      <span>1.200.200<sup>₫</sup></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="d-flex product-detail">
+              <a
+                th:each="i : ${#numbers.sequence(0, 5)}"
+                href="#"
+                class="img-id"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  cursor: pointer;
+                  border-radius: 8px;
+                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                "
+              >
+                <div class="h-100 w-100 mb-2">
+                  <img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
+                  style="width: 100%;height: 90%;border-radius: 8px;" />
+                  <div class="description">
+                    <span>
+                      vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
+                      stress
+                    </span>
+                    <div>
+                      <span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </span>
+                    </div>
+                    <div class="money">
+                      <span>1.200.200<sup>₫</sup></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
 
-				<div class="my-4 p-3 color-bg">
-					<span style="font-size: 20px; font-weight: bold;">Most popular</span>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
-							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
-									style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
+          <div class="my-4 p-3 color-bg">
+            <span style="font-size: 20px; font-weight: bold">All product </span>
+            <div class="d-flex product-detail">
+              <a
+                th:each="i : ${#numbers.sequence(0, 5)}"
+                href="#"
+                class="img-id"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  cursor: pointer;
+                  border-radius: 8px;
+                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                "
+              >
+                <div class="h-100 w-100 mb-2">
+                  <img th:src=@{/images/2dog.png} alt="med" style="width:
+                  100%;height: 90%;border-radius: 8px;" />
+                  <div class="description">
+                    <span>
+                      vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
+                      stress
+                    </span>
+                    <div>
+                      <span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </span>
+                    </div>
+                    <div class="money">
+                      <span>1.200.200<sup>₫</sup></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="d-flex product-detail">
+              <a
+                th:each="i : ${#numbers.sequence(0, 5)}"
+                href="#"
+                class="img-id"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  cursor: pointer;
+                  border-radius: 8px;
+                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+                "
+              >
+                <div class="h-100 w-100 mb-2">
+                  <img th:src=@{/images/2dog.png} alt="med" style="width:
+                  100%;height: 90%;border-radius: 8px;" />
+                  <div class="description">
+                    <span>
+                      vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
+                      stress
+                    </span>
+                    <div>
+                      <span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </span>
+                    </div>
+                    <div class="money">
+                      <span>1.200.200<sup>₫</sup></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
 
-						</a>
-					</div>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
-							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
-									style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
+          <div class="text-center">
+            <button type="button" class="btn btn-outline-primary text-center">
+              View more
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <div th:replace="~{navigation :: footer_menu}"></div>
+      </div>
+    </div>
+  </body>
 
-						</a>
-					</div>
+  <script>
+    const navLinks = document.querySelectorAll(".container-item a");
 
+    // Function to set the active class to the selected link
+    function setActiveLink(link) {
+      navLinks.forEach((navLink) => {
+        navLink.classList.remove("active");
+      });
+      link.classList.add("active");
+    }
 
+    // Initially set the home link as active
+    document.getElementById("home").classList.add("active");
 
-				</div>
-
-				<div class="my-4 p-3 color-bg">
-					<span style="font-size: 20px; font-weight: bold;">All product </span>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
-							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/2dog.png} alt="med"
-									style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-
-						</a>
-					</div>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
-							style="width: 100%;height: 100%;cursor: pointer;border-radius: 8px;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/2dog.png} alt="med"
-									style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-
-						</a>
-					</div>
-				</div>
-
-
-
-				<div class="text-center">
-					<button type="button" class="btn btn-outline-primary text-center">View more</button>
-				</div>
-			</div>
-
-		</div>
-		<div class="text-center">
-			<div th:replace="~{navigation :: footer_menu}"></div>
-		</div>
-	</div>
-</body>
-
-<script>
-	const navLinks = document.querySelectorAll('.container-item a');
-
-	// Function to set the active class to the selected link
-	function setActiveLink(link) {
-		navLinks.forEach((navLink) => {
-			navLink.classList.remove('active');
-		});
-		link.classList.add('active');
-	}
-
-	// Initially set the home link as active
-	document.getElementById('home').classList.add('active');
-
-	// Add click event listeners to all navigation links
-	navLinks.forEach((link) => {
-		link.addEventListener('click', function (event) {
-			setActiveLink(link);
-		});
-	});
-
-
-</script>
-
+    // Add click event listeners to all navigation links
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function (event) {
+        setActiveLink(link);
+      });
+    });
+  </script>
 </html>

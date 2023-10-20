@@ -31,7 +31,6 @@ import jakarta.servlet.http.HttpServletRequest;
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
-
 	@Autowired
 	private SettingService settingService;
 

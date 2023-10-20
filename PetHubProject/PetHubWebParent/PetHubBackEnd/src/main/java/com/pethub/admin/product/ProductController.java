@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,8 +59,8 @@ public class ProductController {
 	@GetMapping("/products/new")
 	public String newProduct(Model model) {
 		List<Brand> listBrands = brandService.listAll();
-		Product product = new Product();
 
+		Product product = new Product();
 		product.setEnabled(true);
 		product.setInStock(true);
 
@@ -89,9 +87,10 @@ public class ProductController {
 			if (loggedUser.hasRole("Salesperson")) {
 				productService.saveProductPrice(product);
 				ra.addFlashAttribute("message", "The product has been saved successfully.");
-				return "redirect:/products";
+				return defaultRedirectURL;
 			}
 		}
+
 		ProductSaveHelper.setMainImageName(mainImageMultipart, product);
 		ProductSaveHelper.setExistingExtraImageNames(imageIDs, imageNames, product);
 		ProductSaveHelper.setNewExtraImageNames(extraImageMultiparts, product);
@@ -104,7 +103,8 @@ public class ProductController {
 		ProductSaveHelper.deleteExtraImagesWeredRemovedOnForm(product);
 
 		ra.addFlashAttribute("message", "The product has been saved successfully.");
-		return "redirect:/products";
+
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/products/{id}/enabled/{status}")
@@ -115,14 +115,13 @@ public class ProductController {
 		String message = "The Product ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
 
-		return "redirect:/products";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/products/delete/{id}")
 	public String deleteProduct(@PathVariable(name = "id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
-
 			productService.delete(id);
 			String productExtraImagesDir = "../product-images/" + id + "/extras";
 			String productImagesDir = "../product-images/" + id;
@@ -135,16 +134,26 @@ public class ProductController {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 		}
 
-		return "redirect:/products";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/products/edit/{id}")
-	public String editProduct(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+	public String editProduct(@PathVariable("id") Integer id, Model model, RedirectAttributes ra,
+			@AuthenticationPrincipal PetHubUserDetails loggedUser) {
 		try {
 			Product product = productService.get(id);
 			List<Brand> listBrands = brandService.listAll();
 			Integer numberOfExistingExtraImages = product.getImages().size();
 
+			boolean isReadOnlyForSalesperson = false;
+
+			if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
+				if (loggedUser.hasRole("Salesperson")) {
+					isReadOnlyForSalesperson = true;
+				}
+			}
+
+			model.addAttribute("isReadOnlyForSalesperson", isReadOnlyForSalesperson);
 			model.addAttribute("product", product);
 			model.addAttribute("listBrands", listBrands);
 			model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");
@@ -155,7 +164,7 @@ public class ProductController {
 		} catch (ProductNotFoundException e) {
 			ra.addFlashAttribute("message", e.getMessage());
 
-			return "redirect:/products";
+			return defaultRedirectURL;
 		}
 	}
 
@@ -170,8 +179,7 @@ public class ProductController {
 		} catch (ProductNotFoundException e) {
 			ra.addFlashAttribute("message", e.getMessage());
 
-			return "redirect:/products";
+			return defaultRedirectURL;
 		}
 	}
-
 }

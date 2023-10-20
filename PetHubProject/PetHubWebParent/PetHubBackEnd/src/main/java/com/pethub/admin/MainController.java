@@ -19,9 +19,9 @@ public class MainController {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-			return "/login";
+			return "login";
 		}
-		return "redirect:/login";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/landing")

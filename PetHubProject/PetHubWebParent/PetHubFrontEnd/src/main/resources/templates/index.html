@@ -13,9 +13,9 @@
 </head>
 
 <body>
-	<div class="w-100">
-		<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
-		<div class="main d-flex navbar-expand-lg navbar-light w-100">
+	<div>
+		<div th:replace="~{navigation :: header_menu}"></div>
+		<div class="main d-flex navbar-expand-lg navbar-light container-fluid">
 			<nav class="sidebar" th:fragment="sidebar" style="width: 15%;">
 				<div class="sidebar-container">
 					<span class="p-3" style="font-size: 20px; font-weight: bold;">Category</span>
@@ -29,6 +29,14 @@
 				</div>
 			</nav>
 
+<<<<<<< HEAD
+			<div class="d-block my-3" style="width: 70%;">
+				<div class="w-100 d-flex header-content">
+					<div class="d-flex w-100 " style="height: 100%;background-color: #ffffff;">
+						<div style="height: 50%;width: 100%;">
+							<div th:replace="~{slider :: slider}"></div>
+						</div>
+=======
 			<div class="d-block my-3" style="width: 70%; height: 400px">
 				<div class="h-100 d-flex" style="width: 100%;">
 					<div class="h-100 d-flex" style="width: 100%; gap: 8px">
@@ -42,6 +50,7 @@
 							<img th:src="@{/images/index-header-img2.jpg}" style="height: 49%; object-fit: fill;"
 								class="w-100 rounded">
 						</div>
+>>>>>>> kim-fe-v3
 
 						<!--<div class="d-flex justify-content-center align-item-center">
 							<div th:each="i : ${#numbers.sequence(0, 1)}"
@@ -83,7 +92,7 @@
 					</div>
 				</div>
 
-				<div class="my-4 p-3 color-bg w-100">
+				<div class="my-4 p-3 color-bg">
 					<span style="font-size: 20px; font-weight: bold;">Most popular</span>
 					<div class="d-flex product-detail">
 						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id"
@@ -200,13 +209,13 @@
 
 
 
-				<div class="text-center w-100">
+				<div class="text-center">
 					<button type="button" class="btn btn-outline-primary text-center">View more</button>
 				</div>
 			</div>
 
 		</div>
-		<div class="text-center w-100">
+		<div class="text-center">
 			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
 	</div>

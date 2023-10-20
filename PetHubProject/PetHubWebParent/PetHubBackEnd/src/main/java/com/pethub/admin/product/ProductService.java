@@ -6,13 +6,11 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pethub.admin.paging.PagingAndSortingHelper;
-import com.pethub.common.entity.Product;
+import com.pethub.common.entity.product.Product;
 import com.pethub.common.exception.ProductNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -30,7 +28,6 @@ public class ProductService {
 	}
 
 	public void listByPage(int pageNum, PagingAndSortingHelper helper, Integer categoryId) {
-
 		Pageable pageable = helper.createPageable(PRODUCTS_PER_PAGE, pageNum);
 		String keyword = helper.getKeyword();
 		Page<Product> page = null;
@@ -50,6 +47,14 @@ public class ProductService {
 				page = repo.findAll(pageable);
 			}
 		}
+
+		helper.updateModelAttributes(pageNum, page);
+	}
+
+	public void searchProducts(int pageNum, PagingAndSortingHelper helper) {
+		Pageable pageable = helper.createPageable(PRODUCTS_PER_PAGE, pageNum);
+		String keyword = helper.getKeyword();
+		Page<Product> page = repo.searchProductsByName(keyword, pageable);
 		helper.updateModelAttributes(pageNum, page);
 	}
 
@@ -57,6 +62,7 @@ public class ProductService {
 		if (product.getId() == null) {
 			product.setCreatedTime(new Date());
 		}
+
 		if (product.getAlias() == null || product.getAlias().isEmpty()) {
 			String defaultAlias = product.getName().replaceAll(" ", "-");
 			product.setAlias(defaultAlias);
@@ -66,7 +72,9 @@ public class ProductService {
 
 		product.setUpdatedTime(new Date());
 
-		return repo.save(product);
+		Product updatedProduct = repo.save(product);
+
+		return updatedProduct;
 	}
 
 	public void saveProductPrice(Product productInForm) {

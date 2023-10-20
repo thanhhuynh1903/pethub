@@ -13,8 +13,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pethub.admin.FileUploadUtil;
-import com.pethub.common.entity.Product;
-import com.pethub.common.entity.ProductImage;
+import com.pethub.common.entity.product.Product;
+import com.pethub.common.entity.product.ProductImage;
 
 public class ProductSaveHelper {
 

@@ -15,7 +15,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
-import com.pethub.common.entity.Product;
+import com.pethub.common.entity.product.Product;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)

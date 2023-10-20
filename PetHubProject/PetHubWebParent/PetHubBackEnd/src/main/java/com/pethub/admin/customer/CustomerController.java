@@ -20,7 +20,6 @@ import com.pethub.common.exception.CustomerNotFoundException;
 
 @Controller
 public class CustomerController {
-
 	private String defaultRedirectURL = "redirect:/customers/page/1?sortField=firstName&sortDir=asc";
 
 	@Autowired
@@ -49,7 +48,7 @@ public class CustomerController {
 		String message = "The Customer ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
 
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/customers/detail/{id}")
@@ -61,7 +60,7 @@ public class CustomerController {
 			return "customers/customer_detail_modal";
 		} catch (CustomerNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
-			return "redirect:/customers";
+			return defaultRedirectURL;
 		}
 	}
 
@@ -79,7 +78,7 @@ public class CustomerController {
 
 		} catch (CustomerNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
-			return "redirect:/customers";
+			return defaultRedirectURL;
 		}
 	}
 
@@ -87,7 +86,7 @@ public class CustomerController {
 	public String saveCustomer(Customer customer, RedirectAttributes ra) {
 		service.save(customer);
 		ra.addFlashAttribute("message", "The customer ID " + customer.getId() + " has been updated successfully.");
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/customers/delete/{id}")
@@ -100,7 +99,7 @@ public class CustomerController {
 			ra.addFlashAttribute("message", ex.getMessage());
 		}
 
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.pethub.common.entity;
+package com.pethub.common.entity.product;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import com.pethub.common.entity.Brand;
+import com.pethub.common.entity.Category;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -83,6 +86,10 @@ public class Product {
 	private List<ProductDetail> details = new ArrayList<>();
 
 	public Product() {
+	}
+
+	public Product(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getId() {

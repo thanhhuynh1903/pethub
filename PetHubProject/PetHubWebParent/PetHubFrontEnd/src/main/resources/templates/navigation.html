@@ -45,17 +45,20 @@
 							<li class="nav-item dropdown">
 								<th:block sec:authorize="!isAuthenticated()">
 									<a class="nav-link d-flex justify-content-center align-items-center"
-									id="navbarDropdown" role="button" data-toggle="dropdown"
+										id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown"
 										aria-haspopup="true" aria-expanded="false">
 										<i class="bi bi-emoji-smile d-flex align-items-center"></i>
 										Account
 									</a>
 								</th:block>
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" th:href="@{/login}" id="login">Login</a>
-									<a class="dropdown-item" th:href="@{/}">Profile</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" th:href="@{/}">Logout</a>
+								<div class="container">
+									<div class="dropdown-menu dropdown-menu-right"
+										aria-labelledby="navbarDarkDropdownMenuLink">
+										<a class="dropdown-item" th:href="@{/login}" id="login">Login</a>
+										<a class="dropdown-item" th:href="@{/profile}">Profile</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" th:href="@{/logout}">Logout</a>
+									</div>
 								</div>
 							</li>
 							<li class="nav-item nav-last-item">
@@ -112,8 +115,9 @@
 					<div class="collapse navbar-collapse" id="searchNavbar">
 						<form class="form-inline" th:action="@{/search}" method="get">
 							<input type="search" name="keyword" class="form-control" th:value="${searchKeyword}"
-								placeholder="Search for..." required style="border-radius: 3px 0 0 3px;" /> 
-								<input type="submit" value="Search" class="btn btn-outline-primary" style="border-radius: 0 3px 3px 0;" />
+								placeholder="Search for..." required style="border-radius: 3px 0 0 3px;" />
+							<input type="submit" value="Search" class="btn btn-outline-primary"
+								style="border-radius: 0 3px 3px 0;" />
 						</form>
 						<ul class="navbar-nav">
 							<th:block sec:authorize="isAuthenticated()">
@@ -171,6 +175,28 @@
 		</div>
 		<!--end footer-->
 	</div>
+
+	<div th:fragment="header_product">
+		<div class="d-flex justify-content-between py-2 align-items-center product-container__header">
+			<div class="px-4 sort-container d-flex align-items-center">
+				<span>Sort by</span>
+				<input role="button" class="btn btn-primary mx-3" value="Latest" />
+				<input role="button" class="btn btn-primary mr-3" value="Top Sales" />
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Price
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Ascending</a>
+						<a class="dropdown-item" href="#">Descending</a>
+					</div>
+				</div>
+			</div>
+			<div th:replace="~{navigation :: search_nav}" class="category-search-bar"></div>
+		</div>
+	</div>
+
 </body>
 
 </html>

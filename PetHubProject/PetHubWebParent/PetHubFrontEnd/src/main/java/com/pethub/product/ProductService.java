@@ -38,4 +38,26 @@ public class ProductService {
 		return repo.search(keyword, pageable);
 
 	}
+
+	public Page<Product> listByCategoryPriceAsc(int pageNum, Integer categoryId) {
+		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+
+		return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
+	}
+
+	public Page<Product> listByCategoryPriceDesc(int pageNum, Integer categoryId) {
+		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+
+		return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
+	}
+
+	public Page<Product> listByCategoryLatest(int pageNum, Integer categoryId) {
+		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
+		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+
+		return repo.listByCategoryLatest(categoryId, categoryIdMatch, pageable);
+	}
+
 }

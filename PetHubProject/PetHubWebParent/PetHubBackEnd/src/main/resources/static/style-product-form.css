@@ -1,28 +1,32 @@
-a{
-	
+a {
+
 	color: black;
 }
 
-form{
-	max-width: 70%;margin: 0 auto;background: white;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;border-radius: 15px 15px 15px 15px;
+form {
+	max-width: 70%;
+	margin: 0 auto;
+	background: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 15px 15px 15px 15px;
 }
 
-form ul li:nth-child(1) a{
+form ul li:nth-child(1) a {
 	border-radius: 15px 0px 15px 0px;
 }
 
-span{
+span {
 	font-size: 16px;
 }
 
-.container-fluid{
+.container-fluid {
 	width: 100%;
 }
 
-form ul li a{
+form ul li a {
 	color: white;
 }
 
-form ul li a:hover{
-	color:white;
+form ul li a:hover {
+	color: white;
 }

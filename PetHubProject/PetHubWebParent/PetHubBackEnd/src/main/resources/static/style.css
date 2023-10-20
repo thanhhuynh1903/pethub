@@ -2,8 +2,8 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
-	font-size: 12.5px;
-	font-family:'M PLUS Rounded 1c', sans-serif;
+	font-size: 21px;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 *.icon-silver {
@@ -193,11 +193,6 @@ h2 {
 	font-size: 2em;
 }
 
-.sidebar ul li .logo .text {
-	font-size: 1.2em;
-
-}
-
 .header-bar {
 	align-items: center;
 	position: static;
@@ -258,18 +253,9 @@ label {
 	text-align: center;
 }
 
-.table tbody td {
-	font-size: 14px;
-}
-
 .table thead th {
-	font-size: 16px;
-	vertical-align: middle!important;
+	vertical-align: middle !important;
 	text-align: center;
-}
-
-.table thead a {
-	font-size: 16px;
 }
 
 .table-striped>tbody>tr:nth-child(2n+1)>td,
@@ -287,7 +273,7 @@ label {
 }
 
 .container-fluid {
-	padding: 0px!important;
+	padding: 0px !important;
 
 }
 
@@ -306,10 +292,6 @@ label {
 	padding-bottom: 15px;
 	padding-top: 20px;
 	border-radius: 3px 3px 0 0;
-}
-
-.table td {
-	font-size: 13.5px;
 }
 
 .table-bordered td:nth-child(n+7):nth-child(-n+8) {

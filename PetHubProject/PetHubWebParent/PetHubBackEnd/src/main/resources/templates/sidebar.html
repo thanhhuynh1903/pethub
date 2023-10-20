@@ -1,290 +1,535 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<body>
-
-	<nav class="sidebar w-15 vh-100 sticky-top" th:fragment="sidebar" style="width: 15%;">
-		<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+  <body>
+    <nav
+      class="sidebar w-15 vh-100 sticky-top"
+      th:fragment="sidebar"
+      style="width: 15%"
+    >
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>-->
 
-		<ul>
+      <ul>
+        <li sec:authorize="hasAuthority('Admin')">
+          <a th:href="@{/users}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="18"
+                  viewBox="0 0 47 39"
+                  fill="none"
+                >
+                  <path
+                    d="M23.5 7.55272L23.522 7.53223"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M32.1006 11.2423L32.1226 11.2218"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14.9004 11.2423L14.9224 11.2218"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M36.4004 18.6213L36.4224 18.6008"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10.5996 18.6213L10.6216 18.6008"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M34.25 26.0003L34.272 25.9799"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12.75 26.0003L12.772 25.9799"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M23.5 25.9819L25.65 14.9133"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M15.975 31.518H6.3C3.59999 28.4345 2 24.6013 2 20.4476C2 10.2593 11.6259 2 23.5 2C35.374 2 45 10.2593 45 20.4476C45 24.6013 43.4 28.4345 40.7 31.518L31.025 31.5162"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M23.4998 37.0505C27.0621 37.0505 29.9498 34.5728 29.9498 31.5162C29.9498 28.4596 27.0621 25.9819 23.4998 25.9819C19.9375 25.9819 17.0498 28.4596 17.0498 31.5162C17.0498 34.5728 19.9375 37.0505 23.4998 37.0505Z"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Users</span>
+          </a>
 
-			<li sec:authorize="hasAuthority('Admin')">
+          <!--		<a class="nav-link" th:href="@{/users}">Users</a>-->
+        </li>
 
-				<a th:href="@{/users}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 47 39"
-								fill="none">
-								<path d="M23.5 7.55272L23.522 7.53223" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M32.1006 11.2423L32.1226 11.2218" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M14.9004 11.2423L14.9224 11.2218" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M36.4004 18.6213L36.4224 18.6008" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M10.5996 18.6213L10.6216 18.6008" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M34.25 26.0003L34.272 25.9799" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M12.75 26.0003L12.772 25.9799" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M23.5 25.9819L25.65 14.9133" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M15.975 31.518H6.3C3.59999 28.4345 2 24.6013 2 20.4476C2 10.2593 11.6259 2 23.5 2C35.374 2 45 10.2593 45 20.4476C45 24.6013 43.4 28.4345 40.7 31.518L31.025 31.5162"
-									stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M23.4998 37.0505C27.0621 37.0505 29.9498 34.5728 29.9498 31.5162C29.9498 28.4596 27.0621 25.9819 23.4998 25.9819C19.9375 25.9819 17.0498 28.4596 17.0498 31.5162C17.0498 34.5728 19.9375 37.0505 23.4998 37.0505Z"
-									stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Users</span>
-				</a>
+        <li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+          <a th:href="@{/categories}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="18"
+                  viewBox="0 0 47 40"
+                  fill="none"
+                >
+                  <path
+                    d="M1 10.7546L22.7634 18.3201L24.2366 15.7275L2.47314 8.16211L1 10.7546ZM25.3136 37.8286V17.0237H21.6864V37.8286H25.3136ZM24.2366 18.3201L46 10.7546L44.5269 8.16211L22.7634 15.7275L24.2366 18.3201Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M1.73633 29.5257V10.1958C1.73633 9.74737 2.074 9.34098 2.59797 9.15884L22.9105 2.09781C23.2857 1.9674 23.7138 1.9674 24.0891 2.09781L44.4016 9.15884C44.9256 9.34098 45.2632 9.74737 45.2632 10.1958V29.5257C45.2632 29.9742 44.9256 30.3806 44.4016 30.5628L24.0891 37.6237C23.7138 37.754 23.2857 37.754 22.9105 37.6237L2.59797 30.5628C2.074 30.3806 1.73633 29.9742 1.73633 29.5257Z"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12.6182 5.67566L33.52 12.9415C34.044 13.1237 34.3816 13.5301 34.3816 13.9785V20.8064"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Categories</span>
+          </a>
 
-				<!--		<a class="nav-link" th:href="@{/users}">Users</a>-->
-			</li>
+          <!--<a class="nav-link" th:href="@{/categories}">Categories</a>-->
+        </li>
 
+        <li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+          <a th:href="@{/brands}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="22"
+                  viewBox="0 0 46 48"
+                  fill="none"
+                >
+                  <path
+                    d="M22.62 46.24C34.5603 46.24 44.24 36.1126 44.24 23.62C44.24 11.1273 34.5603 1 22.62 1C10.6796 1 1 11.1273 1 23.62C1 36.1126 10.6796 46.24 22.62 46.24Z"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M27.6652 39.454V35.2399C27.7192 34.5398 27.6265 33.8359 27.3928 33.1751C27.1593 32.5144 26.7902 31.9118 26.3105 31.4076C30.8362 30.8937 35.5926 29.1463 35.5926 21.1293C35.5921 19.0792 34.8181 17.1077 33.4306 15.623C34.0876 13.8294 34.0411 11.8469 33.3009 10.0873C33.3009 10.0873 31.6 9.57344 27.6652 12.2605C24.3616 11.3484 20.8795 11.3484 17.5759 12.2605C13.641 9.57344 11.9403 10.0873 11.9403 10.0873C11.2 11.8469 11.1535 13.8294 11.8105 15.623C10.4126 17.1187 9.63778 19.108 9.64855 21.1732C9.64855 29.1316 14.4049 30.879 18.9307 31.4515C18.4566 31.9507 18.0908 32.5461 17.8574 33.1989C17.624 33.8515 17.528 34.5468 17.5759 35.2399V39.454"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M17.5747 36.5175C13.2507 37.9464 9.64735 36.5175 7.48535 32.1125"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Brands</span>
+          </a>
+        </li>
 
-			<li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-				<a th:href="@{/categories}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 47 40"
-								fill="none">
-								<path
-									d="M1 10.7546L22.7634 18.3201L24.2366 15.7275L2.47314 8.16211L1 10.7546ZM25.3136 37.8286V17.0237H21.6864V37.8286H25.3136ZM24.2366 18.3201L46 10.7546L44.5269 8.16211L22.7634 15.7275L24.2366 18.3201Z"
-									fill="white" />
-								<path
-									d="M1.73633 29.5257V10.1958C1.73633 9.74737 2.074 9.34098 2.59797 9.15884L22.9105 2.09781C23.2857 1.9674 23.7138 1.9674 24.0891 2.09781L44.4016 9.15884C44.9256 9.34098 45.2632 9.74737 45.2632 10.1958V29.5257C45.2632 29.9742 44.9256 30.3806 44.4016 30.5628L24.0891 37.6237C23.7138 37.754 23.2857 37.754 22.9105 37.6237L2.59797 30.5628C2.074 30.3806 1.73633 29.9742 1.73633 29.5257Z"
-									stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M12.6182 5.67566L33.52 12.9415C34.044 13.1237 34.3816 13.5301 34.3816 13.9785V20.8064"
-									stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Categories</span>
-				</a>
+        <!--<a class="nav-link" th:href="@{/brands}">Brands</a>-->
 
+        <li
+          sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Editor', 'Shipper')"
+        >
+          <a th:href="@{/products}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="18"
+                  viewBox="0 0 71 70"
+                  fill="none"
+                >
+                  <path
+                    d="M64.4631 2H50.8291L52.5369 20.0653C52.5369 20.0653 55.9525 23.6783 61.0758 23.6783C64.7544 23.6783 67.2591 21.8156 68.3794 20.7651C68.8258 20.3465 68.9891 19.7073 68.891 19.0847L66.4844 3.81144C66.3198 2.76615 65.4649 2 64.4631 2Z"
+                    stroke="white"
+                    stroke-width="4"
+                  />
+                  <path
+                    d="M50.8291 2L52.5369 20.0653C52.5369 20.0653 49.1213 23.6783 43.9979 23.6783C38.8746 23.6783 35.459 20.0653 35.459 20.0653V2H50.8291Z"
+                    stroke="white"
+                    stroke-width="4"
+                  />
+                  <path
+                    d="M35.4588 2V20.0653C35.4588 20.0653 32.0432 23.6783 26.9198 23.6783C21.7964 23.6783 18.3809 20.0653 18.3809 20.0653L20.0886 2H35.4588Z"
+                    stroke="white"
+                    stroke-width="4"
+                  />
+                  <path
+                    d="M20.0894 2H6.45534C5.45355 2 4.59859 2.76615 4.43389 3.81144L2.02745 19.0848C1.92938 19.7073 2.09275 20.3465 2.53917 20.7651C3.65921 21.8156 6.16392 23.6783 9.8426 23.6783C14.966 23.6783 18.3816 20.0653 18.3816 20.0653L20.0894 2Z"
+                    stroke="white"
+                    stroke-width="4"
+                  />
+                  <path
+                    d="M4.74219 23.6783V59.8089C4.74219 63.7999 7.8006 67.035 11.5733 67.035H59.3915C63.1643 67.035 66.2226 63.7999 66.2226 59.8089V23.6783"
+                    stroke="white"
+                    stroke-width="4"
+                  />
+                  <path
+                    d="M45.1585 67.0351V45.3567C45.1585 41.3657 42.1002 38.1306 38.3273 38.1306H31.4962C27.7235 38.1306 24.665 41.3657 24.665 45.3567V67.0351"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-miterlimit="16"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text"> Products</span>
+          </a>
 
-				<!--<a class="nav-link" th:href="@{/categories}">Categories</a>-->
-			</li>
+          <!--<a class="nav-link" th:href="@{/products}">Products</a>-->
+        </li>
 
+        <li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+          <a th:href="@{/customers}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="18"
+                  viewBox="0 0 34 38"
+                  fill="none"
+                >
+                  <path
+                    d="M2 35.0656V32.999C2 25.0095 8.7083 18.5328 16.9834 18.5328C25.2585 18.5328 31.9668 25.0095 31.9668 32.999V35.0656"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M16.9828 18.5328C21.7114 18.5328 25.5448 14.8317 25.5448 10.2664C25.5448 5.70099 21.7114 2 16.9828 2C12.2542 2 8.4209 5.70099 8.4209 10.2664C8.4209 14.8317 12.2542 18.5328 16.9828 18.5328Z"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Customers</span>
+          </a>
+          <!--<a class="nav-link" th:href="@{/customers}">Customers</a>-->
+        </li>
 
-			<li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-				<a th:href="@{/brands}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 46 48"
-								fill="none">
-								<path
-									d="M22.62 46.24C34.5603 46.24 44.24 36.1126 44.24 23.62C44.24 11.1273 34.5603 1 22.62 1C10.6796 1 1 11.1273 1 23.62C1 36.1126 10.6796 46.24 22.62 46.24Z"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M27.6652 39.454V35.2399C27.7192 34.5398 27.6265 33.8359 27.3928 33.1751C27.1593 32.5144 26.7902 31.9118 26.3105 31.4076C30.8362 30.8937 35.5926 29.1463 35.5926 21.1293C35.5921 19.0792 34.8181 17.1077 33.4306 15.623C34.0876 13.8294 34.0411 11.8469 33.3009 10.0873C33.3009 10.0873 31.6 9.57344 27.6652 12.2605C24.3616 11.3484 20.8795 11.3484 17.5759 12.2605C13.641 9.57344 11.9403 10.0873 11.9403 10.0873C11.2 11.8469 11.1535 13.8294 11.8105 15.623C10.4126 17.1187 9.63778 19.108 9.64855 21.1732C9.64855 29.1316 14.4049 30.879 18.9307 31.4515C18.4566 31.9507 18.0908 32.5461 17.8574 33.1989C17.624 33.8515 17.528 34.5468 17.5759 35.2399V39.454"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M17.5747 36.5175C13.2507 37.9464 9.64735 36.5175 7.48535 32.1125"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Brands</span>
-				</a>
-			</li>
+        <li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+          <a th:href="@{/shipping}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="18"
+                  viewBox="0 0 65 43"
+                  fill="none"
+                >
+                  <path
+                    d="M17.1022 40.8592C20.4384 40.8592 23.143 38.1827 23.143 34.8809C23.143 31.579 20.4384 28.9025 17.1022 28.9025C13.766 28.9025 11.0615 31.579 11.0615 34.8809C11.0615 38.1827 13.766 40.8592 17.1022 40.8592Z"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-miterlimit="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M47.3054 40.8592C50.6417 40.8592 53.3461 38.1827 53.3461 34.8809C53.3461 31.579 50.6417 28.9025 47.3054 28.9025C43.9691 28.9025 41.2646 31.579 41.2646 34.8809C41.2646 38.1827 43.9691 40.8592 47.3054 40.8592Z"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-miterlimit="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M38.2444 34.8809V3.7935C38.2444 2.80298 37.4331 2 36.4321 2H3.81222C2.81136 2 2 2.80298 2 3.7935V33.0874C2 34.078 2.81136 34.8809 3.81222 34.8809H10.004"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M38.2436 34.8809H23.293"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M38.2441 10.9675H55.1887C55.9048 10.9675 56.5539 11.3849 56.8447 12.0326L62.2509 24.0709C62.3539 24.3004 62.407 24.5485 62.407 24.7993V33.0874C62.407 34.078 61.5958 34.8809 60.5948 34.8809H54.8561"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M38.2441 34.8809H41.2645"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text"> Shipping</span>
+          </a>
+          <!--<a class="nav-link" th:href="@{/shipping}">Shipping</a>-->
+        </li>
 
+        <li sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Shipper')">
+          <a th:href="@{/orders}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="22"
+                  viewBox="0 0 53 62"
+                  fill="none"
+                >
+                  <path
+                    d="M44.1756 59.2004C46.172 59.2004 47.7906 57.2796 47.7906 54.9104C47.7906 52.5412 46.172 50.6204 44.1756 50.6204C42.1791 50.6204 40.5605 52.5412 40.5605 54.9104C40.5605 57.2796 42.1791 59.2004 44.1756 59.2004Z"
+                    fill="white"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M20.075 59.2004C22.0715 59.2004 23.69 57.2796 23.69 54.9104C23.69 52.5412 22.0715 50.6204 20.075 50.6204C18.0785 50.6204 16.46 52.5412 16.46 54.9104C16.46 57.2796 18.0785 59.2004 20.075 59.2004Z"
+                    fill="white"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9.23007 7.72005H50.2005L45.3804 39.1803H14.0501L9.23007 7.72005ZM9.23007 7.72005C8.82839 5.81336 6.82005 2 2 2"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M45.3805 39.1803H14.0502H9.7863C5.48607 39.1803 3.20508 41.4145 3.20508 44.9003C3.20508 48.3861 5.48607 50.6204 9.7863 50.6204H44.1755"
+                    stroke="white"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Orders</span>
+          </a>
 
-			<!--<a class="nav-link" th:href="@{/brands}">Brands</a>-->
+          <!--<a class="nav-link" th:href="@{/orders}">Orders</a>-->
+        </li>
 
-			<li sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Editor', 'Shipper')">
-				<a th:href="@{/products}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 71 70"
-								fill="none">
-								<path
-									d="M64.4631 2H50.8291L52.5369 20.0653C52.5369 20.0653 55.9525 23.6783 61.0758 23.6783C64.7544 23.6783 67.2591 21.8156 68.3794 20.7651C68.8258 20.3465 68.9891 19.7073 68.891 19.0847L66.4844 3.81144C66.3198 2.76615 65.4649 2 64.4631 2Z"
-									stroke="white" stroke-width="4" />
-								<path
-									d="M50.8291 2L52.5369 20.0653C52.5369 20.0653 49.1213 23.6783 43.9979 23.6783C38.8746 23.6783 35.459 20.0653 35.459 20.0653V2H50.8291Z"
-									stroke="white" stroke-width="4" />
-								<path
-									d="M35.4588 2V20.0653C35.4588 20.0653 32.0432 23.6783 26.9198 23.6783C21.7964 23.6783 18.3809 20.0653 18.3809 20.0653L20.0886 2H35.4588Z"
-									stroke="white" stroke-width="4" />
-								<path
-									d="M20.0894 2H6.45534C5.45355 2 4.59859 2.76615 4.43389 3.81144L2.02745 19.0848C1.92938 19.7073 2.09275 20.3465 2.53917 20.7651C3.65921 21.8156 6.16392 23.6783 9.8426 23.6783C14.966 23.6783 18.3816 20.0653 18.3816 20.0653L20.0894 2Z"
-									stroke="white" stroke-width="4" />
-								<path
-									d="M4.74219 23.6783V59.8089C4.74219 63.7999 7.8006 67.035 11.5733 67.035H59.3915C63.1643 67.035 66.2226 63.7999 66.2226 59.8089V23.6783"
-									stroke="white" stroke-width="4" />
-								<path
-									d="M45.1585 67.0351V45.3567C45.1585 41.3657 42.1002 38.1306 38.3273 38.1306H31.4962C27.7235 38.1306 24.665 41.3657 24.665 45.3567V67.0351"
-									stroke="white" stroke-width="4" stroke-miterlimit="16" />
-							</svg> </i></span>
-					<span class="text"> Products</span>
-				</a>
+        <li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+          <a th:href="@{/report}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="20"
+                  viewBox="0 0 36 41"
+                  fill="none"
+                >
+                  <path
+                    d="M17.62 0C16.2104 0 15.1029 1.10754 15.1029 2.51714V5.03429H11.3271C10.6223 5.03429 10.0686 5.58806 10.0686 6.29286V10.0686H25.1714V6.29286C25.1714 5.58806 24.6177 5.03429 23.9129 5.03429H20.1371V2.51714C20.1371 1.10754 19.0296 0 17.62 0ZM1.25857 5.03429C0.553771 5.03429 0 5.58806 0 6.29286V39.0157C0 39.7205 0.553771 40.2743 1.25857 40.2743H33.9814C34.6862 40.2743 35.24 39.7205 35.24 39.0157V6.29286C35.24 5.58806 34.6862 5.03429 33.9814 5.03429H30.2057V15.1029H5.03429V5.03429H1.25857Z"
+                    fill="white"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Sales Report</span>
+          </a>
 
-				<!--<a class="nav-link" th:href="@{/products}">Products</a>-->
-			</li>
+          <!--<a class="nav-link" th:href="@{/report}">Sales Report</a>-->
+        </li>
 
+        <li sec:authorize="hasAnyAuthority('Admin','Editor')">
+          <a th:href="@{/landing}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="18"
+                  viewBox="0 0 48 35"
+                  fill="none"
+                >
+                  <path
+                    d="M40.7235 2H6.84043C4.16713 2 2 3.56562 2 5.49691V29.9752C2 31.9066 4.16713 33.4722 6.84043 33.4722H40.7235C43.3968 33.4722 45.5639 31.9066 45.5639 29.9752V5.49691C45.5639 3.56562 43.3968 2 40.7235 2Z"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11.6807 8.99377H35.8828"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11.6807 17.7361H35.8828"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11.6807 26.4783H26.202"
+                    stroke="white"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Article</span>
+          </a>
 
-			<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
-				<a th:href="@{/customers}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 34 38"
-								fill="none">
-								<path
-									d="M2 35.0656V32.999C2 25.0095 8.7083 18.5328 16.9834 18.5328C25.2585 18.5328 31.9668 25.0095 31.9668 32.999V35.0656"
-									stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M16.9828 18.5328C21.7114 18.5328 25.5448 14.8317 25.5448 10.2664C25.5448 5.70099 21.7114 2 16.9828 2C12.2542 2 8.4209 5.70099 8.4209 10.2664C8.4209 14.8317 12.2542 18.5328 16.9828 18.5328Z"
-									stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Customers</span>
-				</a>
-				<!--<a class="nav-link" th:href="@{/customers}">Customers</a>-->
-			</li>
+          <!--<a class="nav-link" th:href="@{/articles}">Articles</a>-->
+        </li>
 
+        <li sec:authorize="hasAnyAuthority('Admin','Editor')">
+          <a th:href="@{/menus}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="22"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                >
+                  <path
+                    d="M1 6.88208V18.6463C1 18.6463 1 24.5284 15.4822 24.5284C29.9644 24.5284 29.9644 18.6463 29.9644 18.6463V6.88208"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M15.4822 1C29.9644 1 29.9644 6.88211 29.9644 6.88211C29.9644 6.88211 29.9644 12.7642 15.4822 12.7642C1 12.7642 1 6.88211 1 6.88211C1 6.88211 1 1 15.4822 1Z"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M15.4822 36.2926C1 36.2926 1 30.4105 1 30.4105V18.6463"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M32.0333 36.2926C34.3186 36.2926 36.1711 34.537 36.1711 32.3712C36.1711 30.2054 34.3186 28.4498 32.0333 28.4498C31.2796 28.4498 30.5731 28.6408 29.9644 28.9745C28.7276 29.6525 27.8955 30.9197 27.8955 32.3712C27.8955 33.8227 28.7276 35.0899 29.9644 35.768C30.5731 36.1017 31.2796 36.2926 32.0333 36.2926Z"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M32.0338 38.2533C35.4618 38.2533 38.2405 35.6199 38.2405 32.3712C38.2405 29.1226 35.4618 26.4891 32.0338 26.4891C28.6059 26.4891 25.8271 29.1226 25.8271 32.3712C25.8271 35.6199 28.6059 38.2533 32.0338 38.2533Z"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="1.05 7.03"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Menus</span>
+          </a>
 
-			<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
-				<a th:href="@{/shipping}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 65 43"
-								fill="none">
-								<path
-									d="M17.1022 40.8592C20.4384 40.8592 23.143 38.1827 23.143 34.8809C23.143 31.579 20.4384 28.9025 17.1022 28.9025C13.766 28.9025 11.0615 31.579 11.0615 34.8809C11.0615 38.1827 13.766 40.8592 17.1022 40.8592Z"
-									stroke="white" stroke-width="4" stroke-miterlimit="1.5" stroke-linecap="round"
-									stroke-linejoin="round" />
-								<path
-									d="M47.3054 40.8592C50.6417 40.8592 53.3461 38.1827 53.3461 34.8809C53.3461 31.579 50.6417 28.9025 47.3054 28.9025C43.9691 28.9025 41.2646 31.579 41.2646 34.8809C41.2646 38.1827 43.9691 40.8592 47.3054 40.8592Z"
-									stroke="white" stroke-width="4" stroke-miterlimit="1.5" stroke-linecap="round"
-									stroke-linejoin="round" />
-								<path
-									d="M38.2444 34.8809V3.7935C38.2444 2.80298 37.4331 2 36.4321 2H3.81222C2.81136 2 2 2.80298 2 3.7935V33.0874C2 34.078 2.81136 34.8809 3.81222 34.8809H10.004"
-									stroke="white" stroke-width="4" stroke-linecap="round" />
-								<path d="M38.2436 34.8809H23.293" stroke="white" stroke-width="4"
-									stroke-linecap="round" />
-								<path
-									d="M38.2441 10.9675H55.1887C55.9048 10.9675 56.5539 11.3849 56.8447 12.0326L62.2509 24.0709C62.3539 24.3004 62.407 24.5485 62.407 24.7993V33.0874C62.407 34.078 61.5958 34.8809 60.5948 34.8809H54.8561"
-									stroke="white" stroke-width="4" stroke-linecap="round" />
-								<path d="M38.2441 34.8809H41.2645" stroke="white" stroke-width="4"
-									stroke-linecap="round" />
-							</svg> </i></span>
-					<span class="text"> Shipping</span>
-				</a>
-				<!--<a class="nav-link" th:href="@{/shipping}">Shipping</a>-->
-			</li>
+          <!--<a class="nav-link" th:href="@{/menus}">Menus</a>-->
+        </li>
 
+        <li sec:authorize="hasAuthority('Admin')">
+          <a th:href="@{/settings}" class="logo" style="margin-bottom: 0px">
+            <span class="icon"
+              ><i class="fa-solid">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="22"
+                  viewBox="0 0 41 33"
+                  fill="none"
+                >
+                  <path
+                    d="M20.1198 20.656C23.2878 20.656 25.8558 18.6252 25.8558 16.12C25.8558 13.6148 23.2878 11.584 20.1198 11.584C16.9518 11.584 14.3838 13.6148 14.3838 16.12C14.3838 18.6252 16.9518 20.656 20.1198 20.656Z"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M34.694 13.6938L32.5952 9.68614L35.416 7.048L31.592 4.024L28.2741 6.26622L23.0985 4.58305L21.9083 1H18.1717L16.9635 4.63051L11.9068 6.31613L8.648 4.024L4.824 7.048L7.60284 9.75274L5.53622 13.7708L1 14.608V17.632L5.59092 18.6231L7.72211 22.6211L4.824 25.192L8.648 28.216L12.0727 26.0089L17.0551 27.6298L18.208 31.24H22.032L23.1878 27.6312L28.2558 25.9714C29.1005 26.4489 31.592 28.216 31.592 28.216L35.416 25.192L32.5784 22.5451L34.6778 18.5362L39.2398 17.5975L39.24 14.608L34.694 13.6938Z"
+                    stroke="white"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </i
+            ></span>
+            <span class="text">Setting</span>
+          </a>
 
-			<li sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Shipper')">
-				<a th:href="@{/orders}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 53 62"
-								fill="none">
-								<path
-									d="M44.1756 59.2004C46.172 59.2004 47.7906 57.2796 47.7906 54.9104C47.7906 52.5412 46.172 50.6204 44.1756 50.6204C42.1791 50.6204 40.5605 52.5412 40.5605 54.9104C40.5605 57.2796 42.1791 59.2004 44.1756 59.2004Z"
-									fill="white" stroke="white" stroke-width="4" stroke-linecap="round"
-									stroke-linejoin="round" />
-								<path
-									d="M20.075 59.2004C22.0715 59.2004 23.69 57.2796 23.69 54.9104C23.69 52.5412 22.0715 50.6204 20.075 50.6204C18.0785 50.6204 16.46 52.5412 16.46 54.9104C16.46 57.2796 18.0785 59.2004 20.075 59.2004Z"
-									fill="white" stroke="white" stroke-width="4" stroke-linecap="round"
-									stroke-linejoin="round" />
-								<path
-									d="M9.23007 7.72005H50.2005L45.3804 39.1803H14.0501L9.23007 7.72005ZM9.23007 7.72005C8.82839 5.81336 6.82005 2 2 2"
-									stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M45.3805 39.1803H14.0502H9.7863C5.48607 39.1803 3.20508 41.4145 3.20508 44.9003C3.20508 48.3861 5.48607 50.6204 9.7863 50.6204H44.1755"
-									stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Orders</span>
-				</a>
+          <!--<a class="nav-link" th:href="@{/settings}">Settings</a>-->
+        </li>
 
-				<!--<a class="nav-link" th:href="@{/orders}">Orders</a>-->
-			</li>
-
-
-
-			<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
-				<a th:href="@{/report}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 36 41"
-								fill="none">
-								<path
-									d="M17.62 0C16.2104 0 15.1029 1.10754 15.1029 2.51714V5.03429H11.3271C10.6223 5.03429 10.0686 5.58806 10.0686 6.29286V10.0686H25.1714V6.29286C25.1714 5.58806 24.6177 5.03429 23.9129 5.03429H20.1371V2.51714C20.1371 1.10754 19.0296 0 17.62 0ZM1.25857 5.03429C0.553771 5.03429 0 5.58806 0 6.29286V39.0157C0 39.7205 0.553771 40.2743 1.25857 40.2743H33.9814C34.6862 40.2743 35.24 39.7205 35.24 39.0157V6.29286C35.24 5.58806 34.6862 5.03429 33.9814 5.03429H30.2057V15.1029H5.03429V5.03429H1.25857Z"
-									fill="white" />
-							</svg> </i></span>
-					<span class="text">Sales Report</span>
-				</a>
-
-				<!--<a class="nav-link" th:href="@{/report}">Sales Report</a>-->
-			</li>
-
-
-			<li sec:authorize="hasAnyAuthority('Admin','Editor')">
-				<a th:href="@{/landing}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 48 35"
-								fill="none">
-								<path
-									d="M40.7235 2H6.84043C4.16713 2 2 3.56562 2 5.49691V29.9752C2 31.9066 4.16713 33.4722 6.84043 33.4722H40.7235C43.3968 33.4722 45.5639 31.9066 45.5639 29.9752V5.49691C45.5639 3.56562 43.3968 2 40.7235 2Z"
-									stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M11.6807 8.99377H35.8828" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M11.6807 17.7361H35.8828" stroke="white" stroke-width="3"
-									stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M11.6807 26.4783H26.202" stroke="white" stroke-width="3" stroke-linecap="round"
-									stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Article</span>
-				</a>
-
-				<!--<a class="nav-link" th:href="@{/articles}">Articles</a>-->
-			</li>
-
-
-			<li sec:authorize="hasAnyAuthority('Admin','Editor')">
-				<a th:href="@{/menus}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 40 40"
-								fill="none">
-								<path
-									d="M1 6.88208V18.6463C1 18.6463 1 24.5284 15.4822 24.5284C29.9644 24.5284 29.9644 18.6463 29.9644 18.6463V6.88208"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M15.4822 1C29.9644 1 29.9644 6.88211 29.9644 6.88211C29.9644 6.88211 29.9644 12.7642 15.4822 12.7642C1 12.7642 1 6.88211 1 6.88211C1 6.88211 1 1 15.4822 1Z"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path d="M15.4822 36.2926C1 36.2926 1 30.4105 1 30.4105V18.6463" stroke="white"
-									stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M32.0333 36.2926C34.3186 36.2926 36.1711 34.537 36.1711 32.3712C36.1711 30.2054 34.3186 28.4498 32.0333 28.4498C31.2796 28.4498 30.5731 28.6408 29.9644 28.9745C28.7276 29.6525 27.8955 30.9197 27.8955 32.3712C27.8955 33.8227 28.7276 35.0899 29.9644 35.768C30.5731 36.1017 31.2796 36.2926 32.0333 36.2926Z"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M32.0338 38.2533C35.4618 38.2533 38.2405 35.6199 38.2405 32.3712C38.2405 29.1226 35.4618 26.4891 32.0338 26.4891C28.6059 26.4891 25.8271 29.1226 25.8271 32.3712C25.8271 35.6199 28.6059 38.2533 32.0338 38.2533Z"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-									stroke-dasharray="1.05 7.03" />
-							</svg> </i></span>
-					<span class="text">Menus</span>
-				</a>
-
-				<!--<a class="nav-link" th:href="@{/menus}">Menus</a>-->
-			</li>
-
-
-			<li sec:authorize="hasAuthority('Admin')">
-				<a th:href="@{/settings}" class="logo" style="margin-bottom: 0px">
-					<span class="icon"><i class="fa-solid">
-							<svg xmlns="http://www.w3.org/2000/svg" width="30" height="22" viewBox="0 0 41 33"
-								fill="none">
-								<path
-									d="M20.1198 20.656C23.2878 20.656 25.8558 18.6252 25.8558 16.12C25.8558 13.6148 23.2878 11.584 20.1198 11.584C16.9518 11.584 14.3838 13.6148 14.3838 16.12C14.3838 18.6252 16.9518 20.656 20.1198 20.656Z"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-								<path
-									d="M34.694 13.6938L32.5952 9.68614L35.416 7.048L31.592 4.024L28.2741 6.26622L23.0985 4.58305L21.9083 1H18.1717L16.9635 4.63051L11.9068 6.31613L8.648 4.024L4.824 7.048L7.60284 9.75274L5.53622 13.7708L1 14.608V17.632L5.59092 18.6231L7.72211 22.6211L4.824 25.192L8.648 28.216L12.0727 26.0089L17.0551 27.6298L18.208 31.24H22.032L23.1878 27.6312L28.2558 25.9714C29.1005 26.4489 31.592 28.216 31.592 28.216L35.416 25.192L32.5784 22.5451L34.6778 18.5362L39.2398 17.5975L39.24 14.608L34.694 13.6938Z"
-									stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-							</svg> </i></span>
-					<span class="text">Setting</span>
-				</a>
-
-				<!--<a class="nav-link" th:href="@{/settings}">Settings</a>-->
-			</li>
-
-			<!--<li>
+        <!--<li>
 					<span class="fas fa-user fa-2x icon-silver"></span>
 				</li>-->
-			<!--<li class="nav-item dropdown">
+        <!--<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 						sec:authentication="principal.fullname"></a>
 					<div class="dropdown-menu">
@@ -293,24 +538,21 @@
 						<a class="dropdown-item" id="logoutLink" href="">Logout</a>
 					</div>
 				</li>-->
-		</ul>
-	</nav>
+      </ul>
+    </nav>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var stickySidebarTop = $(".sidebar").offset().top;
 
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function () {
-		var stickySidebarTop = $('.sidebar').offset().top;
-
-		$(window).scroll(function () {
-			if ($(window).scrollTop() > stickySidebarTop) {
-				$('.sidebar').css({position: 'fixed', top: '0'});
-			}
-			else {
-				$('.sidebar').css({position: 'static', top: '0'});
-			}
-		});
-	});
-</script>
-
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > stickySidebarTop) {
+          $(".sidebar").css({ position: "fixed", top: "0" });
+        } else {
+          $(".sidebar").css({ position: "static", top: "0" });
+        }
+      });
+    });
+  </script>
 </html>

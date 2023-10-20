@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.pethub.admin.paging.PagingAndSortingHelper;
-import com.pethub.common.entity.Product;
+import com.pethub.common.entity.product.Product;
 import com.pethub.common.exception.ProductNotFoundException;
 
 import jakarta.transaction.Transactional;

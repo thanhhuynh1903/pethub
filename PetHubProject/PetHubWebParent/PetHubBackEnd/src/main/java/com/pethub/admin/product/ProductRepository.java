@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.pethub.common.entity.Product;
+import com.pethub.common.entity.product.Product;
 
 public interface ProductRepository
 		extends PagingAndSortingRepository<Product, Integer>, CrudRepository<Product, Integer> {

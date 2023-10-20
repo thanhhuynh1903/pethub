@@ -1,4 +1,4 @@
-package com.pethub.common.entity;
+package com.pethub.common.entity.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.pethub.common.entity.Product;
+import com.pethub.common.entity.product.Product;
 import com.pethub.common.exception.ProductNotFoundException;
 
 @Service

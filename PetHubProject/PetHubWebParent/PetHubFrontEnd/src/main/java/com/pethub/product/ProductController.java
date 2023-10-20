@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pethub.category.CategoryService;
 import com.pethub.common.entity.Category;
-import com.pethub.common.entity.Product;
+import com.pethub.common.entity.product.Product;
 import com.pethub.common.exception.CategoryNotFoundException;
 import com.pethub.common.exception.ProductNotFoundException;
 

@@ -3,6 +3,7 @@ body {
 	margin: 0;
 	background-color: #f5f5fa;
 	box-sizing: border-box;
+	font-size: 16px !important;
 }
 
 i {
@@ -13,35 +14,27 @@ i {
 }
 
 .header-nav {
-	padding-bottom: 2px;
 	transform: translateX(30%);
-	width: 100%;
 }
 
 .header-nav .item a,
 .item-left .item a {
-
 	text-decoration: none;
-	display: flex;
 	color: #808089;
 }
 
 .header-nav .item a span {
 	transform: translateY(25%);
 }
-.header-nav .container-item:hover{
-	border-radius: 10px ;
+
+.header-nav .container-item:hover {
+	border-radius: 10px;
 	background-color: rgb(224, 224, 224);
 }
 
-
-.navbar {
-	padding: 0px 64px !important;
-
-}
-
-#home.active , #home.active i{
-    color:#0068ff;
+#home.active,
+#home.active i {
+	color: #0068ff;
 }
 
 
@@ -55,13 +48,6 @@ i {
 	color: #BAD7E9;
 }
 
-
-.item {
-	padding-right: 10px;
-	width: 100%;
-	display: flex;
-}
-
 .box {
 	border-radius: 20px;
 	min-width: 400px;
@@ -70,19 +56,19 @@ i {
 
 }
 
-.search{
+.search {
 	min-width: 600px;
 }
 
 .search input {
-	padding-left:10px ;
+	padding-left: 10px;
 	border: 1px solid rgb(192, 192, 192);
 	border-radius: 8px 0px 0px 8px;
 }
 
-.search input:focus{
+.search input:focus {
 	outline-color: #3b7dff;
-	padding-left:10px ;
+	padding-left: 10px;
 	border: 1px solid rgb(192, 192, 192);
 	border-radius: 8px 0px 0px 8px;
 }
@@ -98,7 +84,7 @@ i {
 .search button:focus {
 	color: white;
 	outline-color: #6499E9;
-	background-color:#6499E9;
+	background-color: #6499E9;
 	max-width: 100px;
 	text-align: center;
 	border: 1px solid rgb(192, 192, 192);
@@ -107,4 +93,80 @@ i {
 
 .item-left {
 	width: 30%;
+}
+
+.search-button {
+	background-color: #FFFFFF;
+	border-radius: 0 8px 8px 0;
+	height: 46px;
+}
+
+.search-button:hover,
+.search-button:focus {
+	background-color: #CEE1FF;
+}
+
+.w-10 {
+	width: 10%;
+}
+
+.w-15 {
+	width: 15%;
+}
+
+.w-40 {
+	width: 35%;
+}
+
+.w-60 {
+	width: 60%;
+}
+
+.w-85 {
+	width: 85%;
+}
+
+.w-90 {
+	width: 90%;
+}
+
+.search-input {
+	border: 0;
+	border-right: 1px solid rgb(221, 221, 227);
+	border-radius: 8px 0 0 8px;
+	height: 30px;
+}
+
+.search-input:hover,
+.search-input:focus {
+	outline: none !important;
+}
+
+.search-container {
+	border: 1px solid rgb(221, 221, 227);
+	border-radius: 8px;
+}
+
+.search-container:hover,
+.search-container:focus {
+	border: 1px solid #6499E9;
+}
+
+.nav-last-item {
+	border-left: 1px solid rgb(221, 221, 227);
+	padding-left: 10px;
+}
+
+.nav-item a {
+	padding: 10px 20px !important;
+	border-radius: 8px;
+}
+
+.nav-link:hover {
+	background-color: #CBCBCC;
+	cursor: pointer;
+}
+
+.nav-item .active:hover {
+	background-color: #C2D9FF;
 }

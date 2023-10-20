@@ -1,11 +1,12 @@
 .register-container {
 	background-color: #F5F5FA;
 }
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-size: 13px;
+	font-size: 16px;
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
@@ -33,4 +34,8 @@
 
 .w-47 {
 	width: 47%;
+}
+
+.form-container .btn-register {
+	border-radius: 30px;
 }

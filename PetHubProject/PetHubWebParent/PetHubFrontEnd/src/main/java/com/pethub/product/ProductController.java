@@ -104,4 +104,71 @@ public class ProductController {
 
 		return "product/search_result";
 	}
+
+	@GetMapping("/c/{category_alias}/sort/asc")
+	public String viewCategoryByPagePriceAsc(@PathVariable("category_alias") String alias, Model model) {
+		try {
+			Category category = categoryService.getCategory(alias);
+
+			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
+			Page<Product> pageProducts = productService.listByCategoryPriceAsc(1, category.getId());
+			List<Product> listProducts = pageProducts.getContent();
+
+			model.addAttribute("currentPage", 1);
+			model.addAttribute("totalPages", pageProducts.getTotalPages());
+			model.addAttribute("totalItems", pageProducts.getTotalElements());
+			model.addAttribute("pageTitle", category.getName());
+			model.addAttribute("listCategoryParents", listCategoryParents);
+			model.addAttribute("listProducts", listProducts);
+			model.addAttribute("category", category);
+			return "product/products_by_category";
+		} catch (CategoryNotFoundException ex) {
+			return "error/404";
+		}
+	}
+
+	@GetMapping("/c/{category_alias}/sort/desc")
+	public String viewCategoryByPagePriceDesc(@PathVariable("category_alias") String alias, Model model) {
+		try {
+			Category category = categoryService.getCategory(alias);
+
+			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
+			Page<Product> pageProducts = productService.listByCategoryPriceDesc(1, category.getId());
+			List<Product> listProducts = pageProducts.getContent();
+
+			model.addAttribute("currentPage", 1);
+			model.addAttribute("totalPages", pageProducts.getTotalPages());
+			model.addAttribute("totalItems", pageProducts.getTotalElements());
+			model.addAttribute("pageTitle", category.getName());
+			model.addAttribute("listCategoryParents", listCategoryParents);
+			model.addAttribute("listProducts", listProducts);
+			model.addAttribute("category", category);
+			return "product/products_by_category";
+		} catch (CategoryNotFoundException ex) {
+			return "error/404";
+		}
+	}
+
+	@GetMapping("/c/{category_alias}/sort/latest")
+	public String viewCategoryByPageLatest(@PathVariable("category_alias") String alias, Model model) {
+		try {
+			Category category = categoryService.getCategory(alias);
+
+			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
+			Page<Product> pageProducts = productService.listByCategoryLatest(1, category.getId());
+			List<Product> listProducts = pageProducts.getContent();
+
+			model.addAttribute("currentPage", 1);
+			model.addAttribute("totalPages", pageProducts.getTotalPages());
+			model.addAttribute("totalItems", pageProducts.getTotalElements());
+			model.addAttribute("pageTitle", category.getName());
+			model.addAttribute("listCategoryParents", listCategoryParents);
+			model.addAttribute("listProducts", listProducts);
+			model.addAttribute("category", category);
+			return "product/products_by_category";
+		} catch (CategoryNotFoundException ex) {
+			return "error/404";
+		}
+	}
+
 }

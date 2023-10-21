@@ -4,7 +4,7 @@ a {
 }
 
 form {
-	max-width: 70%;
+	max-width: 100%;
 	margin: 0 auto;
 	background: white;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -30,3 +30,4 @@ form ul li a {
 form ul li a:hover {
 	color: white;
 }
+

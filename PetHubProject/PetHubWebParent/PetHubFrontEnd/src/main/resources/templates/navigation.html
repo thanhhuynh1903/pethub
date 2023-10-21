@@ -171,8 +171,8 @@
 		<div class="d-flex justify-content-between py-2 align-items-center product-container__header">
 			<div class="px-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<input role="button" class="btn btn-primary mx-3" value="Latest" href="#"
-					th:href="@{'/c/'+${category.alias}+'/sort/latest'}" />
+				<a role="button" class="btn btn-primary mx-3"
+					th:href="@{'/c/'+${category.alias}+'/sort/latest'}">Lastest</a>
 				<input role="button" class="btn btn-primary mr-3" value="Top Sales" />
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"

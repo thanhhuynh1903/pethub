@@ -484,3 +484,29 @@ label {
 }*/
 
 
+.message-alert {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: -3px;
+  -webkit-animation: run 0.5s linear forwards, hidden 0s ease-in 2s forwards;
+}
+@-webkit-keyframes run {
+    0% {
+		top: 10%;
+        right: 0;
+    }
+    100% {
+		top: 10%; 
+        right: 60%; 
+       
+    }
+}
+
+@-webkit-keyframes hidden {
+    to {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+}

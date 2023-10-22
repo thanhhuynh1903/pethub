@@ -2,15 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-    <head th:replace="~{fragments :: page_head(${pageTitle}, 'tag')}" />
-    <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
-    <script th:src="@{/richtext/jquery.richtext.min.js}"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/style-product.css}"
-    />
-  </head>
+
+	<head th:replace="~{fragments :: page_head(${pageTitle}, 'tag')}" />
+	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
+	<script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+</head>
 
 
 <body>
@@ -19,34 +16,50 @@
 			<div class="d-flex w-100">
 
 				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
-				<div th:if="${message != null}" class="alert alert-success text-center"
+				<!--<div th:if="${message != null}" class="alert alert-success text-center"
 					style="width: 89%;margin: 0 auto;">
 					[[${message}]]
-				</div>
+				</div>-->
 				<div class="d-flex flex-column" style="width: 100%;">
 					<div th:replace="~{navigation :: menu}"></div>
 					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
-						<div class="main-content-container">
+						<div c	lass="main-content-container">
 							<div style="margin-top: 3rem;">
 								<div class="d-flex justify-content-between w-100">
 									<h2 style="color: #494A6B; font-size: 26px;">Manage Products</h2>
-									<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-										<a th:href="@{/products/new}"
-											class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
-											style="background: #4E73DF;color: white; height: 30px; border: none;
-										padding: 22px 16px; border-radius: 10px;">
-											<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"></i>
-											<span>Create</span>
-										</a>
-									</th:block>
 								</div>
 								<div class="w-100 table-container">
 									<div class="table-title w-100">
 										<div class="d-flex w-100 align-items-center">
-											<div class="col-sm-9">
+											<div class="col-sm-3 d-flex">
+												<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+													<a th:href="@{/products/new}"
+														class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+														style="background: #4E73DF;color: white; height: 30px; border: none;
+										padding: 22px 16px; border-radius: 10px;">
+														<i
+															class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"></i>
+														<span>Create</span>
+													</a>
+												</th:block>
+											</div>
+
+											<div class="col-sm-9 d-flex justify-content-end">
 												<div>
+
 													<form th:action="@{/products/page/1}" class="form-inline"
 														id="searchForm">
+														<select class="form-control m-3" name="categoryId"
+															id="dropdownCategory">
+															<option value="0" style="font-size: 14px;"> All Categories
+															</option>
+															<th:block th:each="cat:${listCategories}">
+																<option th:value="${cat.id}"
+																	th:selected="(${categoryId} == ${cat.id})">
+																	[[${cat.name}]]
+																</option>
+															</th:block>
+														</select>
 														<input type="hidden" name="sortField" th:value="${sortField}"
 															required />
 														<input type="hidden" name="sortDir" th:value="${sortDir}"
@@ -59,18 +72,15 @@
 																class="btn btn-primary w-25"
 																style="margin-left: 0; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
 														</div>
-														<select class="form-control m-3" name="categoryId"
-															id="dropdownCategory">
-															<option value="0" style="font-size: 14px;"> All Categories
-															</option>
-															<th:block th:each="cat:${listCategories}">
-																<option th:value="${cat.id}"
-																	th:selected="(${categoryId} == ${cat.id})">
-																	[[${cat.name}]]
-																</option>
-															</th:block>
-														</select>
+
 													</form>
+													<!--message begin-->
+
+													<div th:if="${message != null}"
+														class="alert alert-success text-center message-alert">
+														[[${message}]]
+													</div>
+													<!--end message-->
 												</div>
 											</div>
 										</div>

@@ -22,7 +22,8 @@
 								<div class="w-100 table-container">
 									<div class="table-title w-100">
 										<div class="d-flex w-100">
-											<div class="d-flex w-100 align-items-center">
+											<div class="d-flex w-100 align-items-center mb-2">
+							
 											<div class="col-sm-3 d-flex">
 												<a th:href="@{/categories/new}"
 													class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
@@ -86,7 +87,7 @@
 								</div>
 							</div>
 							<!--end table-->
-
+							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 							<div th:if="${keyword !=null}" class="text-center">
 								<span>Search result does not show categories in hierachical form.</span>
 								<div th:replace="~{fragments :: pagination('categories')}"></div>
@@ -97,7 +98,7 @@
 								</div>
 							</th:block>
 
-							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
+							
 
 						</div>
 					</div>

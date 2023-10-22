@@ -482,7 +482,9 @@ label {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }*/
-
+footer{
+	background-color: inherit!important;
+}
 
 .message-alert {
   position: absolute;

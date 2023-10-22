@@ -68,7 +68,7 @@
 													<td>[[${customer.city}]]</td>
 													<td>[[${customer.state}]]</td>
 													<td>[[${customer.country.name}]]</td>
-													<td>
+													<td style="padding-top: 0px;">
 														<div
 															th:replace="~{fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})}" />
 													</td>

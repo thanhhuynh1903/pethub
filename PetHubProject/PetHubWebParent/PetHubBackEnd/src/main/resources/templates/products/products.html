@@ -121,7 +121,7 @@
 											<td>[[${product.brand.name}]]</td>
 											<td>[[${product.category.name}]]</td>
 											<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-												<td>
+												<td style="padding-top: 0px;">
 													<div
 														th:replace="~{fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})}" />
 												</td>

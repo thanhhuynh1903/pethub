@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head('User - PetHub Admin','none')}" />
+<head>
+
+	<head th:replace="~{fragments :: page_head(${pageTitle}, 'tag')}" />
+	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
+	<script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+</head>
 
 <body class="w-100">
 	<div class="container-fluid bg-admin">
@@ -126,22 +132,16 @@
 						</div>
 
 </body>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$(".link-delete").on("click", function (e) {
-			e.preventDefault();
-			link = $(this);
-			//alert($(this).attr("href"));
-			userId = link.attr("userId");
-			$("#yesButton").attr("href", link.attr("href"));
-			$("#confirmText").text("Are you sure you want to delete this user ID: " + userId + "?");
-			$("#confirmModal").modal();
-		});
-	});
+<script th:src="@{/js/common_list.js}"></script>
+    <script type="text/javascript">
+        moduleURL = "[[@{/users}]]";
 
-	function clearFilter() {
-		window.location = "[[@{/users}]]";
-	}
-</script>
+        $(document).ready(function () {
+            $(".link-delete").on("click", function (e) {
+                e.preventDefault();
+                showDeleteConfirmModal($(this), 'user');
+            });
+        });
+    </script>
 
 </html>

@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head th:replace="~{fragments :: page_head('Products - PetHub Admin','none')}" />
+<head>
+    <head th:replace="~{fragments :: page_head(${pageTitle}, 'tag')}" />
+    <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
+    <script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/style-product.css}"
+    />
+  </head>
 
 
 <body>
@@ -36,7 +45,7 @@
 										<div class="d-flex w-100 align-items-center">
 											<div class="col-sm-9">
 												<div>
-													<form th:action="@{/products/page/1}" class="form-inline m-3"
+													<form th:action="@{/products/page/1}" class="form-inline"
 														id="searchForm">
 														<input type="hidden" name="sortField" th:value="${sortField}"
 															required />
@@ -95,7 +104,6 @@
 												<!--Khong sua class= link-detail thanh cai khac
 							Khong sua class= link-detail thanh cai khac-->
 												<a class="link-detail" th:href="@{'/products/detail/' +${product.id}}"
-													style="font-size: 16px;"
 													th:title="${product.name}">[[${product.shortName}]]</a>
 												<!--Khong sua class= link-detail thanh cai khac
 							Khong sua class= link-detail thanh cai khac-->
@@ -136,7 +144,7 @@
 								</table>
 							</div>
 							<!--end table-->
-
+							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 							<!--No edit-->
 							<div class="modal fade" id="detailModal">
 								<div class="modal-dialog modal-xl">
@@ -147,8 +155,6 @@
 							<!--No edit-->
 							<div th:replace="~{fragments :: pagination('products')}"></div>
 
-
-							<div th:replace="~{modal_fragments :: confirm_modal}"></div>
 						</div>
 					</div>
 					<div class="w-100 mt-auto">
@@ -183,6 +189,6 @@
 			});
 		});
 	</script>
-</body>
+
 
 </html>

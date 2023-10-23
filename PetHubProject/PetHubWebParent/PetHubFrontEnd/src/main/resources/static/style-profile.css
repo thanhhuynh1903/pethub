@@ -1,0 +1,59 @@
+body {
+	background-color: #E9ECEF !important;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.modal-account-container {
+	width: 60%;
+	border-radius: 12px;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+
+.modal-account-container .title-header {
+	font-size: 19px;
+	color: #64646D;
+}
+
+.modal-account-container .left-container, .modal-account-container .right-container {
+	padding: 0 10px;
+}
+
+.form-account-container .form-tittle .facebook{
+	color: #000000;
+}
+
+.form-account-container .form-tittle .google img {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+}
+
+.btn-account-unlinked, .btn-account-linked {
+	width: 90px !important;
+	height:36px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn-account-linked {
+	background-color: #F0F0F0 !important;
+	border-color: #F0F0F0 !important;
+}
+.btn-account-linked:hover {
+	color: blue !important;
+}
+
+@media screen and (max-width: 1000px) {
+	.modal-account-container {
+	width: 80%;
+}
+
+}

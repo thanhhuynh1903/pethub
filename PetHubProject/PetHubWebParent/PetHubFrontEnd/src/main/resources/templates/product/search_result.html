@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head th:replace="~{fragments :: page_head(${pageTitle},'none')}" />
+<head>
+
+	<head th:replace="~{fragments :: page_head(${pageTitle},'none')}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-main-homepage.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: header_menu}"></div>
-		<div th:replace="~{navigation :: search_nav}"></div>
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}"></div>
 
-		<div th:if="${totalItem > 0}">
-			<h1>Search Results for '[[${keyword}]]'</h1>
-		</div>
-		<div th:unless="${totalItem > 0}">
-			<h3>No match found for '[[${keyword}]]'</h3>
-		</div>
+			<!--content start-->
+			<div>
+				<div th:if="${totalItem > 0}">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a th:href="@{/}" class="text-decoration-none">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Search Results for: '[[${keyword}]]'
+							</li>
+						</ol>
+					</nav>
+				</div>
+				<div th:unless="${totalItem > 0}">
+					<div class="w-100 d-flex flex-column align-items-center">
+						<img alt="Search results" th:src="@{/images/search-results.png}" width="150px">
+						<h3>No match found for '[[${keyword}]]'</h3>
+					</div>
+				</div>
 
-		<div class="row">
-			<th:block th:each="product : ${listResult}">
-				<div th:replace="~{product/product_fragment :: content}" />
-			</th:block>
-		</div>
+				<div class="row">
+					<th:block th:each="product : ${listResult}">
+						<div th:replace="~{product/product_fragment :: content}" />
+					</th:block>
+				</div>
+				<div class="px-5">
+					<div th:replace="~{fragments :: pagination('/search', 'product')}"></div>
+				</div>
+			</div>
+			<!--content end-->
 
-		<div th:replace="~{fragments :: pagination('/search', 'product')}"></div>
-		<div th:replace="~{navigation :: footer_menu}"></div>
+			<div th:replace="~{navigation :: footer_menu}"></div>
+		</div>
 	</div>
 </body>
 

@@ -8,7 +8,7 @@ body {
 }
 
 .modal-account-container {
-	width: 80%;
+	width: 60%;
 	border-radius: 12px;
 	justify-content: center;
 	align-items: center;
@@ -49,4 +49,11 @@ body {
 }
 .btn-account-linked:hover {
 	color: blue !important;
+}
+
+@media screen and (max-width: 1000px) {
+	.modal-account-container {
+	width: 80%;
+}
+
 }

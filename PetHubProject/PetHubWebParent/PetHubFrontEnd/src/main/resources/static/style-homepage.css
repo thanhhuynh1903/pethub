@@ -99,7 +99,7 @@ i {
 .search-button {
 	background-color: #FFFFFF;
 	border-radius: 0 8px 8px 0;
-	height: 46px;
+	height: 36px;
 }
 
 .search-button:hover,
@@ -176,9 +176,19 @@ i {
 	font-size: 20px ;
 }
 
+.text-descript {
+	font-size: 13px;
+}
+
+.search-nav-item-box-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
 @media screen and (max-width: 1250px) {
 	.search {
-		width: 500px;
+		width: 400px;
 	}
 	.nav-general > *, .nav-general {
 	font-size: 19px ;
@@ -186,12 +196,40 @@ i {
 
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1150px) {
 	.search {
-		width: 500px;
+		width: 200px;
 	}
 	.nav-general > *, .nav-general {
 	font-size: 18px;
 }
+.text-descript {
+	font-size: 10x;
+}
+
+}
+
+@media screen and (max-width: 960px) {
+	.search {
+		width: 400px;
+	}
+	
+	.search-nav-item-box-container {
+		display: block;
+	width: fit-content;
+}
+.nav-last-item {
+	border: none;
+	padding: 0;
+}
+.navbar {
+	align-items: start !important;
+}
+}
+
+@media screen and (max-width: 677px) {
+	.search {
+		width: 200px;
+	}
 
 }

@@ -18,4 +18,20 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "MATCH(name, short_description, full_description) AGAINST (?1)", nativeQuery = true)
 	public Page<Product> search(String keyword, Pageable pageable);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled = true "
+			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)"
+			+ " ORDER BY p.price ASC")
+	public Page<Product> listByCategoryPriceAsc(Integer categoryId, String categoryIDMatch, Pageable pageable);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled = true "
+			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)"
+			+ " ORDER BY p.price DESC")
+	public Page<Product> listByCategoryPriceDesc(Integer categoryId, String categoryIDMatch, Pageable pageable);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled = true "
+			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)"
+			+ " ORDER BY p.createdTime DESC")
+	public Page<Product> listByCategoryLatest(Integer categoryId, String categoryIDMatch, Pageable pageable);
+
 }

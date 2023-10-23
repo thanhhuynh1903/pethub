@@ -19,7 +19,7 @@
 								<div class="w-100 table-container">
 									<div class="table-title w-100">
 										<div class="d-flex w-100">
-											<div class="col-sm-9">
+											<div class="col-sm-12 d-flex justify-content-end">
 												<div>
 													<div th:replace="~{fragments :: search_form_and_message}" />
 												</div>
@@ -68,13 +68,13 @@
 													<td>[[${customer.city}]]</td>
 													<td>[[${customer.state}]]</td>
 													<td>[[${customer.country.name}]]</td>
-													<td>
+													<td style="padding-top: 0px;">
 														<div
 															th:replace="~{fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})}" />
 													</td>
 													<td><a class="fas fa-file-alt fa-2x icon-green link-detail"
-															th:href="@{'/customers/detail/' + ${customer.id}}"
-															title="View details of this customer"></a>
+															th:href="@{'/customers/detail/' + ${customer.id}}" 
+															title="View details of this customer" style="font-size: 24px;color: #A7B9EF;"></a>
 														&nbsp;
 														<div
 															th:replace="~{fragments :: edit('customer', '/customers/edit/' + ${customer.id})}" />

@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head('User - PetHub Admin','none')}" />
+<head>
+
+	<head th:replace="~{fragments :: page_head(${pageTitle}, 'tag')}" />
+	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
+	<script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+</head>
 
 <body class="w-100">
 	<div class="container-fluid bg-admin">
@@ -14,36 +20,52 @@
 						<div style="margin-top: 3rem;">
 							<div class="d-flex justify-content-between w-100">
 								<h2 style="color: #494A6B; font-size: 26px;">Manage Users</h2>
-								<a th:href="@{/users/new}"
-									class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
-									style="background: #4E73DF;color: white; height: 30px; border: none; padding: 22px 16px; border-radius: 10px;">
-									<i class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"></i>
-									<span>Create</span></a>
 							</div>
-							<div th:if="${message != null}" class="alert alert-success text-center"
+
+
+							<!--<div th:if="${message != null}" class="alert alert-success text-center"
 								style="width: 100%;margin: 0 auto;">
 								[[${message}]]
-							</div>
+							</div>-->
 							<div class="w-100 table-container">
 								<div class="table-title w-100">
 									<div class="d-flex w-100">
-										<div class="col-sm-6">
-											<div>
-												<form th:action=" @{/users/page/1}" class="form-inline m-1">
-													<input type="hidden" name="sortField" th:value="${sortField}"
-														required />
-													<input type="hidden" name="sortDir" th:value="${sortDir}"
-														required />
-													<div class="d-flex">
-														<input type="search" name="keyword" th:value="${keyword}"
-															class="form-control py-2 rounded w-75"
-															style="border-radius: 6px 0 0 6px !important;" />
-														<input type="submit" value="Search" class="btn btn-primary w-25"
-															style="margin-left: 0; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
-													</div>
-													<!--<input type="button" value="Clear" class="btn btn-dark"
+										<div class="d-flex w-100 align-items-center">
+											<div class="col-sm-3 d-flex">
+												<a th:href="@{/users/new}"
+													class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+													style="background: #4E73DF;color: white; height: 30px; border: none; padding: 22px 16px; border-radius: 10px;">
+													<i
+														class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"></i>
+													<span>Create</span></a>
+											</div>
+											<div class="col-sm-9 d-flex justify-content-end">
+												<div>
+													<form th:action=" @{/users/page/1}" class="form-inline m-1">
+														<input type="hidden" name="sortField" th:value="${sortField}"
+															required />
+														<input type="hidden" name="sortDir" th:value="${sortDir}"
+															required />
+														<div class="d-flex">
+															<input type="search" name="keyword" th:value="${keyword}"
+																class="form-control py-2 rounded w-75"
+																style="border-radius: 6px 0 0 6px !important;" />
+															<input type="submit" value="Search"
+																class="btn btn-primary w-25"
+																style="margin-left: 0; border-radius: 0 6px 6px 0; background-color: #4E73DF;" />
+														</div>
+														<!--<input type="button" value="Clear" class="btn btn-dark"
 												style="background:#343a40;" onclick="clearFilter()" />-->
-												</form>
+												
+													</form>
+													<!--message begin-->
+
+													<div th:if="${message != null}"
+														class="alert alert-success text-center message-alert">
+														[[${message}]]
+													</div>
+													<!--end message-->
+												</div>
 											</div>
 										</div>
 									</div>
@@ -85,7 +107,7 @@
 											<td>[[${user.firstName}]]</td>
 											<td>[[${user.lastName}]]</td>
 											<td>[[${user.roles}]]</td>
-											<td>
+											<td style="padding-top: 0px;">
 												<div
 													th:replace="~{fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})}" />
 											</td>
@@ -110,22 +132,16 @@
 						</div>
 
 </body>
-<script type="text/javascript">
-	$(document).ready(function () {
-		$(".link-delete").on("click", function (e) {
-			e.preventDefault();
-			link = $(this);
-			//alert($(this).attr("href"));
-			userId = link.attr("userId");
-			$("#yesButton").attr("href", link.attr("href"));
-			$("#confirmText").text("Are you sure you want to delete this user ID: " + userId + "?");
-			$("#confirmModal").modal();
-		});
-	});
+<script th:src="@{/js/common_list.js}"></script>
+    <script type="text/javascript">
+        moduleURL = "[[@{/users}]]";
 
-	function clearFilter() {
-		window.location = "[[@{/users}]]";
-	}
-</script>
+        $(document).ready(function () {
+            $(".link-delete").on("click", function (e) {
+                e.preventDefault();
+                showDeleteConfirmModal($(this), 'user');
+            });
+        });
+    </script>
 
 </html>

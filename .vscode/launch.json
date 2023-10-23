@@ -9,6 +9,16 @@
       "projectName": "PetHubBackEnd",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-PetHubFrontEndApplication<PetHubFrontEnd>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.pethub.PetHubFrontEndApplication",
+      "projectName": "PetHubFrontEnd",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

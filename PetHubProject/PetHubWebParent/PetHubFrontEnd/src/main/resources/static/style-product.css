@@ -122,8 +122,7 @@ body {
 }
 
 .product-content-container>* {
-	width: 20%;
-	max-width: 200px;
+	width: 200px;
 }
 
 .product-item-container .product-img-container {

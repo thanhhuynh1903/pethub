@@ -51,6 +51,32 @@ body {
 	color: blue !important;
 }
 
+.message-alert {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: -10px;
+  -webkit-animation: run 0.5s linear forwards, hidden 0s ease-in 2s forwards;
+}
+@-webkit-keyframes run {
+    0% {
+		top: 10%;
+        right: 0;
+    }
+    100% {
+		top: 10%; 
+        right: 4%; 
+    }
+}
+
+@-webkit-keyframes hidden {
+    to {
+        width: 0;
+        height: 0;
+        
+    }
+}
+
 @media screen and (max-width: 1000px) {
 	.modal-account-container {
 	width: 80%;

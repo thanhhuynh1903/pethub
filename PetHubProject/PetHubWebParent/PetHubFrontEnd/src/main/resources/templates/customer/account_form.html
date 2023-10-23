@@ -18,21 +18,21 @@
 			<div class="w-100 d-flex flex-column align-items-center mb-5">
 				<nav aria-label="breadcrumb" class="w-100">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a  class="text-decoration-none" th:href="@{/}">Home</a></li>
+						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
 						<li class="breadcrumb-item active" aria-current="page">Profile</li>
 					</ol>
 				</nav>
 
 				<div class="modal-account-container">
-					<div>
+					<div class="my-2">
 						<span class="title-header">Profile Information</span>
 					</div>
 
 					<form th:action="@{/update_account_details}" method="post" th:object="${customer}"
-						class="form-acount-container">
+						class="form-acount-container position-relative">
 						<input type="hidden" th:field="*{id}" /> <input type="hidden" name="redirect"
 							th:value="${param.redirect}" />
-						<div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
+
 						<div class="d-block d-lg-flex justify-content-center w-100">
 							<!--information-->
 							<div class="left-container">
@@ -115,8 +115,11 @@
 									</div>
 								</th:block>
 								<!--password-->
-								<div class="text-center d-none d-lg-block">
+								<div class="text-center d-none d-lg-flex flex-column align-items-center">
 									<input type="submit" value="Update" class="btn btn-primary" />
+									<div th:if="${message != null}" class="text-success d-flex mt-2">[[${message}]]<i
+											class="bi bi-check-circle-fill text-success ml-2"
+											style="font-size: 15px; display: flex; align-items: center"></i></div>
 								</div>
 							</div>
 							<!--information-->
@@ -190,9 +193,12 @@
 								<!--link-->
 
 							</div>
-							<div class="text-center d-block d-lg-none">
-									<input type="submit" value="Update" class="btn btn-primary" />
-								</div>
+							<div class="text-center d-flex d-lg-none flex-column align-items-center">
+								<input type="submit" value="Update" class="btn btn-primary" />
+								<div th:if="${message != null}" class="text-success d-flex mt-2">[[${message}]]<i
+										class="bi bi-check-circle-fill text-success ml-2"
+										style="font-size: 15px; display: flex; align-items: center"></i></div>
+							</div>
 						</div>
 					</form>
 				</div>

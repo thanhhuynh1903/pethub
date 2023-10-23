@@ -29,9 +29,10 @@
 					</nav>
 				</div>
 				<div th:unless="${totalItem > 0}">
-					<div class="w-100 d-flex flex-column align-items-center" >
-					<img alt="Search results" th:src="@{/images/search-results.png}" width="150px">
-					<h3>No match found for '[[${keyword}]]'</h3></div>
+					<div class="w-100 d-flex flex-column align-items-center">
+						<img alt="Search results" th:src="@{/images/search-results.png}" width="150px">
+						<h3>No match found for '[[${keyword}]]'</h3>
+					</div>
 				</div>
 
 				<div class="row">
@@ -39,8 +40,9 @@
 						<div th:replace="~{product/product_fragment :: content}" />
 					</th:block>
 				</div>
-
-				<div th:replace="~{fragments :: pagination('/search', 'product')}"></div>
+				<div class="px-5">
+					<div th:replace="~{fragments :: pagination('/search', 'product')}"></div>
+				</div>
 			</div>
 			<!--content end-->
 

@@ -157,7 +157,28 @@
 					</div>
 				</div>
 			</div>
-			<div th:replace="~{navigation :: search_nav}" class="category-search-bar"></div>
+		</div>
+	</div>
+	<!--header search results-->
+	<div th:fragment="header_seach-results" class="w-100">
+		<div class="d-flex w-100 justify-content-between py-2 align-items-center product-container__header px-1 px-lg-3">
+			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
+				<span>Sort by</span>
+				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
+					th:href="@{/}">Lastest</a>
+				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" />
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Price
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#" th:href="@{/}">Ascending</a>
+						<a class="dropdown-item" href="#"
+							th:href="@{/}">Descending</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

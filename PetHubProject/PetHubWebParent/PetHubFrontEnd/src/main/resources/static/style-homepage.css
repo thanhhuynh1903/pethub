@@ -171,6 +171,11 @@ body {
 	border-radius: 8px;
 }
 
+.nav-item:last-child {
+	display: flex;
+	align-items: center;
+}
+
 .nav-link:hover {
 	background-color: #CBCBCC;
 	cursor: pointer;

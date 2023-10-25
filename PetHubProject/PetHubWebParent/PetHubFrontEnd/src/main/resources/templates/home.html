@@ -29,7 +29,7 @@
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-	
+
 	<link href="dist/css/bootstrap.css" rel="stylesheet">
 	<script type="text/javascript" src="dist/js/jquery-1.10.2.js"></script>
 	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
@@ -41,7 +41,7 @@
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
 			<div class="w-100">
-				
+
 				<div class="d-flex justify-content-center w-100 my-4 home-main-contanier">
 					<div class=" flex-column text-center category-container d-none d-md-flex">
 						<h5 class="text-left px-3 pt-3 user-select-none">
@@ -51,11 +51,12 @@
 						<div>
 							<div th:each="cat: ${listCategories}">
 								<div class="category-item-container p-3">
-										<a th:href="@{'/c/'+${cat.alias}}"
-											class="d-flex align-items-center text-decoration-none text-secondary">
-											<div class="category-img-container mr-2"><img th:src="@{${cat.imagePath}}" /></div>
-											<span class="text-left">[[${cat.name}]]</span>
-										</a>
+									<a th:href="@{'/c/'+${cat.alias}}"
+										class="d-flex align-items-center text-decoration-none text-secondary">
+										<div class="category-img-container mr-2"><img th:src="@{${cat.imagePath}}" />
+										</div>
+										<span class="text-left">[[${cat.name}]]</span>
+									</a>
 								</div>
 								</a>
 							</div>
@@ -65,17 +66,43 @@
 					<!-- product categories -->
 					<div class="product-container d-flex flex-column ml-md-3 ml-0">
 						<!--slider-->
+						<div class="home-slider-container d-flex mb-4">
+							<div class=" h-100 rounded left">
+								<div th:replace="~{slider :: slider}"></div>
+							</div>
 
+							<div class="d-flex flex-column h-100 ml-2 right">
+								<img th:src="@{/images/index-header-img.jpg}" style="height: 49%; object-fit: fill"
+									class="w-100 rounded" />
+								<img th:src="@{/images/index-header-img2.jpg}" style="height: 49%; object-fit: fill"
+									class="w-100 rounded" />
+							</div>
+						</div>
 						<!-- sales -->
-
+						<div class="home-sale-container w-100 mb-3 py-3">
+							<div class="home-sale-container__header mb-3 mx-3 d-flex justify-content-between">
+								<h4>
+									Best saler
+								</h4>
+									<a class="btn-more text-decoration-none" href="@{/}">
+										<span>View more</span>
+										<i class="bi bi-chevron-right"></i>
+									</a>
+							</div>
+							<div class="home-sale-container__content px-3">
+									<div th:each="i : ${#numbers.sequence(0, 5)}" class="my-3 product-item-b-container">
+										<div th:replace="~{fragments :: product_card}"></div>
+									</div>
+								</div>
+						</div>
 						<!-- popular  -->
 
 						<!-- all products -->
 						<div class="home_all-product-container">
 							<div class="home_all-product-container__header">
-							<h4 class="ml-3">
-								Our products
-							</h4>
+								<h4 class="ml-3">
+									Our products
+								</h4>
 							</div>
 							<div class="home_all-product-container__content-container">
 								<div class="home_all-product-container__content">

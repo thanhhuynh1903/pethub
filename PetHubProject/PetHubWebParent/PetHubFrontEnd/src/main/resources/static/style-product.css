@@ -172,6 +172,7 @@ body {
 	background-color: #f5f5fa;
 }
 
+
 @media screen and (max-width: 1160px) {
 	.product-content-container {
 		grid-template-columns: repeat(5, 1fr);

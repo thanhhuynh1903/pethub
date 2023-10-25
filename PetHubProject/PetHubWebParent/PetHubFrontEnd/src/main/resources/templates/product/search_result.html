@@ -28,12 +28,12 @@
 							</li>
 						</ol>
 					</nav>
+					<div class=" w-100">
+						<div class="mx-5 search-product-header my-3">
+							<div th:replace="~{navigation :: header_seach-results}"></div>
+						</div>
+					</div>
 				</div>
-				<div class=" w-100">
-					<div class="mx-5 search-product-header my-3">
-					<div th:replace="~{navigation :: header_seach-results}"></div></div>
-				</div>
-				
 				<!-- duplicated -->
 				<!--
 				<div th:unless="${totalItems > 0}">
@@ -43,8 +43,8 @@
 					</div>
 				</div>
 				-->
-				
-				<div class="w-100 search-product-container px-5">
+
+				<div class="w-100 search-product-container px-5 mt-3">
 					<th:block th:each="product : ${listResult}">
 						<div th:replace="~{product/product_fragment :: content}" />
 					</th:block>

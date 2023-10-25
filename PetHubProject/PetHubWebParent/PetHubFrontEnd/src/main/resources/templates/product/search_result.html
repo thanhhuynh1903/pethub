@@ -33,12 +33,16 @@
 					<div class="mx-5 search-product-header my-3">
 					<div th:replace="~{navigation :: header_seach-results}"></div></div>
 				</div>
+				
+				<!-- duplicated -->
+				<!--
 				<div th:unless="${totalItem > 0}">
 					<div class="w-100 d-flex flex-column align-items-center mb-4">
 						<img alt="Search results" th:src="@{/images/search-results.png}" width="150px">
 						<span>No match found for '[[${keyword}]]'</span>
 					</div>
 				</div>
+				-->
 				
 				<div class="w-100 search-product-container px-5">
 					<th:block th:each="product : ${listResult}">

@@ -15,7 +15,10 @@ body {
 	background-color: #FFFFFF;
 	padding: 10px;
 }
-
+.modal-account-container .left-container,
+.modal-account-container .right-container {
+	width: 50%;
+}
 .modal-account-container .title-header {
 	font-size: 19px;
 	color: #64646D;

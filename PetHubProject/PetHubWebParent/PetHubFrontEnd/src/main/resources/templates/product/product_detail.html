@@ -22,7 +22,7 @@
 
 				<!--breadcrumb-->
 				<div class="d-flex" style="width: 100%;padding-left: 55px">
-				<div th:replace="~{breadcrumb :: content}"></div>
+					<div th:replace="~{breadcrumb :: content}"></div>
 				</div>
 				<!--breadcrumb-->
 
@@ -132,8 +132,14 @@
 								<span th:if="${product.inStock}" class="text-success"><b>In Stock</b></span>
 								<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
 							</div>
-							<div class="mt-2">
-								<input type="number" size="5" value="1" />
+							<div class="mt-2 quantity-container" onclick="decreaseQuantity()">
+								<button class="btn btn-minus">
+									<i class="bi bi-dash"></i>
+								</button>
+								<input type="text" value="1" min="1" class="mx-2" id="quantity" />
+								<button class="btn btn-plus" onclick="increaseQuantity()">
+									<i class="bi bi-plus"></i>
+								</button>
 							</div>
 							<div class="price-modify mt-2 stick-top">
 								Total Amount:
@@ -201,7 +207,27 @@
 				imageIndex = parseInt(bigImage.attr("index"));
 				$("#carouselExampleIndicators").carousel(imageIndex);
 			});
+			
+			document.getElementsByClassName('btn-plus')[0].on("click", function increaseQuantity() {
+				var value = parseInt(document.getElementById("quantity").value, 10);
+				value = isNaN(value) ? 0 : value;
+				value++;
+				document.getElementById('number').value = value;
+			})
+			
+			document.getElementsByClassName('btn-minus')[0].on("click", function decreaseQuantity() {
+				var value = parseInt(document.getElementById('quantity').value, 10);
+				value = isNaN(value) ? 0 : value;
+				value < 1 ? value = 1 : '';
+				value--;
+				document.getElementById('quantity').value = value;
+			})
+
+			//increase, decrease quantity
+			
+			
 		});
+
 	</script>
 </body>
 

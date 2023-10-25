@@ -50,7 +50,9 @@ body {
 .btn-account-linked:hover {
 	color: blue !important;
 }
-
+.bi-facebook {
+	font-size: 24px;
+}
 .message-alert {
   position: absolute;
   z-index: 1;

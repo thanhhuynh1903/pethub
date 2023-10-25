@@ -49,8 +49,7 @@
 	height: 100px;
 }
 
-.star-rating .fa-solid,
-.star-rating {
+.star-rating .fa-solid {
 	color: yellow;
 }
 

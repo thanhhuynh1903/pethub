@@ -20,17 +20,17 @@
       class="d-flex flex-column justify-content-center align-items-center vw-100 vh-100 login-container"
     >
       <div class="box-login-container d-flex justify-content-center">
-        <div class="w-50 login-left-container">
+        <div class="d-none d-md-flex w-50 login-left-container">
           <img th:src=@{images/login.jpg} alt="Login">
         </div>
-        <div class="w-50 login-right-container">
+        <div class="login-right-container">
           <div
             class="d-flex flex-column justify-content-center h-100 align-items-center"
           >
             <div class="d-flex">
               <div th:replace="~{fragments :: logo_admin}"></div>
             </div>
-            <h3 class="text-center text-primary py-1 mt-4 mb-2">Login</h3>
+            <h3 class="text-center text-primary py-1 mt-lg-4 mt-md-2 mt-1 mb-2">Login</h3>
             <form
               th:action="@{/login}"
               method="post"
@@ -61,7 +61,7 @@
                   <input type="checkbox" name="remember-me" />
                   <span class="mx-1">Remember me</span>
                 </div>
-                <div class="text-center">
+                <div class="text-center d-flex align-items-center">
                   <a th:href="@{/forgot_password}" class="text-decoration-none"
                     >Forgot Password?</a
                   >

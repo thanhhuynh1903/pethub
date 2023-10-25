@@ -1,6 +1,7 @@
 body {
 	background-color: #E9ECEF !important;
 }
+
 * {
 	margin: 0;
 	padding: 0;
@@ -8,27 +9,30 @@ body {
 }
 
 .modal-account-container {
-	width: 60%;
+	width: 80%;
 	border-radius: 12px;
 	justify-content: center;
 	align-items: center;
 	background-color: #FFFFFF;
 	padding: 10px;
 }
+
 .modal-account-container .left-container,
 .modal-account-container .right-container {
 	width: 50%;
 }
+
 .modal-account-container .title-header {
 	font-size: 19px;
 	color: #64646D;
 }
 
-.modal-account-container .left-container, .modal-account-container .right-container {
+.modal-account-container .left-container,
+.modal-account-container .right-container {
 	padding: 0 10px;
 }
 
-.form-account-container .form-tittle .facebook{
+.form-account-container .form-tittle .facebook {
 	color: #000000;
 }
 
@@ -38,9 +42,10 @@ body {
 	object-fit: cover;
 }
 
-.btn-account-unlinked, .btn-account-linked {
+.btn-account-unlinked,
+.btn-account-linked {
 	width: 90px !important;
-	height:36px !important;
+	height: 36px !important;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -50,41 +55,87 @@ body {
 	background-color: #F0F0F0 !important;
 	border-color: #F0F0F0 !important;
 }
+
 .btn-account-linked:hover {
 	color: blue !important;
 }
+
 .bi-facebook {
 	font-size: 24px;
 }
+
 .message-alert {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: -10px;
-  -webkit-animation: run 0.5s linear forwards, hidden 0s ease-in 2s forwards;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: -10px;
+	-webkit-animation: run 0.5s linear forwards, hidden 0s ease-in 2s forwards;
 }
+
 @-webkit-keyframes run {
-    0% {
+	0% {
 		top: 10%;
-        right: 0;
-    }
-    100% {
-		top: 10%; 
-        right: 4%; 
-    }
+		right: 0;
+	}
+
+	100% {
+		top: 10%;
+		right: 4%;
+	}
 }
 
 @-webkit-keyframes hidden {
-    to {
-        width: 0;
-        height: 0;
-        
-    }
+	to {
+		width: 0;
+		height: 0;
+
+	}
 }
 
-@media screen and (max-width: 1000px) {
+.form-acount-container {
+		width: 100%;
+	}
+
+
+@media screen and (max-width: 1250px) {
 	.modal-account-container {
-	width: 80%;
+		width: 90%;
+	}
 }
+
+
+@media screen and (max-width: 992px) {
+
+	.modal-account-container .left-container,
+	.modal-account-container .right-container {
+		width: 90%;
+	}
+
+
+	.form-acount-container {
+		width: 96%;
+		margin: 0 auto;
+	}
+
+}
+
+
+@media screen and (max-width: 800px) {
+	.modal-account-container {
+		width: 90%;
+	}
+
+}
+
+
+@media screen and (max-width: 500px) {
+	.form-acount-container {
+		width: 100%;
+	}
+
+	.modal-account-container .left-container,
+	.modal-account-container .right-container {
+		width: 100%;
+	}
 
 }

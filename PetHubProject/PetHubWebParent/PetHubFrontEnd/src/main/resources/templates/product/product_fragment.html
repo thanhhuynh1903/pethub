@@ -8,17 +8,19 @@
 			<img th:src="@{${product.mainImagePath}}" />
 		</div>
 		<div class="product-item-content-container p-2">
-			<div class="product-item-name">[[${product.shortName}]]</div>
-			
-			<!--star rating-->
-			<div class="d-flex justify-content-between">
-			<div th:replace="~{fragments :: star_rating}"></div>
-			<div class="ml-auto d-flex align-items-center">
-				<span class="text-secondary text-sold">5 sold</span>
+			<div class="product-item-top">
+				<div class="product-item-name">[[${product.shortName}]]</div>
+
+				<!--star rating-->
+				<div class="d-flex justify-content-between">
+					<div th:replace="~{fragments :: star_rating}"></div>
+					<div class="ml-auto d-flex align-items-center">
+						<span class="text-secondary text-sold">5 sold</span>
+					</div>
+				</div>
 			</div>
-			</div>
 			<!--star rating-->
-			
+
 			<div th:if="${product.discountPercent > 0}" class="product-item-price-container my-2">
 				<del>
 					<span class="text-secondary" style="font-size: small;">
@@ -29,7 +31,7 @@
 					<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}"></div>
 				</span>
 			</div>
-			
+
 			<div th:if="${product.discountPercent <= 0}" class="product-item-price-container">
 				<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
 			</div>

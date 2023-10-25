@@ -209,7 +209,9 @@ body {
 }
 
 }
-
+.product-item-content-container .product-item-top {
+	height: 90px;
+}
 
 @media screen and (max-width: 800px) {
 	.category-container {

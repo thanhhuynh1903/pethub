@@ -7,19 +7,20 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-main-homepage.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 </head>
 
 <body>
-	<div class="w-100 h-100">
+	<div class="w-100 h-100 search-results-container">
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
 
 			<!--content start-->
 			<div class="w-100">
-				<div th:if="${totalItem > 0}">
+				<div th:if="${totalItems > 0}">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a th:href="@{/}" class="text-decoration-none">Home</a></li>
@@ -27,15 +28,23 @@
 							</li>
 						</ol>
 					</nav>
-				</div>
-				<div th:unless="${totalItem > 0}">
-					<div class="w-100 d-flex flex-column align-items-center">
-						<img alt="Search results" th:src="@{/images/search-results.png}" width="150px">
-						<h3>No match found for '[[${keyword}]]'</h3>
+					<div class=" w-100">
+						<div class="mx-5 search-product-header my-3">
+							<div th:replace="~{navigation :: header_seach-results}"></div>
+						</div>
 					</div>
 				</div>
+				<!-- duplicated -->
+				<!--
+				<div th:unless="${totalItems > 0}">
+					<div class="w-100 d-flex flex-column align-items-center mb-4">
+						<img alt="Search results" th:src="@{/images/search-results.png}" width="150px">
+						<span>No match found for '[[${keyword}]]'</span>
+					</div>
+				</div>
+				-->
 
-				<div class="row">
+				<div class="w-100 search-product-container px-5 mt-3">
 					<th:block th:each="product : ${listResult}">
 						<div th:replace="~{product/product_fragment :: content}" />
 					</th:block>

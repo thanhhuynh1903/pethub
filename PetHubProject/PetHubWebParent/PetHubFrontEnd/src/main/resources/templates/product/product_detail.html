@@ -86,11 +86,11 @@
 							</div>
 							<div th:if="${product.discountPercent > 0}">
 								Price:
-								<del th:if="${product.discountPercent > 0}">
+								<del th:if="${product.discountPercent > 0}" class="text-secondary" style="font-size: small;">
 									<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 									</div>
 								</del>
-								<span style="font-size: larger; color: darkred">
+								<span>
 									<div
 										th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
 									</div>
@@ -132,12 +132,12 @@
 								<span th:if="${product.inStock}" class="text-success"><b>In Stock</b></span>
 								<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
 							</div>
-							<div class="mt-2 quantity-container" onclick="decreaseQuantity()">
-								<button class="btn btn-minus">
+							<div class="mt-2 quantity-container">
+								<button class="btn btn-minus" id="btnMinus">
 									<i class="bi bi-dash"></i>
 								</button>
-								<input type="text" value="1" min="1" class="mx-2" id="quantity" />
-								<button class="btn btn-plus" onclick="increaseQuantity()">
+								<input type="number" value="1" min="1" class="mx-2" id="quantity" />
+								<button class="btn btn-plus" id="btnPlus">
 									<i class="bi bi-plus"></i>
 								</button>
 							</div>
@@ -194,6 +194,9 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			bigImage = $("#bigImage");
+			btnPlus = $("#btnPlus");
+			btnMinus = $("#btnMinus");
+			quantity = $("#quantity");
 
 			$(".image-thumbnail").mouseover(function () {
 				currentImageSource = $(this).attr("src");
@@ -208,19 +211,23 @@
 				$("#carouselExampleIndicators").carousel(imageIndex);
 			});
 			
-			document.getElementsByClassName('btn-plus')[0].on("click", function increaseQuantity() {
-				var value = parseInt(document.getElementById("quantity").value, 10);
+			btnPlus.on("click", function () {
+				var value = parseInt(quantity.val(), 10);
 				value = isNaN(value) ? 0 : value;
 				value++;
-				document.getElementById('number').value = value;
+				quantity.val(value);
+				console.log("quantity: " + quantity.value);
+				console.log("value: " + value);
 			})
 			
-			document.getElementsByClassName('btn-minus')[0].on("click", function decreaseQuantity() {
-				var value = parseInt(document.getElementById('quantity').value, 10);
-				value = isNaN(value) ? 0 : value;
+			btnMinus.on("click", function () {
+				var value = parseInt(quantity.val(), 10);
+				value = isNaN(value) ? 1 : value;
 				value < 1 ? value = 1 : '';
 				value--;
-				document.getElementById('quantity').value = value;
+				quantity.val(value);
+				console.log("quantity: " + quantity.value);
+				console.log("value: " + value);
 			})
 
 			//increase, decrease quantity

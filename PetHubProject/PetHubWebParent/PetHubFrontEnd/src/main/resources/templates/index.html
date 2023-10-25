@@ -1,258 +1,142 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head>
 
-	<head th:replace="~{fragments :: page_head('PetHub','tag')}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-main-homepage.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+<head>
+	<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+	<title>PetHub</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+		rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+
+	<link href="dist/css/bootstrap.css" rel="stylesheet">
+	<script type="text/javascript" src="dist/js/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+
 </head>
 
 <body>
-	<div class="w-100">
-		<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
-		<div class="main d-flex navbar-expand-lg navbar-light w-100">
-			<nav class="sidebar" th:fragment="sidebar" style="width: 15%">
-				<div class="sidebar-container">
-					<span class="p-3" style="font-size: 20px; font-weight: bold">Category</span>
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
+			<div class="w-100">
 
-					<div class="col item-cate p-3" th:each="cat: ${listCategories}">
-						<div><img th:src="@{${cat.imagePath}}" width="30px" /></div>
+				<div class="d-flex justify-content-center w-100 my-4 home-main-contanier">
+					<div class=" flex-column text-center category-container d-none d-md-flex sticky-top">
+						<h5 class="text-left px-3 pt-3 user-select-none">
+							Product Categories
+						</h5>
+						<!-- catgories container -->
 						<div>
-							<a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a>
+							<div th:each="cat: ${listCategories}">
+								<div class="category-item-container p-3">
+									<a th:href="@{'/c/'+${cat.alias}}"
+										class="d-flex align-items-center text-decoration-none text-secondary">
+										<div class="category-img-container mr-2"><img th:src="@{${cat.imagePath}}" />
+										</div>
+										<span class="text-left">[[${cat.name}]]</span>
+									</a>
+								</div>
+								</a>
+							</div>
+						</div>
+						<!-- catgories container -->
+					</div>
+					<!-- product categories -->
+					<div class="product-container d-flex flex-column ml-md-3 ml-0">
+						<!--slider-->
+						<div class="home-slider-container d-flex mb-4">
+							<div class=" h-100 rounded left">
+								<div th:replace="~{slider :: slider}"></div>
+							</div>
+
+							<div class="d-flex flex-column h-100 ml-2 right">
+								<img th:src="@{/images/index-header-img.jpg}" style="height: 49%; object-fit: fill"
+									class="w-100 rounded" />
+								<img th:src="@{/images/index-header-img2.jpg}" style="height: 49%; object-fit: fill"
+									class="w-100 rounded" />
+							</div>
+						</div>
+						<!-- sales -->
+						<div class="home-sale-container w-100 mb-3 py-3">
+							<div
+								class="home-sale-container__header mb-3 mx-3 d-flex justify-content-between align-items-center">
+								<h4>
+									Best saler
+								</h4>
+								<a class="btn-more text-decoration-none" href="@{/}">
+									<span>View more</span>
+									<i class="bi bi-chevron-right"></i>
+								</a>
+							</div>
+							<div class="home-sale-container__content px-1 px-lg-3">
+								<div th:each="i : ${#numbers.sequence(0, 5)}" class="my-3 product-item-b-container">
+									<div th:replace="~{fragments :: product_card}"></div>
+								</div>
+							</div>
+						</div>
+						<!-- popular  -->
+
+						<!-- all products -->
+						<div class="home_all-product-container">
+							<div class="home_all-product-container__header">
+								<h4 class="ml-3">
+									Our products
+								</h4>
+							</div>
+							<div class="home_all-product-container__content-container">
+								<div class="home_all-product-container__content">
+									<div th:each="i : ${#numbers.sequence(0, 23)}" class="product-item-container">
+										<div th:replace="~{fragments :: product_card}"></div>
+									</div>
+								</div>
+								<a class="btn btn-outline-primary mt-3" href="@{/}">View all</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</nav>
-
-			<div class="d-block my-3" style="width: 70%; height: 400px">
-				<div class="h-100 d-flex" style="width: 100%">
-					<div class="h-100 d-flex" style="width: 100%; gap: 8px">
-						<div class="w-100 h-100 rounded">
-							<div th:replace="~{slider :: slider}"></div>
-						</div>
-
-						<div style="width: 30%; gap: 8px" class="d-flex flex-column h-100">
-							<img th:src="@{/images/index-header-img.jpg}" style="height: 49%; object-fit: fill"
-								class="w-100 rounded" />
-							<img th:src="@{/images/index-header-img2.jpg}" style="height: 49%; object-fit: fill"
-								class="w-100 rounded" />
-						</div>
-
-						<!--<div class="d-flex justify-content-center align-item-center">
-							<div th:each="i : ${#numbers.sequence(0, 1)}"
-								style="width: 100%;height: 100%;margin: 10px;">
-								<div class="h-100 w-100 justify-content-center align-item-center">
-									<img th:src=@{/images/Cute-Teddy-Bear-Pet-Bed-with-Bear-Toy-Dog-Cat-Bed.png} alt="med" style="width: 100%;height: 100%;" />
-								</div>
-							</div>
-						</div>-->
-					</div>
-				</div>
-				<div class="my-4 p-3 color-bg">
-					<span style="font-size: 20px; font-weight: bold">Best Seller</span>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id" style="
-                  width: 100%;
-                  height: 100%;
-                  cursor: pointer;
-                  border-radius: 8px;
-                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-                ">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/cute-animal-collection-four-seasons-pet-nest-pawpawup-2.png}
-									alt="med" style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
-										stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="my-4 p-3 color-bg w-100">
-					<span style="font-size: 20px; font-weight: bold">Most popular</span>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id" style="
-                  width: 100%;
-                  height: 100%;
-                  cursor: pointer;
-                  border-radius: 8px;
-                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-                ">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
-									style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
-										stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id" style="
-                  width: 100%;
-                  height: 100%;
-                  cursor: pointer;
-                  border-radius: 8px;
-                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-                ">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/TBXyxArray_11.jpg} alt="med"
-									style="width: 100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
-										stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="my-4 p-3 color-bg">
-					<span style="font-size: 20px; font-weight: bold">All product </span>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id" style="
-                  width: 100%;
-                  height: 100%;
-                  cursor: pointer;
-                  border-radius: 8px;
-                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-                ">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/2dog.png} alt="med" style="width:
-                  100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
-										stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="d-flex product-detail">
-						<a th:each="i : ${#numbers.sequence(0, 5)}" href="#" class="img-id" style="
-                  width: 100%;
-                  height: 100%;
-                  cursor: pointer;
-                  border-radius: 8px;
-                  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-                ">
-							<div class="h-100 w-100 mb-2">
-								<img th:src=@{/images/2dog.png} alt="med" style="width:
-                  100%;height: 90%;border-radius: 8px;" />
-								<div class="description">
-									<span>
-										vịt gối mềm mại dễ thương ,cute cho thú cưng giải tỏa
-										stress
-									</span>
-									<div>
-										<span>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i>
-										</span>
-									</div>
-									<div class="money">
-										<span>1.200.200<sup>₫</sup></span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="text-center w-100">
-					<button type="button" class="btn btn-outline-primary text-center">
-						View more
-					</button>
 				</div>
 			</div>
-		</div>
-		<div class="text-center w-100">
 			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
-	</div>
+
+		<!--set rating function-->
+		<script>
+			var $star_rating = $('.star-rating .fa');
+			var SetRatingStar = function () {
+				return $star_rating.each(function () {
+					if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+						return $(this).removeClass('fa-regular').addClass('fa-solid');
+					} else {
+						return $(this).removeClass('fa-solid').addClass('fa-regular');
+					}
+				});
+			};
+			SetRatingStar();
+			$(document).ready(function () {
+
+			});
+		</script>
 </body>
-
-<script>
-	const navLinks = document.querySelectorAll(".container-item a");
-
-	// Function to set the active class to the selected link
-	function setActiveLink(link) {
-		navLinks.forEach((navLink) => {
-			navLink.classList.remove("active");
-		});
-		link.classList.add("active");
-	}
-
-	// Initially set the home link as active
-	document.getElementById("home").classList.add("active");
-
-	// Add click event listeners to all navigation links
-	navLinks.forEach((link) => {
-		link.addEventListener("click", function (event) {
-			setActiveLink(link);
-		});
-	});
-</script>
 
 </html>

@@ -70,7 +70,6 @@ body {
 }
 
 .product-container {
-	width: 1448px;
 	background-color: #f5f5fa;
 }
 
@@ -162,4 +161,18 @@ body {
 
 .footer-container nav ul li .nav-link:hover {
 	background-color: #FFFFFF !important;
+}
+
+@media screen and (max-width: 800px) {
+	.category-container {
+		min-width: 180px;
+	}
+
+}
+
+@media screen and (max-width: 700px) {
+	.category-container {
+		min-width: 140px;
+	}
+
 }

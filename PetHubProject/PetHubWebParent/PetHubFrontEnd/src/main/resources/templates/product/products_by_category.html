@@ -47,7 +47,7 @@
 								<h5 class="text-left px-3 pt-3 user-select-none">
 									Product Categories
 								</h5>
-								<th:block th:each="cat : ${category.children}">
+								<div th:each="cat : ${category.children}">
 									<div class="category-item-container p-3" th:if="${cat.enabled == true}">
 										<a th:href="@{'/c/'+${cat.alias}}"
 											class="d-flex align-items-center text-decoration-none text-secondary">
@@ -57,7 +57,7 @@
 											<span>[[${cat.name}]]</span>
 										</a>
 									</div>
-								</th:block>
+								</div>
 							</div>
 							<!--Category-->
 							<!--product in category-->

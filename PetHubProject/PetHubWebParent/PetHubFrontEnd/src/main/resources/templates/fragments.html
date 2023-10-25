@@ -1,227 +1,175 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:fragment="page_head(title, remove)" th:remove="${remove}">
-    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-    />
 
-    <title>[[${title}]] - [[${SITE_NAME}]]</title>
+<head th:fragment="page_head(title, remove)" th:remove="${remove}">
+	<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
-    />
-    <script
-      type="text/javascript"
-      th:src="@{/webjars/jquery/jquery.min.js}"
-    ></script>
-    <script
-      type="text/javascript"
-      th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-    <script
-      th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
-      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js}"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+	<title>[[${title}]] - [[${SITE_NAME}]]</title>
 
-  <body>
-    <!--begin page link-->
-    <a
-      th:fragment="page_link(moduleURL, pageNum, label)"
-      class="page-link"
-      th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-      >[[${label}]]</a
-    >
-    <!--end page link-->
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+	<script th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js}"
+		crossorigin="anonymous"></script>
+	<link href="bootstrap-rating.css" rel="stylesheet">
 
-    <!--begin pagination-->
-    <div
-      th:fragment="pagination(moduleURL, entityName)"
-      th:remove="tag"
-      class="d-flex"
-    >
-      <div
-        class="d-flex justify-content-end my-4 align-items-center"
-        th:if="${totalItems >0}"
-      >
-        <div th:if="${totalPages>1}" class="d-flex align-items-center">
-          <nav class="d-flex align-items-center">
-            <ul class="pagination flex-wrap m-0">
-              <li
-                th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}"
-              >
-                <a
-                  th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}"
-                />
-              </li>
-              <li
-                th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}"
-              >
-                <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}"
-                />
-              </li>
-              <li
-                th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-                th:each="i : ${#numbers.sequence(1, totalPages)}"
-              >
-                <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}"
-                />
-              </li>
-              <li
-                th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"
-              >
-                <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}"
-                />
-              </li>
-              <li
-                th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"
-              >
-                <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}"
-                />
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div
-          class="d-flex align-items-center justify-content-center px-2 ml-3"
-          style="
+</head>
+
+<body>
+	<!--begin page link-->
+	<a th:fragment="page_link(moduleURL, pageNum, label)" class="page-link"
+		th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
+	<!--end page link-->
+
+	<!--begin pagination-->
+	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag" class="d-flex">
+		<div class="d-flex justify-content-end my-4 align-items-center" th:if="${totalItems >0}">
+			<div th:if="${totalPages>1}" class="d-flex align-items-center">
+				<nav class="d-flex align-items-center">
+					<ul class="pagination flex-wrap m-0">
+						<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL},1, 'First')}" />
+						</li>
+						<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous')}" />
+						</li>
+						<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+							th:each="i : ${#numbers.sequence(1, totalPages)}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i})}" />
+						</li>
+						<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next')}" />
+						</li>
+						<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+							<a th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last')}" />
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="d-flex align-items-center justify-content-center px-2 ml-3" style="
             background-color: #fff;
             border-radius: 6px;
             border: 1px solid #ccc;
             color: #594f66;
             height: 34px;
-          "
-          th:if="${totalItems >0}"
-        >
-          <span> [[${startCount}]] - [[${endCount}]] / [[${totalItems}]] </span>
-        </div>
-      </div>
-      <div
-        th:unless="${totalItems >0}"
-        class="d-flex flex-column justify-content-center align-items-center"
-        style="background-color: #fff; height: 170px"
-      >
-        <i class="bi bi-inbox" style="font-size: 70px; color: #e0e0e0"></i>
-        <span class="text-center" style="color: #9096c6; font-size: 14px">
-          No [[${entityName}]] found
-        </span>
-      </div>
-    </div>
-    <!--end pagination-->
+          " th:if="${totalItems >0}">
+				<span> [[${startCount}]] - [[${endCount}]] / [[${totalItems}]] </span>
+			</div>
+		</div>
+		<div th:unless="${totalItems >0}" class="d-flex flex-column justify-content-center align-items-center"
+			style="background-color: #fff; height: 170px">
+			<i class="bi bi-inbox" style="font-size: 70px; color: #e0e0e0"></i>
+			<span class="text-center" style="color: #9096c6; font-size: 14px">
+				No [[${entityName}]] found
+			</span>
+		</div>
+	</div>
+	<!--end pagination-->
 
-    <div
-      th:fragment="modal_dialog"
-      class="modal fade text-center"
-      id="modalDialog"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="modalTitle">Warning</h4>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
+	<div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modalTitle">Warning</h4>
+					<button type="button" class="close" data-dismiss="modal">
+						&times;
+					</button>
+				</div>
 
-          <div class="modal-body">
-            <span id="modalBody"></span>
-          </div>
+				<div class="modal-body">
+					<span id="modalBody"></span>
+				</div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div
-      th:fragment="confirm_modal"
-      class="modal fade text-center"
-      id="confirmModal"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Delete Confirmation</h4>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
+	<div th:fragment="confirm_modal" class="modal fade text-center" id="confirmModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Delete Confirmation</h4>
+					<button type="button" class="close" data-dismiss="modal">
+						&times;
+					</button>
+				</div>
 
-          <div class="modal-body">
-            <span id="confirmText"></span>
-          </div>
+				<div class="modal-body">
+					<span id="confirmText"></span>
+				</div>
 
-          <div class="modal-footer">
-            <a class="btn btn-success" href="" id="yesButton">Yes</a>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">
-              No
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--nav-brand-admin-start-->
-    <a
-      class="nav-brand text-decoration-none d-flex"
-      th:href="@{/}"
-      th:fragment="logo_admin"
-    >
-      <span style="font-size: 24px; color: #594f66; font-weight: bold"
-        >Pet</span
-      >
-      <span style="font-size: 24px; color: #4e73df; font-weight: bold"
-        >Hub</span
-      >
-    </a>
-    <a
-      class="nav-brand text-decoration-none d-flex"
-      th:href="@{/}"
-      th:fragment="logo_admin_2"
-    >
-      <span style="font-size: 26px; color: #594f66; font-weight: bold"
-        >Pet</span
-      >
-      <span style="font-size: 26px; color: #4e73df; font-weight: bold"
-        >Hub</span
-      >
-    </a>
-    <!--nav-brand-admin-end-->
-  </body>
+				<div class="modal-footer">
+					<a class="btn btn-success" href="" id="yesButton">Yes</a>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						No
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--nav-brand-admin-start-->
+	<a class="nav-brand text-decoration-none d-flex" th:href="@{/}" th:fragment="logo_admin">
+		<span style="font-size: 24px; color: #594f66; font-weight: bold">Pet</span>
+		<span style="font-size: 24px; color: #4e73df; font-weight: bold">Hub</span>
+	</a>
+	<a class="nav-brand text-decoration-none d-flex" th:href="@{/}" th:fragment="logo_admin_2">
+		<span style="font-size: 26px; color: #594f66; font-weight: bold">Pet</span>
+		<span style="font-size: 26px; color: #4e73df; font-weight: bold">Hub</span>
+	</a>
+	<!--nav-brand-admin-end-->
+
+	<!-- product card start -->
+	<a th:href="@{/}" class="text-decoration-none product-item-link" th:fragment="product_card">
+		<div class="product-item">
+			<div class="product-item__image-container">
+				<img th:src=@{/images/product-sample.png} alt="product">
+			</div>
+			<div class="content">
+				<div class="top">
+					<span class="text-dark text-three-line">
+						THỨC ĂN HẠT CHÓ TRƯỞNG THÀNH VỊ BÒ NƯỚNG SMARTHEART ADULT DOG - THÁI LAN</span>
+					<div class="d-flex jusity-content-between">
+						<div class="star-rating" th:fragment="star_rating">
+							<i class="fa fa-star " data-rating="1"></i>
+							<i class="fa fa-star fa-regular" data-rating="2"></i>
+							<i class="fa fa-star fa-regular" data-rating="3"></i>
+							<i class="fa fa-star fa-regular" data-rating="4"></i>
+							<i class="fa fa-star fa-regular" data-rating="5"></i>
+							<input type="hidden" name="whatever1" class="rating-value" value="2.5">
+						</div>
+						<div class="ml-auto d-flex align-items-center"><span class="text-secondary text-sold">5
+								sold</span></div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-between my-2">
+					<div><span class="price">500000<sup>₫</sup></span></div>
+					<div><button class="btn-sale btn">-30%</button></div>
+				</div>
+			</div>
+		</div>
+	</a>
+	<!-- product card end -->
+</body>
+
 </html>

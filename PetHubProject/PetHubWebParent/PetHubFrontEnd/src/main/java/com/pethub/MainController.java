@@ -24,7 +24,7 @@ public class MainController {
 		List<Category> listCategories = categoryService.listNoChildrenCategories();
 
 		model.addAttribute("listCategories", listCategories);
-		return "index";
+		return "home";
 	}
 
 	@GetMapping("/login")

@@ -6,6 +6,9 @@
 .search-results-container .breadcrumb {
 	background-color: #f5f5fa ;
 }
+.search-results-container .empty-product-container {
+	background-color: #f5f5fa !important;
+}
 
 *.icon-white {
 	color: white

@@ -67,3 +67,7 @@ input[type=number]::-webkit-outer-spin-button {
     border:1px solid #4E73DF;
     box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;
 }
+
+.product-detail-container .price-modify span,.product-detail-container .price{
+	font-size: 26px;
+}

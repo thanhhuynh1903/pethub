@@ -14,7 +14,7 @@
 
 <body>
 	<div class="w-100 h-100">
-		<div class="d-flex flex-column w-100 h-100">
+		<div class="product-detail-container d-flex flex-column w-100 h-100">
 
 			<div th:replace="~{navigation :: header_menu}"></div>
 			<div class="w-100 my-1">
@@ -27,7 +27,7 @@
 				<!--breadcrumb-->
 
 				<!--product detail-->
-				<div class="d-flex bg-color justify-content-center px-2">
+				<div class=" d-flex bg-color justify-content-center px-2">
 					<!--image-->
 					<div class="col-sm-3 container-detail">
 						<div>
@@ -77,15 +77,14 @@
 								<span>Brand: [[${product.brand.name}]]</span>
 							</div>
 							<div class="price-modify">
-								List Price:
+						
 								<span th:if="${product.discountPercent <= 0}">
 									<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 									</div>
 								</span>
-
 							</div>
 							<div th:if="${product.discountPercent > 0}">
-								Price:
+							<!--Price-->
 								<del th:if="${product.discountPercent > 0}" class="text-secondary" style="font-size: small;">
 									<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 									</div>

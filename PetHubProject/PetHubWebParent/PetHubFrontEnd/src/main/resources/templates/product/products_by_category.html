@@ -35,7 +35,7 @@
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
 			<!-- Main content start-->
-			<div class="w-100">
+			<div class="w-100 mb-3">
 				<div class="d-flex justify-content-center w-100">
 					<div class="category-product-container">
 						<!--breadcrumb-->
@@ -43,7 +43,7 @@
 						<!--breadcrumb-->
 						<div class="d-flex justify-content-between w-100">
 							<!--Category-->
-							<div class="d-flex flex-column text-center category-container">
+							<div class="d-sm-flex d-none flex-column text-center category-container">
 								<h5 class="text-left px-3 pt-3 user-select-none">
 									Product Categories
 								</h5>
@@ -54,18 +54,18 @@
 											<div class="category-img-container d-flex align-items-center mr-2">
 												<img th:src="@{${cat.imagePath}}" />
 											</div>
-											<span>[[${cat.name}]]</span>
+											<span class="text-left">[[${cat.name}]]</span>
 										</a>
 									</div>
 								</div>
 							</div>
 							<!--Category-->
 							<!--product in category-->
-							<div class="product-container d-flex flex-column ml-3">
+							<div class="product-container d-flex flex-column ml-sm-3 ml-0 align-items-center">
 								<div th:replace="~{navigation :: header_product}" class="w-100"></div>
-								<div class="d-flex flex-wrap product-content-container w-100 my-2">
+								<div class="product-content-container w-100 my-2">
 									<th:block th:each="product : ${listProducts}">
-										<div class="product-item-box-container">
+										<div class="product-item-container">
 											<div th:replace="~{product/product_fragment :: content}" />
 										</div>
 									</th:block>

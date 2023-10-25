@@ -111,26 +111,21 @@
 						<input type="submit" value="Logout" />
 					</form>
 				</th:block>
-
-				<nav class="navbar navbar-expand-sm w-100">
-					<div class="collapse navbar-collapse" id="searchNavbar">
-						<form class="form-inline" th:action="@{/search}" method="get">
-							<input type="search" name="keyword" class="form-control" th:value="${searchKeyword}"
-								placeholder="Search for..." required style="border-radius: 3px 0 0 3px;" />
-							<input type="submit" value="Search" class="btn btn-outline-primary"
-								style="border-radius: 0 3px 3px 0;" />
-						</form>
-					</div>
-				</nav>
+				<form class="form-inline" th:action="@{/search}" method="get">
+					<input type="search" name="keyword" class="form-control search" th:value="${searchKeyword}"
+						placeholder="Search for..." required style="border-radius: 3px 0 0 3px;" />
+					<input type="submit" value="Search" class="btn btn-outline-primary"
+						style="border-radius: 0 3px 3px 0;" />
+				</form>
 			</div>
 		</div>
 	</div>
 
 	<div th:fragment="footer_menu" class="w-100 mt-auto" style="background-color: #FFFFFF;">
 		<div class="footer-container">
-			<div class="d-flex justify-content-center p-3">
-				<a class="text-decoration-none text-secondary mr-3" href="">About Us</a>
-				<a class="text-decoration-none text-secondary mr-3" href="">Privacy Notice</a>
+			<div class="d-flex justify-content-center p-1 p-sm-3">
+				<a class="text-decoration-none text-secondary mr-sm-3 mr-2" href="">About Us</a>
+				<a class="text-decoration-none text-secondary mr-sm-3 mr-2" href="">Privacy Notice</a>
 				<a class="text-decoration-none text-secondary" href="">Returns &amp; Refunds</a>
 			</div>
 		</div>
@@ -143,13 +138,13 @@
 		<!--end footer-->
 	</div>
 
-	<div th:fragment="header_product">
-		<div class="d-flex justify-content-between py-2 align-items-center product-container__header">
-			<div class="px-4 sort-container d-flex align-items-center">
+	<div th:fragment="header_product" class="w-100">
+		<div class="d-flex w-100 justify-content-between py-2 align-items-center product-container__header px-1 px-lg-3">
+			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<a role="button" class="btn btn-primary mx-3"
+				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
 					th:href="@{'/c/'+${category.alias}+'/sort/latest'}">Lastest</a>
-				<input role="button" class="btn btn-primary mr-3" value="Top Sales" />
+				<input role="button" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" />
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

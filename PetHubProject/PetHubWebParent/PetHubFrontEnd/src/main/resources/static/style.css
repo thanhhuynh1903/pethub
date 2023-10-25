@@ -20,7 +20,6 @@
 /* star rating */
 
 .star-rating>i {
-  line-height:32px;
   font-size:0.8em;
 }
 
@@ -51,6 +50,7 @@
 .product-item {
  display: flex;
  flex-direction: column;
+ align-items: center;
  box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;
 }
 

@@ -251,6 +251,7 @@ label {
 }
 
 .table tbody tr td {
+	font-size: 16px;
 	text-align: center;
 }
 
@@ -491,7 +492,7 @@ footer{
   z-index: 1;
   top: 0;
   right: -3px;
-  -webkit-animation: run 0.5s linear forwards, hidden 0s ease-in 2s forwards;
+  -webkit-animation: run 2s linear forwards, ease-in 4s forwards;
 }
 @-webkit-keyframes run {
     0% {
@@ -500,7 +501,7 @@ footer{
     }
     100% {
 		top: 10%; 
-        right: 60%; 
+        right: 40%; 
        visibility: hidden;
     }
 }

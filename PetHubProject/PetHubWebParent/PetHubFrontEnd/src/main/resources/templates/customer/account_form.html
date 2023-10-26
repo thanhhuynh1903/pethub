@@ -160,11 +160,11 @@
 										</div>
 										<th:block th:if="${customer.authenticationType.name() == 'FACEBOOK'}">
 											<button type="button"
-												class="btn btn-outline-primary btn-account-linked">Link</button>
+												class="btn btn-outline-primary btn-account-linked">Linked</button>
 										</th:block>
 										<th:block th:if="${customer.authenticationType.name() != 'FACEBOOK'}">
 											<button type="button"
-												class="btn btn-outline-primary btn-account-unlinked">Unlinked</button>
+												class="btn btn-outline-primary btn-account-unlinked">Link</button>
 										</th:block>
 									</div>
 									<div class="d-flex justify-content-between">
@@ -179,7 +179,7 @@
 										</th:block>
 										<th:block th:if="${customer.authenticationType.name() != 'GOOGLE'}">
 											<button type="button"
-												class="btn btn-outline-primary btn-account-unlinked">Unlinked</button>
+												class="btn btn-outline-primary btn-account-unlinked">Link</button>
 										</th:block>
 									</div>
 									<!--

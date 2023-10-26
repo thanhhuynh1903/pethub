@@ -45,19 +45,26 @@
 						<!--breadcrumb-->
 						<div class="d-flex justify-content-between w-100">
 							<!--Category-->
-							<div class="d-sm-flex d-none flex-column text-center category-container sticky-top">
-								<h5 class="text-left px-3 pt-3 user-select-none">
-									Product Categories
-								</h5>
-								<div th:each="cat : ${category.children}">
-									<div class="category-item-container p-3" th:if="${cat.enabled == true}">
-										<a th:href="@{'/c/'+${cat.alias}}"
-											class="d-flex align-items-center text-decoration-none text-secondary">
-											<div class="category-img-container d-flex align-items-center mr-2">
-												<img th:src="@{${cat.imagePath}}" />
+							<div class="d-none d-md-block overflow-hidden vh-100 category-parent sticky-top">
+								<div class="flex-column text-center d-none category-container d-md-flex sticky-top">
+									<div class="category-content-container">
+										<h5 class="text-left px-3 pt-3 user-select-none">
+											Product Categories
+										</h5>
+										<div  class="pb-3">
+										<div th:each="cat : ${category.children}">
+											<div class="category-item-container p-3" th:if="${cat.enabled == true}">
+												<a th:href="@{'/c/'+${cat.alias}}"
+													class="d-flex align-items-center text-decoration-none text-secondary">
+													<div class="category-img-container d-flex align-items-center mr-2">
+														<img th:src="@{${cat.imagePath}}" />
+													</div>
+													<span class="text-left">[[${cat.name}]]</span>
+													
+												</a>
 											</div>
-											<span class="text-left">[[${cat.name}]]</span>
-										</a>
+										</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -79,6 +86,7 @@
 							</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>

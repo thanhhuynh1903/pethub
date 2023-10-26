@@ -42,25 +42,29 @@
 			<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
 			<div class="w-100">
 
-				<div class="d-flex justify-content-center w-100 my-4 home-main-contanier">
-					<div class=" flex-column text-center category-container d-none d-md-flex sticky-top">
-						<h5 class="text-left px-3 pt-3 user-select-none">
-							Product Categories
-						</h5>
-						<!-- catgories container -->
-						<div>
-							<div th:each="cat: ${listCategories}">
-								<div class="category-item-container p-3">
-									<a th:href="@{'/c/'+${cat.alias}}"
-										class="d-flex align-items-center text-decoration-none text-secondary">
-										<div class="category-img-container mr-2"><img th:src="@{${cat.imagePath}}" />
-										</div>
-										<span class="text-left">[[${cat.name}]]</span>
+				<div class="d-flex justify-content-center w-100 my-4 home-main-contanier ">
+					<div class="d-none d-md-block overflow-hidden vh-100 category-parent sticky-top">
+					<div class=" flex-column text-center d-none category-container d-md-flex sticky-top">
+						<div class="category-content-container">
+							<h5 class="text-left px-3 pt-3 user-select-none">
+								Product Categories
+							</h5>
+							<!-- catgories container -->
+							<div class="pb-3">
+								<div th:each="cat: ${listCategories}">
+									<div class="category-item-container p-3">
+										<a th:href="@{'/c/'+${cat.alias}}"
+											class="d-flex align-items-center text-decoration-none text-secondary">
+											<div class="category-img-container mr-2"><img
+													th:src="@{${cat.imagePath}}" />
+											</div>
+											<span class="text-left">[[${cat.name}]]</span>
+										</a>
+									</div>
 									</a>
 								</div>
-								</a>
 							</div>
-						</div>
+						</div></div>
 						<!-- catgories container -->
 					</div>
 					<!-- product categories -->
@@ -79,10 +83,10 @@
 							</div>
 						</div>
 						<!--slider end-->
-						
+
 						<!-- flash sale start -->
 						<!-- flash sale end -->
-						
+
 						<!-- best seller start -->
 						<div class="home-sale-container w-100 mb-3 py-3">
 							<div

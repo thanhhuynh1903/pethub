@@ -52,7 +52,12 @@
 								id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								<i class="bi bi-emoji-smile d-flex align-items-center nav-general"></i>
-								<span class="nav-general">Account</span></th:block>
+								<th:block sec:authorize="!isAuthenticated()">
+									<span class="nav-general">Account</span>
+								</th:block>
+								<th:block sec:authorize="isAuthenticated()">
+									<span class="nav-general" th:text="firstName"></span>
+								</th:block>
 							</a>
 
 							<div class="container">
@@ -68,7 +73,7 @@
 										<a class="dropdown-item" th:href="@{/address_book}">Address Book</a>
 										<a class="dropdown-item" th:href="@{/reviews}">My reviews</a>
 										<a class="dropdown-item" th:href="@{/orders}">My Orders</a>
-										<a class="dropdown-item" href="">Support Center</a>
+										<a class="dropdown-item" th:href="@{/}">Support Center</a>
 										<div class="dropdown-divider"></div>
 										<!--Logout-->
 										<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
@@ -139,12 +144,13 @@
 	</div>
 
 	<div th:fragment="header_product" class="w-100">
-		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
+		<div
+			class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
 					th:href="@{'/c/'+${category.alias}+'/sort/latest'}">Latest</a>
-				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly/>
+				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly />
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -161,11 +167,11 @@
 	</div>
 	<!--header search results-->
 	<div th:fragment="header_seach-results" class="w-100">
-		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
+		<div
+			class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
-					th:href="@{/}">Lastest</a>
+				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2" th:href="@{/}">Lastest</a>
 				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" />
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -174,8 +180,7 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="#" th:href="@{/}">Ascending</a>
-						<a class="dropdown-item" href="#"
-							th:href="@{/}">Descending</a>
+						<a class="dropdown-item" href="#" th:href="@{/}">Descending</a>
 					</div>
 				</div>
 			</div>

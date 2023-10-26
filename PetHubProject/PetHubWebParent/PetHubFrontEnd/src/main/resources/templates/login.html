@@ -68,8 +68,9 @@
                 </div>
               </div>
               <div th:if="${param.error}">
-                <p class="text-danger" style="margin-bottom: 0px;">
-                  [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+                <p class="text-danger d-flex align-items-center" style="margin-bottom: 0px;">
+					<i class="bi bi-exclamation-circle-fill mr-2 d-flex align-items-center"></i>
+					<span>[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</span>
                 </p>
               </div>
               <!-- No need

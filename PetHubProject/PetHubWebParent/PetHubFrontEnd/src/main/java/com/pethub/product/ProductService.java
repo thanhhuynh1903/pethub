@@ -36,28 +36,31 @@ public class ProductService {
 	public Page<Product> search(String keyword, int pageNum) {
 		Pageable pageable = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
 		return repo.search(keyword, pageable);
-
 	}
 
-	public Page<Product> listByCategoryPriceAsc(int pageNum, Integer categoryId) {
+	public Page<Product> listByCategory1(int pageNum, Integer categoryId, String sortDir) {
 		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
 		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
 
-		return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
+		if (sortDir.equals("latest")) {
+			return repo.listByCategoryLatest(categoryId, categoryIdMatch, pageable);
+		} else if (sortDir.equals("asc")) {
+			return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
+		} else {
+			return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
+		}
 	}
 
-	public Page<Product> listByCategoryPriceDesc(int pageNum, Integer categoryId) {
-		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
-		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
-
-		return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
+	public Page<Product> search1(String keyword, int pageNum, String sortDir) {
+		Pageable pageable = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
+		if ("asc".equals(sortDir)) {
+			return repo.searchSortPriceAsc(keyword, pageable);
+		} else if ("desc".equals(sortDir)) {
+			return repo.searchSortPriceDesc(keyword, pageable);
+		} else if ("latest".equals(sortDir)) {
+			return repo.searchSortByLatest(keyword, pageable);
+		} else {
+			return repo.search(keyword, pageable);
+		}
 	}
-
-	public Page<Product> listByCategoryLatest(int pageNum, Integer categoryId) {
-		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
-		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
-
-		return repo.listByCategoryLatest(categoryId, categoryIdMatch, pageable);
-	}
-
 }

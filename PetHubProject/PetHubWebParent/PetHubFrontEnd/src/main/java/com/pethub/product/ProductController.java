@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pethub.category.CategoryService;
 import com.pethub.common.entity.Category;
@@ -24,39 +25,42 @@ public class ProductController {
 
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias, Model model) {
-		return viewCategoryByPage(alias, 1, model);
+		return viewCategoryByPage(alias, 1, alias, model);
 	}
 
-	@GetMapping("/c/{category_alias}/page/{pageNum}")
-	public String viewCategoryByPage(@PathVariable("category_alias") String alias, @PathVariable("pageNum") int pageNum,
-			Model model) {
-		try {
-			Category category = categoryService.getCategory(alias);
+	// @GetMapping("/c/{category_alias}/page/{pageNum}")
+	// public String viewCategoryByPage(@PathVariable("category_alias") String
+	// alias, @PathVariable("pageNum") int pageNum,
+	// Model model) {
+	// try {
+	// Category category = categoryService.getCategory(alias);
 
-			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
-			Page<Product> pageProducts = productService.listByCategory(pageNum, category.getId());
-			List<Product> listProducts = pageProducts.getContent();
+	// List<Category> listCategoryParents =
+	// categoryService.getCategoryParents(category);
+	// Page<Product> pageProducts = productService.listByCategory(pageNum,
+	// category.getId());
+	// List<Product> listProducts = pageProducts.getContent();
 
-			long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
-			long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
-			if (endCount > pageProducts.getTotalElements()) {
-				endCount = pageProducts.getTotalElements();
-			}
+	// long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+	// long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+	// if (endCount > pageProducts.getTotalElements()) {
+	// endCount = pageProducts.getTotalElements();
+	// }
 
-			model.addAttribute("currentPage", pageNum);
-			model.addAttribute("totalPages", pageProducts.getTotalPages());
-			model.addAttribute("startCount", startCount);
-			model.addAttribute("endCount", endCount);
-			model.addAttribute("totalItems", pageProducts.getTotalElements());
-			model.addAttribute("pageTitle", category.getName());
-			model.addAttribute("listCategoryParents", listCategoryParents);
-			model.addAttribute("listProducts", listProducts);
-			model.addAttribute("category", category);
-			return "product/products_by_category";
-		} catch (CategoryNotFoundException ex) {
-			return "error/404";
-		}
-	}
+	// model.addAttribute("currentPage", pageNum);
+	// model.addAttribute("totalPages", pageProducts.getTotalPages());
+	// model.addAttribute("startCount", startCount);
+	// model.addAttribute("endCount", endCount);
+	// model.addAttribute("totalItems", pageProducts.getTotalElements());
+	// model.addAttribute("pageTitle", category.getName());
+	// model.addAttribute("listCategoryParents", listCategoryParents);
+	// model.addAttribute("listProducts", listProducts);
+	// model.addAttribute("category", category);
+	// return "product/products_by_category";
+	// } catch (CategoryNotFoundException ex) {
+	// return "error/404";
+	// }
+	// }
 
 	@GetMapping("/p/{product_alias}")
 	public String viewProductDetail(@PathVariable("product_alias") String alias, Model model) {
@@ -77,12 +81,13 @@ public class ProductController {
 
 	@GetMapping("/search")
 	public String searchFirstPage(String keyword, Model model) {
-		return searchByPage(keyword, 1, model);
+		return searchByPage(keyword, keyword, 1, model);
 	}
 
 	@GetMapping("/search/page/{pageNum}")
-	public String searchByPage(String keyword, @PathVariable("pageNum") int pageNum, Model model) {
-		Page<Product> pageProducts = productService.search(keyword, pageNum);
+	public String searchByPage(@RequestParam String keyword, @RequestParam String sortDir,
+			@PathVariable("pageNum") int pageNum, Model model) {
+        Page<Product> pageProducts = productService.search1(keyword, pageNum, sortDir);
 		List<Product> listResult = pageProducts.getContent();
 
 		long startCount = (pageNum - 1) * ProductService.SEARCH_RESULTS_PER_PAGE + 1;
@@ -101,70 +106,48 @@ public class ProductController {
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("searchKeyword", keyword);
 		model.addAttribute("listResult", listResult);
+		model.addAttribute("sortDir", sortDir);
 
 		return "product/search_result";
 	}
 
-	@GetMapping("/c/{category_alias}/sort/asc")
-	public String viewCategoryByPagePriceAsc(@PathVariable("category_alias") String alias, Model model) {
+	@GetMapping("/c/{category_alias}/page/{pageNum}")
+	public String viewCategoryByPage(@PathVariable("category_alias") String alias,
+			@PathVariable("pageNum") int pageNum,
+			@RequestParam(defaultValue = "asc") String sortDir,
+			Model model) {
 		try {
+			// Retrieve the category using the provided alias
 			Category category = categoryService.getCategory(alias);
 
+			// Retrieve the list of parent categories for breadcrumb navigation
 			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
-			Page<Product> pageProducts = productService.listByCategoryPriceAsc(1, category.getId());
+
+			// Retrieve a page of products in the category, sorted by price in the specified
+			// direction
+			Page<Product> pageProducts = productService.listByCategory1(pageNum, category.getId(), sortDir);
 			List<Product> listProducts = pageProducts.getContent();
 
-			model.addAttribute("currentPage", 1);
+			// Calculate the start and end count for the current page
+			long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+			long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+			if (endCount > pageProducts.getTotalElements()) {
+				endCount = pageProducts.getTotalElements();
+			}
+
+			// Add attributes to the model for displaying in the view
+			model.addAttribute("currentPage", pageNum);
 			model.addAttribute("totalPages", pageProducts.getTotalPages());
+			model.addAttribute("startCount", startCount);
+			model.addAttribute("endCount", endCount);
 			model.addAttribute("totalItems", pageProducts.getTotalElements());
 			model.addAttribute("pageTitle", category.getName());
 			model.addAttribute("listCategoryParents", listCategoryParents);
 			model.addAttribute("listProducts", listProducts);
 			model.addAttribute("category", category);
-			return "product/products_by_category";
-		} catch (CategoryNotFoundException ex) {
-			return "error/404";
-		}
-	}
+			model.addAttribute("sortDir", sortDir);
 
-	@GetMapping("/c/{category_alias}/sort/desc")
-	public String viewCategoryByPagePriceDesc(@PathVariable("category_alias") String alias, Model model) {
-		try {
-			Category category = categoryService.getCategory(alias);
-
-			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
-			Page<Product> pageProducts = productService.listByCategoryPriceDesc(1, category.getId());
-			List<Product> listProducts = pageProducts.getContent();
-
-			model.addAttribute("currentPage", 1);
-			model.addAttribute("totalPages", pageProducts.getTotalPages());
-			model.addAttribute("totalItems", pageProducts.getTotalElements());
-			model.addAttribute("pageTitle", category.getName());
-			model.addAttribute("listCategoryParents", listCategoryParents);
-			model.addAttribute("listProducts", listProducts);
-			model.addAttribute("category", category);
-			return "product/products_by_category";
-		} catch (CategoryNotFoundException ex) {
-			return "error/404";
-		}
-	}
-
-	@GetMapping("/c/{category_alias}/sort/latest")
-	public String viewCategoryByPageLatest(@PathVariable("category_alias") String alias, Model model) {
-		try {
-			Category category = categoryService.getCategory(alias);
-
-			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
-			Page<Product> pageProducts = productService.listByCategoryLatest(1, category.getId());
-			List<Product> listProducts = pageProducts.getContent();
-
-			model.addAttribute("currentPage", 1);
-			model.addAttribute("totalPages", pageProducts.getTotalPages());
-			model.addAttribute("totalItems", pageProducts.getTotalElements());
-			model.addAttribute("pageTitle", category.getName());
-			model.addAttribute("listCategoryParents", listCategoryParents);
-			model.addAttribute("listProducts", listProducts);
-			model.addAttribute("category", category);
+			// Return the name of the view that displays the products
 			return "product/products_by_category";
 		} catch (CategoryNotFoundException ex) {
 			return "error/404";

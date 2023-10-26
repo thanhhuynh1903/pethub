@@ -74,9 +74,9 @@
 								</div>
 								<!--product in category-->
 								<div class="pagination-container">
-									<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product')}">
+									<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product', ${sortDir})}">
 									</div>
-								</div>
+							</div>
 							</div>
 						</div>
 					</div>

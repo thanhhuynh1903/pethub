@@ -64,8 +64,7 @@
 											Register</a>
 									</th:block>
 									<th:block sec:authorize="isAuthenticated()">
-										<a class="dropdown-item" th:href="@{/account_details}"
-											sec:authentication="principal.fullName">Profile</a>
+										<a class="dropdown-item" th:href="@{/account_details}">Profile</a>
 										<a class="dropdown-item" th:href="@{/address_book}">Address Book</a>
 										<a class="dropdown-item" th:href="@{/reviews}">My reviews</a>
 										<a class="dropdown-item" th:href="@{/orders}">My Orders</a>

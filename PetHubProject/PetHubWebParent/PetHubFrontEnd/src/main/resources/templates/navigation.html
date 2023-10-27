@@ -53,7 +53,7 @@
 									<span class="nav-general">Account</span>
 								</th:block>
 								<th:block sec:authorize="isAuthenticated()">
-									<span class="nav-general" th:text="firstName"></span>
+									<span class="nav-general" sec:authentication="principal.firstName"></span>
 								</th:block>
 							</a>
 

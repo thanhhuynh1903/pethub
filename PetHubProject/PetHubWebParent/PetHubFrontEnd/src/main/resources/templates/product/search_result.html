@@ -8,10 +8,10 @@
 		<div th:replace="~{navigation :: header_menu}"></div>
 		<div th:replace="~{navigation :: search_nav}"></div>
 
-		<div th:if="${totalItem > 0}">
-			<h1>Search Results for '[[${keyword}]]'</h1>
+		<div th:if="${totalItems > 0}">
+			<h2>Search Results for '[[${keyword}]]'</h2>
 		</div>
-		<div th:unless="${totalItem > 0}">
+		<div th:unless="${totalItems > 0}">
 			<h3>No match found for '[[${keyword}]]'</h3>
 		</div>
 

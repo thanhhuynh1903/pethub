@@ -1,5 +1,7 @@
 package com.pethub.product;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +16,8 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 	public Page<Product> listByCategory(Integer categoryId, String categoryIDMatch, Pageable pageable);
 
 	public Product findByAlias(String alias);
+
+	List<Product> findAll();
 
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "(name LIKE %?1% OR short_description LIKE %?1% OR full_description LIKE %?1%)", nativeQuery = true)

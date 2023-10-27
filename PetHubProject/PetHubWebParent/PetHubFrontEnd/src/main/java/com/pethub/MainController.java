@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.pethub.category.CategoryService;
 import com.pethub.common.entity.Category;
+import com.pethub.common.entity.product.Product;
+import com.pethub.product.ProductService;
 
 @Controller
 public class MainController {
@@ -19,11 +21,18 @@ public class MainController {
 	@Autowired
 	private CategoryService categoryService;
 
+	@Autowired
+	private ProductService productService;
+
 	@GetMapping("")
 	public String viewHomePage(Model model) {
 		List<Category> listCategories = categoryService.listNoChildrenCategories();
 
 		model.addAttribute("listCategories", listCategories);
+
+		List<Product> listProducts = productService.getAllProducts();
+    model.addAttribute("listProducts", listProducts);
+    
 		return "index";
 	}
 

@@ -1,107 +1,124 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head('Shopping Cart', 'none')}" />
+<head>
+
+	<head th:replace="~{fragments :: page_head('Shopping Cart', 'none')}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-cart.css}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: header_menu}"></div>
-		<div th:replace="~{navigation :: search_nav}"></div>
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}"></div>
 
-		<div class="text-center">
-			<h2>Your Shopping Cart</h2>
-		</div>
-
-		<div class="row m-1">
-			<div class="col-sm-8">
-				<th:block th:each="item, status : ${cartItems}">
-					<div class="row border rounded p-1" th:with="product = ${item.product}"
-						th:id="'row' + ${status.count}">
-						<div class="col-1">
-							<div class="divCount">[[${status.count}]]</div>
-							<div>
-								<a class="fas fa-trash icon-dark linkRemove" th:rowNumber="${status.count}"
-									th:href="@{'/cart/remove/' + ${product.id}}"></a>
-							</div>
-						</div>
-						<div class="col-3">
-							<img th:src="@{${product.mainImagePath}}" class="img-fluid" />
-						</div>
-						<div class="col-6">
-							<div>
-								<a th:href="@{'/p/' + ${product.alias}}" target="_blank" th:title="${product.name}">
-									<b>[[${product.shortName}]]</b>
-								</a>
-							</div>
-							<div
-								th:replace="~{cart/quantity_control :: quantity_control(${item.quantity}, ${product.id})}">
-							</div>
-
-							<div>
-								<span>X&nbsp;</span>
-								<div th:replace="~{product/product_fragment :: product_price}"></div>
-							</div>
-							<div>
-								<span>=&nbsp;</span> <span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-									th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span
-									th:id="'subtotal' + ${product.id}"
-									class="h4 subtotal">[[${#numbers.formatDecimal(item.subtotal,
-									1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
-									th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
-									th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-							</div>
-						</div>
-					</div>
-					<div class="row m-1" th:id="'blankLine' + ${status.count}">&nbsp;</div>
-				</th:block>
-			</div>
-
-			<div class="col-sm-4" th:unless="${#lists.isEmpty(cartItems)}" id="sectionTotal">
-				<div>
-					<span class="h3">Estimated Total:</span>
+			<!--main content starts-->
+			<div class="w-100 cart-container mt-5">
+				<div class="text-left">
+					<h3 class="text-uppercase">Shopping Cart</h3>
 				</div>
-				<div class="mt-2">
-					<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-						th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span id="total"
-						class="h2">[[${#numbers.formatDecimal(estimatedTotal, 1,
-						THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
-						th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
-						th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-				</div>
-				<div class="mt-2">
-					<div th:if="${shippingSupported}">
-						<form th:action="@{/checkout}">
-							<button type="submit" class="btn btn-danger p-3 mt-2">Check
-								Out</button>
-						</form>
+
+				<div class="row m-1">
+					<div class="col-sm-8">
+						<th:block th:each="item, status : ${cartItems}">
+							<div class="row border rounded p-1" th:with="product = ${item.product}"
+								th:id="'row' + ${status.count}">
+								<div class="col-1">
+									<div class="divCount">[[${status.count}]]</div>
+									<div>
+										<a class="fas fa-trash icon-dark linkRemove" th:rowNumber="${status.count}"
+											th:href="@{'/cart/remove/' + ${product.id}}"></a>
+									</div>
+								</div>
+								<div class="col-3">
+									<img th:src="@{${product.mainImagePath}}" class="img-fluid" />
+								</div>
+								<div class="col-6">
+									<div>
+										<a th:href="@{'/p/' + ${product.alias}}" target="_blank"
+											th:title="${product.name}">
+											<b>[[${product.shortName}]]</b>
+										</a>
+									</div>
+									<div
+										th:replace="~{cart/quantity_control :: quantity_control(${item.quantity}, ${product.id})}">
+									</div>
+
+									<div>
+										<span>X&nbsp;</span>
+										<div th:replace="~{product/product_fragment :: product_price}"></div>
+									</div>
+									<div>
+										<span>=&nbsp;</span> <span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+											th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span
+											th:id="'subtotal' + ${product.id}"
+											class="h4 subtotal">[[${#numbers.formatDecimal(item.subtotal,
+											1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
+											th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+											th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+									</div>
+								</div>
+							</div>
+							<div class="row m-1" th:id="'blankLine' + ${status.count}">&nbsp;</div>
+						</th:block>
 					</div>
 
-					<div th:unless="${shippingSupported}">
+					<div class="col-sm-4" th:unless="${#lists.isEmpty(cartItems)}" id="sectionTotal">
 						<div>
-							<span class="h5 text-warning">No shipping available for
-								your location</span>
+							<span class="h3">Estimated Total:</span>
 						</div>
-
-						<div th:if="${usePrimaryAddressAsDefault}">
-							<a th:href="@{/account_details(redirect=cart)}" class="h6">Update
-								your address</a>
+						<div class="mt-2">
+							<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+								th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span id="total"
+								class="h2">[[${#numbers.formatDecimal(estimatedTotal, 1,
+								THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
+								th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+								th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 						</div>
+						<div class="mt-2">
+							<div th:if="${shippingSupported}">
+								<form th:action="@{/checkout}">
+									<button type="submit" class="btn btn-danger p-3 mt-2">Check
+										Out</button>
+								</form>
+							</div>
 
-						<div th:unless="${usePrimaryAddressAsDefault}">
-							<a th:href="@{/address_book(redirect=cart)}" class="h6">Use
-								another shipping address</a>
+							<div th:unless="${shippingSupported}">
+								<div>
+									<span class="h5 text-warning">No shipping available for
+										your location</span>
+								</div>
+
+								<div th:if="${usePrimaryAddressAsDefault}">
+									<a th:href="@{/account_details(redirect=cart)}" class="h6">Update
+										your address</a>
+								</div>
+
+								<div th:unless="${usePrimaryAddressAsDefault}">
+									<a th:href="@{/address_book(redirect=cart)}" class="h6">Use
+										another shipping address</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
+
+				<div id="sectionEmptyCartMessage"
+					th:class="'d-flex flex-column justify-content-center align-items-center' + ${#lists.isEmpty(cartItems) ? ' my-auto' : ' d-none'}">
+					<div class="cart-empty-img-container">
+						<img th:src="@{/images/empty-cart.png}">
+					</div>
+					<h3>You have not chosen any products yet.</h3>
+				</div>
 			</div>
-		</div>
+			<!--main content ends-->
 
-		<div id="sectionEmptyCartMessage" th:class="'text-center' + ${#lists.isEmpty(cartItems) ? '' : ' d-none'}">
-			<h3>You have not chosen any products yet.</h3>
+			<div th:replace="~{fragments :: modal_dialog}"></div>
+			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
-
-		<div th:replace="~{fragments :: modal_dialog}"></div>
-		<div th:replace="~{navigation :: footer_menu}"></div>
 	</div>
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]";

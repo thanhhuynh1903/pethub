@@ -1,9 +1,78 @@
-.container-detail {
+.container-detail-1,.container-detail-3 {
     margin: 0px 15px;
     border-radius: 10px;
-
     background-color: #ffffff;
 }
+
+.container-detail{
+	margin: 0px 15px;
+    border-radius: 10px;
+    /* background-color: #ffffff; */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.container-detail .container{
+	display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.first-detail{
+	    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+   
+}
+.second-detail{
+	display: flex;flex-direction: column;background: white;border-radius: 8px;padding: 16px;
+}
+
+.second-detail .child-second-dt{
+	display: flex;
+    flex-direction: column;
+}
+
+.second-detail b{
+	line-height: 45px;
+	color: rgb(128, 128, 137);
+}
+
+.layout-outside{
+	display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px 0px;
+    border-bottom: 1px solid rgb(235, 235, 240);
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 400;
+    color: rgb(39, 39, 42);
+    gap: 8px;
+}
+
+.spacing{
+	background-color: rgb(255, 255, 255);
+    display: flex;
+    flex: 1 1 0%;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    color: rgb(39, 39, 42);
+    -webkit-box-align: center;
+    align-items: center;
+
+}
+
 
 .modify-name {
     margin: 0px;

@@ -56,7 +56,8 @@ public class CustomerUserDetails implements UserDetails {
 	}
 
 	public String getFirstName(){
-		return customer.getFirstName();
+		String arr[] = customer.getFirstName().split(" ", 2);
+		return arr[0];
 	}
 	
 	public Customer getCustomer() {

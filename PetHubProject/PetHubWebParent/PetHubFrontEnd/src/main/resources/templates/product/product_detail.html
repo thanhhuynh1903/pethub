@@ -77,15 +77,16 @@
 								<span>Brand: [[${product.brand.name}]]</span>
 							</div>
 							<div class="price-modify">
-						
+
 								<span th:if="${product.discountPercent <= 0}">
 									<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 									</div>
 								</span>
 							</div>
 							<div th:if="${product.discountPercent > 0}">
-							<!--Price-->
-								<del th:if="${product.discountPercent > 0}" class="text-secondary" style="font-size: small;">
+								<!--Price-->
+								<del th:if="${product.discountPercent > 0}" class="text-secondary"
+									style="font-size: small;">
 									<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 									</div>
 								</del>
@@ -131,14 +132,15 @@
 							<div>
 								<span th:if="${product.inStock}" class="text-success"><b>In Stock</b></span>
 								<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
-								
+
 							</div>
 							<th:block th:if="${product.inStock}">
-					<div th:replace="~{cart/quantity_control :: quantity_control(1, ${product.id})}"></div>
-					<div class="mt-3">
-						<input type="button" value="Add to Cart" id="buttonAdd2Cart" class="btn btn-primary" />
-					</div>
-				</th:block>
+								<div th:replace="~{cart/quantity_control :: quantity_control(1, ${product.id})}"></div>
+								<div class="mt-3">
+									<input type="button" value="Add to Cart" id="buttonAdd2Cart"
+										class="btn btn-primary" />
+								</div>
+							</th:block>
 							<div class="mt-2 quantity-container">
 								<button class="btn btn-minus" id="btnMinus">
 									<i class="bi bi-dash"></i>
@@ -173,69 +175,69 @@
 					<!--product full description-->
 
 					<!--product specification-->
-					
+
 					<!--product specification-->
 				</div>
 
-		<div th:replace="~{product/images_carousel :: content}"></div>
-		<div th:replace="~{fragments :: modal_dialog}"></div>
-		<div th:replace="~{navigation :: footer_menu}"></div>
-	</div>
+				<div th:replace="~{product/images_carousel :: content}"></div>
+				<div th:replace="~{fragments :: modal_dialog}"></div>
+				<div th:replace="~{navigation :: footer_menu}"></div>
+			</div>
 
-	<script type="text/javascript">
-		contextPath = "[[@{/}]]";
-		productId = "[[${product.id}]]";
+			<script type="text/javascript">
+				contextPath = "[[@{/}]]";
+				productId = "[[${product.id}]]";
 
-		var csrfHeaderName = "[[${_csrf.headerName}]]";
-		var csrfValue = "[[${_csrf.token}]]";
+				var csrfHeaderName = "[[${_csrf.headerName}]]";
+				var csrfValue = "[[${_csrf.token}]]";
 
-		$(document).ready(function () {
-			bigImage = $("#bigImage");
-			btnPlus = $("#btnPlus");
-			btnMinus = $("#btnMinus");
-			quantity = $("#quantity");
+				$(document).ready(function () {
+					bigImage = $("#bigImage");
+					btnPlus = $("#btnPlus");
+					btnMinus = $("#btnMinus");
+					quantity = $("#quantity");
 
-			$(".image-thumbnail").mouseover(function () {
-				currentImageSource = $(this).attr("src");
-				currentImageIndex = $(this).attr("index");
-				bigImage.attr("src", currentImageSource);
-				bigImage.attr("index", currentImageIndex);
-			});
+					$(".image-thumbnail").mouseover(function () {
+						currentImageSource = $(this).attr("src");
+						currentImageIndex = $(this).attr("index");
+						bigImage.attr("src", currentImageSource);
+						bigImage.attr("index", currentImageIndex);
+					});
 
-			bigImage.on("click", function () {
-				$("#carouselModal").modal("show");
-				imageIndex = parseInt(bigImage.attr("index"));
-				$("#carouselExampleIndicators").carousel(imageIndex);
-			});
-			
-			btnPlus.on("click", function () {
-				var value = parseInt(quantity.val(), 10);
-				value = isNaN(value) ? 0 : value;
-				value++;
-				quantity.val(value);
-				console.log("quantity: " + quantity.value);
-				console.log("value: " + value);
-			})
-			
-			btnMinus.on("click", function () {
-				var value = parseInt(quantity.val(), 10);
-				value = isNaN(value) ? 1 : value;
-				value < 1 ? value = 1 : '';
-				value--;
-				quantity.val(value);
-				console.log("quantity: " + quantity.value);
-				console.log("value: " + value);
-			})
+					bigImage.on("click", function () {
+						$("#carouselModal").modal("show");
+						imageIndex = parseInt(bigImage.attr("index"));
+						$("#carouselExampleIndicators").carousel(imageIndex);
+					});
 
-			//increase, decrease quantity
-			
-			
-		});
+					btnPlus.on("click", function () {
+						var value = parseInt(quantity.val(), 10);
+						value = isNaN(value) ? 0 : value;
+						value++;
+						quantity.val(value);
+						console.log("quantity: " + quantity.value);
+						console.log("value: " + value);
+					})
 
-	</script>
-	<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
-	<script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
-	<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
+					btnMinus.on("click", function () {
+						var value = parseInt(quantity.val(), 10);
+						value = isNaN(value) ? 1 : value;
+						value < 1 ? value = 1 : '';
+						value--;
+						quantity.val(value);
+						console.log("quantity: " + quantity.value);
+						console.log("value: " + value);
+					})
+
+					//increase, decrease quantity
+
+
+				});
+
+			</script>
+			<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+			<script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
+			<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
 </body>
 
 </html>

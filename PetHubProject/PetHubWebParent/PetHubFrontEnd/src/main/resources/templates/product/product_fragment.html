@@ -21,19 +21,21 @@
 			</div>
 			<!--star rating-->
 
-			<div th:if="${product.discountPercent > 0}" class="product-item-price-container my-2">
-				<del>
-					<span class="text-secondary" style="font-size: small;">
-						<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}"></div>
+			<div th:fragment="product_price" th:remove="tag">
+				<div th:if="${product.discountPercent &lt;= 0}" class="product-item-price-container my-2">
+					<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
+				</div>
+				<div th:if="${product.discountPercent > 0}" class="product-item-price-container my-2">
+					<del>
+						<span class="text-secondary" style="font-size: small">
+							<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
+							</div>
+						</span>
+					</del>
+					<span>
+						<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
 					</span>
-				</del>
-				<span>
-					<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}"></div>
-				</span>
-			</div>
-
-			<div th:if="${product.discountPercent <= 0}" class="product-item-price-container">
-				<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
+				</div>
 			</div>
 		</div>
 	</a>

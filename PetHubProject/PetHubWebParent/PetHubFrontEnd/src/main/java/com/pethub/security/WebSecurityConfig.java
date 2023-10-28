@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.pethub.security.oauth.CustomerOAuth2UserService;
 import com.pethub.security.oauth.OAuth2LoginSuccessHandler;
+
+import jakarta.mail.Session;
 
 @Configuration
 @EnableWebSecurity
@@ -52,7 +55,7 @@ public class WebSecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
-				.requestMatchers("/account_details", "/update_account_details").authenticated().anyRequest()
+				.requestMatchers("/account_details", "/update_account_details", "/cart").authenticated().anyRequest()
 				.permitAll())
 				.oauth2Login(oauth2 -> oauth2.loginPage("/login").userInfoEndpoint().userService(oAuth2UserService)
 						.and().successHandler(oAuth2LoginSuccessHandler))
@@ -63,8 +66,8 @@ public class WebSecurityConfig {
 				.rememberMe(rememberMe -> rememberMe.key("dfsafhfjhlkjdsjfkdasjf_123132131231123898")// specify your
 																										// secret key
 						.tokenValiditySeconds(7 * 24 * 60 * 60) // specify token validity time in seconds
-						.userDetailsService(userDetailsService()) // specify your UserDetailsService here
-				);
+						.userDetailsService(userDetailsService()))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
 		return http.build();
 	}
 }

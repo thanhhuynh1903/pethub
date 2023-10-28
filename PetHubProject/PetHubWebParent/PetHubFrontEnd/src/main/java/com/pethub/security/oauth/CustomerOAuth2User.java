@@ -38,6 +38,12 @@ public class CustomerOAuth2User implements OAuth2User {
 	public String getFullName() {
 		return fullName != null ? fullName : oauth2User.getAttribute("name");
 	}
+	
+	public String getFirstName() {
+		String arr[] = fullName.split(" ", 2);
+		String arr2[] = oauth2User.getAttribute("name").toString().split(" ", 2);
+		return fullName != null ? arr[0] : arr2[0];
+	}
 
 	public String getClientName() {
 		return clientName;

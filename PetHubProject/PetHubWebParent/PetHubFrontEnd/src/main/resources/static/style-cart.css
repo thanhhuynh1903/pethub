@@ -1,0 +1,14 @@
+.cart-empty-img-container {
+	width: 200px;
+	height: 200px;
+}
+
+.cart-empty-img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.cart-container {
+	padding: 0 5rem;
+}

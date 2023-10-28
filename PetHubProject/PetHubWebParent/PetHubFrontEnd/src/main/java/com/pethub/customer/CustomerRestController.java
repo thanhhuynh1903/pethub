@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomerRestController {
 
-	@Autowired private CustomerService service;
-	
+	@Autowired
+	private CustomerService service;
+
 	@PostMapping("/customers/check_unique_email")
 	public String checkDuplicateEmail(String email) {
 		return service.isEmailUnique(email) ? "OK" : "Duplicated";

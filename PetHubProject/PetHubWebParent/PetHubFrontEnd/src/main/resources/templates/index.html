@@ -50,7 +50,7 @@
 								</h5>
 								<!-- catgories container -->
 								<div class="pb-3">
-									<div th:each="cat: ${listCategories}">
+									<div th:each="cat: ${listParentCategories}">
 										<div class="category-item-container p-3">
 											<a th:href="@{'/c/'+${cat.alias}}"
 												class="d-flex align-items-center text-decoration-none text-secondary">
@@ -59,9 +59,22 @@
 												<span class="text-left">[[${cat.name}]]</span>
 											</a>
 										</div>
+									</div>
+								</div>
+								<h5 class="text-left px-3 pt-3 user-select-none">
+									Product Brands
+								</h5>
+								<div th:each="brand: ${listBrands}">
+									<div class="category-item-container p-3">
+										<a th:href="@{'/b/'+${brand.name}}"
+											class="d-flex align-items-center text-decoration-none text-secondary">
+											<div class="category-img-container mr-2"><img th:src="@{${brand.logoPath}}" />
+											</div>
+											<span class="text-left">[[${brand.name}]]</span>
 										</a>
 									</div>
 								</div>
+
 							</div>
 						</div>
 						<!-- catgories container -->

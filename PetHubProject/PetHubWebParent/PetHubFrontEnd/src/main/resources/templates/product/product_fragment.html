@@ -1,52 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <a
+      th:href="@{'/p/'+${product.alias}}"
+      class="product-item-container text-dark text-decoration-none"
+      th:fragment="content"
+    >
+      <div class="product-img-container">
+        <img th:src="@{${product.mainImagePath}}" />
+      </div>
+      <div class="product-item-content-container p-2">
+        <div class="product-item-top">
+          <div class="product-item-name">[[${product.shortName}]]</div>
 
-<body>
-	<a th:href="@{'/p/'+${product.alias}}" class="product-item-container text-dark text-decoration-none"
-		th:fragment="content">
-		<div class="product-img-container">
-			<img th:src="@{${product.mainImagePath}}" />
-		</div>
-		<div class="product-item-content-container p-2">
-			<div class="product-item-top">
-				<div class="product-item-name">[[${product.shortName}]]</div>
+          <!--star rating-->
+          <div class="d-flex justify-content-between">
+            <div th:replace="~{fragments :: star_rating}"></div>
+            <div class="ml-auto d-flex align-items-center">
+              <span class="text-secondary text-sold">5 sold</span>
+            </div>
+          </div>
+        </div>
+        <!--star rating-->
 
-				<!--star rating-->
-				<div class="d-flex justify-content-between">
-					<div th:replace="~{fragments :: star_rating}"></div>
-					<div class="ml-auto d-flex align-items-center">
-						<span class="text-secondary text-sold">5 sold</span>
-					</div>
-				</div>
-			</div>
-			<!--star rating-->
+        <div th:fragment="product_price" th:remove="tag" class="price-modify">
+          <div
+            th:if="${product.discountPercent &lt;= 0}"
+            class="product-item-price-container my-2"
+          >
+            <div
+              th:replace="~{product/product_fragment :: price_fragment(${product.price})}"
+            ></div>
+          </div>
+          <div
+            th:if="${product.discountPercent > 0}"
+            class="product-item-price-container my-2"
+          >
+            <del th:if="${product.discountPercent > 0}">
+              <span class="text-secondary" style="font-size: small">
+                <div
+                  th:replace="~{product/product_fragment :: price_fragment(${product.price})}"
+                ></div>
+              </span>
+            </del>
+            <span class="price">
+              <div
+                th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}"
+              ></div>
+            </span>
+            ([[${#numbers.formatDecimal(product.discountPercent, 1,
+            THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] %)
+          </div>
+        </div>
+      </div>
+    </a>
 
-			<div th:fragment="product_price" th:remove="tag">
-				<div th:if="${product.discountPercent &lt;= 0}" class="product-item-price-container my-2">
-					<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
-				</div>
-				<div th:if="${product.discountPercent > 0}" class="product-item-price-container my-2">
-					<del>
-						<span class="text-secondary" style="font-size: small">
-							<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
-							</div>
-						</span>
-					</del>
-					<span>
-						<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
-					</span>
-				</div>
-			</div>
-		</div>
-	</a>
-
-	<div th:fragment="price_fragment(productPrice)" th:remove="tag">
-		<span class="text-secondary" th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-		[[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE,
-		DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
-			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-	</div>
-</body>
-
+    <div th:fragment="price_fragment(productPrice)" th:remove="tag">
+      <span
+        class="text-secondary"
+        th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+        th:remove="tag"
+        >[[${CURRENCY_SYMBOL}]]</span
+      >
+      [[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE,
+      DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span
+        th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+        th:remove="tag"
+        >[[${CURRENCY_SYMBOL}]]</span
+      >
+    </div>
+  </body>
 </html>

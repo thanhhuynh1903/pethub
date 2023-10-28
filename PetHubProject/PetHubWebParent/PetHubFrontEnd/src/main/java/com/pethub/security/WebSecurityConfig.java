@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.pethub.security.oauth.CustomerOAuth2UserService;
 import com.pethub.security.oauth.OAuth2LoginSuccessHandler;
+
+import jakarta.mail.Session;
 
 @Configuration
 @EnableWebSecurity
@@ -63,8 +66,8 @@ public class WebSecurityConfig {
 				.rememberMe(rememberMe -> rememberMe.key("dfsafhfjhlkjdsjfkdasjf_123132131231123898")// specify your
 																										// secret key
 						.tokenValiditySeconds(7 * 24 * 60 * 60) // specify token validity time in seconds
-						.userDetailsService(userDetailsService()) // specify your UserDetailsService here
-				);
+						.userDetailsService(userDetailsService()))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
 		return http.build();
 	}
 }

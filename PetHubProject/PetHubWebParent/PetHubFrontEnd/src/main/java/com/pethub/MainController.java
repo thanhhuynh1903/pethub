@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.pethub.brand.BrandService;
 import com.pethub.category.CategoryService;
+import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
 import com.pethub.common.entity.product.Product;
 import com.pethub.product.ProductService;
@@ -22,17 +24,22 @@ public class MainController {
 	private CategoryService categoryService;
 
 	@Autowired
+	private BrandService brandService;
+
+	@Autowired
 	private ProductService productService;
 
 	@GetMapping("")
 	public String viewHomePage(Model model) {
-		List<Category> listCategories = categoryService.listNoChildrenCategories();
+		List<Category> listParentCategories = categoryService.listParentCategories();
+		model.addAttribute("listParentCategories", listParentCategories);
 
-		model.addAttribute("listCategories", listCategories);
+		List<Brand> listBrands = brandService.listAllBrands();
+		model.addAttribute("listBrands", listBrands);
 
 		List<Product> listProducts = productService.getAllProducts();
-    model.addAttribute("listProducts", listProducts);
-    
+		model.addAttribute("listProducts", listProducts);
+
 		return "index";
 	}
 

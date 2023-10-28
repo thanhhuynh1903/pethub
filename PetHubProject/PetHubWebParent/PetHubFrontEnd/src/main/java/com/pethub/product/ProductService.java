@@ -67,6 +67,6 @@ public class ProductService {
 	}
 
 	public List<Product> getAllProducts() {
-    return (List<Product>) repo.findAll();
-}
+		return (List<Product>) repo.findAll();
+	}
 }

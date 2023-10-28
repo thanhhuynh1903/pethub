@@ -54,4 +54,22 @@ public class CategoryService {
 
 		return listParents;
 	}
+
+	public List<Category> listParentCategories() {
+		List<Category> listParentCategories = new ArrayList<>();
+
+		List<Category> listEnabledCategories = repo.findAllEnabled();
+
+		listEnabledCategories.forEach(category -> {
+			if (category.getParent() == null) {
+				listParentCategories.add(category);
+			}
+		});
+
+		return listParentCategories;
+	}
+
+	public boolean hasChildCategories(Category category) {
+		return !category.getChildren().isEmpty();
+	}
 }

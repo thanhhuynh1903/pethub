@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<a th:href="@{'/p/'+${product.alias}}" class="product-item-container text-dark text-decoration-none"
+	<a th:href="@{'/p/'+${product.alias}}" class="product-item-container text-dark text-decoration-none position-relative"
 		th:fragment="content">
 		<div class="product-img-container">
 			<img th:src="@{${product.mainImagePath}}" />
@@ -31,11 +31,15 @@
 							<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
 						</span>
 					</del>
-					<span class="price">
+					<span>
 						<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}"></div>
 					</span>
-					([[${#numbers.formatDecimal(product.discountPercent, 1,
-					THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] %)
+					<div class="btn-sale-container">
+						<button class="btn-sale btn">
+							[[${#numbers.formatDecimal(product.discountPercent, 1,
+							THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] %
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>

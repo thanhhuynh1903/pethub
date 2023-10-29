@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ShippingRateRestController {
 
-	@Autowired private ShippingRateService service;
-	
+	@Autowired
+	private ShippingRateService service;
+
 	@PostMapping("/get_shipping_cost")
-	public String getShippingCost(Integer productId, Integer countryId, String state) 
+	public String getShippingCost(Integer productId, Integer countryId, String state)
 			throws ShippingRateNotFoundException {
 		float shippingCost = service.calculateShippingCost(productId, countryId, state);
 		return String.valueOf(shippingCost);

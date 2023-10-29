@@ -4,18 +4,19 @@
 <body>
 	<div th:fragment="quantity_control(quantityValue, productId)">
 		<nav>
-			<ul class="pagination">
+			<ul class="pagination m-0">
 				<li class="page-item">
-					<a class="page-link linkMinus" th:pid="${productId}" href="">
+					<a class="page-link linkMinus text-dark  d-flex align-items-center" th:pid="${productId}" href="" style="height: 26px;">
 						<b>-</b>
 					</a>
 				</li>
 				<li class="page-item">
 					<input type="text" th:value="${quantityValue}" th:id="'quantity' + ${productId}"
-						onkeydown="return false;" class="form-control text-center" style="width: 55px" />
+						onkeydown="return false;" class="form-control text-center"
+						style="width: 55px; height: 26px; border-radius: 0; border-left: 0; border-right: 0;" />
 				</li>
 				<li class="page-item">
-					<a class="page-link linkPlus" th:pid="${productId}" href="">
+					<a class="page-link linkPlus text-dark d-flex align-items-center" th:pid="${productId}" href="" style="height: 26px;">
 						<b>+</b>
 					</a>
 				</li>

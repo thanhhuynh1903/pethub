@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.pethub.common.entity.Setting;
+import com.pethub.common.entity.setting.Setting;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;

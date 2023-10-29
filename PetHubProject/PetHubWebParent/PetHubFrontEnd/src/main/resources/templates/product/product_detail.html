@@ -130,7 +130,8 @@
 								<th:block th:each="detail : ${product.details}">
 									<div class="child-second-dt">
 										<div class="layout-outside">
-											<div class="spacing" style="display: grid;grid-template-columns: 55% 45%;gap: 4px;">
+											<div class="spacing"
+												style="display: grid;grid-template-columns: 55% 45%;gap: 4px;">
 												<span><b>[[${detail.name}]]</b></span>
 												<span>[[${detail.value}]]</span>
 											</div>
@@ -197,63 +198,64 @@
 
 				<div th:replace="~{product/images_carousel :: content}"></div>
 				<div th:replace="~{fragments :: modal_dialog}"></div>
-				<div th:replace="~{navigation :: footer_menu}"></div>
 			</div>
+			<div th:replace="~{navigation :: footer_menu}"></div>
+		</div>
 
-			<script type="text/javascript">
-				contextPath = "[[@{/}]]";
-				productId = "[[${product.id}]]";
+		<script type="text/javascript">
+			contextPath = "[[@{/}]]";
+			productId = "[[${product.id}]]";
 
-				var csrfHeaderName = "[[${_csrf.headerName}]]";
-				var csrfValue = "[[${_csrf.token}]]";
+			var csrfHeaderName = "[[${_csrf.headerName}]]";
+			var csrfValue = "[[${_csrf.token}]]";
 
-				$(document).ready(function () {
-					bigImage = $("#bigImage");
-					btnPlus = $("#btnPlus");
-					btnMinus = $("#btnMinus");
-					quantity = $("#quantity");
+			$(document).ready(function () {
+				bigImage = $("#bigImage");
+				btnPlus = $("#btnPlus");
+				btnMinus = $("#btnMinus");
+				quantity = $("#quantity");
 
-					$(".image-thumbnail").mouseover(function () {
-						currentImageSource = $(this).attr("src");
-						currentImageIndex = $(this).attr("index");
-						bigImage.attr("src", currentImageSource);
-						bigImage.attr("index", currentImageIndex);
-					});
-
-					bigImage.on("click", function () {
-						$("#carouselModal").modal("show");
-						imageIndex = parseInt(bigImage.attr("index"));
-						$("#carouselExampleIndicators").carousel(imageIndex);
-					});
-
-					btnPlus.on("click", function () {
-						var value = parseInt(quantity.val(), 10);
-						value = isNaN(value) ? 0 : value;
-						value++;
-						quantity.val(value);
-						console.log("quantity: " + quantity.value);
-						console.log("value: " + value);
-					})
-
-					btnMinus.on("click", function () {
-						var value = parseInt(quantity.val(), 10);
-						value = isNaN(value) ? 1 : value;
-						value < 1 ? value = 1 : '';
-						value--;
-						quantity.val(value);
-						console.log("quantity: " + quantity.value);
-						console.log("value: " + value);
-					})
-
-					//increase, decrease quantity
-
-
+				$(".image-thumbnail").mouseover(function () {
+					currentImageSource = $(this).attr("src");
+					currentImageIndex = $(this).attr("index");
+					bigImage.attr("src", currentImageSource);
+					bigImage.attr("index", currentImageIndex);
 				});
 
-			</script>
-			<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
-			<script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
-			<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
+				bigImage.on("click", function () {
+					$("#carouselModal").modal("show");
+					imageIndex = parseInt(bigImage.attr("index"));
+					$("#carouselExampleIndicators").carousel(imageIndex);
+				});
+
+				btnPlus.on("click", function () {
+					var value = parseInt(quantity.val(), 10);
+					value = isNaN(value) ? 0 : value;
+					value++;
+					quantity.val(value);
+					console.log("quantity: " + quantity.value);
+					console.log("value: " + value);
+				})
+
+				btnMinus.on("click", function () {
+					var value = parseInt(quantity.val(), 10);
+					value = isNaN(value) ? 1 : value;
+					value < 1 ? value = 1 : '';
+					value--;
+					quantity.val(value);
+					console.log("quantity: " + quantity.value);
+					console.log("value: " + value);
+				})
+
+				//increase, decrease quantity
+
+
+			});
+
+		</script>
+		<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
+		<script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
+		<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
 </body>
 
 </html>

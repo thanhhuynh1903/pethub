@@ -208,15 +208,20 @@ body {
 }
 
 .btn-sale {
-	display: inline-block;
-	height: 18px;
-	padding: 0px 4px;
 	background: rgb(245, 245, 250);
-	border-radius: 1000px;
 	color: rgb(39, 39, 42);
 	font-size: 12px;
 	font-weight: 500;
 	line-height: 150%;
+padding: 2px 4px;
+}
+
+.btn-sale-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+display: flex;
+align-items: flex-start;
 }
 
 .category-product-container {

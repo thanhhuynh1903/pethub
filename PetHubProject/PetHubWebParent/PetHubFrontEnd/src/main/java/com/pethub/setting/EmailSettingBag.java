@@ -2,8 +2,8 @@ package com.pethub.setting;
 
 import java.util.List;
 
-import com.pethub.common.entity.Setting;
-import com.pethub.common.entity.SettingBag;
+import com.pethub.common.entity.setting.Setting;
+import com.pethub.common.entity.setting.SettingBag;
 
 
 public class EmailSettingBag extends SettingBag {

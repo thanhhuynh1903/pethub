@@ -1,4 +1,4 @@
-package com.pethub.common.entity;
+package com.pethub.common.entity.setting;
 
 import java.util.List;
 

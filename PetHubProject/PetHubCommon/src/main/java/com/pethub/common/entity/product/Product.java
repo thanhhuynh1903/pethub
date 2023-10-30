@@ -9,6 +9,7 @@ import java.util.Set;
 
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
+import com.pethub.common.entity.IdBasedEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,16 +25,12 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product extends IdBasedEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-
-	@Column(unique = true, length = 256, nullable = false)
+	@Column(unique = true, length = 255, nullable = false)
 	private String name;
 
-	@Column(unique = true, length = 256, nullable = false)
+	@Column(unique = true, length = 255, nullable = false)
 	private String alias;
 
 	@Column(length = 512, nullable = false, name = "short_description")
@@ -42,7 +39,7 @@ public class Product {
 	@Column(length = 4096, nullable = false, name = "full_description")
 	private String fullDescription;
 
-	@Column(name = "created_time")
+	@Column(name = "created_time", nullable = false, updatable = false)
 	private Date createdTime;
 
 	@Column(name = "updated_time")
@@ -76,28 +73,29 @@ public class Product {
 	@JoinColumn(name = "brand_id")
 	private Brand brand;
 
-	// when persit a product object, product image will be
-	// persited as well
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProductImage> images = new HashSet<>();
 
-	// child collections will be deleted when it's deleted by parent node
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProductDetail> details = new ArrayList<>();
 
-	public Product() {
-	}
+	private int reviewCount;
+	private float averageRating;
+
+	@Transient
+	private boolean customerCanReview;
+	@Transient
+	private boolean reviewedByCustomer;
 
 	public Product(Integer id) {
 		this.id = id;
 	}
 
-	public Integer getId() {
-		return id;
+	public Product() {
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Product(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
@@ -263,9 +261,9 @@ public class Product {
 
 	@Transient
 	public String getMainImagePath() {
-		if (id == null || mainImage == null) {
+		if (id == null || mainImage == null)
 			return "/images/image-thumbnail.png";
-		}
+
 		return "/product-images/" + this.id + "/" + this.mainImage;
 	}
 
@@ -287,12 +285,14 @@ public class Product {
 
 	public boolean containsImageName(String imageName) {
 		Iterator<ProductImage> iterator = images.iterator();
+
 		while (iterator.hasNext()) {
 			ProductImage image = iterator.next();
 			if (image.getName().equals(imageName)) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -311,4 +311,42 @@ public class Product {
 		}
 		return this.price;
 	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public float getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(float averageRating) {
+		this.averageRating = averageRating;
+	}
+
+	@Transient
+	public String getURI() {
+		return "/p/" + this.alias + "/";
+	}
+
+	public boolean isCustomerCanReview() {
+		return customerCanReview;
+	}
+
+	public void setCustomerCanReview(boolean customerCanReview) {
+		this.customerCanReview = customerCanReview;
+	}
+
+	public boolean isReviewedByCustomer() {
+		return reviewedByCustomer;
+	}
+
+	public void setReviewedByCustomer(boolean reviewedByCustomer) {
+		this.reviewedByCustomer = reviewedByCustomer;
+	}
+
 }

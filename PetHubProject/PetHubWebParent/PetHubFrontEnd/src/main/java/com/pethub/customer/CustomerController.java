@@ -104,6 +104,16 @@ public class CustomerController {
 
 		return "customer/account_form";
 	}
+	
+	@GetMapping("/account_change_password")
+	public String viewAccountPassword(Model model, HttpServletRequest request) {
+		String email = Utility.getEmailOfAuthenticatedCustomer(request);
+		Customer customer = customerService.getCustomerByEmail(email);
+
+		model.addAttribute("customer", customer);
+
+		return "customer/change_password_form";
+	}
 
 	@PostMapping("/update_account_details")
 	public String updateAccountDetails(Model model, Customer customer, RedirectAttributes ra,

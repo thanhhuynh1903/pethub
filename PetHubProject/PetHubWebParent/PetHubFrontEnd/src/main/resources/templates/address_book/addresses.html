@@ -35,162 +35,172 @@
 		th:with="redirectedFromCheckoutPage = ${param.redirect != null && param.redirect[0] == 'checkout'}">
 		<div class="address-container d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
-			<div class="w-100 address-main-container profile-main-container my-4">
-				<div class="address-side-bar-container side-bar-profile">
-					<div th:replace="~{navigation :: side_bar_profile}"></div>
-				</div>
-				<div class="address-content-container profile-content-container">
-					<div>
-						<div>
-							<span class="profile-all-title"
-								th:text="${redirectedFromCheckoutPage} ? 'Choose a Shipping Address' : 'Your Address Book'">
-							</span>
-						</div>
-						<div class="w-100 py-3">
-							<a th:unless="${param.redirect}" th:href="@{/address_book/new}"
-								class="text-decoration-none">
-								<button class="text-decoration-none btn-add-address py-2 w-100">
-									<i class="bi bi-plus-circle text-primary p-0 m-0"></i>
-									<span class="text-primary">Add New Address</span>
-								</button>
-							</a>
-							<a th:if="${redirectedFromCheckoutPage}"
-								th:href="@{/address_book/new(redirect=checkout)}">Add
-								New Address</a>
-						</div>
+			<div class="w-100 mt-3">
+				<nav aria-label="breadcrumb" class="w-100 px-5">
+					<ol class="breadcrumb m-0">
+						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Profile</li>
+					</ol>
+				</nav>
+				<div class="w-100 address-main-container profile-main-container mt-1 mb-3">
+					<div class="address-side-bar-container side-bar-profile">
+						<div th:replace="~{navigation :: side_bar_profile}"></div>
 					</div>
-
-					<div th:if="${message != null}" class="alert alert-success text-center m-1">[[${message}]]</div>
-
-					<div>
+					<div class="address-content-container profile-content-container">
 						<div>
-							<div class="address-card" th:classappend="${usePrimaryAddressAsDefault ? '' : ''}">
-								<div class="header">
-									<div class="d-flex justify-content-between">
-										<div>
-											<b>[[${customer.fullName}]]</b>
-
-											<th:block th:if="${usePrimaryAddressAsDefault}">
-												<i class="bi bi-check-circle-fill text-success ml-2"></i>
-												<span class="text-success"
-													th:text="${redirectedFromCheckoutPage ? 'Currently selected' : 'Default address'}"></span>
-											</th:block>
-
-											<th:block th:unless="${usePrimaryAddressAsDefault}">
-												<a th:unless="${param.redirect}" th:href="@{'/address_book/default/0'}"
-													class="text-decoration-none ml-2">
-													<span>Set as default</span>
-												</a>
-												<a th:if="${param.redirect != null && param.redirect[0] == 'cart'}"
-													th:href="@{'/address_book/default/0?redirect=cart'}"
-													class="text-decoration-none ml-2">
-													<span>Set as default</span>
-												</a>
-												<a th:if="${redirectedFromCheckoutPage}"
-													th:href="@{'/address_book/default/0?redirect=checkout'}"
-													class="text-decoration-none ml-2">Choose</a>
-											</th:block>
-										</div>
-										<div>
-											<div class="float-right">
-												<a th:unless="${param.redirect}" class="fas fa-edit icon-dark"
-													title="Edit your primary address"
-													th:href="@{/account_details(redirect=address_book)}"></a> <a
-													th:if="${redirectedFromCheckoutPage}" class="fas fa-edit icon-dark"
-													title="Edit your primary address"
-													th:href="@{/account_details(redirect=checkout)}"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--address body-->
-								<div class="d-flex flex-column">
-									<div>
-										<span class="text-secondary">Address: </span>
-										<span>[[${customer.addressLine1}]] [[${customer.addressLine2}]]
-											[[${customer.state}]] [[${customer.city}]]
-											[[${customer.country.name}]]</span>
-									</div>
-									<div>
-										<span class="text-secondary">Phone number: </span>
-										<span>[[${customer.phoneNumber}]]</span>
-									</div>
-									<div>
-										<span class="text-secondary">Zip code: </span>
-										<span>[[${customer.postalCode}]]</span>
-									</div>
-								</div>
+							<div>
+								<span class="profile-all-title"
+									th:text="${redirectedFromCheckoutPage} ? 'Choose a Shipping Address' : 'Your Address Book'">
+								</span>
+							</div>
+							<div class="w-100 py-3">
+								<a th:unless="${param.redirect}" th:href="@{/address_book/new}"
+									class="text-decoration-none">
+									<button class="text-decoration-none btn-add-address py-2 w-100">
+										<i class="bi bi-plus-circle text-primary p-0 m-0"></i>
+										<span class="text-primary">Add New Address</span>
+									</button>
+								</a>
+								<a th:if="${redirectedFromCheckoutPage}"
+									th:href="@{/address_book/new(redirect=checkout)}">Add
+									New Address</a>
 							</div>
 						</div>
 
-						<th:block th:each="address, status: ${listAddresses}">
-							<div>
-								<div class="address-card mt-2" th:classappend="${address.defaultForShipping ? '' : ''}">
-									<div class="header">
-										<div class="">
-											<div class="">
-												<b>[[${address.firstName}]] [[${address.lastName}]]</b>
+						<div th:if="${message != null}" class="alert alert-success text-center m-1">[[${message}]]</div>
 
-												<th:block th:if="${address.defaultForShipping}">
+						<div>
+							<div>
+								<div class="address-card" th:classappend="${usePrimaryAddressAsDefault ? '' : ''}">
+									<div class="header">
+										<div class="d-flex justify-content-between">
+											<div>
+												<b>[[${customer.fullName}]]</b>
+
+												<th:block th:if="${usePrimaryAddressAsDefault}">
 													<i class="bi bi-check-circle-fill text-success ml-2"></i>
 													<span class="text-success"
 														th:text="${redirectedFromCheckoutPage ? 'Currently selected' : 'Default address'}"></span>
 												</th:block>
 
-												<th:block th:unless="${address.defaultForShipping}">
+												<th:block th:unless="${usePrimaryAddressAsDefault}">
 													<a th:unless="${param.redirect}"
-														th:href="@{'/address_book/default/' + ${address.id}}"
-														class="text-decoration-none ml-2">Set
-														as default</a>
+														th:href="@{'/address_book/default/0'}"
+														class="text-decoration-none ml-2">
+														<span>Set as default</span>
+													</a>
 													<a th:if="${param.redirect != null && param.redirect[0] == 'cart'}"
-														th:href="@{'/address_book/default/' + ${address.id} + '?redirect=cart'}"
-														class="text-decoration-none ml-2">Set
-														as default</a>
+														th:href="@{'/address_book/default/0?redirect=cart'}"
+														class="text-decoration-none ml-2">
+														<span>Set as default</span>
+													</a>
 													<a th:if="${redirectedFromCheckoutPage}"
-														th:href="@{'/address_book/default/' + ${address.id} + '?redirect=checkout'}"
+														th:href="@{'/address_book/default/0?redirect=checkout'}"
 														class="text-decoration-none ml-2">Choose</a>
 												</th:block>
-
 											</div>
-											<div class="">
+											<div>
 												<div class="float-right">
 													<a th:unless="${param.redirect}" class="fas fa-edit icon-dark"
-														title="Edit this address"
-														th:href="@{'/address_book/edit/' + ${address.id}}"></a> <a
+														title="Edit your primary address"
+														th:href="@{/account_details(redirect=address_book)}"></a> <a
 														th:if="${redirectedFromCheckoutPage}"
-														class="fas fa-edit icon-dark" title="Edit this address"
-														th:href="@{'/address_book/edit/' + ${address.id} + '?redirect=checkout'}"></a>
-
-													&nbsp; <a class="fas fa-trash icon-dark linkDelete"
-														title="Delete this address" th:entityId="${address.id}"
-														th:href="@{'/address_book/delete/' + ${address.id}}"></a>
+														class="fas fa-edit icon-dark" title="Edit your primary address"
+														th:href="@{/account_details(redirect=checkout)}"></a>
 												</div>
 											</div>
 										</div>
 									</div>
-									<!--body address-->
+									<!--address body-->
 									<div class="d-flex flex-column">
 										<div>
 											<span class="text-secondary">Address: </span>
-											<span>[[${address.addressLine1}]] [[${address.addressLine2}]]
-												[[${address.state}]] [[${address.city}]]
-												[[${address.country.name}]]</span>
+											<span>[[${customer.addressLine1}]] [[${customer.addressLine2}]]
+												[[${customer.state}]] [[${customer.city}]]
+												[[${customer.country.name}]]</span>
 										</div>
 										<div>
 											<span class="text-secondary">Phone number: </span>
-											<span>[[${address.phoneNumber}]]</span>
+											<span>[[${customer.phoneNumber}]]</span>
 										</div>
 										<div>
 											<span class="text-secondary">Zip code: </span>
-											<span>[[${address.postalCode}]]</span>
+											<span>[[${customer.postalCode}]]</span>
 										</div>
 									</div>
 								</div>
 							</div>
-						</th:block>
+
+							<th:block th:each="address, status: ${listAddresses}">
+								<div>
+									<div class="address-card mt-2"
+										th:classappend="${address.defaultForShipping ? '' : ''}">
+										<div class="header">
+											<div class="">
+												<div class="">
+													<b>[[${address.firstName}]] [[${address.lastName}]]</b>
+
+													<th:block th:if="${address.defaultForShipping}">
+														<i class="bi bi-check-circle-fill text-success ml-2"></i>
+														<span class="text-success"
+															th:text="${redirectedFromCheckoutPage ? 'Currently selected' : 'Default address'}"></span>
+													</th:block>
+
+													<th:block th:unless="${address.defaultForShipping}">
+														<a th:unless="${param.redirect}"
+															th:href="@{'/address_book/default/' + ${address.id}}"
+															class="text-decoration-none ml-2">Set
+															as default</a>
+														<a th:if="${param.redirect != null && param.redirect[0] == 'cart'}"
+															th:href="@{'/address_book/default/' + ${address.id} + '?redirect=cart'}"
+															class="text-decoration-none ml-2">Set
+															as default</a>
+														<a th:if="${redirectedFromCheckoutPage}"
+															th:href="@{'/address_book/default/' + ${address.id} + '?redirect=checkout'}"
+															class="text-decoration-none ml-2">Choose</a>
+													</th:block>
+
+												</div>
+												<div class="">
+													<div class="float-right">
+														<a th:unless="${param.redirect}" class="fas fa-edit icon-dark"
+															title="Edit this address"
+															th:href="@{'/address_book/edit/' + ${address.id}}"></a> <a
+															th:if="${redirectedFromCheckoutPage}"
+															class="fas fa-edit icon-dark" title="Edit this address"
+															th:href="@{'/address_book/edit/' + ${address.id} + '?redirect=checkout'}"></a>
+
+														&nbsp; <a class="fas fa-trash icon-dark linkDelete"
+															title="Delete this address" th:entityId="${address.id}"
+															th:href="@{'/address_book/delete/' + ${address.id}}"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--body address-->
+										<div class="d-flex flex-column">
+											<div>
+												<span class="text-secondary">Address: </span>
+												<span>[[${address.addressLine1}]] [[${address.addressLine2}]]
+													[[${address.state}]] [[${address.city}]]
+													[[${address.country.name}]]</span>
+											</div>
+											<div>
+												<span class="text-secondary">Phone number: </span>
+												<span>[[${address.phoneNumber}]]</span>
+											</div>
+											<div>
+												<span class="text-secondary">Zip code: </span>
+												<span>[[${address.postalCode}]]</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</th:block>
+						</div>
+						<div>&nbsp;</div>
+						<div th:replace="~{fragments :: confirm_modal}"></div>
 					</div>
-					<div>&nbsp;</div>
-					<div th:replace="~{fragments :: confirm_modal}"></div>
 				</div>
 			</div>
 			<div th:replace="~{navigation :: footer_menu}"></div>

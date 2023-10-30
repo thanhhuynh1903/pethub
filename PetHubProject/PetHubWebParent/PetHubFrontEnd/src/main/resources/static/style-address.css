@@ -11,7 +11,7 @@
 }
 
 .address-container .address-content-container {
-	width: 75%;
+	width: 100%;
 }
 
 .address-container .address-main-container {
@@ -23,6 +23,9 @@
 }
 .address-container .profile-all-title {
 	font-size: 20px;
+}
+.breadcrumb {
+	background-color: #f5f5fa;
 }
 @media screen and (max-width: 1107px) {
 	.address-container .address-main-container {

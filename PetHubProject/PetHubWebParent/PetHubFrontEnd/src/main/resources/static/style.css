@@ -162,7 +162,7 @@
 }
 
 .side-bar-profile {
-	width: 25%;
+	min-width: 230px;
 	border-radius: 5px;
 	background-color: #FFFFFF;
 	height: fit-content;
@@ -194,10 +194,11 @@
 		gap: 8px;
 	}
 }
+
 @media screen and (max-width: 1020px) {
 
 	.side-bar-profile {
-		min-width: 30%;
+		min-width: 230px;
 	}
 
 }
@@ -219,9 +220,10 @@
 	div.less-details {
 		display: block;
 	}
+
 	.side-bar-profile {
-	min-width: auto;
-	width: fit-content;
+		min-width: auto;
+		width: fit-content;
 	}
 }
 

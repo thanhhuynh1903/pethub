@@ -7,9 +7,11 @@ body {
 	padding: 0;
 	box-sizing: border-box;
 }
+
 .breadcrumb {
 	background-color: #f5f5fa !important;
 }
+
 .modal-account-container {
 	width: 80%;
 	border-radius: 12px;
@@ -97,18 +99,34 @@ body {
 }
 
 .form-acount-container {
-		width: 100%;
-	}
+	width: 100%;
+}
 
 .account-side-bar-container .profile-informations {
 	background-color: rgb(194, 217, 255, 0.3);
 	color: #4E73DF;
 }
+
+.forgot-password-container .forgot-password-modal {
+	background-color: #FFFFFF;
+	border-radius: 16px;
+	padding: 3rem 4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.forgot-password-container .forgot-password-modal .text-title {
+	color: #4E73DF;
+}
+
 @media screen and (max-width: 1250px) {
 	.modal-account-container {
 		width: 90%;
 	}
 }
+
 @media screen and (max-width: 1110px) {
 	.account-form-main-container {
 		padding: 0 2rem !important;
@@ -139,6 +157,13 @@ body {
 
 }
 
+@media screen and (max-width: 700px) {
+	.forgot-password-container .forgot-password-modal {
+		padding: 3rem 2rem;
+		width: 80%;
+	}
+
+}
 
 @media screen and (max-width: 500px) {
 	.form-acount-container {

@@ -15,192 +15,203 @@
 	<div class="w-100 h-100">
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
-			<div class="w-100 d-flex flex-column align-items-center mb-5">
-				<nav aria-label="breadcrumb" class="w-90">
+			<div class="w-100 mt-3">
+				<nav aria-label="breadcrumb" class="w-100 px-5">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
 						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Profile</li>
 					</ol>
 				</nav>
 
-				<div class="modal-account-container d-flex justify-content-center align-items-center flex-column">
-					<div class="my-2 mr-auto">
-						<span class="title-header text-left">Profile Information</span>
+				<div class="w-100 account-form-main-container profile-main-container my-3">
+					<div class="account-side-bar-container side-bar-profile">
+						<div th:replace="~{navigation :: side_bar_profile}"></div>
 					</div>
-
-					<form th:action="@{/update_account_details}" method="post" th:object="${customer}"
-						class="form-acount-container position-relative">
-						<input type="hidden" th:field="*{id}" /> <input type="hidden" name="redirect"
-							th:value="${param.redirect}" />
-
-						<div class="d-flex justify-content-center flex-lg-row flex-column align-items-lg-start align-items-center w-100">
-							<!--information-->
-							<div class="left-container">
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">First Name:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{firstName}" class="form-control"
-											required="required" maxlength="45" minlength="2" />
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">Last Name:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{lastName}" class="form-control"
-											required="required" maxlength="45" minlength="2" />
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">Address Line 1:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{addressLine1}" class="form-control"
-											required="required" maxlength="64" minlength="3" />
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">Address Line 2:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{addressLine2}" class="form-control"
-											maxlength="64" />
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">City:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{city}" class="form-control" maxlength="45"
-											minlength="2" />
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">Country:</label>
-									<div class="col-sm-8">
-										<select class="form-control" th:field="*{country}">
-											<th:block th:each="country : ${listCountries}">
-												<option th:value="${country.id}">[[${country.name}]]</option>
-											</th:block>
-										</select>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">State/Province:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{state}" class="form-control" maxlength="45"
-											minlength="3" list="listStates" />
-										<datalist id="listStates"></datalist>
-									</div>
-								</div>
-
-								<!--password-->
-								<th:block th:if="${customer.authenticationType.name() == 'DATABASE'}">
-									<div class="form-group row">
-										<label class="col-sm-4 col-form-label">Password:</label>
-										<div class="col-sm-8">
-											<input type="password" th:field="*{password}" class="form-control"
-												maxlength="15" minlength="6"
-												oninput="checkPasswordMatch(document.getElementById('confirmPassword'))" />
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label class="col-sm-4 col-form-label">Re-type Password:</label>
-										<div class="col-sm-8">
-											<input type="password" id="confirmPassword" class="form-control"
-												maxlength="15" minlength="6" oninput="checkPasswordMatch(this)" />
-										</div>
-									</div>
-								</th:block>
-								<!--password-->
-								<div class="text-center d-none d-lg-flex flex-column align-items-center">
-									<input type="submit" value="Update" class="btn btn-primary" />
-									<div th:if="${message != null}" class="text-success d-flex mt-2">[[${message}]]<i
-											class="bi bi-check-circle-fill text-success ml-2"
-											style="font-size: 15px; display: flex; align-items: center"></i></div>
-								</div>
+					<div class="w-100 d-flex flex-column align-items-center ml-4">
+						<div
+							class="modal-account-container d-flex justify-content-center align-items-center flex-column w-100 ">
+							<div class="my-2 mr-auto">
+								<span class="title-header text-left">Profile Information</span>
 							</div>
-							<!--information-->
 
-							<!--container item 2-->
-							<div class="right-container">
-								<!--phone email-->
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">Phone Number:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{phoneNumber}" class="form-control"
-											required="required" maxlength="15" minlength="8" />
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">E-mail:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{email}" class="form-control"
-											readonly="readonly" />
-									</div>
-								</div>
-								<!--phone email-->
-								<div class="form-group row">
-									<label class="col-sm-4 col-form-label">Postal Code:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{postalCode}" class="form-control" maxlength="10"
-											minlength="2" />
-									</div>
-								</div>
-								<!--link-->
-								<div class="form-group">
-									<span class="form-title">Social media link</span>
-									<div class="d-flex justify-content-between w-100 my-4">
-										<div class="facebook d-flex justify-content-center align-items-center">
-											<i
-												class="bi bi-facebook mr-2 d-flex justify-content-center text-primary"></i>
-											<span>Facebook</span>
+							<form th:action="@{/update_account_details}" method="post" th:object="${customer}"
+								class="form-acount-container position-relative">
+								<input type="hidden" th:field="*{id}" /> <input type="hidden" name="redirect"
+									th:value="${param.redirect}" />
+
+								<div
+									class="d-flex justify-content-center flex-lg-row flex-column align-items-lg-start align-items-center w-100">
+									<!--information-->
+									<div class="left-container">
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">First Name:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{firstName}" class="form-control"
+													required="required" maxlength="45" minlength="2" />
+											</div>
 										</div>
-										<th:block th:if="${customer.authenticationType.name() == 'FACEBOOK'}">
-											<button type="button"
-												class="btn btn-outline-primary btn-account-linked">Linked</button>
-										</th:block>
-										<th:block th:if="${customer.authenticationType.name() != 'FACEBOOK'}">
-											<button type="button"
-												class="btn btn-outline-primary btn-account-unlinked">Link</button>
-										</th:block>
-									</div>
-									<div class="d-flex justify-content-between">
-										<div class="google">
-											<img th:src=@{images/logo-google.png} alt="Logo Google"
-												style="height: 24px; width: 24px; object-fit: cover;">
-											<span>Google</span>
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Last Name:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{lastName}" class="form-control"
+													required="required" maxlength="45" minlength="2" />
+											</div>
 										</div>
-										<th:block th:if="${customer.authenticationType.name() == 'GOOGLE'}">
-											<button type="button"
-												class="btn btn-outline-primary btn-account-linked">Linked</button>
+
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Address Line 1:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{addressLine1}" class="form-control"
+													required="required" maxlength="64" minlength="3" />
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Address Line 2:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{addressLine2}" class="form-control"
+													maxlength="64" />
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">City:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{city}" class="form-control"
+													maxlength="45" minlength="2" />
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Country:</label>
+											<div class="col-sm-8">
+												<select class="form-control" th:field="*{country}">
+													<th:block th:each="country : ${listCountries}">
+														<option th:value="${country.id}">[[${country.name}]]</option>
+													</th:block>
+												</select>
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">State/Province:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{state}" class="form-control"
+													maxlength="45" minlength="3" list="listStates" />
+												<datalist id="listStates"></datalist>
+											</div>
+										</div>
+
+										<!--password-->
+										<th:block th:if="${customer.authenticationType.name() == 'DATABASE'}">
+											<div class="form-group row">
+												<label class="col-sm-4 col-form-label">Password:</label>
+												<div class="col-sm-8">
+													<input type="password" th:field="*{password}" class="form-control"
+														maxlength="15" minlength="6"
+														oninput="checkPasswordMatch(document.getElementById('confirmPassword'))" />
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label class="col-sm-4 col-form-label">Re-type Password:</label>
+												<div class="col-sm-8">
+													<input type="password" id="confirmPassword" class="form-control"
+														maxlength="15" minlength="6"
+														oninput="checkPasswordMatch(this)" />
+												</div>
+											</div>
 										</th:block>
-										<th:block th:if="${customer.authenticationType.name() != 'GOOGLE'}">
-											<button type="button"
-												class="btn btn-outline-primary btn-account-unlinked">Link</button>
-										</th:block>
+										<!--password-->
+										<div class="text-center d-none d-lg-flex flex-column align-items-center">
+											<input type="submit" value="Update" class="btn btn-primary" />
+											<div th:if="${message != null}" class="text-success d-flex mt-2">
+												[[${message}]]<i class="bi bi-check-circle-fill text-success ml-2"
+													style="font-size: 15px; display: flex; align-items: center"></i>
+											</div>
+										</div>
 									</div>
-									<!--
+									<!--information-->
+
+									<!--container item 2-->
+									<div class="right-container">
+										<!--phone email-->
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Phone Number:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{phoneNumber}" class="form-control"
+													required="required" maxlength="15" minlength="8" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">E-mail:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{email}" class="form-control"
+													readonly="readonly" />
+											</div>
+										</div>
+										<!--phone email-->
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Postal Code:</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{postalCode}" class="form-control"
+													maxlength="10" minlength="2" />
+											</div>
+										</div>
+										<!--link-->
+										<div class="form-group">
+											<span class="form-title">Social media link</span>
+											<div class="d-flex justify-content-between w-100 my-4">
+												<div class="facebook d-flex justify-content-center align-items-center">
+													<i
+														class="bi bi-facebook mr-2 d-flex justify-content-center text-primary"></i>
+													<span>Facebook</span>
+												</div>
+												<th:block th:if="${customer.authenticationType.name() == 'FACEBOOK'}">
+													<button type="button"
+														class="btn btn-outline-primary btn-account-linked">Linked</button>
+												</th:block>
+												<th:block th:if="${customer.authenticationType.name() != 'FACEBOOK'}">
+													<button type="button"
+														class="btn btn-outline-primary btn-account-unlinked">Link</button>
+												</th:block>
+											</div>
+											<div class="d-flex justify-content-between">
+												<div class="google">
+													<img th:src=@{images/logo-google.png} alt="Logo Google"
+														style="height: 24px; width: 24px; object-fit: cover;">
+													<span>Google</span>
+												</div>
+												<th:block th:if="${customer.authenticationType.name() == 'GOOGLE'}">
+													<button type="button"
+														class="btn btn-outline-primary btn-account-linked">Linked</button>
+												</th:block>
+												<th:block th:if="${customer.authenticationType.name() != 'GOOGLE'}">
+													<button type="button"
+														class="btn btn-outline-primary btn-account-unlinked">Link</button>
+												</th:block>
+											</div>
+											<!--
 									<label class="col-sm-4 col-form-label">Authentication Type:</label>
 									<div class="col-sm-8">
 										<input type="text" th:field="*{authenticationType}" class="form-control"
 											readonly="readonly" />
 									</div>
 									-->
-								</div>
-								<!--link-->
+										</div>
+										<!--link-->
 
-							</div>
-							<div class="text-center d-flex d-lg-none flex-column align-items-center">
-								<input type="submit" value="Update" class="btn btn-primary" />
-								<div th:if="${message != null}" class="text-success d-flex mt-2">[[${message}]]<i
-										class="bi bi-check-circle-fill text-success ml-2"
-										style="font-size: 15px; display: flex; align-items: center"></i></div>
-							</div>
+									</div>
+									<div class="text-center d-flex d-lg-none flex-column align-items-center">
+										<input type="submit" value="Update" class="btn btn-primary" />
+										<div th:if="${message != null}" class="text-success d-flex mt-2">
+											[[${message}]]<i class="bi bi-check-circle-fill text-success ml-2"
+												style="font-size: 15px; display: flex; align-items: center"></i></div>
+									</div>
+								</div>
+							</form>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 			<div th:replace="~{navigation :: footer_menu}"></div>

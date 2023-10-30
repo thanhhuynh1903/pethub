@@ -29,6 +29,8 @@ public class MainController {
 	@Autowired
 	private ProductService productService;
 
+	
+
 	@GetMapping("")
 	public String viewHomePage(Model model) {
 		List<Category> listParentCategories = categoryService.listParentCategories();
@@ -40,6 +42,14 @@ public class MainController {
 		List<Product> listProducts = productService.getAllProducts();
 		model.addAttribute("listProducts", listProducts);
 
+
+		//lay 6 san pham duoc giam gia nhieu nhat
+		List<Product> list6Products= productService.get6Products();
+		model.addAttribute("list6Products", list6Products);
+
+		//lay 6 san pham ban chay nhat
+		List<Product> list6BestSaleProducts= productService.get6BestSaleProducts();
+		model.addAttribute("list6BestSaleProducts", list6BestSaleProducts);
 		return "index";
 	}
 

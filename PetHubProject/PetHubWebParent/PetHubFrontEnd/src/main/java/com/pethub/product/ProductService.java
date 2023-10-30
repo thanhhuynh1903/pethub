@@ -25,6 +25,8 @@ public class ProductService {
 
 		return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 	}
+	
+	
 
 	public Product getProduct(String alias) throws ProductNotFoundException {
 		Product product = repo.findByAlias(alias);
@@ -68,5 +70,11 @@ public class ProductService {
 
 	public List<Product> getAllProducts() {
 		return (List<Product>) repo.findAll();
+	}
+	public List<Product> get6Products(){
+		return (List<Product>) repo.findTop6ByOrderByDiscountDesc();
+	}
+	public List<Product> get6BestSaleProducts(){
+		return (List<Product>) repo.findTop6ByOrderByPriceAsc();
 	}
 }

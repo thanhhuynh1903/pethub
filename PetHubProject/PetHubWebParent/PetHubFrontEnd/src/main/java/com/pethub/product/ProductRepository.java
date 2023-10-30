@@ -18,7 +18,20 @@ public interface ProductRepository
 			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)" + " ORDER BY p.name ASC")
 	public Page<Product> listByCategory(Integer categoryId, String categoryIDMatch, Pageable pageable);
 
+	// lay 6 san phan cua category
+	// @Query(value = "SELECT * FROM Product p WHERE p.enabled = true "
+	// + "AND (p.category_id = ?1 OR p.all_parent_ids LIKE %?2%)"
+	// + " ORDER BY p.name ASC LIMIT 6", nativeQuery = true)
+	// public List<Product> list6ProductsByCategory(Integer categoryId, String
+	// categoryIDMatch);
+
 	public Product findByAlias(String alias);
+
+	@Query(value = "SELECT * FROM products p ORDER BY p.discount_percent DESC LIMIT 6", nativeQuery = true)
+	public List<Product> findTop6ByOrderByDiscountDesc();
+
+	@Query(value = "SELECT * FROM products p ORDER BY p.price ASC LIMIT 6", nativeQuery = true)
+	public List<Product> findTop6ByOrderByPriceAsc();
 
 	List<Product> findAll();
 
@@ -57,4 +70,5 @@ public interface ProductRepository
 			+ "(name LIKE %?1% OR short_description LIKE %?1% OR full_description LIKE %?1%)"
 			+ " ORDER BY created_time DESC", nativeQuery = true)
 	public Page<Product> searchSortByLatest(String keyword, Pageable pageable);
+
 }

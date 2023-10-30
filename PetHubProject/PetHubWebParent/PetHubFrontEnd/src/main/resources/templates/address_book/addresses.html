@@ -56,14 +56,14 @@
 							<div class="w-100 py-3">
 								<a th:unless="${param.redirect}" th:href="@{/address_book/new}"
 									class="text-decoration-none">
-									<button class="text-decoration-none btn-add-address py-3 w-100">
+									<button class="text-decoration-none btn-add-address w-100">
 										<i class="bi bi-plus-circle text-primary p-0 mr-1"></i>
 										<span class="text-primary">Add New Address</span>
 									</button>
 								</a>
 								<a th:if="${redirectedFromCheckoutPage}" class="text-decoration-none"
 									th:href="@{/address_book/new(redirect=checkout)}">
-									<button class="text-decoration-none btn-add-address py-3 w-100">
+									<button class="text-decoration-none btn-add-address w-100">
 										<i class="bi bi-plus-circle text-primary p-0 mr-1"></i>
 										<span class="text-primary">Add New Address</span>
 									</button></a>
@@ -137,7 +137,7 @@
 
 							<th:block th:each="address, status: ${listAddresses}">
 								<div>
-									<div class="address-card mt-3 p-3"
+									<div class="address-card address-card-2 p-3"
 										th:classappend="${address.defaultForShipping ? '' : ''}">
 										<div class="header">
 											<div class="">

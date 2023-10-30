@@ -11,11 +11,11 @@
 }
 
 .box-login-container {
-	width: 60%;
+	width: 68%;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 	border-radius: 26px;
 	background-color: #FFFFFF;
-	max-height: 60%;
+	max-height: 65%;
 }
 
 .login-right-container {

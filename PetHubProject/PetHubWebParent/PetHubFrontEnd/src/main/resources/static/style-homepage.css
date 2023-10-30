@@ -164,6 +164,9 @@ body {
 .nav-last-item {
 	border-left: 1px solid rgb(221, 221, 227);
 	padding-left: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .nav-item a {

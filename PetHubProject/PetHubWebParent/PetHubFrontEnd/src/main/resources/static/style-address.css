@@ -1,0 +1,55 @@
+.address-container .btn-add-address {
+	background-color: #FFFFFF;
+	border: 1px dashed #4E73DF;
+	width: 100%;
+	padding: 12px 0;
+}
+
+.address-container .address-card {
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.address-container .address-content-container {
+	width: 100%;
+}
+
+.address-container .address-main-container {
+	padding: 0 5rem;
+}
+.address-side-bar-container .profile-address-book {
+	background-color: rgb(194, 217, 255, 0.3);
+	color: #4E73DF;
+}
+.address-container .profile-all-title {
+	font-size: 20px;
+}
+.breadcrumb {
+	background-color: #f5f5fa;
+}
+.btn-add-address:focus, .btn-add-address:active {
+	outline-color: #4E73DF;
+}
+.form-address-form-container {
+	width: 80%;
+	border-radius: 12px;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+.address-card-2 {
+	margin-top: 0.8rem;
+}
+
+@media screen and (max-width: 1107px) {
+	.address-main-container {
+		padding: 0 2rem;
+	}
+}
+@media screen and (max-width: 1025px) {
+	.form-address-form-container {
+	width: 100%;
+	}
+}

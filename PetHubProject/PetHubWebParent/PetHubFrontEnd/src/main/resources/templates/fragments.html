@@ -198,43 +198,6 @@
 	</a>
 	<!-- product card end -->
 
-	<!-- product card 1 start -->
-	<a th:href="@{/}" class="text-decoration-none product-item-link w-100 h-100 position-relative"
-		th:fragment="product_card_1">
-		<div class="product-item">
-			<div class="product-item__image-container">
-				<img th:src=@{/images/product-sample.png} alt="product">
-			</div>
-			<div class="content">
-				<div class="top">
-					<span class="text-dark text-three-line">
-						THỨC ĂN HẠT CHÓ TRƯỞNG THÀNH VỊ BÒ NƯỚNG SMARTHEART ADULT DOG -
-						THÁI LAN</span>
-					<div class="d-flex jusity-content-between">
-						<div class="star-rating" th:fragment="star_rating_2">
-							<i class="fa fa-star" data-rating="1"></i>
-							<i class="fa fa-star fa-regular" data-rating="2"></i>
-							<i class="fa fa-star fa-regular" data-rating="3"></i>
-							<i class="fa fa-star fa-regular" data-rating="4"></i>
-							<i class="fa fa-star fa-regular" data-rating="5"></i>
-							<input type="hidden" name="whatever1" class="rating-value" value="3" />
-						</div>
-						<div class="ml-auto d-flex align-items-center">
-							<span class="text-secondary text-sold">5 sold</span>
-						</div>
-					</div>
-				</div>
-				<div class="d-flex justify-content-between my-2">
-					<div>
-						<span class="price">500000<sup>₫</sup></span>
-					</div>
-					<div class="btn-sale-container"><button class="btn-sale btn">-30%</button></div>
-				</div>
-			</div>
-		</div>
-	</a>
-	<!-- product card end -->
-
 	<!--slider with control-->
 	<div id="carouselExampleControls" class="carousel slide h-100" data-ride="carousel" th:fragment="slider_control">
 		<div class="carousel-inner h-100">

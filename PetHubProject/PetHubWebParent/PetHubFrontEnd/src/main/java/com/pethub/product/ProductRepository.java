@@ -42,12 +42,12 @@ public interface ProductRepository
 	// 1.Sorting by Cate
 	@Query("SELECT p FROM Product p WHERE p.enabled = true "
 			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)"
-			+ " ORDER BY p.price ASC")
+			+ " ORDER BY (p.price * (1 - p.discountPercent / 100)) ASC")
 	public Page<Product> listByCategoryPriceAsc(Integer categoryId, String categoryIDMatch, Pageable pageable);
 
 	@Query("SELECT p FROM Product p WHERE p.enabled = true "
 			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)"
-			+ " ORDER BY p.price DESC")
+			+ " ORDER BY (p.price * (1 - p.discountPercent / 100)) DESC")
 	public Page<Product> listByCategoryPriceDesc(Integer categoryId, String categoryIDMatch, Pageable pageable);
 
 	@Query("SELECT p FROM Product p WHERE p.enabled = true "
@@ -58,12 +58,12 @@ public interface ProductRepository
 	// 2.Sorting after Search
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "(name LIKE %?1% OR short_description LIKE %?1% OR full_description LIKE %?1%)"
-			+ " ORDER BY price ASC", nativeQuery = true)
+			+ " ORDER BY (price * (1 - discount_percent / 100)) ASC", nativeQuery = true)
 	public Page<Product> searchSortPriceAsc(String keyword, Pageable pageable);
 
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "(name LIKE %?1% OR short_description LIKE %?1% OR full_description LIKE %?1%)"
-			+ " ORDER BY price DESC", nativeQuery = true)
+			+ " ORDER BY (price * (1 - discount_percent / 100)) DESC", nativeQuery = true)
 	public Page<Product> searchSortPriceDesc(String keyword, Pageable pageable);
 
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "

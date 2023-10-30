@@ -49,9 +49,11 @@ public class AddressController {
 	}
 
 	@GetMapping("/address_book/new")
-	public String newAddress(Model model) {
+	public String newAddress(Model model, HttpServletRequest request) {
 		List<Country> listCountries = customerService.listAllCountries();
+		Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 
+		model.addAttribute("customer", customer);
 		model.addAttribute("listCountries", listCountries);
 		model.addAttribute("address", new Address());
 		model.addAttribute("pageTitle", "Add New Address");

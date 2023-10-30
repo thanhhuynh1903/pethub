@@ -29,8 +29,8 @@
 					</div>
 					<div class="w-100 d-flex flex-column align-items-center profile-content-container">
 						<div class="mb-3 mr-auto">
-								<span class="title-header text-left">Profile Information</span>
-							</div>
+							<span class="title-header text-left">Profile Information</span>
+						</div>
 						<div
 							class="modal-account-container d-flex justify-content-center align-items-center flex-column w-100">
 							<form th:action="@{/update_account_details}" method="post" th:object="${customer}"
@@ -158,61 +158,70 @@
 										<!--link-->
 										<div class="form-group">
 											<span class="form-title">Social media link</span>
-											<div class="d-flex justify-content-between w-100 my-4">
-												<div class="facebook d-flex justify-content-center align-items-center">
-													<i
-														class="bi bi-facebook mr-2 d-flex justify-content-center text-primary"></i>
-													<span>Facebook</span>
-												</div>
-												<th:block th:if="${customer.authenticationType.name() == 'FACEBOOK'}">
+											<th:block th:if="${customer.authenticationType.name() == 'FACEBOOK'}">
+												<div class="d-flex justify-content-between w-100 mt-4">
+
+													<div
+														class="facebook d-flex justify-content-center align-items-center">
+														<i
+															class="bi bi-facebook mr-2 d-flex justify-content-center text-primary"></i>
+														<span>Facebook</span>
+													</div>
 													<button type="button"
 														class="btn btn-outline-primary btn-account-linked">Linked</button>
-												</th:block>
-												<th:block th:if="${customer.authenticationType.name() != 'FACEBOOK'}">
-													<button type="button"
-														class="btn btn-outline-primary btn-account-unlinked">Link</button>
-												</th:block>
-											</div>
-											<div class="d-flex justify-content-between">
+											<!--
+													<th:block
+														th:if="${customer.authenticationType.name() != 'FACEBOOK'}">
+														<button type="button"
+															class="btn btn-outline-primary btn-account-unlinked">Link</button>
+													</th:block>
+													-->
+										</div>
+										</th:block>
+										<div class="d-flex justify-content-between mt-4">
+											<th:block th:if="${customer.authenticationType.name() == 'GOOGLE'}">
 												<div class="google">
 													<img th:src=@{images/logo-google.png} alt="Logo Google"
 														style="height: 24px; width: 24px; object-fit: cover;">
 													<span>Google</span>
 												</div>
-												<th:block th:if="${customer.authenticationType.name() == 'GOOGLE'}">
-													<button type="button"
-														class="btn btn-outline-primary btn-account-linked">Linked</button>
-												</th:block>
+
+
+												<button type="button"
+													class="btn btn-outline-primary btn-account-linked">Linked</button>
+											</th:block>
+											<!--
 												<th:block th:if="${customer.authenticationType.name() != 'GOOGLE'}">
 													<button type="button"
 														class="btn btn-outline-primary btn-account-unlinked">Link</button>
 												</th:block>
-											</div>
-											<!--
+												-->
+										</div>
+										<!--
 									<label class="col-sm-4 col-form-label">Authentication Type:</label>
 									<div class="col-sm-8">
 										<input type="text" th:field="*{authenticationType}" class="form-control"
 											readonly="readonly" />
 									</div>
 									-->
-										</div>
-										<!--link-->
+									</div>
+									<!--link-->
 
-									</div>
-									<div class="text-center d-flex d-lg-none flex-column align-items-center">
-										<input type="submit" value="Update" class="btn btn-primary" />
-										<div th:if="${message != null}" class="text-success d-flex mt-2">
-											[[${message}]]<i class="bi bi-check-circle-fill text-success ml-2"
-												style="font-size: 15px; display: flex; align-items: center"></i></div>
-									</div>
 								</div>
-							</form>
+								<div class="text-center d-flex d-lg-none flex-column align-items-center">
+									<input type="submit" value="Update" class="btn btn-primary" />
+									<div th:if="${message != null}" class="text-success d-flex mt-2">
+										[[${message}]]<i class="bi bi-check-circle-fill text-success ml-2"
+											style="font-size: 15px; display: flex; align-items: center"></i></div>
+								</div>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
-			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
+		<div th:replace="~{navigation :: footer_menu}"></div>
+	</div>
 	</div>
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]";

@@ -4,56 +4,90 @@
 <head th:replace="~{fragments :: page_head('Shipping Rates - PetHub Admin', 'none')}" />
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: menu}"></div>
-		<div>
-			<h2>Manage Shipping Rates</h2>
+	<div class="">
+		<div class="w-100">
+			<div class="d-flex w-100">
+				<div th:replace="~{sidebar :: sidebar}" class="w-25"></div>
+				<div class="d-flex flex-column" style="width: 100%;">
+					<div th:replace="~{navigation :: menu}"></div>
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 3rem;">
+								<div class="d-flex justify-content-between w-100">
+									<h2 style="color: #494A6B; font-size: 26px;">Manage Shipping rate</h2>
+								</div>
+								<div class="w-100 table-container">
+									<div class="table-title w-100">
+										<div class="d-flex w-100">
+											<div class="col-sm-3 d-flex">
+												<a th:href="@{/shipping_rates/new}"
+													class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+													style="background: #4E73DF;color: white; height: 30px; border: none;
+										padding: 22px 16px; border-radius: 10px;">
+													<i
+														class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"></i>
+													<span>Create</span>
+												</a>
+											</div>
+											<div class="col-sm-9 d-flex justify-content-end">
+												<div>
+													<div th:replace="~{fragments :: search_form_and_message}" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div>
+										<table class="table table-striped table-hover w-100 borderless">
+											<thead style="background-color: #FAFAFA; padding: 10px 0;" class="py-5">
+												<tr>
+													<th class="py-4" th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
+													<th class="py-4"
+														th:replace="~{fragments :: column_link('country', 'Country', 'none')}" />
+													<th class="py-4"
+														th:replace="~{fragments :: column_link('state', 'State', 'none')}" />
+													<th class="py-4"
+														th:replace="~{fragments :: column_link('rate', 'Rate', 'none')}" />
+													<th class="py-4"
+														th:replace="~{fragments :: column_link('days', 'Days', 'none')}" />
+													<th class="py-4"
+														th:replace="~{fragments :: column_link('codSupported', 'COD Supported', 'none')}" />
 
-			<a th:href="@{/shipping_rates/new}">Create new shipping rates</a>
-		</div>
-
-		<div th:replace="~{fragments :: search_form_and_message}" />
-
-		<div>
-			<table class="table table-bordered table-striped table-hover">
-				<thead class="thead-light">
-					<tr>
-						<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-						<th th:replace="~{fragments :: column_link('country', 'Country', 'none')}" />
-						<th th:replace="~{fragments :: column_link('state', 'State', 'none')}" />
-						<th th:replace="~{fragments :: column_link('rate', 'Rate', 'none')}" />
-						<th th:replace="~{fragments :: column_link('days', 'Days', 'none')}" />
-						<th th:replace="~{fragments :: column_link('codSupported', 'COD Supported', 'none')}" />
-
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="rate : ${shippingRates}">
-						<td>[[${rate.id}]]</td>
-						<td>[[${rate.country.name}]]</td>
-						<td>[[${rate.state}]]</td>
-						<td>[[${rate.rate}]]</td>
-						<td>[[${rate.days}]]</td>
-						<td>
-							<div th:replace="~{shipping_rates/shipping_rates_fragment :: cod_support}" />
-						</td>
-						<td>
-							<div
-								th:replace="~{fragments :: edit('shipping rate', '/shipping_rates/edit/' + ${rate.id})}" />
-							&nbsp;
-							<div
-								th:replace="~{fragments :: delete('shipping rate', ${rate.id}, '/shipping_rates/delete/' + ${rate.id}, true)}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div th:replace="~{fragments :: pagination('shipping rates')}"></div>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="rate : ${shippingRates}">
+													<td>[[${rate.id}]]</td>
+													<td>[[${rate.country.name}]]</td>
+													<td>[[${rate.state}]]</td>
+													<td>[[${rate.rate}]]</td>
+													<td>[[${rate.days}]]</td>
+													<td>
+														<div
+															th:replace="~{shipping_rates/shipping_rates_fragment :: cod_support}" />
+													</td>
+													<td>
+														<div
+															th:replace="~{fragments :: edit('shipping rate', '/shipping_rates/edit/' + ${rate.id})}" />
+														&nbsp;
+														<div
+															th:replace="~{fragments :: delete('shipping rate', ${rate.id}, '/shipping_rates/delete/' + ${rate.id}, true)}" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div th:replace="~{fragments :: pagination('shipping rates')}"></div>
 		<div th:replace="~{modal_fragments :: confirm_modal}" />
-		<div th:replace="~{fragments :: footer}"></div>
-
+							</div>
+						</div>
+						<div th:replace="~{fragments :: footer}"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 
 	<script th:src="@{/js/common_list.js}"></script>

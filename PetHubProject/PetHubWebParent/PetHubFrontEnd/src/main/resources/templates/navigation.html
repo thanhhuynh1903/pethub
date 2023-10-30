@@ -69,9 +69,6 @@
 									</th:block>
 									<th:block sec:authorize="isAuthenticated()">
 										<a class="dropdown-item" th:href="@{/account_details}">Profile</a>
-										<a class="dropdown-item" th:href="@{/address_book}">Address Book</a>
-										<a class="dropdown-item" th:href="@{/reviews}">My reviews</a>
-										<a class="dropdown-item" th:href="@{/orders}">My Orders</a>
 										<a class="dropdown-item" th:href="@{/}">Support Center</a>
 										<div class="dropdown-divider"></div>
 										<!--Logout-->
@@ -193,8 +190,8 @@
 	<!-- profile sidebar -->
 	<div th:fragment="side_bar_profile">
 		<div class="w-100 d-flex flex-column justify-content-center border-bottom">
-		<div class="px-4 mt-3 mb-2 side-bar-profile-title d-none d-md-inline text-left">Your profile</div>
-		<i class="bi bi-person-circle d-inline d-md-none mx-auto mt-3 mb-2 text-secondary text-center"></i>
+			<div class="px-4 mt-3 mb-2 side-bar-profile-title d-none d-md-inline text-left">Your profile</div>
+			<i class="bi bi-person-circle d-inline d-md-none mx-auto mt-3 mb-2 text-secondary text-center"></i>
 		</div>
 		<ul class="side-bar-profile-item-container">
 			<li class="profile-sidebar-item">
@@ -221,14 +218,16 @@
 					</div>
 				</a>
 			</li>
+			<th:block th:if="${customer.authenticationType.name() == 'DATABASE'}">
 			<li class="profile-sidebar-item">
-				<a class="text-decoration-none text-dark" th:href="@{/account_details}">
+				<a class="text-decoration-none text-dark" th:href="@{/account_change_password}">
 					<div class="px-4 w-100 profile-sidebar-item-content profile-change-password">
 						<i class="bi bi-file-lock2-fill"></i>
 						<span class="offset-1 d-none d-md-inline">Change password</span>
 					</div>
 				</a>
 			</li>
+			</th:block>
 			<li class="profile-sidebar-item">
 				<a class="text-decoration-none text-dark" th:href="@{/address_book}">
 					<div class="px-4 w-100 profile-sidebar-item-content profile-address-book">
@@ -262,7 +261,7 @@
 				</a>
 			</li>
 		</ul>
-</div>
+	</div>
 
 </body>
 

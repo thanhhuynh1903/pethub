@@ -11,7 +11,7 @@
 }
 
 .box-register-container {
-	width: 65%;
+	width: 80%;
 	box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 	border-radius: 26px;
 	background-color: #FFFFFF;
@@ -38,4 +38,22 @@
 
 .form-container .btn-register {
 	border-radius: 30px;
+}
+
+.register-right-container {
+	width: 45%;
+}
+
+.register-left-container {
+	width: 55%;
+}
+
+@media screen and (max-width: 992px) {
+	.register-right-container {
+		width: 100%;
+	}
+
+	.box-register-container {
+		width: 80%;
+	}
 }

@@ -2,6 +2,7 @@
 	background-color: #FFFFFF;
 	border: 1px dashed #4E73DF;
 	width: 100%;
+	padding: 12px 0;
 }
 
 .address-container .address-card {
@@ -27,8 +28,28 @@
 .breadcrumb {
 	background-color: #f5f5fa;
 }
+.btn-add-address:focus, .btn-add-address:active {
+	outline-color: #4E73DF;
+}
+.form-address-form-container {
+	width: 80%;
+	border-radius: 12px;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	padding: 10px;
+}
+.address-card-2 {
+	margin-top: 0.8rem;
+}
+
 @media screen and (max-width: 1107px) {
-	.address-container .address-main-container {
+	.address-main-container {
 		padding: 0 2rem;
+	}
+}
+@media screen and (max-width: 1025px) {
+	.form-address-form-container {
+	width: 100%;
 	}
 }

@@ -16,7 +16,7 @@
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
 			<div class="w-100 mt-3">
-				<nav aria-label="breadcrumb" class="w-100 px-5">
+				<nav aria-label="breadcrumb" class="w-100 px-lg-5 px-2">
 					<ol class="breadcrumb m-0">
 						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
 						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Profile</li>
@@ -28,14 +28,13 @@
 						<div th:replace="~{navigation :: side_bar_profile}"></div>
 					</div>
 					<div class="w-100 d-flex flex-column align-items-center profile-content-container">
-						<div
-							class="modal-account-container d-flex justify-content-center align-items-center flex-column w-100 ">
-							<div class="my-2 mr-auto">
+						<div class="mb-3 mr-auto">
 								<span class="title-header text-left">Profile Information</span>
 							</div>
-
+						<div
+							class="modal-account-container d-flex justify-content-center align-items-center flex-column w-100">
 							<form th:action="@{/update_account_details}" method="post" th:object="${customer}"
-								class="form-acount-container position-relative">
+								class="form-acount-container position-relative py-3">
 								<input type="hidden" th:field="*{id}" /> <input type="hidden" name="redirect"
 									th:value="${param.redirect}" />
 
@@ -59,30 +58,14 @@
 										</div>
 
 										<div class="form-group row">
-											<label class="col-sm-4 col-form-label">Address Line 1:</label>
-											<div class="col-sm-8">
-												<input type="text" th:field="*{addressLine1}" class="form-control"
-													required="required" maxlength="64" minlength="3" />
-											</div>
-										</div>
-
-										<div class="form-group row">
-											<label class="col-sm-4 col-form-label">Address Line 2:</label>
-											<div class="col-sm-8">
-												<input type="text" th:field="*{addressLine2}" class="form-control"
-													maxlength="64" />
-											</div>
-										</div>
-
-										<div class="form-group row">
-											<label class="col-sm-4 col-form-label">City:</label>
+											<label class="col-sm-4 col-form-label">Province/City:</label>
 											<div class="col-sm-8">
 												<input type="text" th:field="*{city}" class="form-control"
 													maxlength="45" minlength="2" />
 											</div>
 										</div>
 
-										<div class="form-group row">
+										<div class="form-group d-none">
 											<label class="col-sm-4 col-form-label">Country:</label>
 											<div class="col-sm-8">
 												<select class="form-control" th:field="*{country}">
@@ -94,7 +77,7 @@
 										</div>
 
 										<div class="form-group row">
-											<label class="col-sm-4 col-form-label">State/Province:</label>
+											<label class="col-sm-4 col-form-label">District:</label>
 											<div class="col-sm-8">
 												<input type="text" th:field="*{state}" class="form-control"
 													maxlength="45" minlength="3" list="listStates" />
@@ -102,6 +85,20 @@
 											</div>
 										</div>
 
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Wards</label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{addressLine2}" class="form-control"
+													maxlength="64" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Address: </label>
+											<div class="col-sm-8">
+												<input type="text" th:field="*{addressLine1}" class="form-control"
+													required="required" maxlength="64" minlength="3" />
+											</div>
+										</div>
 										<!--password-->
 										<th:block th:if="${customer.authenticationType.name() == 'DATABASE'}">
 											<div class="form-group row">

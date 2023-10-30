@@ -13,8 +13,6 @@ body {
 .modal-account-container {
 	width: 80%;
 	border-radius: 12px;
-	justify-content: center;
-	align-items: center;
 	background-color: #FFFFFF;
 	padding: 10px;
 }
@@ -24,7 +22,11 @@ body {
 	width: 50%;
 }
 
-.modal-account-container .title-header {
+.profile-content-container .title-header {
+	font-size: 20px;
+}
+
+.profile-content-container .sub-title-header {
 	font-size: 19px;
 	color: #64646D;
 }

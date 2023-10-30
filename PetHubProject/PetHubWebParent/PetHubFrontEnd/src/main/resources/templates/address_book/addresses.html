@@ -36,10 +36,10 @@
 		<div class="address-container d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
 			<div class="w-100 mt-3">
-				<nav aria-label="breadcrumb" class="w-100 px-5">
+				<nav aria-label="breadcrumb" class="w-100 px-lg-5 px-2">
 					<ol class="breadcrumb m-0">
 						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Profile</li>
+						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Address Book</li>
 					</ol>
 				</nav>
 				<div class="w-100 address-main-container profile-main-container mt-1 mb-3">
@@ -57,21 +57,26 @@
 								<a th:unless="${param.redirect}" th:href="@{/address_book/new}"
 									class="text-decoration-none">
 									<button class="text-decoration-none btn-add-address py-2 w-100">
-										<i class="bi bi-plus-circle text-primary p-0 m-0"></i>
+										<i class="bi bi-plus-circle text-primary p-0 mr-1"></i>
 										<span class="text-primary">Add New Address</span>
 									</button>
 								</a>
-								<a th:if="${redirectedFromCheckoutPage}"
-									th:href="@{/address_book/new(redirect=checkout)}">Add
-									New Address</a>
+								<a th:if="${redirectedFromCheckoutPage}" class="text-decoration-none"
+									th:href="@{/address_book/new(redirect=checkout)}">
+									<button class="text-decoration-none btn-add-address py-2 w-100">
+										<i class="bi bi-plus-circle text-primary p-0 mr-1"></i>
+										<span class="text-primary">Add New Address</span>
+									</button></a>
 							</div>
 						</div>
 
-						<div th:if="${message != null}" class="alert alert-success text-center m-1">[[${message}]]</div>
+						<!--no need
+						<div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
+						no need-->
 
 						<div>
 							<div>
-								<div class="address-card" th:classappend="${usePrimaryAddressAsDefault ? '' : ''}">
+								<div class="address-card p-3" th:classappend="${usePrimaryAddressAsDefault ? '' : ''}">
 									<div class="header">
 										<div class="d-flex justify-content-between">
 											<div>
@@ -115,9 +120,8 @@
 									<div class="d-flex flex-column">
 										<div>
 											<span class="text-secondary">Address: </span>
-											<span>[[${customer.addressLine1}]] [[${customer.addressLine2}]]
-												[[${customer.state}]] [[${customer.city}]]
-												[[${customer.country.name}]]</span>
+											<span>[[${customer.addressLine1}]], [[${customer.addressLine2}]],
+												[[${customer.state}]], [[${customer.city}]]</span>
 										</div>
 										<div>
 											<span class="text-secondary">Phone number: </span>
@@ -133,7 +137,7 @@
 
 							<th:block th:each="address, status: ${listAddresses}">
 								<div>
-									<div class="address-card mt-2"
+									<div class="address-card mt-2 p-3"
 										th:classappend="${address.defaultForShipping ? '' : ''}">
 										<div class="header">
 											<div class="">
@@ -181,9 +185,8 @@
 										<div class="d-flex flex-column">
 											<div>
 												<span class="text-secondary">Address: </span>
-												<span>[[${address.addressLine1}]] [[${address.addressLine2}]]
-													[[${address.state}]] [[${address.city}]]
-													[[${address.country.name}]]</span>
+												<span>[[${address.addressLine1}]], [[${address.addressLine2}]],
+													[[${address.state}]], [[${address.city}]]</span>
 											</div>
 											<div>
 												<span class="text-secondary">Phone number: </span>

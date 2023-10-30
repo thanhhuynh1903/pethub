@@ -1,5 +1,5 @@
 body {
-	background-color: #E9ECEF !important;
+	background-color: #f5f5fa;
 }
 
 * {
@@ -7,7 +7,9 @@ body {
 	padding: 0;
 	box-sizing: border-box;
 }
-
+.breadcrumb {
+	background-color: #f5f5fa !important;
+}
 .modal-account-container {
 	width: 80%;
 	border-radius: 12px;
@@ -96,10 +98,18 @@ body {
 		width: 100%;
 	}
 
-
+.account-side-bar-container .profile-informations {
+	background-color: rgb(194, 217, 255, 0.3);
+	color: #4E73DF;
+}
 @media screen and (max-width: 1250px) {
 	.modal-account-container {
 		width: 90%;
+	}
+}
+@media screen and (max-width: 1110px) {
+	.account-form-main-container {
+		padding: 0 2rem !important;
 	}
 }
 

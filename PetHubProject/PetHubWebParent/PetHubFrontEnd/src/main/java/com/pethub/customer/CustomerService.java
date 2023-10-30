@@ -162,4 +162,22 @@ public class CustomerService {
 
 		customerRepo.save(customer);
 	}
+
+	public void changePassword(Customer customerInForm, String oldPassword, String newPassword) {
+		Customer customerInDB = customerRepo.findById(customerInForm.getId()).get();
+
+		// Check if the old password is correct
+		if (!passwordEncoder.matches(oldPassword, customerInDB.getPassword())) {
+			throw new IllegalArgumentException("Old password is incorrect.");
+		}
+
+		// Check if the new password is not empty
+		if (newPassword != null && !newPassword.isEmpty()) {
+			String encodedPassword = passwordEncoder.encode(newPassword);
+			customerRepo.updatePassword(customerInForm.getId(), encodedPassword);
+		} else {
+			throw new IllegalArgumentException("New password cannot be empty.");
+		}
+	}
+
 }

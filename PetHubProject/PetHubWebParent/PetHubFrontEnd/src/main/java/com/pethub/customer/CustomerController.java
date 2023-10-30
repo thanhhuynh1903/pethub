@@ -12,7 +12,9 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pethub.Utility;
@@ -104,15 +106,28 @@ public class CustomerController {
 
 		return "customer/account_form";
 	}
-	
+
 	@GetMapping("/account_change_password")
-	public String viewAccountPassword(Model model, HttpServletRequest request) {
+	public String showChangePasswordForm(Model model, HttpServletRequest request) {
 		String email = Utility.getEmailOfAuthenticatedCustomer(request);
 		Customer customer = customerService.getCustomerByEmail(email);
-
 		model.addAttribute("customer", customer);
-
 		return "customer/change_password_form";
+	}
+
+	@PostMapping("/account_change_password")
+	public String handlePasswordChange(@ModelAttribute("customer") Customer customer,
+			@RequestParam("oldPassword") String oldPassword,
+			@RequestParam("newPassword") String newPassword,
+			RedirectAttributes redirectAttributes) {
+		try {
+			customerService.changePassword(customer, oldPassword, newPassword);
+			redirectAttributes.addFlashAttribute("successMessage", "Update success: Your password has been changed.");
+		} catch (IllegalArgumentException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Update failed: " + e.getMessage());
+		}
+
+		return "redirect:/account_change_password";
 	}
 
 	@PostMapping("/update_account_details")

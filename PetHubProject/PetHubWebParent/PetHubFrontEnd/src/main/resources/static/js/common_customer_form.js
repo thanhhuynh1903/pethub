@@ -2,12 +2,12 @@ var dropDownCountry;
 var dataListState;
 var fieldState;
 
-$(document).ready(function() {
+$(document).ready(function () {
 	dropDownCountry = $("#country");
 	dataListState = $("#listStates");
 	fieldState = $("#state");
 
-	dropDownCountry.on("change", function() {
+	dropDownCountry.on("change", function () {
 		loadStatesForCountry();
 		fieldState.val("").focus();
 	});
@@ -18,20 +18,29 @@ function loadStatesForCountry() {
 	countryId = selectedCountry.val();
 	url = contextPath + "settings/list_states_by_country/" + countryId;
 
-	$.get(url, function(responseJSON) {
+	$.get(url, function (responseJSON) {
 		dataListState.empty();
 
-		$.each(responseJSON, function(index, state) {
+		$.each(responseJSON, function (index, state) {
 			$("<option>").val(state.name).text(state.name).appendTo(dataListState);
 		});
 
-	}).fail(function() {
+	}).fail(function () {
 		alert('failed to connect to the server!');
 	});
 }
 
 function checkPasswordMatch(confirmPassword) {
 	if (confirmPassword.value != $("#password").val()) {
+		confirmPassword.setCustomValidity("Passwords do not match!");
+	} else {
+		confirmPassword.setCustomValidity("");
+	}
+}
+
+function checkPasswordMatch1(confirmPassword) {
+	var newPassword = document.getElementById('newPassword');
+	if (confirmPassword.value != newPassword.value) {
 		confirmPassword.setCustomValidity("Passwords do not match!");
 	} else {
 		confirmPassword.setCustomValidity("");

@@ -79,4 +79,19 @@ public class ProductService {
 	public List<Product> get6BestSaleProducts() {
 		return (List<Product>) repo.findTop6ByOrderByPriceAsc();
 	}
+
+	public Page<Product> getProductsByBrandName(String brandName, int pageNum, String sortDir) {
+		Pageable pageable = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
+
+		if ("asc".equals(sortDir)) {
+			return repo.findByBrandNameOrderByPriceAsc(brandName, pageable);
+		} else if("desc".equals(sortDir)){
+			return repo.findByBrandNameOrderByPriceDesc(brandName, pageable);
+		}else if("latest".equals(sortDir)){
+			return repo.findByBrandNameOrderByCreatedDateDesc(brandName, pageable);
+		}else{
+			return repo.findByBrandName(brandName, pageable);
+		}
+	}
+
 }

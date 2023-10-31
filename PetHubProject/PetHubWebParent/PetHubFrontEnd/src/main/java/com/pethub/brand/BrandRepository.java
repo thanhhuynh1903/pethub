@@ -10,7 +10,9 @@ import com.pethub.common.entity.Category;
 
 @Repository
 public interface BrandRepository extends CrudRepository<Brand, Integer> {
-  
+
   public List<Brand> findByCategoriesContaining(Category category);
+
+  public Brand findByName(String name);
 
 }

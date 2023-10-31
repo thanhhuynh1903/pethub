@@ -131,12 +131,19 @@ body {
 	color: #4E73DF;
 }
 
+.forgot-password-container .reset-password-modal {
+	width: 30%;
+}
+
 @media screen and (max-width: 1250px) {
 	.modal-account-container {
 		width: 90%;
 	}
 	.change-password-content-container {
 	width: 80%;
+}
+.forgot-password-container .reset-password-modal {
+	width: 36%;
 }
 }
 
@@ -146,6 +153,9 @@ body {
 	}
 	.change-password-content-container {
 	width: 100%;
+}
+.forgot-password-container .reset-password-modal {
+	width: 40%;
 }
 }
 
@@ -162,7 +172,9 @@ body {
 		width: 96%;
 		margin: 0 auto;
 	}
-
+.forgot-password-container .reset-password-modal {
+	width: 50%;
+}
 }
 
 

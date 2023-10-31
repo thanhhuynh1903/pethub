@@ -111,17 +111,17 @@ public class CustomerService {
 
 	public void update(Customer customerInForm) {
 		Customer customerInDB = customerRepo.findById(customerInForm.getId()).get();
-		customerInForm.setPassword("");
-		if (customerInDB.getAuthenticationType().equals(AuthenticationType.DATABASE)) {
-			if (!customerInForm.getPassword().isEmpty()) {
-				String encodedPassword = passwordEncoder.encode(customerInForm.getPassword());
-				customerInForm.setPassword(encodedPassword);
-			} else {
-				customerInForm.setPassword(customerInDB.getPassword());
-			}
-		} else {
-			customerInForm.setPassword(customerInDB.getPassword());
-		}
+		customerInForm.setPassword(customerInDB.getPassword());
+		/*
+		 * if (customerInDB.getAuthenticationType().equals(AuthenticationType.DATABASE))
+		 * {
+		 * 
+		 * if (!customerInForm.getPassword().isEmpty()) { String encodedPassword =
+		 * passwordEncoder.encode(customerInForm.getPassword());
+		 * customerInForm.setPassword(encodedPassword); } else {
+		 * customerInForm.setPassword(customerInDB.getPassword()); } } else {
+		 * customerInForm.setPassword(customerInDB.getPassword()); }
+		 */
 
 		customerInForm.setEnabled(customerInDB.isEnabled());
 		customerInForm.setCreatedTime(customerInDB.getCreatedTime());

@@ -126,6 +126,11 @@
 	height: 34px;
 } 
 
+.product-price .fs-style-1{
+	font-size: 12px!important;
+	font-weight: 400;
+}
+
 .quantity-container 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

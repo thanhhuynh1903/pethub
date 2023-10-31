@@ -98,7 +98,7 @@
 
 								<div class="price-modify">
 
-									<span th:if="${product.discountPercent <= 0}">
+									<span th:if="${product.discountPercent <= 0}" >
 										<div
 											th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 										</div>
@@ -117,9 +117,12 @@
 											th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
 										</div>
 									</span>
-									([[${#numbers.formatDecimal(product.discountPercent, 1,
-									THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] %
-									off)
+									<span style="color:#fff;font-weight: 500;background-color: #FF6969;margin-left: 20px; border-radius: 8px;
+									padding: 3px;">
+									-[[${#numbers.formatDecimal(product.discountPercent, 1,
+									THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%
+									
+									</span>
 								</div>
 
 

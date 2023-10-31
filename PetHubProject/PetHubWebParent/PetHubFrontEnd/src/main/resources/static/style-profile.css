@@ -55,6 +55,7 @@ body {
 	align-items: center;
 	justify-content: center;
 }
+
 .btn-account-unlinked {
 	width: 90px !important;
 	height: 32px !important;
@@ -62,6 +63,7 @@ body {
 	align-items: center;
 	justify-content: center;
 }
+
 .btn-account-linked {
 	background-color: #F0F0F0 !important;
 	border-color: #F0F0F0 !important;
@@ -82,9 +84,11 @@ body {
 	right: -10px;
 	-webkit-animation: run 0.5s linear forwards, hidden 0s ease-in 2s forwards;
 }
+
 .change-password-content-container {
 	width: 60%;
 }
+
 @-webkit-keyframes run {
 	0% {
 		top: 10%;
@@ -113,10 +117,12 @@ body {
 	background-color: rgb(194, 217, 255, 0.3);
 	color: #4E73DF;
 }
+
 .change-password-side-bar-container .profile-change-password {
 	background-color: rgb(194, 217, 255, 0.3);
 	color: #4E73DF;
 }
+
 .forgot-password-container .forgot-password-modal {
 	background-color: #FFFFFF;
 	border-radius: 16px;
@@ -139,24 +145,28 @@ body {
 	.modal-account-container {
 		width: 90%;
 	}
+
 	.change-password-content-container {
-	width: 80%;
-}
-.forgot-password-container .reset-password-modal {
-	width: 36%;
-}
+		width: 80%;
+	}
+
+	.forgot-password-container .reset-password-modal {
+		width: 36%;
+	}
 }
 
 @media screen and (max-width: 1110px) {
 	.account-form-main-container {
 		padding: 0 2rem !important;
 	}
+
 	.change-password-content-container {
-	width: 100%;
-}
-.forgot-password-container .reset-password-modal {
-	width: 40%;
-}
+		width: 100%;
+	}
+
+	.forgot-password-container .reset-password-modal {
+		width: 40%;
+	}
 }
 
 
@@ -172,9 +182,10 @@ body {
 		width: 96%;
 		margin: 0 auto;
 	}
-.forgot-password-container .reset-password-modal {
-	width: 50%;
-}
+
+	.forgot-password-container .reset-password-modal {
+		width: 50%;
+	}
 }
 
 

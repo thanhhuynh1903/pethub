@@ -43,15 +43,18 @@
 
 				<div class="d-flex flex-column flex-md-row gap-1 align-items-start">
 					<div class="cart-left-container d-flex flex-column justify-content-center">
-						<div class="header">
+						<th:block th:if="${!#lists.isEmpty(cartItems)}">
+							<div class="header">
 								<div><span>All products</span></div>
 								<div><span class="d-md-block d-none">Price</span></div>
 								<div><span class="d-md-block d-none">Quantity</span></div>
 								<div><span class="d-md-block d-none">Total</span></div>
 								<div><span class="fas fa-trash icon-dark "></span></div>
 							</div>
+						</th:block>
 						<th:block th:each="item, status : ${cartItems}">
-							<div class="content mt-2" th:with="product = ${item.product}" th:id="'row' + ${status.count}">
+							<div class="content mt-2" th:with="product = ${item.product}"
+								th:id="'row' + ${status.count}">
 								<div class="divCount d-none">[[${status.count}]]</div>
 								<div class="cart-product-img-name-container d-flex align-items-center">
 									<div class="mx-1 cart-product-img-container">
@@ -69,13 +72,13 @@
 													</div>
 												</div>
 												<div class="d-md-none d-block mb-2">
-												<div
-													th:replace="~{cart/quantity_control :: quantity_control(${item.quantity}, ${product.id})}">
-												</div>
+													<div
+														th:replace="~{cart/quantity_control :: quantity_control(${item.quantity}, ${product.id})}">
+													</div>
 												</div>
 												<span class="price text-danger font-weight-bold d-block d-md-none">
 													<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-														th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span
+														th:remove="tag">[[${CURRENCY_SYMBOL}]] </span><span
 														th:id="'subtotal' + ${product.id}"
 														class="subtotal price text-danger font-weight-bold">[[${#numbers.formatDecimal(item.subtotal,
 														1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS,
@@ -98,7 +101,7 @@
 								</div>
 								<span class="price text-danger font-weight-bold d-none d-md-block">
 									<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-										th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span
+										th:remove="tag">[[${CURRENCY_SYMBOL}]] </span><span
 										th:id="'subtotal' + ${product.id}"
 										class="subtotal price text-danger font-weight-bold">[[${#numbers.formatDecimal(item.subtotal,
 										1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
@@ -131,11 +134,46 @@
 											class="text-decoration-none font-weight-bold">Update</a>
 									</span>
 								</div>
-								<div>
-									<span class="name pr-2 mr-1">name</span>
-									<span>0987654321</span>
-								</div>
-								<span class="text-secondary">Address line 1</span>
+								<th:block th:unless="${usePrimaryAddressAsDefault}">
+									<div>
+										<span class="name pr-2 mr-1">[[${customer.lastName}]]
+											[[${customer.firstName}]]</span>
+										<span>[[${customer.phoneNumber}]]</span>
+									</div>
+									<div>
+										<span class="text-secondary">Address </span>
+										<span
+											th:unless="${defaultAddress.addressLine1} == null">[[${defaultAddress.addressLine1}]],
+										</span>
+										<span
+											th:unless="${defaultAddress.addressLine2} == null">[[${defaultAddress.addressLine2}]],
+										</span>
+										<span th:unless="${defaultAddress.city} == null">[[${defaultAddress.city}]],
+										</span>
+										<span th:unless="${defaultAddress.state} == null">[[${defaultAddress.state}]],
+										</span>
+										<span
+											th:unless="${defaultAddress.country.name} == null">[[${defaultAddress.country.name}]]</span>
+									</div>
+								</th:block>
+								<th:block th:if="${usePrimaryAddressAsDefault}">
+									<div>
+										<span class="name pr-2 mr-1">[[${customer.lastName}]]
+											[[${customer.firstName}]]</span>
+										<span>[[${customer.phoneNumber}]]</span>
+									</div>
+									<div>
+										<span class="text-secondary">Address </span>
+										<span th:unless="${customer.addressLine1} == null">[[${customer.addressLine1}]],
+										</span>
+										<span th:unless="${customer.addressLine2} == null">[[${customer.addressLine2}]],
+										</span>
+										<span th:unless="${customer.city} == null">[[${customer.city}]], </span>
+										<span th:unless="${customer.state} == null">[[${customer.state}]], </span>
+										<span
+											th:unless="${customer.country.name} == null">[[${customer.country.name}]]</span>
+									</div>
+								</th:block>
 							</div>
 
 							<div th:unless="${usePrimaryAddressAsDefault}">
@@ -149,7 +187,7 @@
 								<span class="text-secondary">Estimated Total:</span>
 								<div>
 									<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-										th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span id="total"
+										th:remove="tag">[[${CURRENCY_SYMBOL}]] </span><span id="total"
 										class="price">[[${#numbers.formatDecimal(estimatedTotal, 1,
 										THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
 									<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag"><sup
@@ -172,7 +210,7 @@
 					</div>
 				</div>
 
-				<div id="sectionEmptyCartMessage"
+				<div id="sectionEmptyCartMessage" th:if="${#lists.isEmpty(cartItems)}"
 					th:class="'' + ${#lists.isEmpty(cartItems) ? ' d-flex flex-column justify-content-center align-items-center my-auto' : ' d-none'}">
 					<div class="cart-empty-img-container">
 						<img th:src="@{/images/empty-cart.png}">

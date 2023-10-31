@@ -54,6 +54,8 @@ public class ShoppingCartController {
 		model.addAttribute("shippingSupported", shippingRate != null);
 		model.addAttribute("cartItems", cartItems);
 		model.addAttribute("estimatedTotal", estimatedTotal);
+		model.addAttribute("defaultAddress", defaultAddress);
+		model.addAttribute("customer", customer);
 
 		return "cart/shopping_cart";
 	}

@@ -346,8 +346,10 @@ body {
 
 	.home-sale-container__content .product-item .content .top,
 	.home-sale-container__content .product-item .content .top .star-rating,
-	.home-sale-container__content .product-item .btn-sale {
-		font-size: 0.6rem;
+	.home-sale-container__content .product-item .btn-sale, 
+	.home-sale-container__content .product-item-price-container span,
+	.home-sale-container__content .product-item-price-container del {
+		font-size: 0.6rem !important;
 	}
 
 	.home-sale-container__content .product-item .price {

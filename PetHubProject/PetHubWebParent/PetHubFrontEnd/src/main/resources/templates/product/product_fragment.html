@@ -22,10 +22,10 @@
 			<!--star rating-->
 
 			<div th:fragment="product_price" th:remove="tag" class="price-modify product-item-price-container" th:if="${product.discountPercent &lt;= 0}">
-				<span class="mt-auto">
+				<div class="mt-auto">
 					<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
-				</span>
-				<div th:if="${product.discountPercent > 0}" class="d-flex flex-column product-item-price-container">
+				</div>
+				<div th:if="${product.discountPercent > 0}" class="d-flex flex-column product-item-price-container justify-content-end">
 					<del th:if="${product.discountPercent > 0}">
 						<span class="text-secondary" style="font-size: small">
 							<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>

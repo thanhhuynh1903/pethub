@@ -63,4 +63,12 @@ public class CustomerUserDetails implements UserDetails {
 	public Customer getCustomer() {
 		return this.customer;
 	}
+	
+	public String getAddress() {
+		return this.customer.getAddressLine1() + ", " + 
+				this.customer.getAddressLine2() + ", " +
+				this.customer.getCity() + ", " +
+				this.customer.getState()
+				;
+	}
 }

@@ -122,9 +122,9 @@ public class CustomerController {
 			RedirectAttributes redirectAttributes) {
 		try {
 			customerService.changePassword(customer, oldPassword, newPassword);
-			redirectAttributes.addFlashAttribute("successMessage", "Update success: Your password has been changed.");
+			redirectAttributes.addFlashAttribute("successMessage", "Your password has been changed!");
 		} catch (IllegalArgumentException e) {
-			redirectAttributes.addFlashAttribute("errorMessage", "Update failed: " + e.getMessage());
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 		}
 
 		return "redirect:/account_change_password";

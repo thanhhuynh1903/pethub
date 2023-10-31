@@ -9,11 +9,11 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb" style="background-color: #f5f5fa !important; margin-bottom: 0px">
             <li class="breadcrumb-item">
-              <a th:href="@{/}">Home</a>
+              <a th:href="@{/}" class="text-decoration-none">Home</a>
             </li>
             <th:block th:each="parent : ${listCategoryParents}">
               <li class="breadcrumb-item">
-                <a th:href="@{'/c/'+${parent.alias}}">[[${parent.name}]]</a>
+                <a th:href="@{'/c/'+${parent.alias}}" class="text-decoration-none">[[${parent.name}]]</a>
               </li>
             </th:block>
             <li class="breadcrumb-item" th:if="${product != null}">
@@ -32,11 +32,11 @@
       <nav aria-label="breadcrumb" class="py-3">
         <ol class="breadcrumb w-100 p-0" style="background-color: #f5f5fa !important; margin-bottom: 0px">
           <li class="breadcrumb-item">
-            <a th:href="@{/}">Home</a>
+            <a th:href="@{/}" class="text-decoration-none">Home</a>
           </li>
           <th:block th:each="parent : ${listCategoryParents}">
             <li class="breadcrumb-item active" aria-current="page">
-              <a th:href="@{'/c/'+${parent.alias}}">[[${parent.name}]]</a>
+              <a th:href="@{'/c/'+${parent.alias}}" class="text-decoration-none">[[${parent.name}]]</a>
             </li>
           </th:block>
         </ol>

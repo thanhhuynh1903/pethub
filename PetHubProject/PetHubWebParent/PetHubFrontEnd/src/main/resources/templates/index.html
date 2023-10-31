@@ -101,14 +101,15 @@
 
 						<!-- highest discount products start -->
 						<div class="home-sale-container w-100 mb-3 py-3">
-							<div class="home-sale-container__header mb-3 mx-3 d-flex justify-content-between align-items-center">
-								<h4>
-									High Discount Products
-								</h4>
-
+							<div
+								class="pb-2 mx-3 d-flex justify-content-between align-items-center">
+								<h5>
+									Flash sale
+								</h5>
+								
 							</div>
-							<div class="home_all-product-container__content-container">
-								<div class="home_all-product-container__content">
+							<div class="">
+								<div class="home-sale-container__content px-3">
 									<div th:each="product : ${list6Products}" class="product-item-container">
 										<div th:replace="~{fragments :: product_card(${product})}"></div>
 									</div>
@@ -117,17 +118,17 @@
 						</div>
 						<!-- highest discount products end -->
 
-						<!-- Best sale products start -->
-						<div class="home-sale-container w-100 mb-3 py-3">
-							<div class="home-sale-container__header mb-3 mx-3 d-flex justify-content-between align-items-center">
-								<h4>
-									Best Sales Products
-								</h4>
-
-
+						<!-- Best seller products start -->
+						<div class="home-sale-container w-100 py-3 mb-3">
+							<div
+								class="pb-2 home-sale-container__header mx-3 d-flex justify-content-between align-items-center">
+								<h5>
+									Best Seller
+								</h5>
+								
 							</div>
-							<div class="home_all-product-container__content-container">
-								<div class="home_all-product-container__content">
+							<div>
+								<div class="home-sale-container__content px-3">
 									<div th:each="product : ${list6BestSaleProducts}" class="product-item-container">
 										<div th:replace="~{fragments :: product_card(${product})}"></div>
 									</div>
@@ -138,10 +139,11 @@
 
 						<!-- all products -->
 						<div class="home-sale-container w-100 mb-3 py-3">
-							<div class="home-sale-container__header mb-3 mx-3 d-flex justify-content-between align-items-center">
-								<h4 class="ml-3">
+							<div
+								class="home-sale-container__header mb-3 mx-3 d-flex justify-content-between align-items-center">
+								<h5 class="ml-3">
 									Our products
-								</h4>
+								</h5>
 								<a class="btn-more text-decoration-none" th:href="@{/}">
 									<span>View more</span>
 									<i class="bi bi-chevron-right"></i>

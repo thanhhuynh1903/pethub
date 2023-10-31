@@ -21,11 +21,11 @@
 			</div>
 			<!--star rating-->
 
-			<div th:fragment="product_price" th:remove="tag" class="price-modify">
-				<div th:if="${product.discountPercent &lt;= 0}" class="product-item-price-container my-2">
+			<div th:fragment="product_price" th:remove="tag" class="price-modify product-item-price-container">
+				<div th:if="${product.discountPercent &lt;= 0}">
 					<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
 				</div>
-				<div th:if="${product.discountPercent > 0}" class="product-item-price-container my-2">
+				<div th:if="${product.discountPercent > 0}">
 					<del th:if="${product.discountPercent > 0}">
 						<span class="text-secondary" style="font-size: small">
 							<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>

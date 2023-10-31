@@ -75,6 +75,11 @@
 	height: 100px;
 }
 
+.product-item-price-container {
+	font-weight: 400;
+	height: 42px;
+}
+
 .star-rating .fa-solid {
 	color: yellow;
 }

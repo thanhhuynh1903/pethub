@@ -86,7 +86,7 @@ public class AddressController {
 		List<Country> listCountries = customerService.listAllCountries();
 
 		Address address = addressService.get(addressId, customer.getId());
-
+		model.addAttribute("customer", customer);
 		model.addAttribute("address", address);
 		model.addAttribute("listCountries", listCountries);
 		model.addAttribute("pageTitle", "Edit Address (ID: " + addressId + ")");

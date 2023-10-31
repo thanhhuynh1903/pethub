@@ -3,6 +3,7 @@ package com.pethub.customer;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.pethub.common.entity.AuthenticationType;
 import com.pethub.common.entity.Customer;
@@ -24,4 +25,9 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 	public void updateAuthenticationType(Integer customerId, AuthenticationType type);
 
 	public Customer findByResetPasswordToken(String token);
+
+	@Modifying
+	@Query("update Customer c set c.password = :password where c.id = :id")
+	void updatePassword(@Param("id") Integer id, @Param("password") String password);
+
 }

@@ -25,8 +25,6 @@ public class ProductService {
 
 		return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 	}
-	
-	
 
 	public Product getProduct(String alias) throws ProductNotFoundException {
 		Product product = repo.findByAlias(alias);
@@ -50,8 +48,10 @@ public class ProductService {
 			return repo.listByCategoryLatest(categoryId, categoryIdMatch, pageable);
 		} else if (sortDir.equals("asc")) {
 			return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
-		} else {
+		} else if ("desc".equals(sortDir)) {
 			return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
+		} else {
+			return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 		}
 	}
 
@@ -71,10 +71,12 @@ public class ProductService {
 	public List<Product> getAllProducts() {
 		return (List<Product>) repo.findAll();
 	}
-	public List<Product> get6Products(){
+
+	public List<Product> get6Products() {
 		return (List<Product>) repo.findTop6ByOrderByDiscountDesc();
 	}
-	public List<Product> get6BestSaleProducts(){
+
+	public List<Product> get6BestSaleProducts() {
 		return (List<Product>) repo.findTop6ByOrderByPriceAsc();
 	}
 }

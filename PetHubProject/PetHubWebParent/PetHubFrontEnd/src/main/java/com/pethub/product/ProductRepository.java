@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.pethub.common.entity.Category;
 import com.pethub.common.entity.product.Product;
 
 public interface ProductRepository
@@ -17,13 +16,6 @@ public interface ProductRepository
 	@Query("SELECT p FROM Product p WHERE p.enabled = true "
 			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)" + " ORDER BY p.name ASC")
 	public Page<Product> listByCategory(Integer categoryId, String categoryIDMatch, Pageable pageable);
-
-	// lay 6 san phan cua category
-	// @Query(value = "SELECT * FROM Product p WHERE p.enabled = true "
-	// + "AND (p.category_id = ?1 OR p.all_parent_ids LIKE %?2%)"
-	// + " ORDER BY p.name ASC LIMIT 6", nativeQuery = true)
-	// public List<Product> list6ProductsByCategory(Integer categoryId, String
-	// categoryIDMatch);
 
 	public Product findByAlias(String alias);
 
@@ -70,5 +62,18 @@ public interface ProductRepository
 			+ "(name LIKE %?1% OR short_description LIKE %?1% OR full_description LIKE %?1%)"
 			+ " ORDER BY created_time DESC", nativeQuery = true)
 	public Page<Product> searchSortByLatest(String keyword, Pageable pageable);
+
+	// 3.Brand
+	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1")
+	public Page<Product> findByBrandName(String brandName, Pageable pageable);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1 ORDER BY p.price ASC")
+	public Page<Product> findByBrandNameOrderByPriceAsc(String brandName, Pageable pageable);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1 ORDER BY p.price DESC")
+	public Page<Product> findByBrandNameOrderByPriceDesc(String brandName, Pageable pageable);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1 ORDER BY p.createdTime DESC")
+	public Page<Product> findByBrandNameOrderByCreatedDateDesc(String brandName, Pageable pageable);
 
 }

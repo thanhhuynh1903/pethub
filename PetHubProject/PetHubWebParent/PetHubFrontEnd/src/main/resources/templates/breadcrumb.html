@@ -1,56 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <body>
-    <!--breadcrumb-->
-    <div th:fragment="content" th:remove="tag" style="width: 100%">
-      <div th:if="${listCategoryParents!=null &&!listCategoryParents.empty}">
-        <div
-          class="navbar navbar-expand-lg navbar-light w-100"
-          style="background: #f5f5fa"
-        >
-          <nav aria-label="breadcrumb">
-            <ol
-              class="breadcrumb"
-              style="background-color: #f5f5fa !important; margin-bottom: 0px"
-            >
-              <li class="breadcrumb-item">
-                <a th:href="@{/}">Home</a>
-              </li>
-              <th:block th:each="parent : ${listCategoryParents}">
-                <li class="breadcrumb-item">
-                  <a th:href="@{'/c/'+${parent.alias}}">[[${parent.name}]]</a>
-                </li>
-              </th:block>
-              <li class="breadcrumb-item" th:if="${product != null}">
-                <span>[[${product.shortName}]]</span>
-              </li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <!--breadcrumb-->
 
-    <!--breadcrumb-->
-    <div th:fragment="breadcrumb_category" th:remove="tag" class="w-100">
-      <div th:if="${listCategoryParents!=null &&!listCategoryParents.empty}">
-        <nav aria-label="breadcrumb" class="py-3">
-          <ol
-            class="breadcrumb w-100 p-0"
-            style="background-color: #f5f5fa !important; margin-bottom: 0px"
-          >
+<body>
+  <!--breadcrumb-->
+  <div th:fragment="content" th:remove="tag" style="width: 100%">
+    <div th:if="${listCategoryParents!=null &&!listCategoryParents.empty}">
+      <div class="navbar navbar-expand-lg navbar-light w-100" style="background: #f5f5fa">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb" style="background-color: #f5f5fa !important; margin-bottom: 0px">
             <li class="breadcrumb-item">
               <a th:href="@{/}">Home</a>
             </li>
             <th:block th:each="parent : ${listCategoryParents}">
-              <li class="breadcrumb-item active" aria-current="page">
+              <li class="breadcrumb-item">
                 <a th:href="@{'/c/'+${parent.alias}}">[[${parent.name}]]</a>
               </li>
             </th:block>
+            <li class="breadcrumb-item" th:if="${product != null}">
+              <span>[[${product.shortName}]]</span>
+            </li>
           </ol>
         </nav>
       </div>
     </div>
-    <!--breadcrumb-->
-  </body>
+  </div>
+  <!--breadcrumb-->
+
+  <!--breadcrumb-->
+  <div th:fragment="breadcrumb_category" th:remove="tag" class="w-100">
+    <div th:if="${listCategoryParents!=null &&!listCategoryParents.empty}">
+      <nav aria-label="breadcrumb" class="py-3">
+        <ol class="breadcrumb w-100 p-0" style="background-color: #f5f5fa !important; margin-bottom: 0px">
+          <li class="breadcrumb-item">
+            <a th:href="@{/}">Home</a>
+          </li>
+          <th:block th:each="parent : ${listCategoryParents}">
+            <li class="breadcrumb-item active" aria-current="page">
+              <a th:href="@{'/c/'+${parent.alias}}">[[${parent.name}]]</a>
+            </li>
+          </th:block>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!--breadcrumb-->
+
+  <div th:fragment="breadcrumb_brand" th:remove="tag" class="w-100">
+    <div th:if="${brand!=null}">
+      <nav aria-label="breadcrumb" class="py-3">
+        <ol class="breadcrumb w-100 p-0" style="background-color: #f5f5fa !important; margin-bottom: 0px">
+          <li class="breadcrumb-item">
+            <a th:href="@{/}">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a th:href="@{'/b/'+${brand.name}+'/products'}">[[${brand.name}]]</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- breadcrumb -->
+</body>
+
 </html>

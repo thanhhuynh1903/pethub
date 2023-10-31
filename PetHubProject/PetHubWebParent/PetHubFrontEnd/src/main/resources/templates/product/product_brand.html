@@ -40,55 +40,40 @@
 				<div class="d-flex justify-content-center w-100">
 					<div class="category-product-container">
 						<!--breadcrumb-->
-						<div th:replace="~{breadcrumb :: breadcrumb_category}" class="w-100 my-3"></div>
+						<div th:replace="~{breadcrumb :: breadcrumb_brand}" class="w-100 my-3"></div>
 						<!--breadcrumb-->
 						<div class="d-flex justify-content-between w-100">
 							<!--Category-->
 							<div class="d-none d-md-block overflow-hidden vh-100 category-parent sticky-top">
 								<div class="flex-column text-center d-none category-container d-md-flex sticky-top">
 									<div class="category-content-container">
-										<div th:if="${!hasChildCategories}">
-											<h5 class="text-left px-3 pt-3 user-select-none">
-												Other Brands
-											</h5>
-											<div th:each="brand: ${brands}">
-												<div class="category-item-container p-3">
-													<a th:href="@{'/b/'+${brand.name}}"
+										<h5 class="text-left px-3 pt-3 user-select-none">
+											Categories for this Brand
+										</h5>
+										<div class="pb-3">
+											<div th:each="cat : ${brand.categories}">
+												<div class="category-item-container p-3" th:if="${cat.enabled == true}">
+													<a th:href="@{'/c/'+${cat.alias}}"
 														class="d-flex align-items-center text-decoration-none text-secondary">
-														<div class="category-img-container mr-2"><img th:src="@{${brand.logoPath}}" />
+														<div class="category-img-container d-flex align-items-center mr-2">
+															<img th:src="@{${cat.imagePath}}" />
 														</div>
-														<span class="text-left">[[${brand.name}]]</span>
+														<span class="text-left">[[${cat.name}]]</span>
 													</a>
 												</div>
 											</div>
 										</div>
-										<!--<div th:if="${hasChildCategories}">
-											<h5 class="text-left px-3 pt-3 user-select-none">
-												Product Categories
-											</h5>
-											<div class="pb-3">
-												<div th:each="cat : ${category.children}">
-													<div class="category-item-container p-3" th:if="${cat.enabled == true}">
-														<a th:href="@{'/c/'+${cat.alias}}"
-															class="d-flex align-items-center text-decoration-none text-secondary">
-															<div class="category-img-container d-flex align-items-center mr-2">
-																<img th:src="@{${cat.imagePath}}" />
-															</div>
-															<span class="text-left">[[${cat.name}]]</span>
-														</a>
-													</div>
-												</div>
-											</div>
-										</div>-->
+
 									</div>
 								</div>
 							</div>
 							<!--Category-->
+
 							<!--product in category-->
 							<div class="product-container d-flex flex-column ml-sm-3 ml-0 align-items-center">
-								<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								<div th:replace="~{navigation :: header_product-brand}" class="w-100"></div>
 								<div class="product-content-container w-100 my-2">
-									<th:block th:each="product : ${listProducts}">
+									<th:block th:each="product : ${products}">
 										<div class="product-item-container">
 											<div th:replace="~{product/product_fragment :: content}" />
 										</div>
@@ -96,7 +81,7 @@
 								</div>
 								<!--product in category-->
 								<div class="pagination-container mt-auto">
-									<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product', ${sortDir})}">
+									<div th:replace="~{fragments :: pagination('/b/'+${brandName}+'/products', 'product', ${sortDir})}">
 									</div>
 								</div>
 							</div>

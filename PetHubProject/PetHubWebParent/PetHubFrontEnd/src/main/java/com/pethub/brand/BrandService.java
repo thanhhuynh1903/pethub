@@ -22,4 +22,8 @@ public class BrandService {
     return repo.findByCategoriesContaining(category);
   }
 
+  public Brand getBrandByName(String name) {
+    return repo.findByName(name);
+  }
+
 }

@@ -90,7 +90,7 @@
 						<div class="container">
 							<div class="p-3 first-detail">
 								<div>
-									Brand: <a href="#"><span>[[${product.brand.name}]]</span></a>
+									Brand: <a th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir='+${sortDir}}"><span>[[${product.brand.name}]]</span></a>
 								</div>
 								<div>
 									<h1 class="modify-name">[[${product.name}]]</h1>

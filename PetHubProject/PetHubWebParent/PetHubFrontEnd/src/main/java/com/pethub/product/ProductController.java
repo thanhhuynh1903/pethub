@@ -15,6 +15,7 @@ import com.pethub.category.CategoryService;
 import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
 import com.pethub.common.entity.product.Product;
+import com.pethub.common.exception.BrandNotFoundException;
 import com.pethub.common.exception.CategoryNotFoundException;
 import com.pethub.common.exception.ProductNotFoundException;
 
@@ -122,6 +123,33 @@ public class ProductController {
 		}
 	}
 
-	
+	@GetMapping("/b/{brandName}/products/page/{pageNum}")
+	public String viewProductsByBrand(@PathVariable("brandName") String brandName,
+			@PathVariable("pageNum") int pageNum,
+			@RequestParam(defaultValue = "asc") String sortDir,
+			Model model) {
+		Brand brand = brandService.getBrandByName(brandName); // fetch the brand
+		Page<Product> page = productService.getProductsByBrandName(brandName, pageNum, sortDir);
+		List<Product> products = page.getContent();
+
+		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+		long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+		if (endCount > page.getTotalElements()) {
+			endCount = page.getTotalElements();
+		}
+
+		model.addAttribute("currentPage", pageNum);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("startCount", startCount);
+		model.addAttribute("endCount", endCount);
+		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("pageTitle", brand.getName());
+		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("products", products);
+		model.addAttribute("categories", brand.getCategories()); // add categories to the model
+		model.addAttribute("brand", brand);
+
+		return "product/product_brand";
+	}
 
 }

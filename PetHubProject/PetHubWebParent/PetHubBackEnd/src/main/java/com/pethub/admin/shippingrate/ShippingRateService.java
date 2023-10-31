@@ -19,7 +19,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class ShippingRateService {
 	public static final int RATES_PER_PAGE = 10;
-	private static final int DIM_DIVISOR = 139;
+	private static final int DIM_DIVISOR = 3500;
 	@Autowired
 	private ShippingRateRepository shipRepo;
 	@Autowired

@@ -75,7 +75,7 @@
 										<div class="form-group row">
 											<label class="col-sm-4 col-form-label">Province/City:</label>
 											<div class="col-sm-8">
-												<input type="text" th:field="*{state}" class="form-control"
+												<input type="text" th:field="*{state}" class="form-control" required
 													maxlength="45" minlength="3" list="listStates"
 													placeholder="Province/City" />
 												<datalist id="listStates"></datalist>
@@ -85,7 +85,7 @@
 										<div class="form-group row">
 											<label class="col-sm-4 col-form-label">District:</label>
 											<div class="col-sm-8">
-												<input type="text" th:field="*{city}" class="form-control"
+												<input type="text" th:field="*{city}" class="form-control" required
 													maxlength="45" minlength="2" placeholder="District" />
 											</div>
 										</div>
@@ -93,7 +93,7 @@
 										<div class="form-group row">
 											<label class="col-sm-4 col-form-label">Wards</label>
 											<div class="col-sm-8">
-												<input type="text" th:field="*{addressLine2}" class="form-control"
+												<input type="text" th:field="*{addressLine2}" class="form-control" required
 													maxlength="64" placeholder="Wards" />
 											</div>
 										</div>
@@ -206,13 +206,6 @@
 												</th:block>
 												-->
 												</div>
-												<!--
-									<label class="col-sm-4 col-form-label">Authentication Type:</label>
-									<div class="col-sm-8">
-										<input type="text" th:field="*{authenticationType}" class="form-control"
-											readonly="readonly" />
-									</div>
-									-->
 											</div>
 										</th:block>
 										<!--link-->

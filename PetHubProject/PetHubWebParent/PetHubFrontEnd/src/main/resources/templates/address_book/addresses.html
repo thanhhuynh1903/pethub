@@ -120,8 +120,11 @@
 									<div class="d-flex flex-column">
 										<div>
 											<span class="text-secondary">Address: </span>
-											<span>[[${customer.addressLine1}]], [[${customer.addressLine2}]],
-												[[${customer.city}]], [[${customer.state}]]</span>
+											<span th:if="${customer.addressLine1} != ''">[[${customer.addressLine1}]], </span>
+											<span th:if="${customer.addressLine2} != ''">[[${customer.addressLine2}]], </span>
+											<span th:if="${customer.city} != ''">[[${customer.city}]], </span>
+											<span th:if="${customer.state} != ''">[[${customer.state}]], </span>
+											<span th:if="${customer.country.name} != ''">[[${customer.country.name}]]</span>
 										</div>
 										<div>
 											<span class="text-secondary">Phone number: </span>
@@ -185,8 +188,11 @@
 										<div class="d-flex flex-column">
 											<div>
 												<span class="text-secondary">Address: </span>
-												<span>[[${address.addressLine1}]], [[${address.addressLine2}]],
-													[[${address.city}]], [[${address.state}]]</span>
+												<span th:if="${address.addressLine1} != ''">[[${address.addressLine1}]], </span>
+												<span th:if="${address.addressLine2} != ''">[[${address.addressLine2}]], </span>
+												<span th:if="${address.city} != ''">[[${address.city}]], </span>
+												<span th:if="${address.state} != ''">[[${address.state}]], </span>
+												<span th:if="${address.country.name} != ''">[[${address.country.name}]]</span>
 											</div>
 											<div>
 												<span class="text-secondary">Phone number: </span>
@@ -194,7 +200,8 @@
 											</div>
 											<div>
 												<span class="text-secondary">Zip code: </span>
-												<span>[[${address.postalCode}]]</span>
+												<span th:if="${address.postalCode} != ''">[[${address.postalCode}]]</span>
+												<span th:if="${address.postalCode} == ''">No</span>
 											</div>
 										</div>
 									</div>

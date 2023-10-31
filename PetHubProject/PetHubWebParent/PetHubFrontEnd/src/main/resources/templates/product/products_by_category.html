@@ -12,7 +12,8 @@
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+	<link
+		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
 		rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
@@ -55,7 +56,8 @@
 												<div class="category-item-container p-3">
 													<a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir='+${sortDir}}"
 														class="d-flex align-items-center text-decoration-none text-secondary">
-														<div class="category-img-container mr-2"><img th:src="@{${brand.logoPath}}" />
+														<div class="category-img-container mr-2"><img
+																th:src="@{${brand.logoPath}}" />
 														</div>
 														<span class="text-left">[[${brand.name}]]</span>
 													</a>
@@ -68,10 +70,12 @@
 											</h5>
 											<div class="pb-3">
 												<div th:each="cat : ${category.children}">
-													<div class="category-item-container p-3" th:if="${cat.enabled == true}">
+													<div class="category-item-container p-3"
+														th:if="${cat.enabled == true}">
 														<a th:href="@{'/c/'+${cat.alias}}"
 															class="d-flex align-items-center text-decoration-none text-secondary">
-															<div class="category-img-container d-flex align-items-center mr-2">
+															<div
+																class="category-img-container d-flex align-items-center mr-2">
 																<img th:src="@{${cat.imagePath}}" />
 															</div>
 															<span class="text-left">[[${cat.name}]]</span>
@@ -86,7 +90,26 @@
 							<!--Category-->
 							<!--product in category-->
 							<div class="product-container d-flex flex-column ml-sm-3 ml-0 align-items-center">
-								<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								<div th:if="${sortDir} == null" class="w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'default'" class="w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'latest'" class="latest-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<!--
+								<div th:if="${sortDir} == 'top_sales'" class="top-sales-container">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								-->
+								<div th:if="${sortDir} == 'asc'" class="price-asc-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'desc'" class="price-desc-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
 								<div class="product-content-container w-100 my-2">
 									<th:block th:each="product : ${listProducts}">
 										<div class="product-item-container">
@@ -96,7 +119,8 @@
 								</div>
 								<!--product in category-->
 								<div class="pagination-container mt-auto">
-									<div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product', ${sortDir})}">
+									<div
+										th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product', ${sortDir})}">
 									</div>
 								</div>
 							</div>

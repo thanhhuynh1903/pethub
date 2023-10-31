@@ -89,7 +89,6 @@ public class ProductController {
 			Model model) {
 		try {
 			Category category = categoryService.getCategory(alias);
-
 			boolean hasChildCategories = categoryService.hasChildCategories(category);
 			List<Brand> brands = hasChildCategories ? null : brandService.getBrandsByCategory(category);
 

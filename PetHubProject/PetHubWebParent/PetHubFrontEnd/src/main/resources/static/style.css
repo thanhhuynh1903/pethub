@@ -200,6 +200,14 @@ h3{
 	width: 47%;
 }
 
+.latest-container .product-container__header .btn-latest,
+.top-sales-container .product-container__header .btn-top-sale,
+.price-asc-container .product-container__header .btn-sort-price,
+.price-desc-container .product-container__header .btn-sort-price {
+	background-color: #4E73DF !important;
+	color: #FFFFFF !important;
+}
+
 
 @media screen and (max-width: 1160px) {
 	.search-product-container {

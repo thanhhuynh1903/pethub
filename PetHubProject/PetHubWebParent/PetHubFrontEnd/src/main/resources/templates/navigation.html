@@ -65,6 +65,7 @@
 									</th:block>
 									<th:block sec:authorize="isAuthenticated()">
 										<a class="dropdown-item" th:href="@{/account_details}">Profile</a>
+										<a class="dropdown-item" th:href="@{/orders}">My orders</a>
 										<a class="dropdown-item" th:href="@{/}">Support Center</a>
 										<div class="dropdown-divider"></div>
 										<!--Logout-->
@@ -136,11 +137,11 @@
 		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
+				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-latest"
 					th:href="${sortDir} == 'latest' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=latest'}">Lastest</a>
-				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly />
+				<input type="submit" class="btn-top-sale btn btn-outline-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly />
 				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>

@@ -1,5 +1,6 @@
 .container-detail-1,.container-detail-3 {
     margin: 0px 15px;
+        height: 100%;
     border-radius: 10px;
     background-color: #ffffff;
 }

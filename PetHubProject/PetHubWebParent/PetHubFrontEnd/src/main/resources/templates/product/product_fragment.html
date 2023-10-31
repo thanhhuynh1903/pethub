@@ -46,13 +46,15 @@
 	</a>
 
 	<div th:fragment="price_fragment(productPrice)" th:remove="tag">
-		<span class="product-price">
+		<span style="font-size: 12px;font-weight: 400">
 			<span class="text-secondary" th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
 				th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-			[[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE,
-			DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
-				th:remove="tag"><sup>[[${CURRENCY_SYMBOL}]]</sup></span>
 		</span>
+			[[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE,
+			DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]
+			<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+				th:remove="tag"><sup>[[${CURRENCY_SYMBOL}]]</sup></span>
+		
 	</div>
 </body>
 

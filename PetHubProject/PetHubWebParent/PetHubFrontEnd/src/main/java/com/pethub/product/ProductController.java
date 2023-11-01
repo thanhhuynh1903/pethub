@@ -51,8 +51,8 @@ public class ProductController {
 	}
 
 	@GetMapping("/search")
-	public String searchFirstPage(String keyword, Model model) {
-		return searchByPage(keyword, keyword, 1, model);
+	public String searchFirstPage(String keyword, @RequestParam(defaultValue = "default") String sortDir, Model model) {
+		return searchByPage(keyword, sortDir, 1, model);
 	}
 
 	@GetMapping("/search/page/{pageNum}")

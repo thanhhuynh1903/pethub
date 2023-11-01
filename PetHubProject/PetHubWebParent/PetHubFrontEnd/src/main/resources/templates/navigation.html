@@ -90,15 +90,18 @@
 						</li>
 					</ul>
 					<div class="text-secondary align-items-end justify-content-end mt-3 d-none d-lg-flex">
-						<a th:href="@{/}" class="d-flex text-decoration-none">
+						<a th:href="@{/address_book}" class="d-flex text-decoration-none">
 							<i class="bi bi-geo-alt d-flex align-items-center mr-1"></i>
 							<th:block sec:authorize="!isAuthenticated()">
-								<span class="text-secondary">Shipping to: <a th:href="@{/address_book}" class="text-decoration-none ml-1">Choose
+								<span class="text-secondary">Shipping to: <a th:href="@{/address_book}"
+										class="text-decoration-none ml-1">Choose
 										address</a></span>
 							</th:block>
 							<th:block sec:authorize="isAuthenticated()">
-								<span class="text-secondary">Shipping to: <a
-										th:href="@{/address_book}" sec:authentication="principal.address" class="text-decoration-none ml-1" style="font-size: small;"></a></span>
+								<span class="text-secondary">Shipping to: <a th:if="principal.address != null"
+										th:href="@{/address_book}" sec:authentication="principal.address"
+										class="text-decoration-none ml-1" style="font-size: small;"></a>
+								</span>
 							</th:block>
 						</a>
 					</div>

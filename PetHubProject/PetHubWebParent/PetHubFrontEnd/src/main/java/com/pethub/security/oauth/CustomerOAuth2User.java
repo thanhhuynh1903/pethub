@@ -10,6 +10,7 @@ public class CustomerOAuth2User implements OAuth2User {
 	private String clientName;
 	private String fullName;
 	private OAuth2User oauth2User;
+	private String address;
 	
 	public CustomerOAuth2User(OAuth2User user, String clientName) {
 		this.oauth2User = user;
@@ -40,9 +41,7 @@ public class CustomerOAuth2User implements OAuth2User {
 	}
 	
 	public String getFirstName() {
-		String arr[] = fullName.split(" ", 2);
-		String arr2[] = oauth2User.getAttribute("name").toString().split(" ", 2);
-		return fullName != null ? arr[0] : arr2[0];
+		return fullName != null ? fullName.split(" ", 2)[0] : oauth2User.getAttribute("name").toString().split(" ", 2)[0];
 	}
 
 	public String getClientName() {
@@ -51,5 +50,11 @@ public class CustomerOAuth2User implements OAuth2User {
 	
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddress() {
+		return address != null ? address : "Choose address";
 	}
 }

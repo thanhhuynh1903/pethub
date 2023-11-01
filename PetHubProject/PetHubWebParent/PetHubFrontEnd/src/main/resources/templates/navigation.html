@@ -36,7 +36,7 @@
 			</div>
 			<div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
 				<div>
-					<ul class="navbar-nav me-auto w-100 d-flex justify-content-between">
+					<ul class="navbar-nav me-auto w-100 d-flex justify-content-end">
 						<li class="nav-item active">
 							<a class="nav-link d-flex justify-content-center align-items-center" th:href="@{/}" id="home"><i
 									class="bi bi-house-fill d-flex align-items-center nav-general"></i><span
@@ -159,9 +159,9 @@
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#"
+						<a class="dropdown-item text-dark color-asc-picker" href="#"
 							th:href="${sortDir} == 'asc' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=asc'}">Ascending</a>
-						<a class="dropdown-item" href="#"
+						<a class="dropdown-item text-dark color-desc-picker" href="#"
 							th:href="${sortDir} == 'desc' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=desc'}">Descending</a>
 					</div>
 				</div>
@@ -173,18 +173,18 @@
 		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
+				<a role="button" class="btn-outline-primary btn-latest btn mx-1 mx-xl-3 mx-lg-2"
 					th:href="${sortDir} == 'latest' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=latest'}">Lastest</a>
-				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" />
+				<input type="submit" class="btn-top-sale btn-outline-primary btn mr-xl-3 mr-lg-2 mr-1" value="Top Sales" />
 				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+					<button class="btn-sort-price btn-outline-primary btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#"
+						<a class="dropdown-item text-dark color-asc-picker" href="#"
 							th:href="${sortDir} == 'asc' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=asc'}">Ascending</a>
-						<a class="dropdown-item" href="#"
+						<a class="dropdown-item text-dark color-desc-picker" href="#"
 							th:href="${sortDir} == 'desc' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=desc'}">Descending</a>
 					</div>
 				</div>
@@ -197,18 +197,18 @@
 		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<a role="button" class="btn btn-primary mx-1 mx-xl-3 mx-lg-2"
+				<a role="button" class="btn btn-latest btn-outline-primary mx-1 mx-xl-3 mx-lg-2"
 					th:href="${sortDir} == 'latest' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=latest'}">Lastest</a>
-				<input type="submit" class="btn btn-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly />
+				<input type="submit" class="btn btn-top-sale btn-outline-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly />
 				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#"
+						<a class="dropdown-item text-dark color-asc-picker" href="#"
 							th:href="${sortDir} == 'asc' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=asc'}">Ascending</a>
-						<a class="dropdown-item" href="#"
+						<a class="dropdown-item text-dark color-desc-picker" href="#"
 							th:href="${sortDir} == 'desc' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=desc'}">Descending</a>
 					</div>
 				</div>

@@ -207,7 +207,10 @@ h3{
 	background-color: #4E73DF !important;
 	color: #FFFFFF !important;
 }
-
+.price-asc-container .product-container__header .color-asc-picker,
+.price-desc-container .product-container__header .color-desc-picker {
+	color: #4E73DF !important;
+}
 
 @media screen and (max-width: 1160px) {
 	.search-product-container {

@@ -142,7 +142,23 @@
 		<span style="font-size: 26px; color: #4e73df; font-weight: bold">Hub</span>
 	</a>
 	<!--nav-brand-admin-end-->
+	<!-- currency -->
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE,
+		DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
 
+	<div th:fragment="format_time(dateTime)" th:remove="tag">
+		<span th:text="${#dates.format(dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+	</div>
+
+	<div th:fragment="currency_input(amount)" th:remove="tag">
+		<input type="text" readonly class="form-control"
+			th:value="${(CURRENCY_SYMBOL_POSITION == 'Before price' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'After price' ? CURRENCY_SYMBOL : '')}">
+	</div>
+	<!-- end curency -->
 	<!-- product card start -->
 	<a th:href="@{'/p/'+${product.alias}}" class="text-decoration-none product-item-link w-100 h-100 "
 		th:fragment="product_card(product : ${product})">

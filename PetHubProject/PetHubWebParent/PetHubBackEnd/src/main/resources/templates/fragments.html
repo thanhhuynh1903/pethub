@@ -152,6 +152,12 @@
 	<a th:fragment="page_link(pageNum, label)" class="page-link"
 		th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${label}]]</a>
 	<!--end page link-->
+	<!-- logo admin -->
+	<a class="nav-brand text-decoration-none d-flex" th:href="@{/}" th:fragment="logo_admin">
+		<span style="font-size: 24px; color: #594f66; font-weight: bold">Pet</span>
+		<span style="font-size: 24px; color: #4e73df; font-weight: bold">Hub</span>
+	</a>
+	<!-- logo admin -->
 </body>
 
 </html>

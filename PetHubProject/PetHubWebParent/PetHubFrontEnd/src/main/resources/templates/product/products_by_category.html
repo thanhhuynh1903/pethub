@@ -54,7 +54,7 @@
 											</h5>
 											<div th:each="brand: ${brands}">
 												<div class="category-item-container p-3">
-													<a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir='+${sortDir}}"
+													<a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir=default'}"
 														class="d-flex align-items-center text-decoration-none text-secondary">
 														<div class="category-img-container mr-2"><img
 																th:src="@{${brand.logoPath}}" />
@@ -72,7 +72,7 @@
 												<div th:each="cat : ${category.children}">
 													<div class="category-item-container p-3"
 														th:if="${cat.enabled == true}">
-														<a th:href="@{'/c/'+${cat.alias}}"
+														<a th:href="@{'/c/'+${cat.alias}+'/page/1?sortDir=default'}"
 															class="d-flex align-items-center text-decoration-none text-secondary">
 															<div
 																class="category-img-container d-flex align-items-center mr-2">

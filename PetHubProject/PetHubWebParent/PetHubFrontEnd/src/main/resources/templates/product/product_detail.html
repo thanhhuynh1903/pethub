@@ -90,7 +90,8 @@
 						<div class="container">
 							<div class="p-3 first-detail">
 								<div>
-									Brand: <a th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir='+${sortDir}}"><span>[[${product.brand.name}]]</span></a>
+									Brand: <a
+										th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir='+${sortDir}}"><span>[[${product.brand.name}]]</span></a>
 								</div>
 								<div>
 									<h1 class="modify-name">[[${product.name}]]</h1>
@@ -98,7 +99,7 @@
 
 								<div class="price-modify">
 
-									<span th:if="${product.discountPercent <= 0}" >
+									<span th:if="${product.discountPercent <= 0}">
 										<div
 											th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
 										</div>
@@ -119,9 +120,9 @@
 									</span>
 									<span style="color:#fff;font-weight: 500;background-color: #FF6969;margin-left: 20px; border-radius: 8px;
 									padding: 3px;">
-									-[[${#numbers.formatDecimal(product.discountPercent, 1,
-									THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%
-									
+										-[[${#numbers.formatDecimal(product.discountPercent, 1,
+										THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%
+
 									</span>
 								</div>
 
@@ -199,7 +200,7 @@
 									</div>
 								</th:block>
 								<div class="my-3">
-									<input type="button" value="Buy now" class="btn btn-danger w-100" />
+									<a th:href="@{/checkout}"> Buy now</a>
 								</div>
 								<!--<div class="my-3">
 									<th:block th:if="${product.inStock}">

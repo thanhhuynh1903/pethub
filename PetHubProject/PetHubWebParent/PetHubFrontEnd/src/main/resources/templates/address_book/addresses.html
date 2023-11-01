@@ -76,7 +76,7 @@
 
 						<div>
 							<div>
-								<div class="address-card p-3" th:classappend="${usePrimaryAddressAsDefault ? '' : ''}">
+								<div class="address-card p-3" th:if="${customer.addressLine1} != ''" th:classappend="${usePrimaryAddressAsDefault ? '' : ''}">
 									<div class="header">
 										<div class="d-flex justify-content-between">
 											<div>

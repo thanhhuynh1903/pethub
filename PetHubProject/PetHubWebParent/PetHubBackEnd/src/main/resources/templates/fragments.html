@@ -26,154 +26,132 @@
 </head>
 
 <body>
-  <!--begin filter-->
-  <div th:fragment="search_form_and_message()" class="d-flex">
-    <form th:action="@{${moduleURL} + '/page/1'}" class="form-inline w-100">
-      <input type="hidden" name="sortField" th:value="${sortField}" required />
-      <input type="hidden" name="sortDir" th:value="${sortDir}" required />
-      <div class="d-flex">
-        <input type="search" name="keyword" th:value="${keyword}" class="form-control py-2 rounded w-75"
-          style="border-radius: 6px 0 0 6px !important" />
-        <input type="submit" value="Search" class="btn btn-primary w-25" style="
-              margin-left: 0;
-              border-radius: 0 6px 6px 0;
-              background-color: #4e73df;
-            " />
-      </div>
-      <!-- no need
-			<input type="button" value="Clear" class="btn btn-dark" style="background:#343a40;" onclick="clearFilter()" />
-			-->
-    </form>
 
-    <!--message begin-->
+	<!--begin filter-->
+	<div th:fragment="search_form_and_message()">
+		<form th:action="@{${moduleURL} + '/page/1'}" class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}" required />
+			<input type="hidden" name="sortDir" th:value="${sortDir}" required />
 
-    <div th:if="${message != null}" class="alert alert-success text-center message-alert">
-      [[${message}]]
-    </div>
-    <!--end message-->
-  </div>
-  <!--end filter-->
+			Filter:
+			<input type="search" name="keyword" th:value="${keyword}" class="form-control m-3" required />
+			&nbsp;&nbsp;
+			<input type="submit" value="Search" class="btn btn-primary" />
+			&nbsp;&nbsp;
+			<input type="button" value="Clear" class="btn btn-dark" onclick="clearFilter()" />
+		</form>
 
-  <!--begin pagination-->
-  <div th:fragment="pagination(entityName)" th:remove="tag">
-    <div class="d-flex justify-content-end my-4" th:if="${totalItems >0}">
-      <div th:if="${totalPages>1}" class="col-8">
-        <nav>
-          <ul class="pagination justify-content-center flex-wrap">
-            <li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-              <a th:replace="~{fragments :: page_link(1, 'First')}" />
-            </li>
-            <li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
-              <a th:replace="~{fragments :: page_link(${currentPage -1}, 'Previous')}" />
-            </li>
-            <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-              th:each="i : ${#numbers.sequence(1, totalPages)}">
-              <a th:replace="~{fragments :: page_link(${i}, ${i})}" />
-            </li>
-            <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-              <a th:replace="~{fragments :: page_link(${currentPage + 1}, 'Next')}" />
-            </li>
-            <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-              <a th:replace="~{fragments :: page_link(${totalPages}, 'Last')}" />
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="col-2 d-flex justify-content-end" th:if="${totalItems >0}" style="padding: 0">
-        <div class="d-flex align-items-center justify-content-center w-75" style="
-              background-color: #fff;
-              border-radius: 6px;
-              border: 1px solid #ccc;
-              color: #594f66;
-              height: 36px;
-            ">
-          [[${startCount}]] - [[${endCount}]] / [[${totalItems}]]
-        </div>
-        <!--
+		<!--message begin-->
+		<div th:if="${message != null}" class="alert alert-success text-center">
+			[[${message}]]
+		</div>
+		<!--end message-->
+	</div>
+	<!--end filter-->
+
+
+
+
+	<!--begin pagination-->
+	<div th:fragment="pagination(entityName)" th:remove="tag">
+		<div class="text-center m-1" th:if="${totalItems >0}">
 			<span>
 				Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]].
 			</span>
-			-->
-      </div>
-    </div>
-    <div th:unless="${totalItems >0}" class="d-flex flex-column justify-content-center align-items-center"
-      style="background-color: #fff; height: 170px">
-      <i class="bi bi-inbox" style="font-size: 70px; color: #e0e0e0"></i>
-      <span class="text-center" style="color: #9096c6; font-size: 14px">
-        No [[${entityName}]] found
-      </span>
-    </div>
-  </div>
-  <!--end pagination-->
+		</div>
+		<div class="text-center m-1" th:unless="${totalItems >0}">
+			<span>
+				No [[${entityName}]] found.
+			</span>
+		</div>
 
-  <!--begin update status-->
-  <div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
-    <a th:if="${enabled == true}" th:href="@{${entityURL} + '/enabled/false'}"
-      th:title="'Disable this ' + ${entityName}">
-      <i class="bi bi-toggle-on text-primary" style="font-size: 36px"></i>
-    </a>
+		<div th:if="${totalPages>1}">
+			<nav>
+				<ul class="pagination justify-content-center flex-wrap">
+					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(1, 'First')}" />
+					</li>
+					<li th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${currentPage -1}, 'Previous')}" />
+					</li>
+					<li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+						th:each="i : ${#numbers.sequence(1, totalPages)}">
+						<a th:replace="~{fragments :: page_link(${i}, ${i})}" />
+					</li>
+					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${currentPage + 1}, 'Next')}" />
+					</li>
+					<li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+						<a th:replace="~{fragments :: page_link(${totalPages}, 'Last')}" />
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!--end pagination-->
 
-    <a th:if="${enabled == false}" th:href="@{${entityURL} + '/enabled/true'}"
-      th:title="'Enable this ' + ${entityName}">
-      <i class="bi bi-toggle-off text-primary" style="font-size: 36px"></i>
-    </a>
-  </div>
-  <!--end update status-->
+	<!--begin update status-->
+	<div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
+		<a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green"
+			th:href="@{${entityURL} + '/enabled/false'}" th:title="'Disable this ' + ${entityName}"></a>
 
-  <!--begin edit button-->
-  <div th:fragment="edit(entityName, editURL)" th:remove="tag">
-    <a class="icon-blue" th:href="@{${editURL}}" th:title="'Edit this ' + ${entityName}">
-      <i class="bi bi-pencil-square" style="font-size: 24px"></i>
-    </a>
-  </div>
-  <!--end edit button-->
+		<a th:if="${enabled == false}" class="fas fa-circle fa-2x icon-dark" th:href="@{${entityURL} + '/enabled/true'}"
+			th:title="'Enable this ' + ${entityName}"></a>
+	</div>
+	<!--end update status-->
+  <!--Currency-->
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE,
+		DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
+    <!--Ednd Currency-->
 
-  <!--begin delete button-->
-  <div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
-    <th:block th:if="${visible}">
-      <a class="icon-blue link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
-        th:title="'Delete this ' + ${entityName}">
-        <i class="bi bi-trash-fill" style="font-size: 24px"></i>
-      </a>
-    </th:block>
-  </div>
-  <!--end delete button-->
+	<!--begin edit button-->
+	<div th:fragment="edit(entityName, editURL)" th:remove="tag">
+		<a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}" th:title="'Edit this ' + ${entityName}"></a>
+	</div>
+	<!--end edit button-->
 
-  <!-- begin footer-->
-  <footer th:fragment="footer" style="
-        background-color: #fff;
-        margin-top: 20px;
-        padding: 22px 0;
-        text-align: center;
-      ">
-    <span className="text-secondary-custom" style="color: #9096c6;font-size: 16px">
-      Copyright &copy; PetHub 2023
-    </span>
-  </footer>
-  <!--end footer-->
 
-  <!-- begin column link-->
-  <th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}" class="py-4">
-    <a class="text-dark text-decoration-none"
-      th:href="@{${moduleURL}+'/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}+ ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
-      [[${columnLabel}]]
-    </a>
-    <span th:if=" ${sortField==fieldName}"
-      th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-  </th>
-  <!--end column link-->
 
-  <!--begin page link-->
-  <a th:fragment="page_link(pageNum, label)" class="page-link"
-    th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${label}]]</a>
-  <!--end page link-->
+	<!--begin delete button-->
+	<div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
+		<th:block th:if="${visible}">
+			<a class="fas fa-trash fa-2x icon-dark link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
+				th:title="'Delete this ' + ${entityName}"></a>
+		</th:block>
+	</div>
+	<!--end delete button-->
 
-  <!--nav-brand-admin-start-->
-  <a class="nav-brand text-decoration-none my-auto" href="/PetHubAdmin" th:fragment="logo_admin">
-    <span style="font-size: 28px; color: #594f66; font-weight: bold">Pet</span>
-    <span style="font-size: 28px; color: #4e73df; font-weight: bold">Hub</span>
-  </a>
-  <!--nav-brand-admin-end-->
+
+
+	<!-- begin footer-->
+	<div th:fragment="footer" class=" text-center m-3">
+		<p>PetHub Control Panel - Copyright &copy; PetHub</p>
+	</div>
+	<!--end footer-->
+
+
+
+
+	<!-- begin column link-->
+	<th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
+		<a class="text-dark"
+			th:href="@{${moduleURL}+'/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}+ ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
+			[[${columnLabel}]]
+		</a>
+		<span th:if=" ${sortField==fieldName}"
+			th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+	</th>
+	<!--end column link-->
+
+
+	<!--begin page link-->
+	<a th:fragment="page_link(pageNum, label)" class="page-link"
+		th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${label}]]</a>
+	<!--end page link-->
 </body>
 
 </html>

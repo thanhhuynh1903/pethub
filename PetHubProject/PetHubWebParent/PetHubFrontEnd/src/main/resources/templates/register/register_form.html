@@ -78,11 +78,30 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-form-label">Address line 1: </label>
+							<div>
+								<input type="text" th:field="*{addressLine1}" class="form-control" required="required"
+									maxlength="64" minlength="3" placeholder="Street Name, House Number" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-form-label">Address line 2: </label>
+							<div>
+								<input type="text" th:field="*{addressLine2}" class="form-control" maxlength="64"
+									minlength="3" placeholder="Apartment/Suite Numbers/Ward" />
+							</div>
+						</div>
+
 						<div class="d-flex justify-content-between">
 							<div class="form-group w-47">
 								<label class="col-form-label">Country</label>
 								<div>
 									<select class="form-control" th:field="*{country}">
+										<option th:value="${242}">Select to load more information</option>
 										<th:block th:each="country : ${listCountries}">
 											<option th:value="${country.id}">[[${country.name}]]</option>
 										</th:block>
@@ -99,36 +118,20 @@
 							</div>
 						</div>
 						<div class="d-flex justify-content-between">
-						<div class="form-group w-47">
-							<label class="col-form-label">District</label>
-							<div>
-								<input type="text" th:field="*{city}" class="form-control" maxlength="45" minlength="2"
-									placeholder="District" />
+							<div class="form-group w-47">
+								<label class="col-form-label">District</label>
+								<div>
+									<input type="text" th:field="*{city}" class="form-control" maxlength="45"
+										minlength="2" placeholder="District" />
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group w-47">
-							<label class="col-form-label">Wards</label>
-							<div>
-								<input type="text" th:field="*{addressLine2}" class="form-control" maxlength="64"
-									placeholder="Wards" />
-							</div>
-						</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-form-label">Address</label>
-							<div>
-								<input type="text" th:field="*{addressLine1}" class="form-control" required="required"
-									maxlength="64" minlength="3" placeholder="Address" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-form-label">Zip Code</label>
-							<div>
-								<input type="text" th:field="*{postalCode}" class="form-control" maxlength="10"
-									minlength="2" placeholder="Zip Code" />
+							<div class="form-group w-47">
+								<label class="col-form-label">Zip Code</label>
+								<div>
+									<input type="text" th:field="*{postalCode}" class="form-control" maxlength="6"
+										minlength="2" placeholder="Zip Code" />
+								</div>
 							</div>
 						</div>
 						<div class="text-center">

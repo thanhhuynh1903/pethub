@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: page_head('PetHub', 'none')}" />
-<body>
-<div class="container-fluid">
-	<div th:replace="~{navigation :: header_menu}"></div>
-	<div th:replace="~{navigation :: search_nav}"></div>
-	
-	<div class="text-center border border-secondary rounded m-3 p-3">
-		<h2>Your Order has been Completed!</h2>
-		<h4>A confirmation email has been sent to you.</h4>
-		<h4>Kindly check your email for the details.</h4>
-		
-	</div>
 
-	
-	<div th:replace="~{navigation :: footer_menu}"></div>
-</div>	
+<head th:replace="~{fragments :: page_head('PetHub', 'none')}" />
+
+<body>
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}"></div>
+
+			<div class="w-100 d-flex flex-column justify-content-center align-items-center my-auto">
+				<div
+					class="text-center mt-2 registered-success-box d-flex flex-column align-items-center justify-content-center mx-3 mx-sm-0">
+					<i
+						class="bi bi-check-circle-fill text-success d-flex justify-content-center align-items-center"></i>
+					<h2 class="mt-3">Your order has been completed!</h2>
+					<span class="my-1">A confirmation email has been sent to you.</span>
+					<span>Kindly check your email for the details.</span>
+				</div>
+			</div>
+
+			<div th:replace="~{navigation :: footer_menu}"></div>
+		</div>
+	</div>
 </body>
+
 </html>

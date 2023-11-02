@@ -114,7 +114,7 @@
 										<span>[[${customer.phoneNumber}]]</span>
 									</div>
 									<div>
-										<span class="text-secondary">Address </span>
+										<span class="text-secondary">Address: </span>
 										<span
 											th:unless="${defaultAddress.addressLine1} == null">[[${defaultAddress.addressLine1}]],
 										</span>
@@ -136,7 +136,7 @@
 										<span>[[${customer.phoneNumber}]]</span>
 									</div>
 									<div>
-										<span class="text-secondary">Address </span>
+										<span class="text-secondary">Address: </span>
 										<span th:unless="${customer.addressLine1} == null">[[${customer.addressLine1}]],
 										</span>
 										<span th:unless="${customer.addressLine2} == null">[[${customer.addressLine2}]],

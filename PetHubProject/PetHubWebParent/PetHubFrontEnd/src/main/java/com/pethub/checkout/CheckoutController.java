@@ -66,9 +66,24 @@ public class CheckoutController {
 
 		if (defaultAddress != null) {
 			model.addAttribute("shippingAddress", defaultAddress.toString());
+			model.addAttribute("address", defaultAddress.getAddressLine1()
+					+ ", " + defaultAddress.getAddressLine2() 
+					+ ", " + defaultAddress.getCity() 
+					+ ", " + defaultAddress.getState()
+					+ ", " + defaultAddress.getCountry().getName()
+					);
+			model.addAttribute("cusName", defaultAddress.getLastName() + " " + defaultAddress.getLastName());
+			model.addAttribute("cusPhoneNumber", defaultAddress.getPhoneNumber());
 			shippingRate = shipService.getShippingRateForAddress(defaultAddress);
 		} else {
 			model.addAttribute("shippingAddress", customer.toString());
+			model.addAttribute("address", customer.getAddressLine1()
+					+ ", " + customer.getAddressLine2()
+					+ ", " + customer.getCity()
+					+ ", " + customer.getState()
+					+ ", " + customer.getCountry().getName());
+			model.addAttribute("cusName", customer.getFullName());
+			model.addAttribute("cusPhoneNumber", customer.getPhoneNumber());
 			shippingRate = shipService.getShippingRateForCustomer(customer);
 		}
 

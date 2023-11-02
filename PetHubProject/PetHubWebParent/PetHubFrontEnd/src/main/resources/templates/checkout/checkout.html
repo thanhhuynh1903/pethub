@@ -9,46 +9,46 @@
 
 <body>
 	<div class="w-100 h-100">
-		<div class="checkout-container d-flex flex-column w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
-			<div class="w-100 mt-3 checkout-container">
-				<div class="text-left">
-					<h4 class="text-uppercase">Check Out</h4>
-				</div>
+			<div class="w-100 my-3 checkout-container">
+				<h4 class="text-uppercase mb-3">Check Out</h4>
 
-				<div class="d-flex">
+				<div class="d-block d-md-flex">
 
 					<div class="checkout-left-container">
 						<div class="checkout-card">
 							<div class="w-100">
-								<div class="">
+								<div class="mb-3">
 									<h5>Order Summary</h5>
 								</div>
 								<div class="w-100">
 									<div class="w-100">
-										<th:block th:each="item : ${cartItems}">
+										<th:block th:each="item, status : ${cartItems}">
 											<div th:with="product = ${item.product}" class="checkout-product-item">
 												<div class="checkout-product-top">
-													<span class="text-uppercase">Shipping Fee: </span>
-													<span
-														th:replace="~{fragments :: format_currency(${item.shippingCost})}">
+													<span class="text-uppercase px-2">Shipping Fee: </span>
+													<span class="price">
+														<div
+															th:replace="~{fragments :: format_currency(${item.shippingCost})}">
+														</div>
 													</span>
 												</div>
-												<div class="checkout-product-bottom">
+												<div class="checkout-product-bottom mt-2">
 													<div class="checkout-img-container">
 														<img th:src="@{${product.mainImagePath}}"
 															class="img-fluid"></img>
 													</div>
-													<div class="d-flex flex-column">
+													<div class="d-flex flex-column pr-1">
 														<a th:href="@{'/p/' + ${product.alias}}" target="_blank"
-															class="text-secondary text-decoration-none">
+															class="text-secondary text-decoration-none text-name">
 															[[${product.shortName}]]
 														</a>
-														<span class="text-secondary">Quantity:
+														<span class="text-secondary text-quantity">Quantity:
 															[[${item.quantity}]]</span>
 
 													</div>
-													<div>
+													<div class="price">
 														<div
 															th:replace="~{fragments :: format_currency(${item.subtotal})}">
 														</div>
@@ -63,24 +63,18 @@
 						</div>
 
 						<div class="checkout-card my-2">
-							<div>
-								<div class="">
+							<div class="w-100">
+								<div class="w-100 mb-3">
 									<h5>Payment Method</h5>
 								</div>
 								<div class="">
 									<div th:if="${checkoutInfo.codSupported}">
 										<form th:action="@{/place_order}" method="post">
 											<p>
-
 												<input type="radio" name="paymentMethod" id="radioCOD" value="COD" />
-												Cash
-												on
-												Delivery (COD)
-												&nbsp;
-												<button class="btn btn-primary d-none" type="submit"
-													id="buttonSubmit">Place
-													Order
-													with COD</button>
+												Cash on Delivery (COD)
+												<button class="btn btn-danger d-none" type="submit"
+													id="buttonSubmit">Place Order with COD</button>
 											</p>
 										</form>
 									</div>
@@ -95,18 +89,26 @@
 						</div>
 					</div>
 
-					<div class="checkout-right-container ml-2">
-						<div class="checkout-card">
-							<div>
+					<div class="checkout-right-container ml-md-2 ml-0">
+						<div class="checkout-card w-100">
+							<div class="w-100">
 								<div class="">
-									<h5>Shipping information</h5>
+									<h5>Shipping to</h5>
 								</div>
-								<div class="">
-									<p>
-										<b>Ship to:</b>&nbsp; [[${shippingAddress}]]
-										<a th:href="@{/address_book(redirect=checkout)}">[Ship to another address]</a>
-									</p>
-									<p>
+								<div>
+									<div>
+										<div>
+											<span class="name pr-2 mr-1">[[${cusName}]]</span>
+											<span>[[${cusPhoneNumber}]]</span>
+										</div>
+										<div class="mb-1">
+											<span class="text-secondary">Address: </span>
+											<span>[[${address}]]</span>
+										</div>
+										<a th:href="@{/address_book(redirect=checkout)}"
+											class="text-decoration-none">Ship to another address</a>
+									</div>
+									<p class="my-2">
 										<b>Days to deliver: </b>[[${checkoutInfo.deliverDays}]] day(s)
 									</p>
 									<p>
@@ -118,29 +120,37 @@
 							</div>
 						</div>
 						<div class="checkout-card my-2">
-							<div class="d-flex justify-content-between mt-2">
-								<div class="col">Product Total: </div>
-								<div class="col">
+							<div class="d-flex justify-content-between mt-2 w-100 ">
+								<h5>Order</h5>
+
+								<a th:href="@{/cart}" class="text-decoration-none">Change</a>
+							</div>
+							<div class="d-flex justify-content-between mt-2 w-100">
+								<div class="text-secondary title">Product Total: </div>
+								<div class="offset-1">
 									<div th:replace="~{fragments :: format_currency(${checkoutInfo.productTotal})}">
 									</div>
 								</div>
 							</div>
 
-							<div class="d-flex justify-content-between mt-2">
-								<div class="col">Shipping Total: </div>
-								<div class="col">
+							<div class="d-flex justify-content-between mt-2 w-100">
+								<div class="text-secondary title">Shipping Total: </div>
+								<div class="offset-1">
 									<div
 										th:replace="~{fragments :: format_currency(${checkoutInfo.shippingCostTotal})}">
 									</div>
 								</div>
 							</div>
+							<hr class="w-100">
 
-							<div class="d-flex justify-content-between mt-2">
-								<div class="col">Payment Total: </div>
-								<div class="col"><b>
+							<div class="d-flex justify-content-between mt-1 w-100">
+								<div class="title">Payment Total: </div>
+								<div class="offset-1">
+									<span class="text-danger price-total">
 										<div th:replace="~{fragments :: format_currency(${checkoutInfo.paymentTotal})}">
 										</div>
-									</b></div>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>

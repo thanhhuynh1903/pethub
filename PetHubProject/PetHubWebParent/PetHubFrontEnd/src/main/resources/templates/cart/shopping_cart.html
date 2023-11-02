@@ -2,31 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-
-	<title>Shopping Cart</title>
-
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link
-		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
-		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-		crossorigin="anonymous"></script>
-	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js}"
-		crossorigin="anonymous"></script>
-	<link href="bootstrap-rating.css" rel="stylesheet" />
+	<head th:replace="~{fragments :: page_head('Shopping Cart', 'none')}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-cart.css}" />
 </head>
 
@@ -43,31 +19,31 @@
 
 				<div class="d-flex flex-column flex-md-row gap-1 align-items-start">
 					<div class="cart-left-container d-flex flex-column justify-content-center">
-						<th:block th:if="${!#lists.isEmpty(cartItems)}">
-							<div class="header">
-								<div><span>All products</span></div>
-								<div><span class="d-md-block d-none">Price</span></div>
-								<div><span class="d-md-block d-none">Quantity</span></div>
-								<div><span class="d-md-block d-none">Total</span></div>
-								<div><span class="fas fa-trash icon-dark "></span></div>
-							</div>
-						</th:block>
+
+						<div id="header_cart" th:class="'' + ${#lists.isEmpty(cartItems) ? ' d-none' : ' header'}">
+							<div><span>All products</span></div>
+							<div><span class="d-md-block d-none">Price</span></div>
+							<div><span class="d-md-block d-none">Quantity</span></div>
+							<div><span class="d-md-block d-none">Total</span></div>
+							<div><span class="fas fa-trash icon-dark"></span></div>
+						</div>
+
 						<th:block th:each="item, status : ${cartItems}">
 							<div class="content mt-2" th:with="product = ${item.product}"
 								th:id="'row' + ${status.count}">
 								<div class="divCount d-none">[[${status.count}]]</div>
 								<div class="cart-product-img-name-container d-flex align-items-center">
-									<div class="mx-1 cart-product-img-container">
+									<div class="mx-1 cart-product-img-container w-100">
 										<img th:src="@{${product.mainImagePath}}" class="img-fluid" />
 									</div>
-									<div class="d-flex flex-column name-price">
+									<div class="d-flex flex-column name-price w-100">
 										<a th:href="@{'/p/' + ${product.alias}}" target="_blank"
 											th:title="${product.name}" class="text-decoration-none text-dark">
 											<span class="text-three-line">[[${product.shortName}]]</span>
 										</a>
-										<div class="d-flex d-md-none justify-content-between align-items-center">
+										<div class="d-flex  justify-content-between align-items-center">
 											<div class="d-flex flex-column d-md-none justify-content-center gap-1">
-												<div class="d-md-none d-block">
+												<div class="d-block d-md-none">
 													<div th:replace="~{product/product_fragment :: product_price}">
 													</div>
 												</div>
@@ -93,10 +69,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="d-none d-md-block">
+								<div class="d-md-block d-none">
 									<div th:replace="~{product/product_fragment :: product_price}"></div>
 								</div>
-								<div class="d-none d-md-block">
+								<div class="d-block">
 									<div
 										th:replace="~{cart/quantity_control :: quantity_control(${item.quantity}, ${product.id})}">
 									</div>
@@ -110,7 +86,7 @@
 									<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag"
 										class="price text-danger font-weight-bold"><sup>[[${CURRENCY_SYMBOL}]]</sup></span>
 								</span>
-								<div class="d-none d-md-block">
+								<div class="d-block">
 									<a class="fas fa-trash icon-dark linkRemove" th:rowNumber="${status.count}"
 										th:href="@{'/cart/remove/' + ${product.id}}"></a>
 								</div>
@@ -172,11 +148,10 @@
 									</div>
 								</th:block>
 							</div>
-
-							<div th:unless="${usePrimaryAddressAsDefault}">
+							<!--<div th:unless="${usePrimaryAddressAsDefault}">-->
 								<a th:href="@{/address_book(redirect=cart)}" class="text-decoration-none">Use another
 									shipping address</a>
-							</div>
+							<!--</div>-->
 						</div>
 
 						<div class="money mt-2">
@@ -206,8 +181,7 @@
 						</div>
 					</div>
 				</div>
-
-				<div id="sectionEmptyCartMessage" th:if="${#lists.isEmpty(cartItems)}"
+				<div id="sectionEmptyCartMessage"
 					th:class="'' + ${#lists.isEmpty(cartItems) ? ' d-flex flex-column justify-content-center align-items-center my-auto' : ' d-none'}">
 					<div class="cart-empty-img-container">
 						<img th:src="@{/images/empty-cart.png}">
@@ -216,6 +190,7 @@
 					<span class="text-center">Looks like you haven't added anything to your cart yet</span>
 					<a class="btn btn-primary mt-4 mb-4 mb-sm-0" th:href="@{/}">Shop Now</a>
 				</div>
+
 			</div>
 			<!--main content ends-->
 

@@ -84,7 +84,9 @@ function updateTotal() {
 
 function showEmptyShoppingCart() {
 	$("#sectionTotal").hide();
+	$("#header_cart").hide();
 	$("#sectionEmptyCartMessage").removeClass("d-none");
+	$("#sectionEmptyCartMessage").addClass("d-flex flex-column justify-content-center align-items-center my-auto");
 }
 
 function removeProduct(link) {

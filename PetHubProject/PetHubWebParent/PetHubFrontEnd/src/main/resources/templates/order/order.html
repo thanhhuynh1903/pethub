@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<head th:replace="~{fragments :: page_head('Profile Information', 'none')}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-order.css}" />
+</head>
+
+<body>
+	<div class="w-100 h-100"
+		th:with="redirectedFromCheckoutPage = ${param.redirect != null && param.redirect[0] == 'checkout'}">
+		<div class="address-container d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}"></div>
+			<div class="w-100 mt-3">
+				<nav aria-label="breadcrumb" class="w-100 px-lg-5 px-2">
+					<ol class="breadcrumb m-0">
+						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">My Orders</li>
+					</ol>
+				</nav>
+				<div class="w-100 order-main-container profile-main-container mt-1 mb-3">
+					<div class="order-side-bar-container side-bar-profile">
+						<div th:replace="~{navigation :: side_bar_profile}"></div>
+					</div>
+					<div class="order-content-container profile-content-container">
+						<div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:replace="~{navigation :: footer_menu}"></div>
+	</div>
+	</div>
+</body>
+
+</html>

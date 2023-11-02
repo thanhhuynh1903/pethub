@@ -4,6 +4,7 @@
     <head
       th:replace="~{fragments :: page_head('Settings - PetHub Admin', 'tag')}"
     />
+     <link rel="stylesheet" type="text/css" th:href="@{/setting.css}" />
     <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
     <script th:src="@{/richtext/jquery.richtext.js}"></script>
   </head>
@@ -20,8 +21,7 @@
           <div class="d-flex flex-column" style="width: 100%">
             <div th:replace="~{navigation :: menu}"></div>
             <div
-              class="w-100 d-flex flex-column justify-content-center align-items-center"
-            >
+              class="w-100 d-flex flex-column justify-content-center align-items-center">
               <div class="main-content-container">
                 <div style="margin-top: 3rem">
                   <div class="d-flex justify-content-between w-100">
@@ -37,7 +37,7 @@
                   </div> -->
                   <!--end message-->
 
-                  <div>
+                  <div class="setting-container">
                     <!-- Setting tabs -->
                     <ul class="nav nav-tabs" id="settingTab" role="tablist">
                       <li class="nav-item">

@@ -55,7 +55,7 @@
 							</li>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Editor', 'Shipper')">
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Shipper')">
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 									th:href="@{/products}">Products</a>
@@ -70,25 +70,25 @@
 						</th:block>
 
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/customers}">Customers</a>
 							</li>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/shipping_rates}">Shipping Rates</a>
 							</li>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Shipper')">
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Shipper')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/orders}">Orders</a>
 							</li>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/report}">Sales Report</a>
 							</li>

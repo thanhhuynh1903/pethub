@@ -67,7 +67,9 @@ public class WebSecurityConfig {
 				.rememberMe(rememberMe -> rememberMe.key("$2a$10$Pxeg5oCBEHaxcROzD5gy5e7T6Q.mxLI9hPdPznDQ/5zJXcusv8VEm")
 						.tokenValiditySeconds(7 * 24 * 60 * 60) // specify token validity time in seconds
 						.userDetailsService(userDetailsService()) // specify your UserDetailsService here
+
 				);
+		http.headers(headers -> headers.frameOptions().sameOrigin());
 		return http.build();
 	}
 

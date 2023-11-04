@@ -199,21 +199,21 @@
 			<div>
 				<div class="row text-center">
 					<div
-						th:replace="orders/order_status_fragment :: content(${order.processing}, 'fa-spinner', 'processing')">
+						th:replace="~{orders/order_status_fragment :: content(${order.processing}, 'fa-spinner', 'processing')}">
 					</div>
 					<div
-						th:replace="orders/order_status_fragment :: content(${order.picked}, 'fa-people-carry', 'picked')">
+						th:replace="~{orders/order_status_fragment :: content(${order.picked}, 'fa-people-carry', 'picked')}">
 					</div>
 					<div
-						th:replace="orders/order_status_fragment :: content(${order.shipping}, 'fa-shipping-fast', 'shipping')">
+						th:replace="~{orders/order_status_fragment :: content(${order.shipping}, 'fa-shipping-fast', 'shipping')}">
 					</div>
 					<div
-						th:replace="orders/order_status_fragment :: content(${order.delivered}, 'fa-box-open', 'delivered')">
+						th:replace="~{orders/order_status_fragment :: content(${order.delivered}, 'fa-box-open', 'delivered')}">
 					</div>
 
 					<th:block th:if="${order.returned}">
 						<div
-							th:replace="orders/order_status_fragment :: content(${order.returned}, 'fa-undo', 'returned')">
+							th:replace="~{orders/order_status_fragment :: content(${order.returned}, 'fa-undo', 'returned')}">
 						</div>
 					</th:block>
 				</div>

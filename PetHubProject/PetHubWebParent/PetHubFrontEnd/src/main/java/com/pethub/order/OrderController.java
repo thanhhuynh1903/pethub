@@ -66,6 +66,8 @@ public class OrderController {
 		Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 		Order order = orderService.getOrder(id, customer);
 
+		// setProductReviewableStatus(customer, order);
+
 		model.addAttribute("order", order);
 
 		return "orders/order_details_modal";

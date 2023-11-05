@@ -59,14 +59,14 @@ function generateTrackCode() {
 				
 				<div class="col-10">
 				  <div class="form-group row">
-				    <label class="col-form-label">Time:</label>
+				    <label class="col-form-label" style="width: 56px;">Time:</label>
 				    <div class="col">
 						<input type="datetime-local" name="trackDate" value="${currentDateTime}" class="form-control" required
 							style="max-width: 300px"/>						
 				    </div>
 				  </div>					
 				<div class="form-group row">  
-				<label class="col-form-label">Status:</label>
+				<label class="col-form-label" style="width: 56px;">Status:</label>
 				<div class="col">
 					<select name="trackStatus" class="form-control dropDownStatus" required style="max-width: 150px" rowNumber="${nextCount}">
 			`;
@@ -78,7 +78,7 @@ function generateTrackCode() {
 				    </div>
 				  </div>
 				  <div class="form-group row">
-				    <label class="col-form-label">Notes:</label>
+				    <label class="col-form-label" style="width: 56px;">Notes:</label>
 				    <div class="col">
 						<textarea rows="2" cols="10" class="form-control" name="trackNotes" id="${trackNoteId}" style="max-width: 300px" required></textarea>
 				    </div>

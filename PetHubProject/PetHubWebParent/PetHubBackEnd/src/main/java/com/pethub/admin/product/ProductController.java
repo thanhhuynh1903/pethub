@@ -84,11 +84,9 @@ public class ProductController {
 			@AuthenticationPrincipal PetHubUserDetails loggedUser) throws IOException {
 
 		if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
-			if (loggedUser.hasRole("Salesperson")) {
 				productService.saveProductPrice(product);
 				ra.addFlashAttribute("message", "The product has been saved successfully.");
 				return defaultRedirectURL;
-			}
 		}
 
 		ProductSaveHelper.setMainImageName(mainImageMultipart, product);
@@ -145,15 +143,15 @@ public class ProductController {
 			List<Brand> listBrands = brandService.listAll();
 			Integer numberOfExistingExtraImages = product.getImages().size();
 
-			boolean isReadOnlyForSalesperson = false;
+			boolean isReadOnly = false;
 
 			if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
 				if (loggedUser.hasRole("Salesperson")) {
-					isReadOnlyForSalesperson = true;
+					isReadOnly = true;
 				}
 			}
 
-			model.addAttribute("isReadOnlyForSalesperson", isReadOnlyForSalesperson);
+			model.addAttribute("isReadOnly", isReadOnly);
 			model.addAttribute("product", product);
 			model.addAttribute("listBrands", listBrands);
 			model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");

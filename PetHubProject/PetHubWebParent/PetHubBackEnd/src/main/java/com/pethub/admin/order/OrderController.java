@@ -53,7 +53,7 @@ public class OrderController {
 		orderService.listByPage(pageNum, helper);
 		loadCurrencySetting(request);
 
-		if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Salesperson") && loggedUser.hasRole("Shipper")) {
+		if (!loggedUser.hasRole("Admin") && loggedUser.hasRole("Shipper")) {
 			return "orders/orders_shipper";
 		}
 
@@ -75,13 +75,13 @@ public class OrderController {
 			Order order = orderService.get(id);
 			loadCurrencySetting(request);
 
-			boolean isVisibleForAdminOrSalesperson = false;
+			boolean isVisibleForAdmin = false;
 
-			if (loggedUser.hasRole("Admin") || loggedUser.hasRole("Salesperson")) {
-				isVisibleForAdminOrSalesperson = true;
+			if (loggedUser.hasRole("Admin")) {
+				isVisibleForAdmin = true;
 			}
 
-			model.addAttribute("isVisibleForAdminOrSalesperson", isVisibleForAdminOrSalesperson);
+			model.addAttribute("isVisibleForAdmin", isVisibleForAdmin);
 			model.addAttribute("order", order);
 
 			return "orders/order_details_modal";

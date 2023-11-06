@@ -37,27 +37,27 @@ public class WebSecurityConfig {
 	@Bean
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**", "/login.css")
-				.permitAll().requestMatchers("/states/list_by_country/**").hasAnyAuthority("Admin", "Salesperson")
+				.permitAll().requestMatchers("/states/list_by_country/**").hasAnyAuthority("Admin")
 				.requestMatchers("/users/**", "/settings/**", "/countries/**", "/states/**").hasAuthority("Admin")
 
 				.requestMatchers("/products/new", "/products/delete/**").hasAnyAuthority("Admin", "Editor")
 
 				.requestMatchers("/products/edit/**", "/products/save", "/products/check_unique")
-				.hasAnyAuthority("Admin", "Editor", "Salesperson")
+				.hasAnyAuthority("Admin", "Editor")
 
 				.requestMatchers("/products", "/products/", "/products/detail/**", "/products/page/**")
-				.hasAnyAuthority("Admin", "Editor", "Salesperson", "Shipper")
+				.hasAnyAuthority("Admin", "Editor", "Shipper")
 
 				.requestMatchers("/products/**").hasAnyAuthority("Admin", "Editor")
 
 				.requestMatchers("/orders", "/orders/", "/orders/page/**", "/orders/detail/**")
-				.hasAnyAuthority("Admin", "Salesperson", "Shipper")
+				.hasAnyAuthority("Admin", "Shipper")
 
 				.requestMatchers("/products/detail/**", "/customers/detail/**")
-				.hasAnyAuthority("Admin", "Editor", "Salesperson", "Assistant")
+				.hasAnyAuthority("Admin", "Editor", "Assistant")
 
 				.requestMatchers("/customers/**", "/orders/**", "/get_shipping_cost", "/reports/**")
-				.hasAnyAuthority("Admin", "Salesperson")
+				.hasAnyAuthority("Admin")
 
 				.requestMatchers("/orders_shipper/update/**").hasAuthority("Shipper")
 
@@ -67,7 +67,9 @@ public class WebSecurityConfig {
 				.rememberMe(rememberMe -> rememberMe.key("$2a$10$Pxeg5oCBEHaxcROzD5gy5e7T6Q.mxLI9hPdPznDQ/5zJXcusv8VEm")
 						.tokenValiditySeconds(7 * 24 * 60 * 60) // specify token validity time in seconds
 						.userDetailsService(userDetailsService()) // specify your UserDetailsService here
+
 				);
+		http.headers(headers -> headers.frameOptions().sameOrigin());
 		return http.build();
 	}
 

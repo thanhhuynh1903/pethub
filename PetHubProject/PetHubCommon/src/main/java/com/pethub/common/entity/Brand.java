@@ -16,10 +16,7 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "brands")
-public class Brand {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Brand extends IdBasedEntity {
 
 	@Column(nullable = false, length = 45, unique = true)
 	private String name;
@@ -27,12 +24,12 @@ public class Brand {
 	@Column(nullable = false, length = 128)
 	private String logo;
 
-	// a category can have many brands, a brand can be fall in many category
 	@ManyToMany
 	@JoinTable(name = "brands_categories", joinColumns = @JoinColumn(name = "brand_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
 
 	public Brand() {
+
 	}
 
 	public Brand(String name) {
@@ -40,17 +37,13 @@ public class Brand {
 		this.logo = "brand-logo.png";
 	}
 
+	public Brand(Integer id) {
+		this.id = id;
+	}
+
 	public Brand(Integer id, String name) {
 		this.id = id;
 		this.name = name;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -79,7 +72,7 @@ public class Brand {
 
 	@Override
 	public String toString() {
-		return "Brand [id=" + id + ", name=" + name + ", logo=" + logo + ", categories=" + categories + "]";
+		return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
 	}
 
 	@Transient

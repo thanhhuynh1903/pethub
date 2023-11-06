@@ -65,6 +65,12 @@
 										<div class="dropdown-divider"></div>
 									</div>
 									<a class="dropdown-item" th:href="@{/products}">View All</a>
+									<div class="dropdown-divider"></div>
+									<th:block sec:authorize="hasAnyAuthority('Admin', 'Assistant')">
+										<a class="dropdown-item" th:href="@{/questions}">Questions</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" th:href="@{/reviews}">Reviews</a>
+									</th:block>
 								</div>
 							</li>
 						</th:block>
@@ -85,7 +91,8 @@
 						<th:block sec:authorize="hasAnyAuthority('Admin', 'Shipper')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/orders}">Orders</a>
-							</li></th:block>
+							</li>
+						</th:block>
 
 						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">

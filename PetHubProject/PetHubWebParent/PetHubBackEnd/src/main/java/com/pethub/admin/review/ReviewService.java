@@ -1,0 +1,49 @@
+package com.pethub.admin.review;
+
+import java.util.NoSuchElementException;
+
+import jakarta.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pethub.admin.paging.PagingAndSortingHelper;
+import com.pethub.admin.product.ProductRepository;
+import com.pethub.common.entity.Review;
+import com.pethub.common.exception.ReviewNotFoundException;
+
+@Service
+@Transactional
+public class ReviewService {
+	public static final int REVIEWS_PER_PAGE = 5;
+	
+	@Autowired private ReviewRepository reviewRepo;
+	
+	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+		helper.listEntities(pageNum, REVIEWS_PER_PAGE, reviewRepo);
+	}
+	
+	public Review get(Integer id) throws ReviewNotFoundException {
+		try {
+			return reviewRepo.findById(id).get();
+		} catch (NoSuchElementException ex) {
+			throw new ReviewNotFoundException("Could not find any reviews with ID " + id);
+		}
+	}
+	
+	public void save(Review reviewInForm) {
+		Review reviewInDB = reviewRepo.findById(reviewInForm.getId()).get();
+		reviewInDB.setHeadline(reviewInForm.getHeadline());
+		reviewInDB.setComment(reviewInForm.getComment());
+		
+		reviewRepo.save(reviewInDB);
+	}
+	
+	public void delete(Integer id) throws ReviewNotFoundException {
+		if (!reviewRepo.existsById(id)) {
+			throw new ReviewNotFoundException("Could not find any reviews with ID " + id);
+		}
+		
+		reviewRepo.deleteById(id);
+	}
+}

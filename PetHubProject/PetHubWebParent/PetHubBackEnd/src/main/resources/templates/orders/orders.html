@@ -86,12 +86,35 @@
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
 		moduleURL = "[[@{/orders}]]";
-		entityName = "order";
 
 		$(document).ready(function () {
-			handleDefaultDetailLinkClick();
-			handleDetailLinkClick(".linkCustomerDetail", "#customerDetailModal");
+			handleLinkViewCustomerDetails();
+			handleLinkViewOrderDetails();
+			handleLinkDeleteOrder();
 		});
+
+		function handleLinkDeleteOrder() {
+			$(".link-delete").on("click", function (e) {
+				e.preventDefault();
+				showDeleteConfirmModal($(this), 'order');
+			});
+		}
+
+		function handleLinkViewCustomerDetails() {
+			$(".linkCustomerDetail").on("click", function (e) {
+				e.preventDefault();
+				linkDetailURL = $(this).attr("href");
+				$("#customerDetailModal").modal("show").find(".modal-content").load(linkDetailURL);
+			});
+		}
+
+		function handleLinkViewOrderDetails() {
+			$(".linkOrderDetail").on("click", function (e) {
+				e.preventDefault();
+				linkDetailURL = $(this).attr("href");
+				$("#orderDetailModal").modal("show").find(".modal-content").load(linkDetailURL);
+			});
+		}
 	</script>
 </body>
 

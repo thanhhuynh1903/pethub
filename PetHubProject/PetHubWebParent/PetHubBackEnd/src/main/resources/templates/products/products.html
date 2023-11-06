@@ -129,15 +129,23 @@
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
 		moduleURL = "[[@{/products}]]";
-		entityName = "product";
 
 		$(document).ready(function () {
-			handleDefaultDetailLinkClick();
-
-			$("#dropdownCategory").on("change", function () {
-				$("#searchForm").submit();
+			$(".link-delete").on("click", function (e) {
+				e.preventDefault();
+				showDeleteConfirmModal($(this), 'product');
 			});
 
+			$(".link-detail").on("click", function (e) {
+				e.preventDefault();
+				linkDetailURL = $(this).attr("href");
+				$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
+			});
+
+
+			$("#dropdownCategory").on("change", function (e) {
+				$("#searchForm").submit();
+			});
 		});
 	</script>
 </body>

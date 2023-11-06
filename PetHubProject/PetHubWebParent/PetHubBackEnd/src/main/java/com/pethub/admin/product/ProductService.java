@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,8 +14,6 @@ import org.springframework.stereotype.Service;
 import com.pethub.admin.paging.PagingAndSortingHelper;
 import com.pethub.common.entity.product.Product;
 import com.pethub.common.exception.ProductNotFoundException;
-
-import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
@@ -73,6 +73,7 @@ public class ProductService {
 		product.setUpdatedTime(new Date());
 
 		Product updatedProduct = repo.save(product);
+		// repo.updateReviewCountAndAverageRating(updatedProduct.getId());
 
 		return updatedProduct;
 	}

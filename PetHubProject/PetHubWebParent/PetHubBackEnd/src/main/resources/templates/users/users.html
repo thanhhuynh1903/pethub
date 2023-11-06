@@ -129,12 +129,11 @@
 
 							<div th:replace="~{fragments :: footer}"></div>
 
-						</div>
-
-</body>
-<script th:src="@{/js/common_list.js}"></script>
-    <script type="text/javascript">
-        moduleURL = "[[@{/users}]]";
+	</div>
+	<script th:src="@{/js/common_list.js}"></script>
+	<script type="text/javascript">
+		moduleURL = "[[@{/users}]]";
+		entityName = "user";
 
         $(document).ready(function () {
             $(".link-delete").on("click", function (e) {

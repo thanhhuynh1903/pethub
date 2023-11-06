@@ -35,7 +35,8 @@
 .registered-success-box i {
 	font-size: 45px;
 }
-h3{
+
+h3 {
 	font-size: 16px;
 }
 
@@ -120,8 +121,8 @@ h3{
 
 .product-item__image-container img {
 	max-height: inherit;
-    min-width: 100% !important;
-    object-fit: contain;
+	min-width: 100% !important;
+	object-fit: contain;
 	border-radius: 5px 5px 0 0;
 }
 
@@ -207,6 +208,7 @@ h3{
 	background-color: #4E73DF !important;
 	color: #FFFFFF !important;
 }
+
 .price-asc-container .product-container__header .color-asc-picker,
 .price-desc-container .product-container__header .color-desc-picker {
 	color: #4E73DF !important;

@@ -28,7 +28,7 @@
 					</div>
 				</div>
 
-				<th:block th:if="${isVisibleForAdminOrSalesperson}">
+				<th:block th:if="${isVisibleForAdmin}">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Customer:</label>
 						<div class="col-sm-10">
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 
-				<th:block th:if="${isVisibleForAdminOrSalesperson}">
+				<th:block th:if="${isVisibleForAdmin}">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">TOTAL = Subtotal + Shipping Cost +
@@ -112,7 +112,7 @@
 							<b>[[${product.name}]]</b>
 						</div>
 
-						<th:block th:if="${isVisibleForAdminOrSalesperson}">
+						<th:block th:if="${isVisibleForAdmin}">
 							<div>
 								Product Cost:
 								<div th:replace="~{fragments :: format_currency(${detail.productCost})}" />

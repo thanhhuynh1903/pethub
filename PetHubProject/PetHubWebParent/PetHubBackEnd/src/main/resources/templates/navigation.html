@@ -47,36 +47,79 @@
 													<a class="dropdown-item" th:href="@{/account}">Account Details</a>
 													<a class="dropdown-item" id="logoutLink" href="">Logout</a>
 
+<<<<<<< HEAD
 												</div>
 											</li>
 										</ul>
+=======
+
+						<th:block sec:authorize="hasAuthority('Admin')">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/users}">Users</a>
+								<div class=" dropdown-menu">
+									<a class="dropdown-item" th:href="@{/users/new}">Create New</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" th:href="@{/users}">View All</a>
+								</div>
+							</li>
+						</th:block>
+
+						<th:block sec:authorize=" hasAnyAuthority('Admin', 'Editor' )">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+									th:href="@{/categories}">Categories</a>
+								<div class=" dropdown-menu">
+									<a class="dropdown-item" th:href="@{/categories/new}">Create New</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" th:href="@{/categories}">View All</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+									th:href="@{/brands}">Brands</a>
+								<div class=" dropdown-menu">
+									<a class="dropdown-item" th:href="@{/brands/new}">Create New</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" th:href="@{/brands}">View All</a>
+								</div>
+							</li>
+						</th:block>
+
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Shipper')">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+									th:href="@{/products}">Products</a>
+								<div class=" dropdown-menu">
+									<div sec:authorize=" hasAnyAuthority('Admin', 'Editor' )">
+										<a class="dropdown-item" th:href="@{/products/new}">Create New</a>
+										<div class="dropdown-divider"></div>
+>>>>>>> main
 									</div>
 								</div>
 							<!--</li>-->
 						<!--</th:block>
 
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/customers}">Customers</a>
 							</li>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/shipping_rates}">Shipping Rates</a>
 							</li>
 						</th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Shipper')">
+						<th:block sec:authorize="hasAnyAuthority('Admin', 'Shipper')">
 							<li class="nav-item">
 								<a class="nav-link" th:href="@{/orders}">Orders</a>
-							</li>
-						</th:block>
+							</li></th:block>
 
-						<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson')">
+						<th:block sec:authorize="hasAnyAuthority('Admin')">
 							<li class="nav-item">
-								<a class="nav-link" th:href="@{/report}">Sales Report</a>
+								<a class="nav-link" th:href="@{/reports}">Sales Report</a>
 							</li>
 						</th:block>
 

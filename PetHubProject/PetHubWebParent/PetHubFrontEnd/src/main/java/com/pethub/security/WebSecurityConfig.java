@@ -56,8 +56,9 @@ public class WebSecurityConfig {
 	protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
 				.requestMatchers("/account_details", "/update_account_details", "/orders/**", "/cart",
-						"/address_book/**", "/checkout", "/place_order", "/reviews/**",
-						"/process_paypal_order")
+						"/address_book/**", "/checkout", "/place_order", "/reviews/**", "/process_paypal_order",
+						"/write_review/**", "/post_review", "/ask_question/**", "/post_question/**",
+						"/customer/questions/**")
 				.authenticated().anyRequest().permitAll())
 				.oauth2Login(oauth2 -> oauth2.loginPage("/login").userInfoEndpoint().userService(oAuth2UserService)
 						.and().successHandler(oAuth2LoginSuccessHandler))

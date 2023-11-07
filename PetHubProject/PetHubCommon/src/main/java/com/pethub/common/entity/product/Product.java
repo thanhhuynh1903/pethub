@@ -326,7 +326,8 @@ public class Product extends IdBasedEntity {
 
 	@Transient
 	public String getURI() {
-		return "/p/" + this.alias + "/";
+//		return "/p/" + this.alias + "/";
+		return "/p/" + this.alias;
 	}
 
 	public boolean isCustomerCanReview() {

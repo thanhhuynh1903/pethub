@@ -14,7 +14,8 @@
 			<button class="btn btn-light m-1" th:classappend="${buttonClass}">Custom Date Range</button>
 		</div>
 
-		<form>
+		<form style="margin: 20px auto;
+    padding-left: 16px;">
 			<div th:id="'divCustomDateRange' + ${reportType}" class="d-none">
 				From date: <input type="date" th:id="'startDate' + ${reportType}"> &nbsp;
 				To date: <input type="date" th:id="'endDate' + ${reportType}"> &nbsp;
@@ -24,13 +25,37 @@
 		</form>
 
 		<div th:id="'chart_sales_by' + ${reportType}" class="justify-content-center mt-3"></div>
+		
+		<!-- <div th:if="${#ids('element1').getElementID == #ids('element2').getElementID}"></div> -->
 
-		<div class="row justify-content-center">
+		<!-- <div th:if="${#id(''chart_sales_by' + ${reportType}').getElementID == #id('chart_sales_by_category').getElementID}">
+				<div th:id="'chart_sales_by' + ${reportType}" class="justify-content-center mt-3" style="width: 500px; height: 500px;"></div>
+			</div>   -->
+		
+		<div class="row justify-content-center" style="margin-top: 50px;">
+		<table class="table table-striped table-hover w-100 borderless">
+			<thead style="background-color: #f4f4f4; padding: 10px 0;" class="py-5">
+				<th><b>Total Gross Sales</b></th>
+				<th><b>Total Net Sales</b></th>
+				<th><b>Avg. Gross Sales</b></th>
+				<th><b>Avg. Net Sales</b></th>
+				<th><b><span th:id="'labelTotalItems' + ${reportType}"></span></b></th>
+			</thead>
+			<tbody>
+				<td><span class="font-style" th:id="'textTotalGrossSales' + ${reportType}"></span></td>
+				<td><span class="font-style" th:id="'textTotalNetSales' + ${reportType}"></span></td>
+				<td><span class="font-style" th:id="'textAvgGrossSales' + ${reportType}"></span></td>
+				<td><span class="font-style" th:id="'textAvgNetSales' + ${reportType}"></span></td>
+				<td><span class="font-style d-flex justify-content-center" th:id="'textTotalItems' + ${reportType}"></span></td>
+			</tbody>
+		</table>
+		</div>
+		<!-- <div class="row justify-content-center">
 			<div class="col-2-sm">
 				<div class="card">
 					<div class="card-header"><b>Total Gross Sales</b></div>
 					<div class="card-body">
-						<span class="h3" th:id="'textTotalGrossSales' + ${reportType}"></span>
+						<span class="font-style" th:id="'textTotalGrossSales' + ${reportType}"></span>
 					</div>
 				</div>
 			</div>
@@ -39,7 +64,7 @@
 				<div class="card">
 					<div class="card-header"><b>Total Net Sales</b></div>
 					<div class="card-body">
-						<span class="h3" th:id="'textTotalNetSales' + ${reportType}"></span>
+						<span class="font-style" th:id="'textTotalNetSales' + ${reportType}"></span>
 					</div>
 				</div>
 			</div>
@@ -48,7 +73,7 @@
 				<div class="card">
 					<div class="card-header"><b>Avg. Gross Sales</b></div>
 					<div class="card-body">
-						<span class="h3" th:id="'textAvgGrossSales' + ${reportType}"></span>
+						<span class="font-style" th:id="'textAvgGrossSales' + ${reportType}"></span>
 					</div>
 				</div>
 			</div>
@@ -57,7 +82,7 @@
 				<div class="card">
 					<div class="card-header"><b>Avg. Net Sales</b></div>
 					<div class="card-body">
-						<span class="h3" th:id="'textAvgNetSales' + ${reportType}"></span>
+						<span class="font-style" th:id="'textAvgNetSales' + ${reportType}"></span>
 					</div>
 				</div>
 			</div>
@@ -66,12 +91,12 @@
 				<div class="card">
 					<div class="card-header"><b><span th:id="'labelTotalItems' + ${reportType}"></span></b></div>
 					<div class="card-body">
-						<span class="h3" th:id="'textTotalItems' + ${reportType}"></span>
+						<span class="font-style d-flex justify-content-center" th:id="'textTotalItems' + ${reportType}"></span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
-	</div>
+	
 </body>
 
 </html>

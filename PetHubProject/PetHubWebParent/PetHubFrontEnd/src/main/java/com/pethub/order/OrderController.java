@@ -1,29 +1,35 @@
 package com.pethub.order;
 
-import ava.import 
-
+import java.util.Iterator;
+import java.util.List;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import rg.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pethub.ControllerHelper;
-import com.pethub.common.entity.Customer;import om.pethub.common.entity.order.Order;
-import com.pethub.common.entity.order.OrderDetail;import 
+import com.pethub.common.entity.Customer;
+import com.pethub.common.entity.order.Order;
+import com.pethub.common.entity.order.OrderDetail;
+import com.pethub.common.entity.product.Product;
+
 @Controller
 public class OrderController {
 	@Autowired
-	private OrderService orderService;	@Autowred
+	private OrderService orderService;
+	@Autowired
 	private ControllerHelper controllerHelper;
 
-	@GetMapping("/orders")	public String listFirstPage(Model model, HttpServletRequest request) {
+	@GetMapping("/orders")
+	public String listFirstPage(Model model, HttpServletRequest request) {
 		return listOrdersByPage(model, request, 1, "orderTime", "desc", null);
 	}
+
 	@GetMapping("/orders/page/{pageNum}")
 	public String listOrdersByPage(Model model, HttpServletRequest request, @PathVariable(name = "pageNum") int pageNum,
 			String sortField, String sortDir, String keyword) {
@@ -44,7 +50,6 @@ public class OrderController {
 
 		long startCount = (pageNum - 1) * OrderService.ORDERS_PER_PAGE + 1;
 		model.addAttribute("startCount", startCount);
-
 
 		long endCount = startCount + OrderService.ORDERS_PER_PAGE - 1;
 		if (endCount > page.getTotalElements()) {

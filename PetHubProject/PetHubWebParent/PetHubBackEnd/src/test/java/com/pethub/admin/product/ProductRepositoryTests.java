@@ -36,8 +36,8 @@ public class ProductRepositoryTests {
 		Product product = new Product();
 		product.setName("Acer Aspire Desktop");
 		product.setAlias("acer_aspire_desktop");
-		product.setShortDescription("Short description for Acer Aspire Desktop");
-		product.setFullDescription("Full description for Acer Aspire Desktop");
+		product.setShortDescription("Short description for Acer Aspire");
+		product.setFullDescription("Full description for Acer Aspire");
 
 		product.setBrand(brand);
 		product.setCategory(category);
@@ -46,6 +46,7 @@ public class ProductRepositoryTests {
 		product.setCost(600);
 		product.setEnabled(true);
 		product.setInStock(true);
+
 		product.setCreatedTime(new Date());
 		product.setUpdatedTime(new Date());
 
@@ -56,7 +57,7 @@ public class ProductRepositoryTests {
 	}
 
 	@Test
-	public void testListAllProduct() {
+	public void testListAllProducts() {
 		Iterable<Product> iterableProducts = repo.findAll();
 
 		iterableProducts.forEach(System.out::println);
@@ -67,16 +68,18 @@ public class ProductRepositoryTests {
 		Integer id = 2;
 		Product product = repo.findById(id).get();
 		System.out.println(product);
+
 		assertThat(product).isNotNull();
 	}
 
 	@Test
-	public void updateProduct() {
+	public void testUpdateProduct() {
 		Integer id = 1;
 		Product product = repo.findById(id).get();
 		product.setPrice(499);
 
 		repo.save(product);
+
 		Product updatedProduct = entityManager.find(Product.class, id);
 
 		assertThat(updatedProduct.getPrice()).isEqualTo(499);
@@ -120,4 +123,9 @@ public class ProductRepositoryTests {
 		assertThat(savedProduct.getDetails()).isNotEmpty();
 	}
 
+	@Test
+	public void testUpdateReviewCountAndAverageRating() {
+		Integer productId = 100;
+		repo.updateReviewCountAndAverageRating(productId);
+	}
 }

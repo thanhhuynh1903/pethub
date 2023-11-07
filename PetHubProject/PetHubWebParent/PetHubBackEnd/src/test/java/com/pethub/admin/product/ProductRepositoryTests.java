@@ -125,7 +125,7 @@ public class ProductRepositoryTests {
 
 	@Test
 	public void testUpdateReviewCountAndAverageRating() {
-		Integer productId = 100;
+		Integer productId = 1;
 		repo.updateReviewCountAndAverageRating(productId);
 	}
 }

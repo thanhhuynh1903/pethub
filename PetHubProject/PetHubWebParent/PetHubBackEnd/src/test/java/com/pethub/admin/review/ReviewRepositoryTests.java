@@ -38,7 +38,7 @@ public class ReviewRepositoryTests {
 		review.setReviewTime(new Date());
 		review.setHeadline("Perfect for my needs. Loving it!");
 		review.setComment("Nice to have: kitten like it...");
-		review.setRating(5);
+		review.setRating(3);
 		
 		Review savedReview = repo.save(review);
 		

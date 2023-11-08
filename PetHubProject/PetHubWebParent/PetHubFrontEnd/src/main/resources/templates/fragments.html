@@ -60,7 +60,7 @@
       th:remove="${removeTag}"
     >
       <a
-        class="text-white"
+        class="text-white text-decoration-none"
         th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName}  +'&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}"
       >
         [[${columnLabel}]]
@@ -74,7 +74,7 @@
     <!--begin page link-->
     <a
       th:fragment="page_link(moduleURL, pageNum, label, sortDir)"
-      class="page-link"
+      class="page-link text-decoration-none"
       th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=price&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"
       >[[${label}]]</a
     >

@@ -6,7 +6,7 @@
 }
 
 .address-container .address-card {
-	background-color: #FFFFFF;
+	background-color: aliceblue;
 	border-radius: 5px;
 	padding: 10px;
 }
@@ -40,6 +40,7 @@
 	padding: 10px;
 }
 .address-card-2 {
+	
 	margin-top: 0.8rem;
 }
 

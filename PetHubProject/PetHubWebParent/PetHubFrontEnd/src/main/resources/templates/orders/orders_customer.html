@@ -5,7 +5,6 @@
 	<head th:replace="~{fragments :: page_head('My Orders', 'none')}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-order.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-profile.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/style-order.css}" />
 </head>
 
 <body>
@@ -16,7 +15,7 @@
 				<nav aria-label="breadcrumb" class="w-100 px-lg-5 px-2">
 					<ol class="breadcrumb m-0">
 						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Address Book</li>
+						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">My Orders</li>
 					</ol>
 				</nav>
 				<div class="w-100 address-main-container profile-main-container mt-1 mb-3">
@@ -26,19 +25,16 @@
 					<div class="address-content-container profile-content-container">
 						<div>
 							<div class="mb-3 mr-auto">
-								<span class="title-header text-left">Profile Information</span>
+								<span class="title-header text-left">My Orders</span>
 							</div>
 						</div>
 						<div>
 							<div>
-								<h2>My Orders</h2>
-							</div>
-							<div>
-								<table class="table table-bordered table-striped table-hover">
-									<thead class="thead-dark">
+								<table class="profile-table table table-bordered table-striped table-hover">
+									<thead class="profile-table-header">
 										<tr>
 											<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-											<th
+											<th class="d-flex align-items-center text-decoration-none"
 												th:replace="~{fragments :: column_link('orderTime', 'Order Time', 'none')}" />
 											<th>Products</th>
 											<th th:replace="~{fragments :: column_link('total', 'Total', 'none')}" />
@@ -62,7 +58,7 @@
 													th:class="'textOrderStatus' + ${order.id}">[[${order.status}]]</span>
 											</td>
 											<td>
-												<a class="fas fa-file-alt fa-2x icon-green link-detail"
+												<a class="fas fa-eye link-detail text-decoration-none icon-action"
 													th:href="@{'/orders/detail/' + ${order.id}}"
 													title="View details of this order"></a>
 

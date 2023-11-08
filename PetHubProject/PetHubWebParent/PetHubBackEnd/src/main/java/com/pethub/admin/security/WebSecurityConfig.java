@@ -10,8 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.pethub.admin.user.PetHubUserDetailsService;
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -39,6 +37,7 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(authz -> authz.requestMatchers("/images/**", "/js/**", "/webjars/**", "/login.css")
 				.permitAll().requestMatchers("/states/list_by_country/**").hasAnyAuthority("Admin")
 				.requestMatchers("/users/**", "/settings/**", "/countries/**", "/states/**").hasAuthority("Admin")
+				.requestMatchers("/categories/**", "/brands/**", "/articles/**", "/sections/**").hasAuthority("Admin")
 
 				.requestMatchers("/products/new", "/products/delete/**").hasAnyAuthority("Admin", "Editor")
 
@@ -47,6 +46,8 @@ public class WebSecurityConfig {
 
 				.requestMatchers("/products", "/products/", "/products/detail/**", "/products/page/**")
 				.hasAnyAuthority("Admin", "Editor", "Shipper")
+
+				.requestMatchers("/products/**", "/menus/**", "/articles/**").hasAnyAuthority("Admin", "Editor")
 
 				.requestMatchers("/products/**").hasAnyAuthority("Admin", "Editor")
 
@@ -60,6 +61,7 @@ public class WebSecurityConfig {
 				.hasAnyAuthority("Admin")
 
 				.requestMatchers("/orders_shipper/update/**").hasAuthority("Shipper")
+				.requestMatchers("/reviews/**", "/questions/**").hasAnyAuthority("Admin", "Assistant")
 
 				.requestMatchers("/reviews/**").hasAnyAuthority("Admin", "Assistant").anyRequest().authenticated())
 				.formLogin(formLogin -> formLogin.loginPage("/login").usernameParameter("email").permitAll())

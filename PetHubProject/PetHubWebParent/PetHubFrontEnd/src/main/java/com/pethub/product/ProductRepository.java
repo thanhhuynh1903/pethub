@@ -22,8 +22,7 @@ public interface ProductRepository
 			+ "MATCH(name, short_description, full_description) AGAINST (?1)", nativeQuery = true)
 	public Page<Product> search(String keyword, Pageable pageable);
 
-	@Query("Update Product p SET p.averageRating = COALESCE((SELECT cast(AVG(r.rating) as float) FROM Review r WHERE r.product.id = ?1), 0),"
-			+ " p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) " + "WHERE p.id = ?1")
+	@Query("UPDATE Product p SET p.averageRating = COALESCE(CAST((SELECT AVG(CAST(r.rating AS Float)) FROM Review r WHERE r.product.id = ?1) AS Float), 0), p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) WHERE p.id = ?1")
 	@Modifying
 	public void updateReviewCountAndAverageRating(Integer productId);
 

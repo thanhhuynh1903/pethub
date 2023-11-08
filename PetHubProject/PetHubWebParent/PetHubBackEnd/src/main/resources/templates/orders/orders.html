@@ -39,8 +39,11 @@
 				<tbody>
 					<tr th:each="order : ${listOrders}">
 						<td>[[${order.id}]]</td>
-						<td><a class="linkCustomerDetail" th:href="@{'/customers/detail/' + ${order.customer.id}}">
-								[[${order.customer.fullName}]] </a></td>
+						<td>
+							<a class="linkCustomerDetail" th:href="@{'/customers/detail/' + ${order.customer.id}}">
+								[[${order.customer.fullName}]]
+							</a>
+						</td>
 						<td>
 							<div th:replace="~{fragments :: format_currency(${order.total})}"></div>
 						</td>
@@ -51,7 +54,8 @@
 						<td>[[${order.paymentMethod}]]</td>
 						<td>[[${order.status}]]</td>
 
-						<td><a class="fas fa-file-alt fa-2x icon-green linkOrderDetail"
+						<td>
+							<a class="fas fa-file-alt fa-2x icon-green link-detail"
 								th:href="@{'/orders/detail/' + ${order.id}}" title="View details of this order"></a>
 							&nbsp;
 							<div th:replace="~{fragments :: edit('order', '/orders/edit/' + ${order.id})}" />
@@ -70,13 +74,15 @@
 
 		<div class="modal fade" id="customerDetailModal">
 			<div class="modal-dialog modal-lg">
-				<div class="modal-content"></div>
+				<div class="modal-content">
+				</div>
 			</div>
 		</div>
 
-		<div class="modal fade" id="orderDetailModal">
+		<div class="modal fade" id="detailModal">
 			<div class="modal-dialog modal-xl">
-				<div class="modal-content"></div>
+				<div class="modal-content">
+				</div>
 			</div>
 		</div>
 
@@ -92,6 +98,7 @@
 			handleDefaultDetailLinkClick();
 			handleDetailLinkClick(".linkCustomerDetail", "#customerDetailModal");
 		});
+
 	</script>
 </body>
 

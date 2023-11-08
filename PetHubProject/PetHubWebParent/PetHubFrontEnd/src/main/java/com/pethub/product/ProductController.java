@@ -2,6 +2,8 @@ package com.pethub.product;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -18,11 +20,10 @@ import com.pethub.common.entity.Review;
 import com.pethub.common.entity.product.Product;
 import com.pethub.common.exception.CategoryNotFoundException;
 import com.pethub.common.exception.ProductNotFoundException;
-
+import com.pethub.question.QuestionService;
+import com.pethub.question.vote.QuestionVoteService;
 import com.pethub.review.ReviewService;
 import com.pethub.review.vote.ReviewVoteService;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProductController {
@@ -30,9 +31,9 @@ public class ProductController {
 	@Autowired private CategoryService categoryService;
 	@Autowired private ReviewService reviewService;	
 	@Autowired private ReviewVoteService reviewVoteService;
-	//@Autowired private QuestionVoteService questionVoteService;
+	@Autowired private QuestionVoteService questionVoteService;
 	@Autowired private ControllerHelper controllerHelper;
-	//@Autowired private QuestionService questionService;
+	@Autowired private QuestionService questionService;
 
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
@@ -81,7 +82,7 @@ public class ProductController {
 		try {
 			Product product = productService.getProduct(alias);
 			List<Category> listCategoryParents = categoryService.getCategoryParents(product.getCategory());
-			//List<Question> listQuestions = questionService.getTop3VotedQuestions(product.getId());
+			List<Question> listQuestions = questionService.getTop3VotedQuestions(product.getId());
 			Page<Review> listReviews = reviewService.list3MostVotedReviewsByProduct(product);
 			
 			Customer customer = controllerHelper.getAuthenticatedCustomer(request);
@@ -89,7 +90,7 @@ public class ProductController {
 			if (customer != null) {
 				boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
 				reviewVoteService.markReviewsVotedForProductByCustomer(listReviews.getContent(), product.getId(), customer.getId());
-				//questionVoteService.markQuestionsVotedForProductByCustomer(listQuestions, product.getId(), customer.getId());
+				questionVoteService.markQuestionsVotedForProductByCustomer(listQuestions, product.getId(), customer.getId());
 				
 				if (customerReviewed) {
 					model.addAttribute("customerReviewed", customerReviewed);
@@ -99,12 +100,12 @@ public class ProductController {
 				}
 			}
 			
-//			int numberOfQuestions = questionService.getNumberOfQuestions(product.getId());
-//			int numberOfAnsweredQuestions = questionService.getNumberOfAnsweredQuestions(product.getId());
-//			
-//			model.addAttribute("listQuestions", listQuestions);			
-//			model.addAttribute("numberOfQuestions", numberOfQuestions);
-//			model.addAttribute("numberOfAnsweredQuestions", numberOfAnsweredQuestions);
+			int numberOfQuestions = questionService.getNumberOfQuestions(product.getId());
+			int numberOfAnsweredQuestions = questionService.getNumberOfAnsweredQuestions(product.getId());
+			
+			model.addAttribute("listQuestions", listQuestions);			
+			model.addAttribute("numberOfQuestions", numberOfQuestions);
+			model.addAttribute("numberOfAnsweredQuestions", numberOfAnsweredQuestions);
 			
 			model.addAttribute("listCategoryParents", listCategoryParents);
 			model.addAttribute("product", product);

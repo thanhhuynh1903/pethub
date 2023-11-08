@@ -152,7 +152,7 @@ h2 {
 }
 
 .sidebar ul li a {
-
+	height: inherit;
 	position: relative;
 	display: flex;
 	margin-bottom: 0px;
@@ -513,3 +513,9 @@ footer{
         visibility: hidden;
     }
 }
+
+.dropdown-setup a:hover{
+	background-color: #4e73df;
+}
+
+

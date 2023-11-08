@@ -4,94 +4,116 @@
 <head th:replace="~{fragments :: page_head('Questions - PetHub Admin', 'none')}" />
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: menu}"></div>
-		<div>
-			<h2>Manage Questions</h2>
-		</div>
+	<div class="container-fluid bg-admin">
+		<div class="w-100">
+			<div class="d-flex w-100">
+				<div th:replace="~{sidebar :: sidebar}" class="w-25" style="height: 100vh;"></div>
+				<div class="d-flex flex-column" style="width: 100%;">
+					<div th:replace="~{navigation :: menu}"></div>
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 3rem;">
+								<div class="d-flex justify-content-between w-100">
+									<h2 style="color: #494A6B; font-size: 26px;">Manage Questions</h2>
+								</div>
+								<div class="w-100 table-container">
+									<div class="table-title w-100">
+										<div class="d-flex w-100">
+											<div class="col-sm-12 d-flex justify-content-end">
+												<div>
+													<div th:replace="~{fragments :: search_form_and_message}"></div>
+												</div>
+											</div>
+										</div>
+									</div>
 
-		<div th:replace="~{fragments :: search_form_and_message}"></div>
-
-		<div>
-			<table class="table table-striped table-bordered table-hover">
-				<thead class="thead-light">
-					<tr>
-						<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-						<th th:replace="~{fragments :: column_link('product', 'Product', 'none')}" />
-						<th th:replace="~{fragments :: column_link('questionContent', 'Question', 'none')}" />
-						<th th:replace="~{fragments :: column_link('asker', 'Asker', 'none')}" />
-						<th th:replace="~{fragments :: column_link('askTime', 'Ask Time', 'none')}" />
-						<th th:replace="~{fragments :: column_link('approved', 'Approved', 'none')}" />
-						<th>Answered</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="question : ${listQuestions}">
-						<td th:text="${question.id}">ID</td>
-						<td>
-							<a th:href="@{'/products/detail/' + ${question.product.id}}" class="link-product-detail"
-								th:title="${question.product.shortName}">[[${question.product.shortName}]]</a>
-						</td>
-						<td th:text="${question.questionContent}">Question</td>
-						<td>
-							<a th:href="@{'/customers/detail/' + ${question.asker.id}}"
-								class="link-customer-detail">[[${question.asker.fullName}]]</a>
-						</td>
-						<td>
-							<div th:replace="~{fragments :: format_time(${question.askTime})}"></div>
-						</td>
+									<div>
+										<table class="table table-striped table-hover w-100 borderless">
+											<thead style="background-color: #FAFAFA; padding: 10px 0;" class="py-5">
+												<tr>
+													<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
+													<th th:replace="~{fragments :: column_link('product', 'Product', 'none')}" />
+													<th th:replace="~{fragments :: column_link('questionContent', 'Question', 'none')}" />
+													<th th:replace="~{fragments :: column_link('asker', 'Asker', 'none')}" />
+													<th th:replace="~{fragments :: column_link('askTime', 'Ask Time', 'none')}" />
+													<th th:replace="~{fragments :: column_link('approved', 'Approved', 'none')}" />
+													<th>Answered</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="question : ${listQuestions}">
+													<td th:text="${question.id}">ID</td>
+													<td>
+														<a th:href="@{'/products/detail/' + ${question.product.id}}" class="link-product-detail"
+															th:title="${question.product.shortName}">[[${question.product.shortName}]]</a>
+													</td>
+													<td th:text="${question.questionContent}">Question</td>
+													<td>
+														<a th:href="@{'/customers/detail/' + ${question.asker.id}}"
+															class="link-customer-detail">[[${question.asker.fullName}]]</a>
+													</td>
+													<td>
+														<div th:replace="~{fragments :: format_time(${question.askTime})}"></div>
+													</td>
 
 
-						<td>
-							<a th:if="${question.approved == true}" class="fas fa-check-circle fa-2x icon-green"
-								th:href="@{'/questions/' + ${question.id} + '/disapprove'}"
-								title="Disapprove this question">
-							</a>
-							<a th:unless="${question.approved == true}" class="fas fa-circle fa-2x icon-dark"
-								th:href="@{'/questions/' + ${question.id} + '/approve'}" title="Approve this question">
-							</a>
-						</td>
+													<td>
+														<a th:if="${question.approved == true}" class="fas fa-check-circle fa-2x icon-green"
+															th:href="@{'/questions/' + ${question.id} + '/disapprove'}"
+															title="Disapprove this question">
+														</a>
+														<a th:unless="${question.approved == true}" class="fas fa-circle fa-2x icon-dark"
+															th:href="@{'/questions/' + ${question.id} + '/approve'}" title="Approve this question">
+														</a>
+													</td>
 
-						<td>
-							<span class="fas fa-2x"
-								th:classappend="${question.answered ? 'fa-check-circle icon-green' : 'fa-circle icon-dark'}"></span>
-						</td>
+													<td>
+														<span class="fas fa-2x"
+															th:classappend="${question.answered ? 'fa-check-circle icon-green' : 'fa-circle icon-dark'}"></span>
+													</td>
 
-						<td>
-							<a class="fas fa-file-alt fa-2x icon-green link-detail"
-								th:href="@{'/questions/detail/' + ${question.id}}"
-								title="View details of this question"></a>
-							&nbsp;
-							<div th:replace="~{fragments :: edit('question', '/questions/edit/' + ${question.id})}" />
-							&nbsp;
-							<div
-								th:replace="~{fragments :: delete('question', ${question.id}, '/questions/delete/' + ${question.id}, true)}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+													<td>
+														<a class="fas fa-file-alt fa-2x icon-green link-detail"
+															th:href="@{'/questions/detail/' + ${question.id}}"
+															title="View details of this question"></a>
+														&nbsp;
+														<div th:replace="~{fragments :: edit('question', '/questions/edit/' + ${question.id})}" />
+														&nbsp;
+														<div
+															th:replace="~{fragments :: delete('question', ${question.id}, '/questions/delete/' + ${question.id}, true)}" />
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div th:replace="~{fragments :: pagination('questions')}"></div>
 
-		<div th:replace="~{fragments :: pagination('questions')}"></div>
+								<div th:replace="~{modal_fragments :: confirm_modal}" />
 
-		<div th:replace="~{modal_fragments :: confirm_modal}" />
+								<div class="modal fade" id="detailModal">
+									<div class="modal-dialog modal-xl">
+										<div class="modal-content">
+										</div>
+									</div>
+								</div>
 
-		<div class="modal fade" id="detailModal">
-			<div class="modal-dialog modal-xl">
-				<div class="modal-content">
+								<div class="modal fade" id="smallModal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div th:replace="~{fragments :: footer}"></div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="modal fade" id="smallModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-				</div>
-			</div>
-		</div>
-
-		<div th:replace="~{fragments :: footer}"></div>
+		
 	</div>
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">

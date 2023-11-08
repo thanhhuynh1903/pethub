@@ -18,8 +18,8 @@ public class Article extends IdBasedEntity {
 	@Column(nullable = false, length = 256)
 	private String title;
 	
-	@Column(nullable = false)
 	@Lob
+	@Column(nullable = false)
 	private String content;
 	
 	@Column(nullable = false, length = 500)

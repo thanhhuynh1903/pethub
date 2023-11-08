@@ -16,6 +16,9 @@ import com.pethub.common.entity.Brand;
 import com.pethub.common.entity.Category;
 import com.pethub.common.entity.product.Product;
 import com.pethub.product.ProductService;
+import com.pethub.common.entity.section.Section;
+import com.pethub.common.entity.section.SectionType;
+import com.pethub.section.SectionService;
 
 @Controller
 public class MainController {
@@ -29,10 +32,34 @@ public class MainController {
 	@Autowired
 	private ProductService productService;
 
-	
+	@Autowired
+	private SectionService sectionService;
 
 	@GetMapping("")
 	public String viewHomePage(Model model) {
+		List<Section> listSections = sectionService.listEnabledSections();
+		model.addAttribute("listSections", listSections);
+
+		if (hasAllCategoriesSection(listSections)) {
+			List<Category> listCategories = categoryService.listNoChildrenCategories();
+			model.addAttribute("listCategories", listCategories);
+		}
+
+		return "index";
+	}
+
+	private boolean hasAllCategoriesSection(List<Section> listSections) {
+		for (Section section : listSections) {
+			if (section.getType().equals(SectionType.ALL_CATEGORIES)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@GetMapping("/home2")
+	public String viewHomePage2(Model model) {
 		List<Category> listParentCategories = categoryService.listParentCategories();
 		model.addAttribute("listParentCategories", listParentCategories);
 
@@ -42,13 +69,12 @@ public class MainController {
 		List<Product> listProducts = productService.getAllProducts();
 		model.addAttribute("listProducts", listProducts);
 
-
-		//lay 6 san pham duoc giam gia nhieu nhat
-		List<Product> list6Products= productService.get6Products();
+		// lay 6 san pham duoc giam gia nhieu nhat
+		List<Product> list6Products = productService.get6Products();
 		model.addAttribute("list6Products", list6Products);
 
-		//lay 6 san pham ban chay nhat
-		List<Product> list6BestSaleProducts= productService.get6BestSaleProducts();
+		// lay 6 san pham ban chay nhat
+		List<Product> list6BestSaleProducts = productService.get6BestSaleProducts();
 		model.addAttribute("list6BestSaleProducts", list6BestSaleProducts);
 		return "index";
 	}

@@ -2,6 +2,8 @@ package com.pethub.shoppingcart;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,6 @@ import com.pethub.common.entity.CartItem;
 import com.pethub.common.entity.Customer;
 import com.pethub.common.entity.ShippingRate;
 import com.pethub.shipping.ShippingRateService;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ShoppingCartController {

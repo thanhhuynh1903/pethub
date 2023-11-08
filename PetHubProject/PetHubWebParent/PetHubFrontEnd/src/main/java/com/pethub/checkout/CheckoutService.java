@@ -10,7 +10,7 @@ import com.pethub.common.entity.product.Product;
 
 @Service
 public class CheckoutService {
-	private static final int DIM_DIVISOR = 3500; // shoppee rate
+	private static final int DIM_DIVISOR = 139;
 
 	public CheckoutInfo prepareCheckout(List<CartItem> cartItems, ShippingRate shippingRate) {
 		CheckoutInfo checkoutInfo = new CheckoutInfo();

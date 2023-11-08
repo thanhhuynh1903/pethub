@@ -13,42 +13,32 @@
 
 				<!--star rating-->
 				<div class="d-flex justify-content-between">
-					<div th:replace="~{fragments :: star_rating}"></div>
+					<input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs"
+							th:value="${product.averageRating}" />
+					<small>[[${product.reviewCount}]]</small>
 					<div class="ml-auto d-flex align-items-center">
 						<span class="text-secondary text-sold">5 sold</span>
 					</div>
 				</div>
 
-			</div>
-			<!--star rating-->
-			<div th:fragment="product_price" th:remove="tag">
-				<div class="d-flex justify-content-between product-item-price-container"
-					th:if="${product.discountPercent &lt;= 0}">
-					<div class="mt-auto">
-						<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
-						</div>
-					</div>
-				</div>
+	<div th:fragment="product_price" th:remove="tag">
+		<th:block th:if="${product.discountPercent &lt;= 0}">
+			<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
+		</th:block>
+		<th:block th:if="${product.discountPercent > 0}">
+			<span style="font-size: larger; color: darkred">
+				<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}"></div>
+			</span>
+			<del>
+				<span>
+					<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}"></div>
+				</span>
+			</del>
+		</th:block>
+	</div>
 
-				<div th:if="${product.discountPercent > 0}"
-					class="d-flex flex-column product-item-price-container justify-content-end">
-					<!--Price-->
-					<del th:if="${product.discountPercent > 0}" class="text-secondary mr-1 " style="font-size: small;">
-						<div th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
-						</div>
-					</del>
-					<span>
-						<div th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
-						</div>
-					</span>
-				</div>
-			</div>
-			<div class="btn-sale-container">
-				<button class="btn-sale btn">
-					-[[${#numbers.formatDecimal(product.discountPercent, 1,
-					THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] %
-				</button>
-			</div>
+		</div>
+	</a>
 
 		</div>
 	</a>
@@ -63,7 +53,9 @@
 			<span th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
 				th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 		
+		
 	</div>
+
 </body>
 
 </html>

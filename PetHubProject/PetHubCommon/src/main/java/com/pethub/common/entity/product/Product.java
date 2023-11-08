@@ -23,7 +23,6 @@ import jakarta.persistence.Transient;
 @Entity
 @Table(name = "products")
 public class Product extends IdBasedEntity {
-
 	@Column(unique = true, length = 255, nullable = false)
 	private String name;
 
@@ -327,7 +326,7 @@ public class Product extends IdBasedEntity {
 
 	@Transient
 	public String getURI() {
-		return "/p/" + this.alias + "/";
+		return "/p/" + this.alias;
 	}
 
 	public boolean isCustomerCanReview() {

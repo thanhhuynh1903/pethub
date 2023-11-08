@@ -2,11 +2,11 @@ package com.pethub.product;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.pethub.common.entity.Category;
 import com.pethub.common.entity.product.Product;
 
 public interface ProductRepository
@@ -21,4 +21,12 @@ public interface ProductRepository
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "MATCH(name, short_description, full_description) AGAINST (?1)", nativeQuery = true)
 	public Page<Product> search(String keyword, Pageable pageable);
+
+	@Query("Update Product p SET p.averageRating = COALESCE((SELECT cast(AVG(r.rating) as float) FROM Review r WHERE r.product.id = ?1), 0),"
+			+ " p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) " + "WHERE p.id = ?1")
+	@Modifying
+	public void updateReviewCountAndAverageRating(Integer productId);
+
+	@Query("SELECT p FROM Product p WHERE p.enabled=true AND p.brand.id=?1")
+	public Page<Product> listByBrand(Integer brandId, Pageable pageable);
 }

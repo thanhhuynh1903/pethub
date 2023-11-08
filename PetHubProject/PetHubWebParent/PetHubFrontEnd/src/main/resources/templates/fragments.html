@@ -7,7 +7,7 @@
 
 	<title>[[${title}]] - [[${SITE_NAME}]]</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -16,7 +16,7 @@
 <body>
 
 	<th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
-		<a class="text-white"
+		<a class="text-light"
 			th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName}  +'&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">
 			[[${columnLabel}]]
 		</a>

@@ -1,5 +1,7 @@
 package com.pethub.product;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,12 @@ public class ProductService {
 		return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 	}
 
+	public Page<Product> listByBrand(int pageNum, Integer brandId) {
+		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
+
+		return repo.listByBrand(brandId, pageable);
+	}
+
 	public Product getProduct(String alias) throws ProductNotFoundException {
 		Product product = repo.findByAlias(alias);
 		if (product == null) {
@@ -31,6 +39,15 @@ public class ProductService {
 		}
 
 		return product;
+	}
+
+	public Product getProduct(Integer id) throws ProductNotFoundException {
+		try {
+			Product product = repo.findById(id).get();
+			return product;
+		} catch (NoSuchElementException ex) {
+			throw new ProductNotFoundException("Could not find any product with ID " + id);
+		}
 	}
 
 	public Page<Product> search(String keyword, int pageNum) {

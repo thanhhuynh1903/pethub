@@ -73,7 +73,7 @@ public class ProductService {
 		product.setUpdatedTime(new Date());
 
 		Product updatedProduct = repo.save(product);
-		// repo.updateReviewCountAndAverageRating(updatedProduct.getId());
+		repo.updateReviewCountAndAverageRating(updatedProduct.getId());
 
 		return updatedProduct;
 	}

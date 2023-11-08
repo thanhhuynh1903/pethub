@@ -1,72 +1,102 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments :: page_head('My Orders', 'none')}" />
+<head>
+	<head th:replace="~{fragments :: page_head('My Orders', 'none')}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-order.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-profile.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-order.css}" />
+</head>
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: header_menu}"></div>
-		<div th:replace="~{navigation :: search_nav}"></div>
-		<div>
-			<h2>My Orders</h2>
-		</div>
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}"></div>
+			<div class="w-100 mt-3">
+				<nav aria-label="breadcrumb" class="w-100 px-lg-5 px-2">
+					<ol class="breadcrumb m-0">
+						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">Address Book</li>
+					</ol>
+				</nav>
+				<div class="w-100 address-main-container profile-main-container mt-1 mb-3">
+					<div class="order-side-bar-container side-bar-profile">
+						<div th:replace="~{navigation :: side_bar_profile}"></div>
+					</div>
+					<div class="address-content-container profile-content-container">
+						<div>
+							<div class="mb-3 mr-auto">
+								<span class="title-header text-left">Profile Information</span>
+							</div>
+						</div>
+						<div>
+							<div>
+								<h2>My Orders</h2>
+							</div>
+							<div>
+								<table class="table table-bordered table-striped table-hover">
+									<thead class="thead-dark">
+										<tr>
+											<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
+											<th
+												th:replace="~{fragments :: column_link('orderTime', 'Order Time', 'none')}" />
+											<th>Products</th>
+											<th th:replace="~{fragments :: column_link('total', 'Total', 'none')}" />
+											<th th:replace="~{fragments :: column_link('status', 'Status', 'none')}" />
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="order : ${listOrders}">
+											<td th:text="${order.id}">ID</td>
+											<td>
+												<div th:replace="~{fragments :: format_time(${order.orderTime})}">Order
+													Time</div>
+											</td>
+											<td th:utext="${order.productNames}"></td>
+											<td>
+												<div th:replace="~{fragments :: format_currency(${order.total})}">Total
+												</div>
+											</td>
+											<td><span
+													th:class="'textOrderStatus' + ${order.id}">[[${order.status}]]</span>
+											</td>
+											<td>
+												<a class="fas fa-file-alt fa-2x icon-green link-detail"
+													th:href="@{'/orders/detail/' + ${order.id}}"
+													title="View details of this order"></a>
 
-		<div th:replace="~{fragments :: search_form}"></div>
-
-		<div>
-			<table class="table table-bordered table-striped table-hover">
-				<thead class="thead-dark">
-					<tr>
-						<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-						<th th:replace="~{fragments :: column_link('orderTime', 'Order Time', 'none')}" />
-						<th>Products</th>
-						<th th:replace="~{fragments :: column_link('total', 'Total', 'none')}" />
-						<th th:replace="~{fragments :: column_link('status', 'Status', 'none')}" />
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="order : ${listOrders}">
-						<td th:text="${order.id}">ID</td>
-						<td>
-							<div th:replace="~{fragments :: format_time(${order.orderTime})}">Order Time</div>
-						</td>
-						<td th:utext="${order.productNames}"></td>
-						<td>
-							<div th:replace="~{fragments :: format_currency(${order.total})}">Total</div>
-						</td>
-						<td><span th:class="'textOrderStatus' + ${order.id}">[[${order.status}]]</span></td>
-						<td>
-							<a class="fas fa-file-alt fa-2x icon-green link-detail"
-								th:href="@{'/orders/detail/' + ${order.id}}" title="View details of this order"></a>
-
-							<th:block
-								th:if="${order.returnRequested == false && order.delivered == true && order.returned == false}">
-								&nbsp;&nbsp;&nbsp;
-								<a class="fas fa-undo fa-2x icon-dark linkReturnOrder" href=""
-									th:classappend="'linkReturn' + ${order.id}" th:orderId="${order.id}"
-									title="Return this order"></a>
-							</th:block>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div th:replace="~{fragments :: pagination('/orders', 'orders')}"></div>
-
-		<div th:replace="~{orders/return_order_modal :: content}"></div>
-
-		<div class="modal fade" id="detailModal">
-			<div class="modal-dialog modal-xl">
-				<div class="modal-content">
+												<th:block
+													th:if="${order.returnRequested == false && order.delivered == true && order.returned == false}">
+													&nbsp;&nbsp;&nbsp;
+													<a class="fas fa-undo fa-2x icon-dark linkReturnOrder" href=""
+														th:classappend="'linkReturn' + ${order.id}"
+														th:orderId="${order.id}" title="Return this order"></a>
+												</th:block>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
+
+				<div th:replace="~{fragments :: pagination('/orders', 'orders')}"></div>
+
+				<div th:replace="~{orders/return_order_modal :: content}"></div>
+
+				<div class="modal fade" id="detailModal">
+					<div class="modal-dialog modal-xl">
+						<div class="modal-content">
+						</div>
+					</div>
+				</div>
+
 			</div>
+			<div th:replace="~{navigation :: footer_menu}"></div>
+
 		</div>
-
-		<div>&nbsp;</div>
-		<div th:replace="~{navigation :: footer_menu}"></div>
-
 	</div>
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">

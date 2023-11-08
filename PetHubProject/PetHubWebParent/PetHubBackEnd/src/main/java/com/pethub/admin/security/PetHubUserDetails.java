@@ -13,7 +13,6 @@ import com.pethub.common.entity.Role;
 import com.pethub.common.entity.User;
 
 public class PetHubUserDetails implements UserDetails {
-
 	private static final long serialVersionUID = 1L;
 	private User user;
 
@@ -30,6 +29,7 @@ public class PetHubUserDetails implements UserDetails {
 		for (Role role : roles) {
 			authories.add(new SimpleGrantedAuthority(role.getName()));
 		}
+
 		return authories;
 	}
 
@@ -77,6 +77,10 @@ public class PetHubUserDetails implements UserDetails {
 
 	public boolean hasRole(String roleName) {
 		return user.hasRole(roleName);
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

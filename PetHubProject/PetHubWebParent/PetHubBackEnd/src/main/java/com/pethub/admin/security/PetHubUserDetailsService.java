@@ -1,11 +1,11 @@
-package com.pethub.admin.user;
+package com.pethub.admin.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.pethub.admin.security.PetHubUserDetails;
+import com.pethub.admin.user.UserRepository;
 import com.pethub.common.entity.User;
 
 public class PetHubUserDetailsService implements UserDetailsService {

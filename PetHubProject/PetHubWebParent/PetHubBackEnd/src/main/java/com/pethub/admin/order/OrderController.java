@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -27,8 +29,6 @@ import com.pethub.common.entity.order.OrderTrack;
 import com.pethub.common.entity.product.Product;
 import com.pethub.common.entity.setting.Setting;
 import com.pethub.common.exception.OrderNotFoundException;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class OrderController {
@@ -53,7 +53,7 @@ public class OrderController {
 		orderService.listByPage(pageNum, helper);
 		loadCurrencySetting(request);
 
-		if (!loggedUser.hasRole("Admin") && loggedUser.hasRole("Shipper")) {
+		if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Salesperson") && loggedUser.hasRole("Shipper")) {
 			return "orders/orders_shipper";
 		}
 
@@ -75,13 +75,13 @@ public class OrderController {
 			Order order = orderService.get(id);
 			loadCurrencySetting(request);
 
-			boolean isVisibleForAdmin = false;
+			boolean isVisibleForAdminOrSalesperson = false;
 
-			if (loggedUser.hasRole("Admin")) {
-				isVisibleForAdmin = true;
+			if (loggedUser.hasRole("Admin") || loggedUser.hasRole("Salesperson")) {
+				isVisibleForAdminOrSalesperson = true;
 			}
 
-			model.addAttribute("isVisibleForAdmin", isVisibleForAdmin);
+			model.addAttribute("isVisibleForAdminOrSalesperson", isVisibleForAdminOrSalesperson);
 			model.addAttribute("order", order);
 
 			return "orders/order_details_modal";

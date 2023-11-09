@@ -77,7 +77,7 @@
 							</table>
 						</div>
 
-						<div th:replace="~{fragments :: pagination('/customer/questions', 'questions', 'asc')}"></div>
+						<div th:replace="~{fragments :: pagination('/customer/questions', 'questions', 'asc', ${sortField})}"></div>
 					</div>
 				</div>
 				<div class="modal fade" id="detailModal">

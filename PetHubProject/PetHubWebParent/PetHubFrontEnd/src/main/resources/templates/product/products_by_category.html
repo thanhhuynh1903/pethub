@@ -169,11 +169,15 @@
                       class="w-100"
                     ></div>
                   </div>
-                  <!--
-								<div th:if="${sortDir} == 'top_sales'" class="top-sales-container">
-									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
-								</div>
-								-->
+                  <div
+                    th:if="${sortDir} == 'top_sales'"
+                    class="top-sales-container"
+                  >
+                    <div
+                      th:replace="~{navigation :: header_product}"
+                      class="w-100"
+                    ></div>
+                  </div>
                   <div
                     th:if="${sortDir} == 'asc'"
                     class="price-asc-container w-100"

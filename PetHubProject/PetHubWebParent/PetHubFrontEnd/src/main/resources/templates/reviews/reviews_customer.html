@@ -54,7 +54,7 @@
 									<tr th:each="review : ${listReviews}">
 										<td>[[${review.id}]]</td>
 										<td>
-											<a th:href="@{'/p/' + ${review.product.alias}}" target="_blank">
+											<a class="text-decoration-none" th:href="@{'/p/' + ${review.product.alias}}" target="_blank">
 												[[${review.product.shortName}]]
 											</a>
 										</td>

@@ -52,7 +52,7 @@ public class ProductController {
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
 			@RequestParam(defaultValue = "asc") String sortDir,
 			Model model) {
-		return viewCategoryByPage(alias, 0, sortDir, model);
+		return viewCategoryByPage(alias, 1, sortDir, model);
 	}
 
 	@GetMapping("/p/{product_alias}")

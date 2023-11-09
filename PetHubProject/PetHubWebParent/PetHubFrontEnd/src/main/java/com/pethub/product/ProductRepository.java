@@ -26,6 +26,9 @@ public interface ProductRepository
 	@Query(value = "SELECT * FROM products p ORDER BY p.price ASC LIMIT 6", nativeQuery = true)
 	public List<Product> findTop6ByOrderByPriceAsc();
 
+	@Query(value = "SELECT p.*, SUM(od.quantity) as total_quantity FROM products p JOIN order_details od ON p.id = od.product_id GROUP BY p.id ORDER BY total_quantity DESC LIMIT 6", nativeQuery = true)
+	public List<Product> findTop6ByOrderByQuantityDesc();
+
 	List<Product> findAll();
 
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
@@ -48,6 +51,11 @@ public interface ProductRepository
 			+ " ORDER BY p.createdTime DESC")
 	public Page<Product> listByCategoryLatest(Integer categoryId, String categoryIDMatch, Pageable pageable);
 
+	@Query("SELECT p FROM Product p WHERE p.enabled = true "
+			+ "AND (p.category.id = ?1 OR p.category.allParentIDs LIKE %?2%)"
+			+ " ORDER BY (SELECT SUM(od.quantity) FROM OrderDetail od WHERE od.product = p) DESC")
+	public Page<Product> listByCategoryTopSales(Integer categoryId, String categoryIDMatch, Pageable pageable);
+
 	// 2.Sorting after Search
 	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
 			+ "(name LIKE %?1% OR short_description LIKE %?1% OR full_description LIKE %?1%)"
@@ -64,6 +72,11 @@ public interface ProductRepository
 			+ " ORDER BY created_time DESC", nativeQuery = true)
 	public Page<Product> searchSortByLatest(String keyword, Pageable pageable);
 
+	@Query("SELECT p FROM Product p WHERE p.enabled = true "
+			+ "AND (p.name LIKE %?1% OR p.shortDescription LIKE %?1% OR p.fullDescription LIKE %?1%)"
+			+ " ORDER BY (SELECT SUM(od.quantity) FROM OrderDetail od WHERE od.product = p) DESC")
+	public Page<Product> searchTopSales(String keyword, Pageable pageable);
+
 	// 3.Brand
 	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1")
 	public Page<Product> findByBrandName(String brandName, Pageable pageable);
@@ -77,7 +90,12 @@ public interface ProductRepository
 	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1 ORDER BY p.createdTime DESC")
 	public Page<Product> findByBrandNameOrderByCreatedDateDesc(String brandName, Pageable pageable);
 
-	//4.Rating
+	@Query("SELECT p FROM Product p WHERE p.enabled = true "
+			+ "AND p.brand.name = ?1 "
+			+ " ORDER BY (SELECT SUM(od.quantity) FROM OrderDetail od WHERE od.product = p) DESC")
+	public Page<Product> listByBrandTopSales(String brandName, Pageable pageable);
+
+	// 4.Rating
 	@Query("UPDATE Product p SET p.averageRating = COALESCE(CAST((SELECT AVG(CAST(r.rating AS Float)) FROM Review r WHERE r.product.id = ?1) AS Float), 0), p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) WHERE p.id = ?1")
 	@Modifying
 	public void updateReviewCountAndAverageRating(Integer productId);

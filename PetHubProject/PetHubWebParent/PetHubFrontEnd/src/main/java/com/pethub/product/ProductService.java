@@ -28,12 +28,6 @@ public class ProductService {
 		return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 	}
 
-	public Page<Product> listByBrand(int pageNum, Integer brandId) {
-		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
-
-		return repo.listByBrand(brandId, pageable);
-	}
-
 	public Product getProduct(String alias) throws ProductNotFoundException {
 		Product product = repo.findByAlias(alias);
 		if (product == null) {
@@ -67,6 +61,8 @@ public class ProductService {
 			return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
 		} else if ("desc".equals(sortDir)) {
 			return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
+		}else if("top_sales".equals(sortDir)){
+			return repo.listByCategoryTopSales(categoryId, categoryIdMatch, pageable);		
 		} else {
 			return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 		}
@@ -80,6 +76,8 @@ public class ProductService {
 			return repo.searchSortPriceDesc(keyword, pageable);
 		} else if ("latest".equals(sortDir)) {
 			return repo.searchSortByLatest(keyword, pageable);
+		}else if("top_sales".equals(sortDir)){
+			return repo.searchTopSales(keyword, pageable);
 		} else {
 			return repo.search(keyword, pageable);
 		}
@@ -94,7 +92,7 @@ public class ProductService {
 	}
 
 	public List<Product> get6BestSaleProducts() {
-		return (List<Product>) repo.findTop6ByOrderByPriceAsc();
+		return (List<Product>) repo.findTop6ByOrderByQuantityDesc();
 	}
 
 	public Page<Product> getProductsByBrandName(String brandName, int pageNum, String sortDir) {
@@ -106,6 +104,8 @@ public class ProductService {
 			return repo.findByBrandNameOrderByPriceDesc(brandName, pageable);
 		} else if ("latest".equals(sortDir)) {
 			return repo.findByBrandNameOrderByCreatedDateDesc(brandName, pageable);
+		}else if("top_sales".equals(sortDir)){
+			return repo.listByBrandTopSales(brandName, pageable);
 		} else {
 			return repo.findByBrandName(brandName, pageable);
 		}

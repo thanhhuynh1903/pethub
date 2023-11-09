@@ -51,7 +51,7 @@
 									<tr th:each="question : ${listQuestions}">
 										<td th:text="${question.id}">ID</td>
 										<td>
-											<a th:href="@{${question.product.URI}}" target="_blank"
+											<a class="text-decoration-none" th:href="@{${question.product.URI}}" target="_blank"
 												th:title="${question.product.name}">[[${question.product.shortName}]]</a>
 										</td>
 										<td th:text="${question.questionContent}">Question</td>

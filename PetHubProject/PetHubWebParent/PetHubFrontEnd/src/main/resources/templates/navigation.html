@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
+
 	<head th:replace="~{fragments :: page_head('PetHub','tag')}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-navigation.css}" />
 </head>
@@ -37,10 +38,10 @@
 				<div>
 					<ul class="navbar-nav me-auto w-100 d-flex justify-content-end">
 						<th:block th:each="headerMenu : ${headerMenuItems}">
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{'/m/' + ${headerMenu.alias}}">[[${headerMenu.title}]]</a>
-						</li>
-					</th:block>
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{'/m/' + ${headerMenu.alias}}">[[${headerMenu.title}]]</a>
+							</li>
+						</th:block>
 						<li class="nav-item active">
 							<a class="nav-link d-flex justify-content-center align-items-center px-3" th:href="@{/}" id="home"><i
 									class="bi bi-house-fill d-flex align-items-center nav-general"></i><span
@@ -138,9 +139,10 @@
 		<div class="footer-container">
 			<div class="d-flex justify-content-center p-1 p-sm-3">
 				<th:block th:each="footerMenu : ${footerMenuItems}">
-					<a class="text-decoration-none text-secondary mr-sm-3 mr-2" th:href="@{'/m/' + ${footerMenu.alias}}">[[${footerMenu.title}]]</a> 
-							
-						</th:block>
+					<a class="text-decoration-none text-secondary mr-sm-3 mr-2"
+						th:href="@{'/m/' + ${footerMenu.alias}}">[[${footerMenu.title}]]</a>
+
+				</th:block>
 			</div>
 		</div>
 
@@ -157,8 +159,9 @@
 				<span>Sort by</span>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-latest"
 					th:href="${sortDir} == 'latest' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=latest'}">Lastest</a>
-				<input type="submit" class="btn-top-sale btn btn-outline-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales"
-					readonly />
+				<a role="button" class="btn btn-outline-primary mr-1 mr-xl-3 mr-lg-2 btn-top-sales"
+					th:href="${sortDir} == 'top_sales' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=top_sales'}">Top
+					Sales</a>
 				<div class="dropdown">
 					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -180,11 +183,13 @@
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn-outline-primary btn-latest btn mx-1 mx-xl-3 mx-lg-2"
-					th:href="${sortDir} == 'latest' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=latest'}">Lastest</a>
-				<input type="submit" class="btn-top-sale btn-outline-primary btn mr-xl-3 mr-lg-2 mr-1" value="Top Sales" />
+					th:href="${sortDir} == 'latest' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=latest'}">Latest</a>
+				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
+					th:href="${sortDir} == 'top_sales' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=top_sales'}">Top
+					Sales</a>
 				<div class="dropdown">
-					<button class="btn-sort-price btn-outline-primary btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
+					<button class="btn-sort-price btn-outline-primary btn dropdown-toggle" type="button" id="dropdownMenuButton"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -204,11 +209,13 @@
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn btn-latest btn-outline-primary mx-1 mx-xl-3 mx-lg-2"
-					th:href="${sortDir} == 'latest' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=latest'}">Lastest</a>
-				<input type="submit" class="btn btn-top-sale btn-outline-primary mr-xl-3 mr-lg-2 mr-1" value="Top Sales" readonly />
+					th:href="${sortDir} == 'latest' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=latest'}">Latest</a>
+				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
+					th:href="${sortDir} == 'top_sales' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=top_sales'}">Top
+					Sales</a>
 				<div class="dropdown">
-					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
+					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -35,19 +35,6 @@ public class MainController {
 	@Autowired
 	private SectionService sectionService;
 
-	@GetMapping("")
-	public String viewHomePage(Model model) {
-		List<Section> listSections = sectionService.listEnabledSections();
-		model.addAttribute("listSections", listSections);
-
-		if (hasAllCategoriesSection(listSections)) {
-			List<Category> listCategories = categoryService.listNoChildrenCategories();
-			model.addAttribute("listCategories", listCategories);
-		}
-
-		return "index";
-	}
-
 	private boolean hasAllCategoriesSection(List<Section> listSections) {
 		for (Section section : listSections) {
 			if (section.getType().equals(SectionType.ALL_CATEGORIES)) {
@@ -58,8 +45,16 @@ public class MainController {
 		return false;
 	}
 
-	@GetMapping("/home2")
+	@GetMapping("")
 	public String viewHomePage2(Model model) {
+		List<Section> listSections = sectionService.listEnabledSections();
+		model.addAttribute("listSections", listSections);
+
+		if (hasAllCategoriesSection(listSections)) {
+			List<Category> listCategories = categoryService.listNoChildrenCategories();
+			model.addAttribute("listCategories", listCategories);
+		}
+
 		List<Category> listParentCategories = categoryService.listParentCategories();
 		model.addAttribute("listParentCategories", listParentCategories);
 

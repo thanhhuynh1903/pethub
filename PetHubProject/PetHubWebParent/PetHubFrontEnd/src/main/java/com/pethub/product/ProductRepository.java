@@ -77,6 +77,7 @@ public interface ProductRepository
 	@Query("SELECT p FROM Product p WHERE p.enabled = true AND p.brand.name = ?1 ORDER BY p.createdTime DESC")
 	public Page<Product> findByBrandNameOrderByCreatedDateDesc(String brandName, Pageable pageable);
 
+	//4.Rating
 	@Query("UPDATE Product p SET p.averageRating = COALESCE(CAST((SELECT AVG(CAST(r.rating AS Float)) FROM Review r WHERE r.product.id = ?1) AS Float), 0), p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) WHERE p.id = ?1")
 	@Modifying
 	public void updateReviewCountAndAverageRating(Integer productId);

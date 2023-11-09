@@ -18,9 +18,9 @@ public class BrandService {
     return (List<Brand>) repo.findAll();
   }
 
-//  public List<Brand> getBrandsByCategory(Category category) {
-//    return repo.findByCategoriesContaining(category);
-//  }
+ public List<Brand> getBrandsByCategory(Category category) {
+   return repo.findByCategoriesContaining(category);
+ }
 
   public Brand getBrandByName(String name) {
     return repo.findByName(name);

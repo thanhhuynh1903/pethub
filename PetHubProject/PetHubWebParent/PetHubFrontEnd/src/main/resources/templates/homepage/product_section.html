@@ -7,7 +7,7 @@
 			<div class="home_all-product-container__content">
 				<div th:each="productSection : ${section.productSections}" th:with="product = ${productSection.product}"
 					class="product-item-container">
-					<a th:href="@{${product.URI}}" th:title="${product.name}">
+					<a th:href="@{${product.URI}}" th:title="${product.name}" class="text-decoration-none text-dark">
 						<div class="product-img-container"><img th:src="@{${product.mainImagePath}}" /></div>
 						<div class="product-item-content-container p-2">
 							<div class="product-item-top">
@@ -16,7 +16,8 @@
 									<div class="d-flex align-items-center">
 										<input type="text" class="kv-ltr-theme-svg-star rating-loading" dir="ltr"
 												data-size="xs" th:value="${product.averageRating}" />
-										<small class="ml-1">[[${product.reviewCount}]]</small>
+												<!--
+										<small class="ml-1">[[${product.reviewCount}]]</small>-->
 									</div>
 									<div class="ml-auto d-flex align-items-center">
 										<span class="text-secondary text-sold">5 sold</span>

@@ -285,7 +285,7 @@ body {
 
 .home-sale-container {
 	background-color: #FFFFFF;
-	border-radius: 20px;
+	border-radius: 4px;
 }
 
 .home-slider-container .left {
@@ -327,6 +327,24 @@ body {
 	border-radius: 5px 5px 0 0;
 }
 
+.article-card {
+	background-color: #FFFFFF;
+	border-radius: 4px;
+	height: 200px;
+	box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;
+}
+.article-card .img-container {
+	width: 100%;
+	height: 130px;
+	border-radius: 4px;
+}
+
+.article-card .img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 4px 4px 0 0;
+}
 @media screen and (max-width: 1250px) {
 	.search {
 		width: 400px;

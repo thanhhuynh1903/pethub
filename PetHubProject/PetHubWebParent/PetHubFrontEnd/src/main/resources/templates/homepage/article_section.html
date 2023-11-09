@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 	<div th:fragment="content" th:remove="tag">
-		<div class="col-sm-2" th:each="articleSection : ${section.articleSections}" th:with="article = ${articleSection.article}">
-			<div>
-				<a th:href="@{'/a/' + ${article.alias}}">[[${article.title}]]</a>
+		<div class="home_all-product-container__content-container">
+			<div class="home_all-product-container__content px-2">
+				<div th:each="articleSection : ${section.articleSections}"
+					th:with="article = ${articleSection.article}">
+					<a th:href="@{'/a/' + ${article.alias}}" class="text-decoration-none">
+					<div class="article-card">
+						<div class="">
+							<div class="img-container">
+							<img th:src="@{images/login.jpg}"></div>
+							<div class="mx-2">
+							<span class="text-three-line">[[${article.title}]]</span></div>
+						</div>
+					</div></a>
+				</div>
 			</div>
-		</div>			
+		</div>
 	</div>
 </body>
+
 </html>

@@ -8,7 +8,7 @@
 				<a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir=default&sortField='+${sortField}}"
 					class="d-flex align-items-center text-decoration-none text-secondary">
 					<div class="category-img-container mr-2"><img th:src="@{${brand.logoPath}}" /></div>
-					<div >
+					<div class="d-flex">
 						<!--"@{'/brand/' + ${brand.id}}"-->
 						<span class="text-left">[[${brand.name}]]</span>
 					</div>

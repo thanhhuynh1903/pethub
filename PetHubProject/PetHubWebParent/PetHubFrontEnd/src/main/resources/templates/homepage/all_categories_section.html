@@ -2,11 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<div th:fragment="content" th:remove="tag">
-		<div class="col" th:each="cat : ${listCategories}">
-			<div><img th:src="@{${cat.imagePath}}" width="80" /></div>
-			<div>
-				<a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a>
+	<div class="pb-3">
+		<div th:fragment="content" th:remove="tag">
+			<div th:each="cat : ${listCategories}">
+				<div class="category-item-container p-3">
+					<a th:href="@{'/c/'+${cat.alias}+'/page/1?sortDir=default&sortField=' + ${sortField}}"
+						class="d-flex align-items-center text-decoration-none text-secondary">
+						<div class="category-img-container mr-2"><img th:src="@{${cat.imagePath}}" /></div>
+						<div >
+							<span class="text-left">[[${cat.name}]]</span>
+						</div>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

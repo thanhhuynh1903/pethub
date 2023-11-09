@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 	<div th:fragment="content" th:remove="tag">
-		<div class="col-sm-1" th:each="catSection : ${section.categorySections}" th:with="cat = ${catSection.category}">
-			<div><img th:src="@{${cat.imagePath}}" width="80" /></div>
-			<div>
-				<a th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a>
+		<div th:each="catSection : ${section.categorySections}" th:with="cat = ${catSection.category}">
+			<div class="category-item-container p-3">
+				<a th:href="@{'/c/'+${cat.alias}+'/page/1?sortDir=default&sortField=' + ${sortField}}"
+					class="d-flex align-items-center text-decoration-none text-secondary">
+					<div class="category-img-container mr-2"><img th:src="@{${cat.imagePath}}" /></div>
+					<div class="">
+						<span class="text-left">[[${cat.name}]]</span>
+					</div>
+				</a>
 			</div>
-		</div>			
+		</div>
 	</div>
 </body>
+
 </html>

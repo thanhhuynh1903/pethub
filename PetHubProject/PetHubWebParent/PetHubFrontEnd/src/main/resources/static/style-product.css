@@ -224,7 +224,7 @@ body {
 
 }
 .product-item-content-container .product-item-top {
-	height: 110px;
+	height: 90px;
 }
 
 @media screen and (max-width: 800px) {

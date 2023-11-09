@@ -50,41 +50,9 @@ public class ProductController {
 
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
+			@RequestParam(defaultValue = "asc") String sortDir,
 			Model model) {
-		return viewCategoryByPage(alias, 1, model);
-	}
-
-	@GetMapping("/c/{category_alias}/page/{pageNum}")
-	public String viewCategoryByPage(@PathVariable("category_alias") String alias,
-			@PathVariable("pageNum") int pageNum,
-			Model model) {
-		try {
-			Category category = categoryService.getCategory(alias);
-			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
-
-			Page<Product> pageProducts = productService.listByCategory(pageNum, category.getId());
-			List<Product> listProducts = pageProducts.getContent();
-
-			long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
-			long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
-			if (endCount > pageProducts.getTotalElements()) {
-				endCount = pageProducts.getTotalElements();
-			}
-
-			model.addAttribute("currentPage", pageNum);
-			model.addAttribute("totalPages", pageProducts.getTotalPages());
-			model.addAttribute("startCount", startCount);
-			model.addAttribute("endCount", endCount);
-			model.addAttribute("totalItems", pageProducts.getTotalElements());
-			model.addAttribute("pageTitle", category.getName());
-			model.addAttribute("listCategoryParents", listCategoryParents);
-			model.addAttribute("listProducts", listProducts);
-			model.addAttribute("category", category);
-
-			return "product/products_by_category";
-		} catch (CategoryNotFoundException ex) {
-			return "error/404";
-		}
+		return viewCategoryByPage(alias, 0, sortDir, model);
 	}
 
 	@GetMapping("/p/{product_alias}")
@@ -164,45 +132,45 @@ public class ProductController {
 		return "product/search_result";
 	}
 
-//	@GetMapping("/c/{category_alias}/page/{pageNum}")
-//	public String viewCategoryByPage(@PathVariable("category_alias") String alias,
-//			@PathVariable("pageNum") int pageNum,
-//			@RequestParam(defaultValue = "asc") String sortDir,
-//			Model model) {
-//		try {
-//			Category category = categoryService.getCategory(alias);
-//			boolean hasChildCategories = categoryService.hasChildCategories(category);
-////			List<Brand> brands = hasChildCategories ? null : brandService.getBrandsByCategory(category);
-//
-//			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
-//
-//			Page<Product> pageProducts = productService.listByCategory1(pageNum, category.getId(), sortDir);
-//			List<Product> listProducts = pageProducts.getContent();
-//
-//			long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
-//			long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
-//			if (endCount > pageProducts.getTotalElements()) {
-//				endCount = pageProducts.getTotalElements();
-//			}
-//
-//			model.addAttribute("currentPage", pageNum);
-//			model.addAttribute("totalPages", pageProducts.getTotalPages());
-//			model.addAttribute("startCount", startCount);
-//			model.addAttribute("endCount", endCount);
-//			model.addAttribute("totalItems", pageProducts.getTotalElements());
-//			model.addAttribute("pageTitle", category.getName());
-//			model.addAttribute("listCategoryParents", listCategoryParents);
-//			model.addAttribute("listProducts", listProducts);
-//			model.addAttribute("category", category);
-////			model.addAttribute("brands", brands);
-//			model.addAttribute("hasChildCategories", hasChildCategories);
-//			model.addAttribute("sortDir", sortDir);
-//
-//			return "product/products_by_category";
-//		} catch (CategoryNotFoundException ex) {
-//			return "error/404";
-//		}
-//	}
+	@GetMapping("/c/{category_alias}/page/{pageNum}")
+	public String viewCategoryByPage(@PathVariable("category_alias") String alias,
+			@PathVariable("pageNum") int pageNum,
+			@RequestParam(defaultValue = "asc") String sortDir,
+			Model model) {
+		try {
+			Category category = categoryService.getCategory(alias);
+			boolean hasChildCategories = categoryService.hasChildCategories(category);
+			List<Brand> brands = hasChildCategories ? null : brandService.getBrandsByCategory(category);
+
+			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
+
+			Page<Product> pageProducts = productService.listByCategory1(pageNum, category.getId(), sortDir);
+			List<Product> listProducts = pageProducts.getContent();
+
+			long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
+			long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
+			if (endCount > pageProducts.getTotalElements()) {
+				endCount = pageProducts.getTotalElements();
+			}
+
+			model.addAttribute("currentPage", pageNum);
+			model.addAttribute("totalPages", pageProducts.getTotalPages());
+			model.addAttribute("startCount", startCount);
+			model.addAttribute("endCount", endCount);
+			model.addAttribute("totalItems", pageProducts.getTotalElements());
+			model.addAttribute("pageTitle", category.getName());
+			model.addAttribute("listCategoryParents", listCategoryParents);
+			model.addAttribute("listProducts", listProducts);
+			model.addAttribute("category", category);
+			model.addAttribute("brands", brands);
+			model.addAttribute("hasChildCategories", hasChildCategories);
+			model.addAttribute("sortDir", sortDir);
+
+			return "product/products_by_category";
+		} catch (CategoryNotFoundException ex) {
+			return "error/404";
+		}
+	}
 
 	@GetMapping("/b/{brandName}/products/page/{pageNum}")
 	public String viewProductsByBrand(@PathVariable("brandName") String brandName,

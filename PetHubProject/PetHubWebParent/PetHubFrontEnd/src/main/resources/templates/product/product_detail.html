@@ -94,32 +94,32 @@
 							</div>
 							<!--image-->
 
-							<!--detail-->
-							<div class="container-detail col-sm-7 h-100" style="
-    								background: #f5f5fa;margin-bottom: 15px;">
-								<div class="container">
-									<div class="p-3 first-detail">
-										<div>
-											Brand: <a
-												th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir=default'}"><span>[[${product.brand.name}]]</span></a>
-										</div>
-										<div>
-											<h1 class="modify-name">[[${product.name}]]</h1>
-											<div class="row ml-1">
-												<div class="col-xs">
-													<input type="text" class="product-detail-rating-star" dir="ltr"
-														data-size="md" th:value="${product.averageRating}" />
-												</div>
-												<div class="col-xs ml-1 mt-3">
-													<a th:href="@{${product.URI} + '#review'}">[[${product.reviewCount}]]
-														rating(s)</a>
-												</div>
-												<div class="col-xs ml-3 mt-3">
-													<a th:href="@{${product.URI} + '#qa'}">[[${numberOfAnsweredQuestions}]]
-														answered questions</a>
-												</div>
+						<!--detail-->
+						<div class="container-detail col-sm-6 h-100" style="
+    background: #f5f5fa;">
+							<div class="container">
+								<div class="p-3 first-detail">
+									<div>
+										Brand: <a
+										th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir=default&sortField=dafault'}"><span>[[${product.brand.name}]]</span></a>
+									</div>
+									<div>
+										<h1 class="modify-name">[[${product.name}]]</h1>
+										<div class="row ml-1">
+											<div class="col-xs">
+												<input type="text" class="product-detail-rating-star" dir="ltr"
+													data-size="md" th:value="${product.averageRating}" />
+											</div>
+											<div class="col-xs ml-1 mt-3">
+												<a th:href="@{${product.URI} + '#review'}">[[${product.reviewCount}]]
+													rating(s)</a>
+											</div>
+											<div class="col-xs ml-3 mt-3">
+												<a th:href="@{${product.URI} + '#qa'}">[[${numberOfAnsweredQuestions}]]
+													answered questions</a>
 											</div>
 										</div>
+									</div>
 
 										<div class="price-modify">
 
@@ -260,6 +260,9 @@
 
 				<div th:replace="~{product/images_carousel :: content}"></div>
 				<div th:replace="~{fragments :: modal_dialog}"></div>
+
+
+				
 			</div>
 			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>

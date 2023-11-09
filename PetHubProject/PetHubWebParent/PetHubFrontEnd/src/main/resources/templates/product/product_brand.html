@@ -56,7 +56,7 @@
 										<div class="pb-3">
 											<div th:each="cat : ${brand.categories}">
 												<div class="category-item-container p-3" th:if="${cat.enabled == true}">
-													<a th:href="@{'/c/'+${cat.alias}}"
+													<a th:href="@{'/c/'+${cat.alias}+'/page/1?sortDir=default&sortField='+@{sortField}}"
 														class="d-flex align-items-center text-decoration-none text-secondary">
 														<div class="category-img-container d-flex align-items-center mr-2">
 															<img th:src="@{${cat.imagePath}}" />
@@ -98,7 +98,8 @@
 								</div>
 								<!--product in category-->
 								<div class="pagination-container mt-auto">
-									<div th:replace="~{fragments :: pagination('/b/'+${brandName}+'/products', 'product', ${sortDir})}">
+									<div
+										th:replace="~{fragments :: pagination('/b/'+${brandName}+'/products', 'product', ${sortDir}, ${sortField})}">
 									</div>
 								</div>
 							</div>

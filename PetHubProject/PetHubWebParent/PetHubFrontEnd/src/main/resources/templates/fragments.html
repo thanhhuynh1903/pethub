@@ -73,16 +73,16 @@
 
     <!--begin page link-->
     <a
-      th:fragment="page_link(moduleURL, pageNum, label, sortDir)"
+      th:fragment="page_link(moduleURL, pageNum, label, sortDir, sortField)"
       class="page-link text-decoration-none"
-      th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=price&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+      th:href="@{ ${moduleURL} +'/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"
       >[[${label}]]</a
     >
     <!--end page link-->
 
     <!--begin pagination-->
     <div
-      th:fragment="pagination(moduleURL, entityName, sortDir)"
+      th:fragment="pagination(moduleURL, entityName, sortDir, sortField)"
       th:remove="tag"
       class="d-flex"
     >
@@ -97,14 +97,14 @@
                 th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}"
               >
                 <a
-                  th:replace="~{fragments :: page_link(${moduleURL},1, 'First', ${sortDir})}"
+                  th:replace="~{fragments :: page_link(${moduleURL},1, 'First', ${sortDir}, ${sortField})}"
                 />
               </li>
               <li
                 th:class="${currentPage >1 ? 'page-item' : 'page-item disabled'}"
               >
                 <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous', ${sortDir})}"
+                  th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage -1}, 'Previous', ${sortDir}, ${sortField})}"
                 />
               </li>
               <li
@@ -112,21 +112,21 @@
                 th:each="i : ${#numbers.sequence(1, totalPages)}"
               >
                 <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i}, ${sortDir})}"
+                  th:replace="~{fragments :: page_link(${moduleURL}, ${i}, ${i}, ${sortDir}, ${sortField})}"
                 />
               </li>
               <li
                 th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"
               >
                 <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next', ${sortDir})}"
+                  th:replace="~{fragments :: page_link(${moduleURL}, ${currentPage + 1}, 'Next', ${sortDir}, ${sortField})}"
                 />
               </li>
               <li
                 th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}"
               >
                 <a
-                  th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last', ${sortDir})}"
+                  th:replace="~{fragments :: page_link(${moduleURL}, ${totalPages}, 'Last', ${sortDir}, ${sortField})}"
                 />
               </li>
             </ul>
@@ -343,7 +343,6 @@
       </div>
     </a>
     <!-- product card end -->
-   
 
     <!--slider with control-->
     <div
@@ -398,20 +397,20 @@
         value="2.5"
       />
     </div>
-    
+
     <div class="star-rating" th:fragment="star_rating_value(star)">
-                <i class="fa fa-star" data-rating="1"></i>
-                <i class="fa fa-star fa-regular" data-rating="2"></i>
-                <i class="fa fa-star fa-regular" data-rating="3"></i>
-                <i class="fa fa-star fa-regular" data-rating="4"></i>
-                <i class="fa fa-star fa-regular" data-rating="5"></i>
-                <input
-                  type="hidden"
-                  name="whatever1"
-                  class="rating-value"
-                  th:value="${star}"
-                />
-              </div>
+      <i class="fa fa-star" data-rating="1"></i>
+      <i class="fa fa-star fa-regular" data-rating="2"></i>
+      <i class="fa fa-star fa-regular" data-rating="3"></i>
+      <i class="fa fa-star fa-regular" data-rating="4"></i>
+      <i class="fa fa-star fa-regular" data-rating="5"></i>
+      <input
+        type="hidden"
+        name="whatever1"
+        class="rating-value"
+        th:value="${star}"
+      />
+    </div>
 
     <!-- script set star rating  -->
     <script>
@@ -450,9 +449,13 @@
           th:value="${keyword}"
           class="form-control"
           required
-          style="border-radius: 4px 0 0 4px;"
+          style="border-radius: 4px 0 0 4px"
         />
-        <button type="submit" class="btn btn-primary"  style="border-radius: 0 4px 4px 0;">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="border-radius: 0 4px 4px 0"
+        >
           <i class="fas fa-search"></i>
         </button>
         <!--

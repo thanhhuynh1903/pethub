@@ -58,7 +58,9 @@
 
 				<div th:replace="~{fragments :: modal_dialog}"></div>
 
-				<div th:replace="~{fragments :: pagination('/ratings/' + ${product.alias}, 'reviews')}"></div>
+				<div
+					th:replace="~{fragments :: pagination('/ratings/' + ${product.alias}, 'reviews', ${sortDir}, ${sortField})}">
+				</div>
 			</div>
 			<div th:replace="~{navigation :: footer_menu}"></div>
 

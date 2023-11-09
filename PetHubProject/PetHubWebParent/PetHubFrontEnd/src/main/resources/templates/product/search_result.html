@@ -73,7 +73,7 @@
 					</th:block>
 				</div>
 				<div class="d-flex justify-content-center align-items-center pagination-search-result">
-					<div th:replace="~{fragments :: pagination('/search', 'product', ${sortDir})}"></div>
+					<div th:replace="~{fragments :: pagination('/search', 'product', ${sortDir}, ${sortField})}"></div>
 				</div>
 			</div>
 			<!--content end-->

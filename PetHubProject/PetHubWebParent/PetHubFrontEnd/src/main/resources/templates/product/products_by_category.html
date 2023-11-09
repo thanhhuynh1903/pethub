@@ -145,16 +145,6 @@
                   </div>
                 </div>
                 <!--Category-->
-                <th:block th:each="cat : ${category.children}">
-                  <div class="col" th:if="${cat.enabled == true}">
-                    <a th:href="@{'/c/' + ${cat.alias}}">
-                      <img th:src="@{${cat.imagePath}}" height="100" />
-                      <br />
-                      <b>[[${cat.name}]]</b>
-                    </a>
-                  </div>
-                </th:block>
-                <!--product in category-->
                 <div
                   class="product-container d-flex flex-column ml-sm-3 ml-0 align-items-center"
                 >

@@ -211,7 +211,7 @@
 				<span>Sort by</span>
 				<a role="button" class="btn btn-latest btn-outline-primary mx-1 mx-xl-3 mx-lg-2"
 					th:href="${sortDir} == 'latest' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=latest&sortField=createTime'}">Latest</a>
-				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
+				<a role="button" class="btn btn-outline-primary mr-1 mr-xl-3 mr-lg-2 btn-top-sales"
 					th:href="${sortDir} == 'top_sales' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">

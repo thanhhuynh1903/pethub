@@ -122,7 +122,26 @@
 		</div>
 
 	</div>
+	<script th:src="@{/js/common_list.js}"></script>
+	<script type="text/javascript">
+		moduleURL = "[[@{/orders}]]";
+		entityName = "order";
+
+		$(document).ready(function () {
+			handleDefaultDetailLinkClick();
+			handleDetailLinkClick(".linkCustomerDetail", "#customerDetailModal");
+		});
+
+	</script>
+	<script type="text/javascript">
+		moduleURL = "[[@{/orders}]]";
+		entityName = "order";
 	
+		$(document).ready(function () {
+			handleDefaultDetailLinkClick();
+			handleDetailLinkClick(".linkOrderDetail", "#orderDetailModal");
+		});
+	</script>
 </body>
 
 </html>

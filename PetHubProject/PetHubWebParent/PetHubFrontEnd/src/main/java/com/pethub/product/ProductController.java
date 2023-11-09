@@ -51,8 +51,9 @@ public class ProductController {
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
 			@RequestParam(defaultValue = "asc") String sortDir,
+			@RequestParam(defaultValue = "default") String sortField,
 			Model model) {
-		return viewCategoryByPage(alias, 1, sortDir, model);
+		return viewCategoryByPage(alias, 1, sortDir, sortField, model);
 	}
 
 	@GetMapping("/p/{product_alias}")
@@ -101,14 +102,17 @@ public class ProductController {
 	}
 
 	@GetMapping("/search")
-	public String searchFirstPage(String keyword, @RequestParam(defaultValue = "default") String sortDir, Model model) {
-		return searchByPage(keyword, sortDir, 1, model);
+	public String searchFirstPage(String keyword, @RequestParam(defaultValue = "default") String sortDir,
+			@RequestParam String sortField,
+			Model model) {
+		return searchByPage(keyword, sortDir, sortField, 1, model);
 	}
 
 	@GetMapping("/search/page/{pageNum}")
 	public String searchByPage(@RequestParam String keyword, @RequestParam String sortDir,
+			@RequestParam String sortField,
 			@PathVariable("pageNum") int pageNum, Model model) {
-		Page<Product> pageProducts = productService.search1(keyword, pageNum, sortDir);
+		Page<Product> pageProducts = productService.search1(keyword, pageNum, sortDir, sortField);
 		List<Product> listResult = pageProducts.getContent();
 
 		long startCount = (pageNum - 1) * ProductService.SEARCH_RESULTS_PER_PAGE + 1;
@@ -128,6 +132,7 @@ public class ProductController {
 		model.addAttribute("searchKeyword", keyword);
 		model.addAttribute("listResult", listResult);
 		model.addAttribute("sortDir", sortDir);
+		model.addAttribute("sortField", sortField);
 
 		return "product/search_result";
 	}
@@ -136,6 +141,7 @@ public class ProductController {
 	public String viewCategoryByPage(@PathVariable("category_alias") String alias,
 			@PathVariable("pageNum") int pageNum,
 			@RequestParam(defaultValue = "asc") String sortDir,
+			@RequestParam String sortField,
 			Model model) {
 		try {
 			Category category = categoryService.getCategory(alias);
@@ -144,7 +150,7 @@ public class ProductController {
 
 			List<Category> listCategoryParents = categoryService.getCategoryParents(category);
 
-			Page<Product> pageProducts = productService.listByCategory1(pageNum, category.getId(), sortDir);
+			Page<Product> pageProducts = productService.listByCategory1(pageNum, category.getId(), sortDir, sortField);
 			List<Product> listProducts = pageProducts.getContent();
 
 			long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
@@ -165,6 +171,7 @@ public class ProductController {
 			model.addAttribute("brands", brands);
 			model.addAttribute("hasChildCategories", hasChildCategories);
 			model.addAttribute("sortDir", sortDir);
+			model.addAttribute("sortField", sortField);
 
 			return "product/products_by_category";
 		} catch (CategoryNotFoundException ex) {
@@ -176,9 +183,10 @@ public class ProductController {
 	public String viewProductsByBrand(@PathVariable("brandName") String brandName,
 			@PathVariable("pageNum") int pageNum,
 			@RequestParam(defaultValue = "asc") String sortDir,
+			@RequestParam String sortField,
 			Model model) {
 		Brand brand = brandService.getBrandByName(brandName); // fetch the brand
-		Page<Product> page = productService.getProductsByBrandName(brandName, pageNum, sortDir);
+		Page<Product> page = productService.getProductsByBrandName(brandName, pageNum, sortDir, sortField);
 		List<Product> products = page.getContent();
 
 		long startCount = (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
@@ -197,6 +205,7 @@ public class ProductController {
 		model.addAttribute("products", products);
 		model.addAttribute("categories", brand.getCategories()); // add categories to the model
 		model.addAttribute("brand", brand);
+		model.addAttribute("sortField", sortField);
 
 		return "product/product_brand";
 	}

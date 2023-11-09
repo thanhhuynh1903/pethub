@@ -13,7 +13,7 @@
             </li>
             <th:block th:each="parent : ${listCategoryParents}">
               <li class="breadcrumb-item">
-                <a th:href="@{'/c/'+${parent.alias}+'/page/1?sortDir=default'}" class="text-decoration-none">[[${parent.name}]]</a>
+                <a th:href="@{'/c/'+${parent.alias}+'/page/1?sortDir=default&sortField='}" class="text-decoration-none">[[${parent.name}]]</a>
               </li>
             </th:block>
             <li class="breadcrumb-item" th:if="${product != null}">
@@ -36,7 +36,7 @@
           </li>
           <th:block th:each="parent : ${listCategoryParents}">
             <li class="breadcrumb-item active" aria-current="page">
-              <a th:href="@{'/c/'+${parent.alias}+'/page/1?sortDir=default'}" class="text-decoration-none">[[${parent.name}]]</a>
+              <a th:href="@{'/c/'+${parent.alias}+'/page/1?sortDir=default&sortField='}" class="text-decoration-none">[[${parent.name}]]</a>
             </li>
           </th:block>
         </ol>
@@ -53,7 +53,7 @@
             <a th:href="@{/}">Home</a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            <a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir=default'}">[[${brand.name}]]</a>
+            <a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir=default&sortField='}">[[${brand.name}]]</a>
           </li>
         </ol>
       </nav>

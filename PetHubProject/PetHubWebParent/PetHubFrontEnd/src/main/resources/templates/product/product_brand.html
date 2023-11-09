@@ -98,7 +98,8 @@
 								</div>
 								<!--product in category-->
 								<div class="pagination-container mt-auto">
-									<div th:replace="~{fragments :: pagination('/b/'+${brandName}+'/products', 'product', ${sortDir})}">
+									<div
+										th:replace="~{fragments :: pagination('/b/'+${brandName}+'/products', 'product', ${sortDir}, ${sortField})}">
 									</div>
 								</div>
 							</div>

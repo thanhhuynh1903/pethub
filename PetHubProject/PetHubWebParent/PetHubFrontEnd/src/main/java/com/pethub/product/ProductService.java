@@ -51,36 +51,45 @@ public class ProductService {
 		return repo.search(keyword, pageable);
 	}
 
-	public Page<Product> listByCategory1(int pageNum, Integer categoryId, String sortDir) {
+	public Page<Product> listByCategory1(int pageNum, Integer categoryId, String sortDir, String sortField) {
 		String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";
 		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
 
-		if (sortDir.equals("latest")) {
-			return repo.listByCategoryLatest(categoryId, categoryIdMatch, pageable);
-		} else if (sortDir.equals("asc")) {
-			return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
-		} else if ("desc".equals(sortDir)) {
-			return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
-		}else if("top_sales".equals(sortDir)){
-			return repo.listByCategoryTopSales(categoryId, categoryIdMatch, pageable);		
-		} else {
-			return repo.listByCategory(categoryId, categoryIdMatch, pageable);
+		if (sortField.equals("price")) {
+			if (sortDir.equals("asc")) {
+				return repo.listByCategoryPriceAsc(categoryId, categoryIdMatch, pageable);
+			} else if ("desc".equals(sortDir)) {
+				return repo.listByCategoryPriceDesc(categoryId, categoryIdMatch, pageable);
+			}
+		} else if (sortField.equals("createTime")) {
+			if (sortDir.equals("latest")) {
+				return repo.listByCategoryLatest(categoryId, categoryIdMatch, pageable);
+			}
+		} else if (sortField.equals("top_sales")) {
+			return repo.listByCategoryTopSales(categoryId, categoryIdMatch, pageable);
 		}
+
+		return repo.listByCategory(categoryId, categoryIdMatch, pageable);
 	}
 
-	public Page<Product> search1(String keyword, int pageNum, String sortDir) {
+	public Page<Product> search1(String keyword, int pageNum, String sortDir, String sortField) {
 		Pageable pageable = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
-		if ("asc".equals(sortDir)) {
-			return repo.searchSortPriceAsc(keyword, pageable);
-		} else if ("desc".equals(sortDir)) {
-			return repo.searchSortPriceDesc(keyword, pageable);
-		} else if ("latest".equals(sortDir)) {
-			return repo.searchSortByLatest(keyword, pageable);
-		}else if("top_sales".equals(sortDir)){
+
+		if (sortField.equals("price")) {
+			if (sortDir.equals("asc")) {
+				return repo.searchSortPriceAsc(keyword, pageable);
+			} else if ("desc".equals(sortDir)) {
+				return repo.searchSortPriceDesc(keyword, pageable);
+			}
+		} else if (sortField.equals("createTime")) {
+			if (sortDir.equals("latest")) {
+				return repo.searchSortByLatest(keyword, pageable);
+			}
+		} else if (sortField.equals("top_sales")) {
 			return repo.searchTopSales(keyword, pageable);
-		} else {
-			return repo.search(keyword, pageable);
 		}
+
+		return repo.search(keyword, pageable);
 	}
 
 	public List<Product> getAllProducts() {
@@ -95,20 +104,24 @@ public class ProductService {
 		return (List<Product>) repo.findTop6ByOrderByQuantityDesc();
 	}
 
-	public Page<Product> getProductsByBrandName(String brandName, int pageNum, String sortDir) {
+	public Page<Product> getProductsByBrandName(String brandName, int pageNum, String sortDir, String sortField) {
 		Pageable pageable = PageRequest.of(pageNum - 1, SEARCH_RESULTS_PER_PAGE);
 
-		if ("asc".equals(sortDir)) {
-			return repo.findByBrandNameOrderByPriceAsc(brandName, pageable);
-		} else if ("desc".equals(sortDir)) {
-			return repo.findByBrandNameOrderByPriceDesc(brandName, pageable);
-		} else if ("latest".equals(sortDir)) {
-			return repo.findByBrandNameOrderByCreatedDateDesc(brandName, pageable);
-		}else if("top_sales".equals(sortDir)){
+		if (sortField.equals("price")) {
+			if (sortDir.equals("asc")) {
+				return repo.findByBrandNameOrderByPriceAsc(brandName, pageable);
+			} else if ("desc".equals(sortDir)) {
+				return repo.findByBrandNameOrderByPriceDesc(brandName, pageable);
+			}
+		} else if (sortField.equals("createTime")) {
+			if (sortDir.equals("latest")) {
+				return repo.findByBrandNameOrderByCreatedDateDesc(brandName, pageable);
+			}
+		} else if (sortField.equals("top_sales")) {
 			return repo.listByBrandTopSales(brandName, pageable);
-		} else {
-			return repo.findByBrandName(brandName, pageable);
 		}
+
+		return repo.findByBrandName(brandName, pageable);
 	}
 
 }

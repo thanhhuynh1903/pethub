@@ -13,8 +13,7 @@
 }
 
 .rating-product-container .rating-product_vote-container .btn-most-voted,
-.rating-product-container .rating-product_recent-container .btn-most-recent
-{
+.rating-product-container .rating-product_recent-container .btn-most-recent {
 	background-color: #4E73DF !important;
 	color: #FFFFFF !important;
 }
@@ -22,8 +21,8 @@
 .rating-product-container .rating-price {
 	font-size: 30px;
 	font-weight: 600;
-	}
-	
-	.rating-product-container  .star {
-		font-size: 8px !important;
-	}
+}
+
+.rating-product-container .star {
+	font-size: 8px !important;
+}

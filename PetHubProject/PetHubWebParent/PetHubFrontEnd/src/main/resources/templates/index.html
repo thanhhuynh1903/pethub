@@ -29,21 +29,24 @@
 					<div class="d-none d-md-block overflow-hidden vh-100 category-parent sticky-top">
 						<div class=" flex-column text-center d-none category-container d-md-flex sticky-top">
 							<th:block th:each="section : ${listSections}">
-								<div class="category-content-container">
-									<h5 class="text-left px-3 pt-3 user-select-none">
-										[[${section.heading}]]
-									</h5>
-									<!-- catgories container -->
-									<div th:if="${section.type.toString() == 'All_Categories'}">
-										<div th:replace="~{homepage/all_categories_section :: content}"></div>
+								<th:block th:if="${section.description == ''}">
+									<div class="category-content-container">
+										<h5 class="text-left px-3 pt-3 user-select-none">
+											[[${section.heading}]]
+										</h5>
+										<!-- categories container -->
+										<th:block th:if="${section.type.toString() == 'All_Categories'}">
+											<div th:replace="~{homepage/all_categories_section :: content}"></div>
+										</th:block>
+										<th:block th:if="${!#lists.isEmpty(section.brandSections)}">
+											<div th:replace="~{homepage/brand_section :: content}"></div>
+										</th:block>
+										<th:block th:if="${!#lists.isEmpty(section.categorySections)}">
+											<div th:replace="~{homepage/category_section :: content}"></div>
+										</th:block>
 									</div>
-									<div th:unless="${#lists.isEmpty(section.brandSections)}">
-										<div th:replace="~{homepage/brand_section :: content}"></div>
-									</div>
-									<div th:unless="${#lists.isEmpty(section.categorySections)}">
-										<div th:replace="~{homepage/category_section :: content}"></div>
-									</div>
-								</div>
+								</th:block>
+							</th:block>
 						</div>
 
 						<!-- catgories container -->
@@ -66,36 +69,31 @@
 							</div>
 							<!--slider end-->
 							<th:block th:each="section : ${listSections}">
-								<div class="home-sale-container w-100 mb-3 py-3">
-									<div
-										class="pb-2 mx-3 d-flex justify-content-between align-items-center home-sale-container-top">
-										<h5>
-											[[${section.heading}]]
-										</h5>
-
-									</div>
-									<div th:if="${section.description != ''}">
+								<th:block th:if="${section.description != ''}">
+									<div class="home-sale-container w-100 mb-3 py-3">
+										<div class="pb-2 mx-3 d-flex justify-content-between align-items-center home-sale-container-top">
+											<h5>[[${section.heading}]]</h5>
+										</div>
 										<th:block th:unless="${section.type.toString() == 'Text'}">
 											<div class="pb-2 mx-3 d-flex justify-content-between align-items-center home-sale-container-top">
 												<h6>[[${section.description}]]</h6>
 											</div>
 										</th:block>
 										<th:block th:if="${section.type.toString() == 'Text'}">
-											<div th:utext="${section.description}" class="mx-3"></div>
+											<div th:utext="${section.description}" class="px-3"></div>
 										</th:block>
+										<div th:unless="${#lists.isEmpty(section.productSections)}">
+											<div th:replace="~{homepage/product_section :: content}" class="d-flex"></div>
+										</div>
+										<div th:unless="${#lists.isEmpty(section.articleSections)}">
+											<div th:replace="~{homepage/article_section :: content}"></div>
+										</div>
 									</div>
-									<div th:unless="${#lists.isEmpty(section.productSections)}">
-										<div th:replace="~{homepage/product_section :: content}" class="d-flex"></div>
-									</div>
-									<div th:unless="${#lists.isEmpty(section.articleSections)}">
-										<div th:replace="~{homepage/article_section :: content}"></div>
-									</div>
-								</div>
-							</th:block>
+								</th:block>
 						</div>
 				</div>
 			</div>
-<div th:replace="~{navigation :: footer_menu}"></div>
+			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
 	</div>
 

@@ -159,7 +159,7 @@
 				<span>Sort by</span>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-latest"
 					th:href="${sortDir} == 'latest' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=latest'}">Lastest</a>
-				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
+				<a role="button" class="btn btn-outline-primary mr-1 mr-xl-3 mr-lg-2 btn-top-sales"
 					th:href="${sortDir} == 'top_sales' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">

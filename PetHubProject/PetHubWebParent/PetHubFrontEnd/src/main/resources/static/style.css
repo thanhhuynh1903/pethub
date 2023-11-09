@@ -205,7 +205,7 @@ h3 {
 }
 
 .latest-container .product-container__header .btn-latest,
-.top-sales-container .product-container__header .btn-top-sale,
+.top-sales-container .product-container__header .btn-top-sales,
 .price-asc-container .product-container__header .btn-sort-price,
 .price-desc-container .product-container__header .btn-sort-price {
 	background-color: #4E73DF !important;

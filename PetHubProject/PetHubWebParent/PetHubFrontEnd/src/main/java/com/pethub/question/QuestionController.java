@@ -68,6 +68,7 @@ public class QuestionController {
 
 		model.addAttribute("listQuestions", listQuestions);
 		model.addAttribute("product", product);
+		model.addAttribute("customer", customer);
 
 		long startCount = (pageNum - 1) * QuestionService.QUESTIONS_PER_PAGE_FOR_PUBLIC_LISTING + 1;
 		model.addAttribute("startCount", startCount);
@@ -110,6 +111,7 @@ public class QuestionController {
 		model.addAttribute("moduleURL", "/customer/questions");
 
 		model.addAttribute("listQuestions", listQuestions);
+		model.addAttribute("customer", customer);
 
 		long startCount = (pageNum - 1) * QuestionService.QUESTIONS_PER_PAGE_FOR_PUBLIC_LISTING + 1;
 		model.addAttribute("startCount", startCount);

@@ -4,90 +4,135 @@
 <head th:replace="~{fragments :: page_head('Articles - PetHub Admin', 'none')}" />
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="~{navigation :: menu}"></div>
-		<div>
-			<h2>Manage Articles</h2>
-			<a th:href="@{/articles/new}">Create New Articles</a>
-		</div>
+	<div class="container-fluid bg-admin">
+		<div class="w-100">
+			<div class="d-flex w-100">
+				<div th:replace="~{sidebar :: sidebar}" class="w-25" style="height: 100vh;"></div>
+				<div class="d-flex flex-column" style="width: 100%;">
+					<div th:replace="~{navigation :: menu}"></div>
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 3rem;">
+								<div class="d-flex justify-content-between w-100">
+									<h2 style="color: #494A6B; font-size: 26px;">Manage Articles</h2>
 
-		<div th:replace="~{fragments :: search_form_and_message}" />
+								</div>
+								<div class="w-100 table-container">
+									<div class="table-title w-100" style="padding-bottom: 0px!important;">
+										<div class="d-flex w-100">
+											<div class="d-flex w-100 align-items-center mb-2">
 
-		<div>
-			<table class="table table-bordered table-striped table-hover">
-				<thead class="thead-light">
-					<tr>
-						<th th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
-						<th th:replace="~{fragments :: column_link('title', 'Title', 'none')}" />
+												<div class="col-sm-3 d-flex">
+													<a th:href="@{/articles/new}"
+														class="btn btn-primary rounded d-flex justify-content-center align-items-center btn-style"
+														style="background: #4E73DF;color: white; height: 30px; border: none; padding: 22px 16px; border-radius: 10px;">
+														<i
+															class="bi bi-plus-circle-fill mr-2 d-flex align-items-center"></i>
+														<span>Create</span></a>
+												</div>
+												<div class="col-sm-9 d-flex justify-content-end">
+													<div>
+														<div th:replace="~{fragments :: search_form_and_message}" />
+													</div>
+												</div>
+											</div>
+										</div>
 
-						<th class="">
-							<th th:replace="~{fragments :: column_link('type', 'Type', 'tag')}" />
-						</th>
+										<div>
+											<table class="table table-striped table-hover w-100 borderless">
+											<thead style="background-color: #FAFAFA; padding: 10px 0;" class="py-5">
+													<tr>
+														<th
+															th:replace="~{fragments :: column_link('id', 'ID', 'none')}" />
+														<th
+															th:replace="~{fragments :: column_link('title', 'Title', 'none')}" />
 
-						<th th:replace="~{fragments :: column_link('user', 'Created by', 'none')}" />
+														<th class="">
+															<th
+																th:replace="~{fragments :: column_link('type', 'Type', 'tag')}" />
+														</th>
 
-						<th class="">
-							<th th:replace="~{fragments :: column_link('updatedTime', 'Updated Time', 'tag')}" />
-						</th>
+														<th
+															th:replace="~{fragments :: column_link('user', 'Created by', 'none')}" />
 
-						<th th:replace="~{fragments :: column_link('published', 'Published', 'none')}" />
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="article : ${listArticles}">
-						<td>[[${article.id}]]</td>
-						<td>[[${article.title}]]</td>
-						<td class="">[[${article.type}]]</td>
-						<td>[[${article.user.fullName}]]</td>
-						<td class="">
-							<div th:replace="~{fragments :: format_time(${article.updatedTime})}"></div>
-						</td>
-						<td>
-							<div
-								th:replace="~{fragments :: status(${article.published}, 'article', '/articles/' + ${article.id})}" />
-						</td>
-						<td>
-							<a class="fas fa-file-alt fa-2x icon-green link-detail"
-								th:href="@{'/articles/detail/' + ${article.id}}"
-								title="View details of this article"></a>
-							&nbsp;&nbsp;
-							<div th:replace="~{fragments :: edit('article', '/articles/edit/' + ${article.id})}" />
-							&nbsp;&nbsp;
-							<div
-								th:replace="~{fragments :: delete('article', ${article.id}, '/articles/delete/' + ${article.id}, true)}" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+														<th class="">
+															<th
+																th:replace="~{fragments :: column_link('updatedTime', 'Updated Time', 'tag')}" />
+														</th>
+
+														<th
+															th:replace="~{fragments :: column_link('published', 'Published', 'none')}" />
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="article : ${listArticles}">
+														<td>[[${article.id}]]</td>
+														<td>[[${article.title}]]</td>
+														<td class="">[[${article.type}]]</td>
+														<td>[[${article.user.fullName}]]</td>
+														<td class="">
+															<div
+																th:replace="~{fragments :: format_time(${article.updatedTime})}">
+															</div>
+														</td>
+														<td>
+															<div
+																th:replace="~{fragments :: status(${article.published}, 'article', '/articles/' + ${article.id})}" />
+														</td>
+														<td>
+															<a class="fas fa-file-alt fa-2x icon-green link-detail"
+																th:href="@{'/articles/detail/' + ${article.id}}"
+																title="View details of this customer"
+																style="font-size: 24px;color: #A7B9EF;transform: translateY(4px);"></a>
+															&nbsp;&nbsp;
+															<div
+																th:replace="~{fragments :: edit('article', '/articles/edit/' + ${article.id})}" />
+															&nbsp;&nbsp;
+															<div
+																th:replace="~{fragments :: delete('article', ${article.id}, '/articles/delete/' + ${article.id}, true)}" />
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 
 
-		<div th:replace="~{fragments :: pagination('articles')}"></div>
+									
 
-		<div th:replace="~{modal_fragments :: confirm_modal}" />
+									<div th:replace="~{modal_fragments :: confirm_modal}" />
 
-		<div class="modal fade" id="detailModal">
-			<div class="modal-dialog modal-xl">
-				<div class="modal-content">
+									<div class="modal fade" id="detailModal">
+										<div class="modal-dialog modal-xl">
+											<div class="modal-content">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div th:replace="~{fragments :: pagination('articles')}"></div>
+							</div>
+						</div>
+					</div>
+						<div th:replace="~{fragments :: footer}"></div>
+
 				</div>
 			</div>
+
+		
 		</div>
-
-		<div th:replace="~{fragments :: footer}"></div>
-
 	</div>
-	<script th:src="@{/js/common_list.js}"></script>
-	<script type="text/javascript">
-		moduleURL = "[[@{/articles}]]";
-		entityName = "article";
+		<script th:src="@{/js/common_list.js}"></script>
+		<script type="text/javascript">
+			moduleURL = "[[@{/articles}]]";
+			entityName = "article";
 
-		$(document).ready(function () {
-			handleDefaultDetailLinkClick();
-		});
+			$(document).ready(function () {
+				handleDefaultDetailLinkClick();
+			});
 
 
-	</script>
+		</script>
 </body>
 
 </html>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<head>
 <head th:replace="~{fragments :: page_head('Questions - PetHub Admin', 'none')}" />
-
+<link rel="stylesheet" type="text/css" th:href="@{/question.css}" />
+</head>
 <body>
 	<div class="container-fluid bg-admin">
 		<div class="w-100">
@@ -76,7 +77,7 @@
 													<td>
 														<a class="fas fa-file-alt fa-2x icon-green link-detail"
 															th:href="@{'/questions/detail/' + ${question.id}}"
-															title="View details of this question"></a>
+															title="View details of this question" style="font-size: 24px;color: #A7B9EF;transform: translateY(4px);"></a>
 														&nbsp;
 														<div th:replace="~{fragments :: edit('question', '/questions/edit/' + ${question.id})}" />
 														&nbsp;

@@ -5,14 +5,21 @@
 
 <body>
 	<div class="container-fluid">
-		<div th:replace="navigation :: menu"></div>
-
-		<div>
+		<div class="w-100">
+			<div class="d-flex w-100">
+				<div th:replace="~{sidebar :: sidebar}" class="w-25" style="height: 100vh;"></div>
+				<div class="d-flex flex-column" style="width: 100%;">
+					<div th:replace="~{navigation :: menu}"></div>
+					<div class="w-100 d-flex flex-column justify-content-center align-items-center">
+						<div class="main-content-container">
+							<div style="margin-top: 3rem;">
+								<div class="text-center w-100">
 			<h2>Home Page Customization | [[${pageTitle}]]</h2>
-		</div>
-		<div class="mb-2">
+			<div class="mb-2">
 			This kind of section will display all categories. There should be only one section of this type.
 		</div>
+		</div>
+		
 
 		<form th:action="@{/sections/save/all_categories}" th:object="${section}" method="post"
 			style="max-width: 600px; margin: 0 auto;">
@@ -20,7 +27,9 @@
 			<input type="hidden" th:field="*{type}" />
 			<input type="hidden" th:field="*{sectionOrder}" />
 
-			<div class="border border-secondary rounded p-3">
+			<div class="p-3" style="background-color: white;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+                      rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                    border-radius: 10px;">
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Heading:</label>
@@ -54,8 +63,14 @@
 				</div>
 			</div>
 		</form>
-
-		<div th:replace="~{fragments :: footer}"></div>
+							</div>
+						</div>
+					</div>
+					<div th:replace="~{fragments :: footer}"></div>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]";

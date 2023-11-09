@@ -32,13 +32,16 @@
 						</div>
 						<div class="card-body">
 							<div>
-								<i class="fas fa-user"></i> <b>[[${order.recipientName}]]</b>
+								<i class="fas fa-user"></i>
+								<b>[[${order.recipientName}]]</b>
 							</div>
 							<div>
-								<i class="fas fa-home"></i> [[${order.recipientAddress}]]
+								<i class="fas fa-home"></i>
+								[[${order.recipientAddress}]]
 							</div>
 							<div>
-								<i class="fas fa-phone-alt"></i> [[${order.phoneNumber}]]
+								<i class="fas fa-phone-alt"></i>
+								[[${order.phoneNumber}]]
 							</div>
 							<div th:if="${order.COD}">
 								<span>COD: <b>
@@ -94,7 +97,8 @@
 
 		<div class="modal fade" id="orderDetailModal">
 			<div class="modal-dialog modal-xl">
-				<div class="modal-content"></div>
+				<div class="modal-content">
+				</div>
 			</div>
 		</div>
 

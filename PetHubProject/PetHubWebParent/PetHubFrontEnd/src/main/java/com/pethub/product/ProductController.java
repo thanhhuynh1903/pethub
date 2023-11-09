@@ -51,7 +51,7 @@ public class ProductController {
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
 			@RequestParam(defaultValue = "asc") String sortDir,
-			@RequestParam String sortField,
+			@RequestParam(defaultValue = "default") String sortField,
 			Model model) {
 		return viewCategoryByPage(alias, 1, sortDir, sortField, model);
 	}

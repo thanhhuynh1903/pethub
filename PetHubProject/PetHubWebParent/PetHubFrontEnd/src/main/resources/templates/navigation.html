@@ -24,6 +24,7 @@
 							<input class="search px-4 search-input" type="search" name="keyword" placeholder="Search for..."
 								th:value="${searchKeyword}" required>
 							<input type="hidden" name="sortDir" value="default">
+							<input type="hidden" name="sortField" value="default">
 							<input value="Search" type="submit" class="border-0 text-primary px-4 search-button"></input>
 						</div>
 					</form>
@@ -158,9 +159,9 @@
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-latest"
-					th:href="${sortDir} == 'latest' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=latest'}">Lastest</a>
+					th:href="${sortDir} == 'latest' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default&sortField=default' + ${sortField}} : @{'/c/'+${category.alias}+'/page/1?sortDir=latest&sortField=createTime'}">Lastest</a>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
-					th:href="${sortDir} == 'top_sales' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=top_sales'}">Top
+					th:href="${sortDir} == 'top_sales' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default&sortField=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">
 					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -169,9 +170,9 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item text-dark color-asc-picker" href="#"
-							th:href="${sortDir} == 'asc' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=asc'}">Ascending</a>
+							th:href="${sortDir} == 'asc' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default&sortField=default' + ${sortField}} : @{'/c/'+${category.alias}+'/page/1?sortDir=asc&sortField=price'}">Ascending</a>
 						<a class="dropdown-item text-dark color-desc-picker" href="#"
-							th:href="${sortDir} == 'desc' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=desc'}">Descending</a>
+							th:href="${sortDir} == 'desc' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default&sortField=default' + ${sortField}} : @{'/c/'+${category.alias}+'/page/1?sortDir=desc&sortField=price'}">Descending</a>
 					</div>
 				</div>
 			</div>
@@ -183,9 +184,9 @@
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn-outline-primary btn-latest btn mx-1 mx-xl-3 mx-lg-2"
-					th:href="${sortDir} == 'latest' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=latest'}">Latest</a>
+					th:href="${sortDir} == 'latest' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=latest&sortField=createTime'}">Latest</a>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
-					th:href="${sortDir} == 'top_sales' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=top_sales'}">Top
+					th:href="${sortDir} == 'top_sales' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">
 					<button class="btn-sort-price btn-outline-primary btn dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -194,9 +195,9 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item text-dark color-asc-picker" href="#"
-							th:href="${sortDir} == 'asc' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=asc'}">Ascending</a>
+							th:href="${sortDir} == 'asc' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=asc&sortField=price'}">Ascending</a>
 						<a class="dropdown-item text-dark color-desc-picker" href="#"
-							th:href="${sortDir} == 'desc' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=desc'}">Descending</a>
+							th:href="${sortDir} == 'desc' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=desc&sortField=price'}">Descending</a>
 					</div>
 				</div>
 			</div>
@@ -209,9 +210,9 @@
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn btn-latest btn-outline-primary mx-1 mx-xl-3 mx-lg-2"
-					th:href="${sortDir} == 'latest' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=latest'}">Latest</a>
+					th:href="${sortDir} == 'latest' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=latest&sortField=createTime'}">Latest</a>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
-					th:href="${sortDir} == 'top_sales' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=top_sales'}">Top
+					th:href="${sortDir} == 'top_sales' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">
 					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -220,9 +221,9 @@
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item text-dark color-asc-picker" href="#"
-							th:href="${sortDir} == 'asc' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=asc'}">Ascending</a>
+							th:href="${sortDir} == 'asc' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=asc&sortField=price'}">Ascending</a>
 						<a class="dropdown-item text-dark color-desc-picker" href="#"
-							th:href="${sortDir} == 'desc' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=desc'}">Descending</a>
+							th:href="${sortDir} == 'desc' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=desc&sortField=price'}">Descending</a>
 					</div>
 				</div>
 			</div>

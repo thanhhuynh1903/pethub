@@ -204,7 +204,7 @@
         <!--<a class="nav-link" th:href="@{/report}">Sales Report</a>-->
       </li>
 
-      <li sec:authorize="hasAnyAuthority('Admin','Editor')">
+     <!-- <li sec:authorize="hasAnyAuthority('Admin','Editor')">
         <a th:href="@{/landing}" class="logo" style="margin-bottom: 0px">
           <span class="icon"><i class="fa-solid">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 48 35" fill="none">
@@ -221,8 +221,8 @@
           <span class="text">Article</span>
         </a>
 
-        <!--<a class="nav-link" th:href="@{/articles}">Articles</a>-->
-      </li>
+        <a class="nav-link" th:href="@{/articles}">Articles</a>
+      </li>-->
 
       <li sec:authorize="hasAnyAuthority('Admin','Editor')">
         <a th:href="@{/menus}" class="logo" style="margin-bottom: 0px">

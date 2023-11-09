@@ -50,142 +50,145 @@
 				<!--product detail-->
 				<div class=" d-flex bg-color justify-content-center px-2">
 					<!--image-->
-					<div class="col-sm-8 container-detail-1">
-						<div class="row" style="margin-bottom: 15px;">
-						<div class="col-sm-5 container-detail-1" style="margin-bottom: 15px;position: sticky;top: 25px;">
-							<div style="min-width: 346px;max-height: 346px; min-height: 345.9px;">
-								<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid" index="0"
-									style="max-height: inherit;min-width: 100% !important;object-fit: contain;" />
-							</div>
-
-							<!--thumbnail image slide show-->
-							<div class="d-flex justify-content-center">
-								<div class="m-2 border border-secondary p-1">
-									<img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="50"
-										width="55" index="0" />
+					<div class="col-sm-8 container-detail-1" style="
+    background-color: #f5f5fa;
+">
+						<div class="row" style="margin-bottom: 15px;    margin-left: 0px;background-color: #f5f5fa;;">
+							<div class="col-sm-5 container-detail-1"
+								style="margin-bottom: 15px;position: sticky;top: 25px;">
+								<div style="min-width: 346px;max-height: 346px; min-height: 345.9px;">
+									<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid" index="0"
+										style="max-height: inherit;min-width: 100% !important;object-fit: contain;" />
 								</div>
-								<!--extra image-->
-								<th:block th:each="extraImage, status : ${product.images}">
+
+								<!--thumbnail image slide show-->
+								<div class="d-flex justify-content-center">
 									<div class="m-2 border border-secondary p-1">
-										<img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="50"
-											width="55" th:index="${status.count}" />
+										<img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="50"
+											width="55" index="0" />
 									</div>
-								</th:block>
-								<!--extra image-->
-							</div>
-							<!--thumbnail slide show-->
-							<div class="p-2">
-								<div>
-									<hr />
-								</div>
-								<div>
-									<h6>Product Detail:</h6>
-								</div>
-								<div class="d-flex font-mode">
-									<span><i class="bi bi-check-circle-fill text-primary"
-											style="font-size: 15px"></i></span>
-									<div th:utext="${product.shortDescription}"></div>
-								</div>
-							</div>
-
-						</div>
-						<!--image-->
-
-						<!--detail-->
-						<div class="container-detail col-sm-6 h-100" style="
-    background: #f5f5fa;">
-							<div class="container">
-								<div class="p-3 first-detail">
-									<div>
-										Brand: <a
-											th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir=default'}"><span>[[${product.brand.name}]]</span></a>
-									</div>
-									<div>
-										<h1 class="modify-name">[[${product.name}]]</h1>
-										<div class="row ml-1">
-											<div class="col-xs">
-												<input type="text" class="product-detail-rating-star" dir="ltr"
-													data-size="md" th:value="${product.averageRating}" />
-											</div>
-											<div class="col-xs ml-1 mt-3">
-												<a th:href="@{${product.URI} + '#review'}">[[${product.reviewCount}]]
-													rating(s)</a>
-											</div>
-											<div class="col-xs ml-3 mt-3">
-												<a th:href="@{${product.URI} + '#qa'}">[[${numberOfAnsweredQuestions}]]
-													answered questions</a>
-											</div>
-										</div>
-									</div>
-
-									<div class="price-modify">
-
-										<span th:if="${product.discountPercent <= 0}">
-											<div
-												th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
-											</div>
-										</span>
-									</div>
-									<div th:if="${product.discountPercent > 0}">
-										<!--Price-->
-										<del th:if="${product.discountPercent > 0}" class="text-secondary"
-											style="font-size: small;">
-											<div
-												th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
-											</div>
-										</del>
-										<span class="price">
-											<div
-												th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
-											</div>
-										</span>
-										<span style="color:#fff;font-weight: 500;background-color: #FF6969;margin-left: 20px; border-radius: 8px;
-									padding: 3px;">
-											-[[${#numbers.formatDecimal(product.discountPercent, 1,
-											THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%
-
-										</span>
-									</div>
-
-
-									<div>
-										<!--product full description-->
-										<!--if error , copy this paste the down full description-->
-										<div class="row">
-											<div class="col-12">
-												<div>
-													<hr />
-												</div>
-												<div>
-													<h3>Product Description:</h3>
-												</div>
-												<div th:utext="${product.fullDescription}"></div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-
-								<div class="p-3 second-detail">
-									<span>
-										<h3>Product Specification</h3>
-									</span>
-									<th:block th:each="detail : ${product.details}">
-										<div class="child-second-dt">
-											<div class="layout-outside">
-												<div class="spacing"
-													style="display: grid;grid-template-columns: 55% 45%;gap: 4px;">
-													<span><b>[[${detail.name}]]</b></span>
-													<span>[[${detail.value}]]</span>
-												</div>
-											</div>
+									<!--extra image-->
+									<th:block th:each="extraImage, status : ${product.images}">
+										<div class="m-2 border border-secondary p-1">
+											<img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="50"
+												width="55" th:index="${status.count}" />
 										</div>
 									</th:block>
+									<!--extra image-->
+								</div>
+								<!--thumbnail slide show-->
+								<div class="p-2">
+									<div>
+										<hr />
+									</div>
+									<div>
+										<h6>Product Detail:</h6>
+									</div>
+									<div class="d-flex font-mode">
+										<span><i class="bi bi-check-circle-fill text-primary"
+												style="font-size: 15px"></i></span>
+										<div th:utext="${product.shortDescription}"></div>
+									</div>
+								</div>
+
+							</div>
+							<!--image-->
+
+							<!--detail-->
+							<div class="container-detail col-sm-7 h-100" style="
+    								background: #f5f5fa;margin-bottom: 15px;">
+								<div class="container">
+									<div class="p-3 first-detail">
+										<div>
+											Brand: <a
+												th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir=default'}"><span>[[${product.brand.name}]]</span></a>
+										</div>
+										<div>
+											<h1 class="modify-name">[[${product.name}]]</h1>
+											<div class="row ml-1">
+												<div class="col-xs">
+													<input type="text" class="product-detail-rating-star" dir="ltr"
+														data-size="md" th:value="${product.averageRating}" />
+												</div>
+												<div class="col-xs ml-1 mt-3">
+													<a th:href="@{${product.URI} + '#review'}">[[${product.reviewCount}]]
+														rating(s)</a>
+												</div>
+												<div class="col-xs ml-3 mt-3">
+													<a th:href="@{${product.URI} + '#qa'}">[[${numberOfAnsweredQuestions}]]
+														answered questions</a>
+												</div>
+											</div>
+										</div>
+
+										<div class="price-modify">
+
+											<span th:if="${product.discountPercent <= 0}">
+												<div
+													th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
+												</div>
+											</span>
+										</div>
+										<div th:if="${product.discountPercent > 0}">
+											<!--Price-->
+											<del th:if="${product.discountPercent > 0}" class="text-secondary"
+												style="font-size: small;">
+												<div
+													th:replace="~{product/product_fragment :: price_fragment(${product.price})}">
+												</div>
+											</del>
+											<span class="price">
+												<div
+													th:replace="~{product/product_fragment :: price_fragment(${product.discountPrice})}">
+												</div>
+											</span>
+											<span style="color:#fff;font-weight: 500;background-color: #FF6969;margin-left: 20px; border-radius: 8px;
+									padding: 3px;">
+												-[[${#numbers.formatDecimal(product.discountPercent, 1,
+												THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]%
+
+											</span>
+										</div>
+
+
+										<div>
+											<!--product full description-->
+											<!--if error , copy this paste the down full description-->
+											<div class="row">
+												<div class="col-12">
+													<div>
+														<hr />
+													</div>
+													<div>
+														<h3>Product Description:</h3>
+													</div>
+													<div th:utext="${product.fullDescription}"></div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+									<div class="p-3 second-detail">
+										<span>
+											<h3>Product Specification</h3>
+										</span>
+										<th:block th:each="detail : ${product.details}">
+											<div class="child-second-dt">
+												<div class="layout-outside">
+													<div class="spacing"
+														style="display: grid;grid-template-columns: 55% 45%;gap: 4px;">
+														<span><b>[[${detail.name}]]</b></span>
+														<span>[[${detail.value}]]</span>
+													</div>
+												</div>
+											</div>
+										</th:block>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-						<div class="d-block">
+						<div class="d-block " style="padding: 15px;background-color: #fff;border-radius: 10px;">
 							<div th:replace="~{product/question_answer :: content}"></div>
 							<div th:replace="~{product/product_top_reviews :: content}"></div>
 						</div>

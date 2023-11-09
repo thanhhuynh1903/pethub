@@ -69,7 +69,7 @@
 												<th:block
 													th:if="${order.returnRequested == false && order.delivered == true && order.returned == false}">
 													&nbsp;&nbsp;&nbsp;
-													<a class="fas fa-undo fa-2x icon-dark linkReturnOrder" href=""
+													<a class="fas fa-undo text-decoration-none linkReturnOrder" href=""
 														th:classappend="'linkReturn' + ${order.id}"
 														th:orderId="${order.id}" title="Return this order"></a>
 												</th:block>

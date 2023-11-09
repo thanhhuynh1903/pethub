@@ -20,7 +20,7 @@
 				<nav aria-label="breadcrumb" class="w-100 px-lg-5 px-2">
 					<ol class="breadcrumb m-0">
 						<li class="breadcrumb-item"><a class="text-decoration-none" th:href="@{/}">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">My Orders</li>
+						<li class="breadcrumb-item active" aria-current="page" style="color:#007bff;;">My Reviews</li>
 					</ol>
 				</nav>
 				<div class="w-100 address-main-container profile-main-container mt-1 mb-3">
@@ -30,7 +30,7 @@
 					<div class="address-content-container profile-content-container">
 						<div class="w-100 d-flex justify-content-between align-items-center">
 							<div class="mb-3 mr-auto">
-								<span class="title-header text-left">My Orders</span>
+								<span class="title-header text-left">My Reviews</span>
 							</div>
 							<div >
 							<div th:replace="~{fragments :: search_form}"></div>
@@ -62,7 +62,7 @@
 										<td>[[${review.rating}]] <i class="far fa-star"></i></td>
 										<td>[[${review.reviewTime}]]</td>
 										<td>
-											<a class="fas fa-file-alt fa-2x icon-green link-detail"
+											<a class="fas fa-eye link-detail text-decoration-none"
 												th:href="@{'/reviews/detail/' + ${review.id}}"
 												title="View details of this review"></a>
 										</td>

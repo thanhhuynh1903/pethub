@@ -343,6 +343,7 @@
       </div>
     </a>
     <!-- product card end -->
+   
 
     <!--slider with control-->
     <div
@@ -397,6 +398,20 @@
         value="2.5"
       />
     </div>
+    
+    <div class="star-rating" th:fragment="star_rating_value(star)">
+                <i class="fa fa-star" data-rating="1"></i>
+                <i class="fa fa-star fa-regular" data-rating="2"></i>
+                <i class="fa fa-star fa-regular" data-rating="3"></i>
+                <i class="fa fa-star fa-regular" data-rating="4"></i>
+                <i class="fa fa-star fa-regular" data-rating="5"></i>
+                <input
+                  type="hidden"
+                  name="whatever1"
+                  class="rating-value"
+                  th:value="${star}"
+                />
+              </div>
 
     <!-- script set star rating  -->
     <script>

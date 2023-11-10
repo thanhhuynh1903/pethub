@@ -14,19 +14,14 @@
 	<div class="w-100 h-100">
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
-			<div class="w-100 mt-3">
-				<div>
+			<div style="margin-top: 3rem;">
+				<div class="d-flex justify-content-center w-100">
 					<h2>Write Product Review</h2>
 				</div>
 
-				<div>
-					<img th:src="@{${product.mainImagePath}}" style="height: 200px" />
-				</div>
+
 
 				<div>
-					<div>
-						<h4>[[${product.name}]]</h4>
-					</div>
 
 					<div th:if="${customerReviewed}">
 						<span class="text-success">You already reviewed this product.</span>
@@ -41,8 +36,22 @@
 
 				<form th:if="${customerCanReview}" th:action="@{/post_review}" method="post" th:object="${review}"
 					style="max-width: 600px; margin: 0 auto">
+
 					<input type="hidden" name="productId" th:value="${product.id}" />
-					<div class="border border-secondary rounded p-3">
+					<div class="p-3 m-5" style="background-color: white;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+                      rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                    border-radius: 10px;">
+						<div style="min-width: 346px;
+    max-height: 346px;
+    min-height: 345.9px;">
+							<img th:src="@{${product.mainImagePath}}" style="    max-height: inherit;
+    min-width: 100% !important;
+    object-fit: contain;" />
+						</div>
+						<div>
+							<h4>[[${product.name}]]</h4>
+						</div>
+
 						<p>
 							<input type="text" th:field="*{rating}" class="product-rating-star" dir="ltr" data-size="md"
 								data-step="1" />

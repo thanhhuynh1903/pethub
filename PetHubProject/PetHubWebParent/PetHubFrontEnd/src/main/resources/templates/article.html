@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
+<head>
+
+	<head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-article.css}" />
+</head>
 
 <body>
-	<div class="container-fluid">
-		<div th:replace="navigation :: header_menu"></div>
-		<div th:replace="navigation :: search_nav"></div>
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="navigation :: header_menu"></div>
+			<div class="w-100 mt-3">
+				<div class="article-card-container mx-5 pb-5">
+					<div class="content">
+						<div class="img-container">
+							<img th:src="@{images/login.jpg}">
+						</div>
+						<div class="text-center mt-3">
+							<h2>[[${article.title}]]</h2>
+						</div>
 
-		<div>
-			<h2>[[${article.title}]]</h2>
+						<div th:utext="${article.content}" class=""></div>
+					</div>
+				</div>
+			</div>
+			<div th:replace="navigation :: footer_menu"></div>
 		</div>
-
-		<div th:utext="${article.content}" class="border p-2 m-2"></div>
-
-		<div th:replace="navigation :: footer_menu"></div>
 	</div>
 </body>
 

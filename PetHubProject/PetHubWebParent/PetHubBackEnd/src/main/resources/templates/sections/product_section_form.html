@@ -18,7 +18,7 @@
 										<h2>Home Page Customization | [[${pageTitle}]]</h2>
 									</div>
 
-									<form th:action="@{/sections/save/product}" th:object="${section}" method="post" style="max-width: 600px; margin: 0 auto;">
+									<form th:action="@{/sections/save/product}" th:object="${section}" method="post" style="max-width: 1200px; margin: 0 auto;">
 										<input type="hidden" th:field="*{id}" />
 										<input type="hidden" th:field="*{type}" />
 										<input type="hidden" th:field="*{sectionOrder}" />
@@ -51,11 +51,11 @@
 															<a class="fas fa-trash icon-dark link-remove" href=""
 																th:colNumber="${status.count}"></a>
 															&nbsp;&nbsp;&nbsp;&nbsp;
-															<a class="fas fa-chevron-left icon-dark link-move-left"
+															<a class="fas fa-chevron-left icon-dark link-move-left text-decoration-none"
 																href="" title="Move this product to the left"
 																th:colNumber="${status.count}"></a>
 															&nbsp;&nbsp;&nbsp;&nbsp;
-															<a class="fas fa-chevron-right icon-dark link-move-right"
+															<a class="fas fa-chevron-right icon-dark link-move-right text-decoration-none"
 																href="" title="Move this product to the right"
 																th:colNumber="${status.count}"></a>
 														</div>

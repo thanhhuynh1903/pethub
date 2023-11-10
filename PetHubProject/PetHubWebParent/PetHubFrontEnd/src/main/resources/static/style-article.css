@@ -8,5 +8,11 @@
 }
 .article-card-container .img-container {
 	width: 100%;
-	height: 350px;
+	height: 300px;
+}
+
+.article-card-container .img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }

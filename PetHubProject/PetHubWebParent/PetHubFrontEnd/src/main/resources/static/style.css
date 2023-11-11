@@ -234,6 +234,9 @@ h3 {
  .profile-table tbody tr td ul > li {
 	list-style-type: none;
  }
+ .semibold {
+	 font-weight: 600;
+ }
 @media screen and (max-width: 1160px) {
 	.search-product-container {
 		grid-template-columns: repeat(5, 1fr);

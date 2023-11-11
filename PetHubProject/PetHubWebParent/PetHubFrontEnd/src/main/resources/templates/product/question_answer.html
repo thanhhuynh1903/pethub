@@ -3,18 +3,30 @@
 
 <body>
 	<div th:fragment="content">
-		<div class="d-flex justify-content-between">
+		<div class="d-flex justify-content-between align-items-center mb-2">
 			<h3 id="qa">Questions & answers</h3>
-			<div sec:authorize="isAuthenticated()">
-				<div>
-					<th:block th:if="${numberOfQuestions > 3}">
-						<a th:href="@{'/questions/' + ${product.alias}}" class="btn btn-primary">View all [[${numberOfQuestions}]] </a>
-					</th:block>
+			<div>
+				<div sec:authorize="isAuthenticated()">
+					<div>
+						<th:block th:if="${numberOfQuestions > 3}">
+							<a th:href="@{'/questions/' + ${product.alias}}" class="btn btn-outline-primary">View all
+								([[${numberOfQuestions}]]) </a>
+						</th:block>
+					</div>
+				</div>
+				<div sec:authorize="!isAuthenticated()">
+					<form th:action="@{'/ask_question/' + ${product.alias}}">
+						<button class="btn btn-outline-primary" type="submit">Ask a Question</button>
+						<th:block th:if="${numberOfQuestions > 3}">
+							<a th:href="@{'/questions/' + ${product.alias}}" class="btn btn-outline-primary ml-2">View all
+								([[${numberOfQuestions}]])</a>
+						</th:block>
+					</form>
 				</div>
 			</div>
 		</div>
 		<div sec:authorize="isAuthenticated()">
-			<form class="form-inline mb-3 mt-2 w-100 d-flex justify-content-between" id="formQuestion">
+			<form class="form-inline my-3 px-4 w-100 d-flex justify-content-between" id="formQuestion">
 				<div class="form-textarea">
 					<textarea id="question" class="form-control w-100" rows="2" placeholder="Type your question here..."
 						required></textarea>
@@ -23,15 +35,6 @@
 			</form>
 		</div>
 		<div th:replace="~{question/questions_votes :: content}"></div>
-		<div sec:authorize="!isAuthenticated()">
-			<form th:action="@{'/ask_question/' + ${product.alias}}">
-				<th:block th:if="${numberOfQuestions > 3}">
-					<a th:href="@{'/questions/' + ${product.alias}}">View all [[${numberOfQuestions}]]
-						questions</a>&nbsp;&nbsp;
-				</th:block>
-				<button class="btn btn-secondary" type="submit">Ask a Question</button>
-			</form>
-		</div>
 	</div>
 </body>
 

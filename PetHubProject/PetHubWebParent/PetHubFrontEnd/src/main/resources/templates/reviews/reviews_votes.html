@@ -5,17 +5,17 @@
 	<div th:fragment="content" class="">
 		<div class="w-100">
 			<th:block th:each="review : ${listReviews}">
-				<div class="w-100">
-					<div class="px-3">
-						<div>[[${review.customer.fullName}]]</div>
+				<div class="w-100 px-4">
+					<div >
+						<div class="semibold">[[${review.customer.fullName}]]</div>
 						<div class="col-xs"><input type="text" class="product-detail-rating-star" dir="ltr"
 								data-size="xs" th:value="${review.rating}" /></div>
 						<div class="rating-screen-time">
 							<div th:replace="fragments :: format_time(${review.reviewTime})"></div>
 						</div>
 
-						<div class="my-2">
-							<div><b>[[${review.headline}]]</b></div>
+						<div class="mt-1 mb-2">
+							<div><span class="semibold">[[${review.headline}]]</span></div>
 
 							<div>[[${review.comment}]]</div>
 						</div>

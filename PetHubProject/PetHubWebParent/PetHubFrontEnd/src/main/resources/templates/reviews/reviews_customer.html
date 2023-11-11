@@ -3,13 +3,14 @@
 
 
 <head>
+
 	<head th:replace="~{fragments :: page_head('My Reviews', 'none')}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-reviews.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-profile.css}" />
 	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
 		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 		crossorigin="anonymous"></script>
-		
+
 </head>
 
 <body>
@@ -32,11 +33,11 @@
 							<div class="mb-3 mr-auto">
 								<span class="title-header text-left">My Reviews</span>
 							</div>
-							<div >
-							<div th:replace="~{fragments :: search_form}"></div>
+							<div>
+								<div th:replace="~{fragments :: search_form}"></div>
+							</div>
 						</div>
-						</div>
-						
+
 						<div>
 							<table class="profile-table table table-bordered table-striped table-hover">
 								<thead class="profile-table-header">
@@ -47,14 +48,15 @@
 										<th th:replace="~{fragments :: column_link('rating', 'Rating', 'none')}" />
 										<th
 											th:replace="~{fragments :: column_link('reviewTime', 'Review Time', 'none')}" />
-										<th></th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="review : ${listReviews}">
 										<td>[[${review.id}]]</td>
 										<td>
-											<a class="text-decoration-none" th:href="@{'/p/' + ${review.product.alias}}" target="_blank">
+											<a class="text-decoration-none" th:href="@{'/p/' + ${review.product.alias}}"
+												target="_blank">
 												[[${review.product.shortName}]]
 											</a>
 										</td>
@@ -62,15 +64,18 @@
 										<td>[[${review.rating}]] <i class="far fa-star"></i></td>
 										<td>[[${review.reviewTime}]]</td>
 										<td>
-											<a class="fas fa-eye link-detail text-decoration-none"
-												th:href="@{'/reviews/detail/' + ${review.id}}"
-												title="View details of this review"></a>
+											<div class="d-flex justify-content-center w-100">
+												<a class="fas fa-eye link-detail text-decoration-none"
+													th:href="@{'/reviews/detail/' + ${review.id}}"
+													title="View details of this review"></a>
+											</div>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<div th:replace="~{fragments :: pagination('/reviews', 'reviews', ${sortDir}, ${sortField})}"></div>
+						<div th:replace="~{fragments :: pagination('/reviews', 'reviews', ${sortDir}, ${sortField})}">
+						</div>
 					</div>
 				</div>
 
@@ -91,23 +96,23 @@
 	<script th:src="@{/js/common_list.js}"></script>
 	<script type="text/javascript">
 		moduleURL = "[[@{/reviews}]]";
-		
+
 		var $star_rating = $(".star-rating .fa");
 		var SetRatingStar = function () {
-        return $star_rating.each(function () {
-          if (
-            parseInt(
-              $star_rating.siblings("input.rating-value-modify").val()
-            ) >= parseInt($(this).data("rating"))
-          ) {
-            return $(this).removeClass("fa-regular").addClass("fa-solid");
-          } else {
-            return $(this).removeClass("fa-solid").addClass("fa-regular");
-          }
-        });
-      };
-      
-      $(document).ready(function () {
+			return $star_rating.each(function () {
+				if (
+					parseInt(
+						$star_rating.siblings("input.rating-value-modify").val()
+					) >= parseInt($(this).data("rating"))
+				) {
+					return $(this).removeClass("fa-regular").addClass("fa-solid");
+				} else {
+					return $(this).removeClass("fa-solid").addClass("fa-regular");
+				}
+			});
+		};
+
+		$(document).ready(function () {
 			handleDefaultDetailLinkClick();
 			SetRatingStar();
 		});

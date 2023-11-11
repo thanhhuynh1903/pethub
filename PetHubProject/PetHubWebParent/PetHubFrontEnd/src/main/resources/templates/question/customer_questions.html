@@ -44,7 +44,7 @@
 										<th th:replace="~{fragments :: column_link('askTime', 'Ask Time', 'none')}" />
 										<th th:replace="~{fragments :: column_link('approved', 'Approved', 'none')}" />
 										<th>Answered</th>
-										<th></th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -73,9 +73,11 @@
 										</td>
 
 										<td>
-											<a class="fas fa-eye link-detail text-decoration-none"
-												th:href="@{'/customer/questions/detail/' + ${question.id}}"
-												title="View details of this question"></a>
+											<div class="d-flex justify-content-center w-100">
+												<a class="fas fa-eye link-detail text-decoration-none"
+													th:href="@{'/customer/questions/detail/' + ${question.id}}"
+													title="View details of this question"></a>
+											</div>
 										</td>
 									</tr>
 								</tbody>

@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
 	<head th:replace="~{fragments :: page_head('My Orders', 'none')}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-order.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/style-profile.css}" />
@@ -43,7 +42,7 @@
 											<th>Products</th>
 											<th th:replace="~{fragments :: column_link('total', 'Total', 'none')}" />
 											<th th:replace="~{fragments :: column_link('status', 'Status', 'none')}" />
-											<th></th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -62,6 +61,7 @@
 													th:class="'textOrderStatus' + ${order.id}">[[${order.status}]]</span>
 											</td>
 											<td>
+												<div class="d-flex justify-content-center w-100">
 												<a class="fas fa-eye link-detail text-decoration-none icon-action"
 													th:href="@{'/orders/detail/' + ${order.id}}"
 													title="View details of this order"></a>
@@ -73,6 +73,7 @@
 														th:classappend="'linkReturn' + ${order.id}"
 														th:orderId="${order.id}" title="Return this order"></a>
 												</th:block>
+												</div>
 											</td>
 										</tr>
 									</tbody>

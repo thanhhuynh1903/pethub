@@ -26,3 +26,15 @@
 .rating-product-container .star {
 	font-size: 8px !important;
 }
+
+.rating-form-container {
+	padding: 0 5rem;
+}
+.rating-screen-time span {
+	font-size: smaller !important;
+}
+@media screen and (max-width: 500px) {
+	.rating-form-container {
+		padding: 0 2rem;
+	}
+}

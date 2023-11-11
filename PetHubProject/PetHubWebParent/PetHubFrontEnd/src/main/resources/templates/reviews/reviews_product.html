@@ -47,28 +47,28 @@
 					<div class="d-flex align-items-center mx-3">
 						Sort by
 						<div th:if="(${sortField} == null)">
-							<a class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-most-voted"
-								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=votes&sortDir=desc'}">
-								Most voted</a>
-							<a class="btn btn-outline-primary btn-most-recent"
+							<a class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-most-recent"
 								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=reviewTime&sortDir=desc'}">
 								Most recent</a>
+							<a class="btn btn-outline-primary btn-most-voted"
+								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=votes&sortDir=desc'}">
+								Most voted</a>
 						</div>
 						<div th:if="${sortField} == votes" class="rating-product_vote-container">
-							<a class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-most-voted"
-								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=votes&sortDir=desc'}">
-								Most voted</a>
-							<a class="btn btn-outline-primary btn-most-recent"
+							<a class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-most-recent"
 								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=reviewTime&sortDir=desc'}">
 								Most recent</a>
+							<a class="btn btn-outline-primary btn-most-voted"
+								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=votes&sortDir=desc'}">
+								Most voted</a>
 						</div>
 						<div th:if="${sortField} == reviewTime" class="rating-product_recent-container">
-							<a class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-most-voted"
-								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=votes&sortDir=desc'}">
-								Most voted</a>
-							<a class="btn btn-outline-primary btn-most-recent"
+							<a class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-most-recent"
 								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=reviewTime&sortDir=desc'}">
 								Most recent</a>
+							<a class="btn btn-outline-primary btn-most-voted"
+								th:href="@{'/ratings/' + ${product.alias} + '/page/' + ${currentPage} + '?sortField=votes&sortDir=desc'}">
+								Most voted</a>
 						</div>
 					</div>
 

@@ -3,45 +3,42 @@
 
 <body>
 	<div th:fragment="content" class="row m-2">
-		<div class="col">
+		<div class="w-100">
 			<th:block th:each="review : ${listReviews}">
-				<div class="row">
-					<div class="col-xs"><input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs"
-							th:value="${review.rating}" /></div>
+				<div class="w-100">
+					<div class="px-3">
+						<div>[[${review.customer.fullName}]]</div>
+						<div class="col-xs"><input type="text" class="product-detail-rating-star" dir="ltr"
+								data-size="xs" th:value="${review.rating}" /></div>
+						<div class="rating-screen-time">
+							<div th:replace="fragments :: format_time(${review.reviewTime})"></div>
+						</div>
 
-					<div class="col-xs ml-2">
-						<a class="linkVoteReview fa-thumbs-up"
-							th:classappend="${review.upvotedByCurrentCustomer ? 'fas' : 'far'}"
-							th:id="'linkVoteUp-review-' + ${review.id}" th:reviewId="${review.id}"
-							th:href="@{'/vote_review/' + ${review.id} + '/up'}"></a>
+						<div class="my-2">
+							<div><b>[[${review.headline}]]</b></div>
+
+							<div>[[${review.comment}]]</div>
+						</div>
+
+						<div class="d-flex align-items-center">
+							<a class="linkVoteReview fa-thumbs-up"
+								th:classappend="${review.upvotedByCurrentCustomer ? 'fas' : 'far'}"
+								th:id="'linkVoteUp-review-' + ${review.id}" th:reviewId="${review.id}"
+								th:href="@{'/vote_review/' + ${review.id} + '/up'}">
+							</a>
+							<div>
+								<span th:id="'voteCount-review-' + ${review.id}" class="ml-1">[[${review.votes}]]</span>
+							</div>
+							<a class="linkVoteReview fa-thumbs-down ml-3"
+								th:classappend="${review.downvotedByCurrentCustomer ? 'fas' : 'far'}"
+								th:id="'linkVoteDown-review-' + ${review.id}" th:reviewId="${review.id}"
+								th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
+						</div>
 					</div>
-
-					<div class="col-xs ml-2">
-						<span th:id="'voteCount-review-' + ${review.id}">[[${review.votes}]] Votes</span>
-					</div>
-
-					<div class="col-xs ml-2">
-						<a class="linkVoteReview fa-thumbs-down"
-							th:classappend="${review.downvotedByCurrentCustomer ? 'fas' : 'far'}"
-							th:id="'linkVoteDown-review-' + ${review.id}" th:reviewId="${review.id}"
-							th:href="@{'/vote_review/' + ${review.id} + '/down'}"></a>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col"><b>[[${review.headline}]]</b></div>
-				</div>
-				<div class="row">
-					<div class="col">[[${review.comment}]]</div>
-				</div>
-
-				<div class="row">
-					<div class="col ml-3"><small>[[${review.customer.fullName}]], <div
-								th:replace="fragments :: format_time(${review.reviewTime})"></div></small></div>
-				</div>
-
-				<div class="row">
-					<div class="col">
-						<hr />
+					<div class="w-100">
+						<div class="w-100">
+							<hr />
+						</div>
 					</div>
 				</div>
 			</th:block>

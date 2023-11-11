@@ -8,64 +8,77 @@
 	<script th:src="@{/star-rating/js/star-rating.js}" type="text/javascript"></script>
 	<link th:href="@{/star-rating/themes/krajee-svg/theme.css}" media="all" rel="stylesheet" type="text/css" />
 	<script th:src="@{/star-rating/themes/krajee-svg/theme.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-reviews.css}" />
 </head>
 
 <body>
 	<div class="w-100 h-100">
 		<div class="d-flex flex-column w-100 h-100">
 			<div th:replace="~{navigation :: header_menu}"></div>
-			<div class="mt-3 w-100">
-				<h4>Write Product Review</h4>
-				<div>
+			<div class="w-100 h-100">
+				<div class="rating-form-container h-100">
+					<div th:if="${customerReviewed}" class="h-100">
+						<div class="w-100 d-flex flex-column justify-content-center align-items-center my-auto h-100">
+							<div
+								class="text-center registered-success-box mx-3 mx-sm-0 d-flex flex-column align-items-center justify-content-center">
+								<i
+									class="bi bi-x-circle-fill text-danger d-flex justify-content-center align-items-center"></i>
+								<h2 class="mt-3">Rating exist!</h2>
+								<span class="text-center mt-2">You already rating this product and can not rating
+									again.</span>
+								<div class="mt-4">
+									<a class="btn btn-primary" th:href="@{/}">Continue shopping</a>
+								</div>
+							</div>
+						</div>
 
-					<div th:if="${customerReviewed}">
-						<span class="text-success">You already reviewed this product.</span>
+						<div th:if="${NoReviewPermission}">
+							<span class="text-danger">You can't review this product because you did not purchase it, or
+								you
+								have not
+								received it.</span>
+						</div>
 					</div>
+					<div th:if="${customerCanReview}">
+						<h4 th:if="${customerCanReview}">Rating product</h4>
+						<form th:if="${customerCanReview}" th:action="@{/post_review}" method="post"
+							th:object="${review}" style="max-width: 600px; margin: 0 auto">
 
-					<div th:if="${NoReviewPermission}">
-						<span class="text-danger">You can't review this product because you did not purchase it, or you
-							have not
-							received it.</span>
-					</div>
-				</div>
-
-				<form th:if="${customerCanReview}" th:action="@{/post_review}" method="post" th:object="${review}"
-					style="max-width: 600px; margin: 0 auto">
-
-					<input type="hidden" name="productId" th:value="${product.id}" />
-					<div class="p-3 m-5" style="background-color: white;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+							<input type="hidden" name="productId" th:value="${product.id}" />
+							<div class="p-3 m-5" style="background-color: white;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
                       rgba(0, 0, 0, 0.23) 0px 3px 6px;
                     border-radius: 10px;">
-						<div style="min-width: 346px;
+								<div style="min-width: 346px;
     max-height: 346px;
     min-height: 345.9px;">
-							<img th:src="@{${product.mainImagePath}}" style="    max-height: inherit;
+									<img th:src="@{${product.mainImagePath}}" style="    max-height: inherit;
     min-width: 100% !important;
     object-fit: contain;" />
-						</div>
-						<div>
-							<h4>[[${product.name}]]</h4>
-						</div>
+								</div>
+								<div>
+									<h4>[[${product.name}]]</h4>
+								</div>
 
-						<p>
-							<input type="text" th:field="*{rating}" class="product-rating-star" dir="ltr" data-size="md"
-								data-step="1" />
-						</p>
-						<p>
-							<input type="text" th:field="*{headline}" class="form-control" required minlength="10"
-								maxlength="128" placeholder="Headline or Summary" />
-						</p>
-						<p>
-							<textarea th:field="*{comment}" rows="3" cols="10" class="form-control" required
-								placeholder="Comment Details"></textarea>
-						</p>
-						<p>
-							<input type="submit" value="Post this Review" class="btn btn-primary" />
-						</p>
+								<p>
+									<input type="text" th:field="*{rating}" class="product-rating-star" dir="ltr"
+										data-size="md" data-step="1" />
+								</p>
+								<p>
+									<input type="text" th:field="*{headline}" class="form-control" required
+										minlength="10" maxlength="128" placeholder="Headline or Summary" />
+								</p>
+								<p>
+									<textarea th:field="*{comment}" rows="3" cols="10" class="form-control" required
+										placeholder="Comment Details"></textarea>
+								</p>
+								<p>
+									<input type="submit" value="Post this Review" class="btn btn-primary" />
+								</p>
+							</div>
+
+						</form>
 					</div>
-
-				</form>
-
+				</div>
 			</div>
 			<div th:replace="~{navigation :: footer_menu}"></div>
 

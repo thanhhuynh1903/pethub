@@ -180,7 +180,7 @@
 		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
-				<a role="button" class="btn-outline-primary btn-latest btn mx-1 mx-xl-3 mx-lg-2"
+				<a role="button" class="btn-outline-primary btn-latest btn ml-1 ml-xl-3 ml-lg-2"
 					th:href="${sortDir} == 'latest' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=latest&sortField=createTime'}">Latest</a>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-top-sales"
 					th:href="${sortDir} == 'top_sales' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=top_sales&sortField=top_sales'}">Top

@@ -2,140 +2,145 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-  <title></title>
+	<title>PetHub</title>
 
-  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-  <script th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
-    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
-  <link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
-  <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-  <link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
-  <link th:href="@{/star-rating/css/star-rating.css}" media="all" rel="stylesheet" type="text/css" />
-  <script th:src="@{/star-rating/js/star-rating.js}" type="text/javascript"></script>
-  <link th:href="@{/star-rating/themes/krajee-svg/theme.css}" media="all" rel="stylesheet" type="text/css" />
-  <script th:src="@{/star-rating/themes/krajee-svg/theme.js}"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js}"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/style-homepage.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+	<link th:href="@{/star-rating/css/star-rating.css}" media="all" rel="stylesheet" type="text/css" />
+	<script th:src="@{/star-rating/js/star-rating.js}" type="text/javascript"></script>
+	<link th:href="@{/star-rating/themes/krajee-svg/theme.css}" media="all" rel="stylesheet" type="text/css" />
+	<script th:src="@{/star-rating/themes/krajee-svg/theme.js}"></script>
 </head>
 
 <body>
-  <div class="w-100 h-100">
-    <div class="d-flex flex-column w-100 h-100">
-      <div th:replace="~{navigation :: header_menu}" class="w-100"></div>
-      <!-- Main content start-->
-      <div class="w-100 mb-3">
-        <div class="d-flex justify-content-center w-100">
-          <div class="category-product-container">
-            <!--breadcrumb-->
-            <div th:replace="~{breadcrumb :: breadcrumb_category}" class="w-100 my-3"></div>
-            <!--breadcrumb-->
-            <div class="d-flex justify-content-between w-100">
-              <!--Category-->
-              <div class="d-none d-md-block overflow-hidden vh-100 category-parent sticky-top">
-                <div class="flex-column text-center d-none category-container d-md-flex sticky-top">
-                  <div class="category-content-container">
-                    <div th:if="${!hasChildCategories}">
-                      <h5 class="text-left px-3 pt-3 user-select-none">
-                        Product Brands
-                      </h5>
-                      <div th:each="brand: ${brands}">
-                        <div class="category-item-container p-3">
-                          <a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir=default&sortField='+@{sortField}}"
-                            class="d-flex align-items-center text-decoration-none text-secondary">
-                            <div class="category-img-container mr-2">
-                              <img th:src="@{${brand.logoPath}}" />
-                            </div>
-                            <span class="text-left">[[${brand.name}]]</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div th:if="${hasChildCategories}">
-                      <h5 class="text-left px-3 pt-3 user-select-none">
-                        Product Categories
-                      </h5>
-                      <div class="pb-3">
-                        <div th:each="cat : ${category.children}">
-                          <div class="category-item-container p-3" th:if="${cat.enabled == true}">
-                            <a th:href="@{'/c/'+${cat.alias}+'/page/1?sortDir=default&sortField='+@{sortField}}"
-                              class="d-flex align-items-center text-decoration-none text-secondary">
-                              <div class="category-img-container d-flex align-items-center mr-2">
-                                <img th:src="@{${cat.imagePath}}" />
-                              </div>
-                              <span class="text-left">[[${cat.name}]]</span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--Category-->
-              <div class="product-container d-flex flex-column ml-sm-3 ml-0 align-items-center">
-                <div th:if="${sortDir} == null" class="w-100">
-                  <div th:replace="~{navigation :: header_product}" class="w-100"></div>
-                </div>
-                <div th:if="${sortDir} == 'default'" class="w-100">
-                  <div th:replace="~{navigation :: header_product}" class="w-100"></div>
-                </div>
-                <div th:if="${sortDir} == 'latest'" class="latest-container w-100">
-                  <div th:replace="~{navigation :: header_product}" class="w-100"></div>
-                </div>
-                <div th:if="${sortDir} == 'top_sales'" class="top-sales-container w-100">
-                  <div th:replace="~{navigation :: header_product}" class="w-100"></div>
-                </div>
-                <div th:if="${sortDir} == 'asc'" class="price-asc-container w-100">
-                  <div th:replace="~{navigation :: header_product}" class="w-100"></div>
-                </div>
-                <div th:if="${sortDir} == 'desc'" class="price-desc-container w-100">
-                  <div th:replace="~{navigation :: header_product}" class="w-100"></div>
-                </div>
-                <div class="product-content-container w-100 my-2">
-                  <th:block th:each="product : ${listProducts}">
-                    <div class="product-item-container">
-                      <div th:replace="~{product/product_fragment :: content}" />
-                    </div>
-                  </th:block>
-                </div>
-                <!--product in category-->
-                <div class="pagination-container mt-auto">
-                  <div th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product', ${sortDir}, ${sortField})}"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Main content and-->
+	<div class="w-100 h-100">
+		<div class="d-flex flex-column w-100 h-100">
+			<div th:replace="~{navigation :: header_menu}" class="w-100"></div>
+			<!-- Main content start-->
+			<div class="w-100 mb-3">
+				<div class="d-flex justify-content-center w-100">
+					<div class="category-product-container">
+						<!--breadcrumb-->
+						<div th:replace="~{breadcrumb :: breadcrumb_category}" class="w-100 my-3"></div>
+						<!--breadcrumb-->
+						<div class="d-flex justify-content-between w-100">
+							<!--Category-->
+							<div class="d-none d-md-block overflow-hidden vh-100 category-parent sticky-top">
+								<div class="flex-column text-center d-none category-container d-md-flex sticky-top">
+									<div class="category-content-container">
+										<div th:if="${!hasChildCategories}">
+											<h5 class="text-left px-3 pt-3 user-select-none">
+												Product Brands
+											</h5>
+											<div th:each="brand: ${brands}">
+												<div class="category-item-container p-3">
+													<a th:href="@{'/b/'+${brand.name}+'/products/page/1?sortDir=default&sortField='+@{sortField}}"
+														class="d-flex align-items-center text-decoration-none text-secondary">
+														<div class="category-img-container mr-2">
+															<img th:src="@{${brand.logoPath}}" />
+														</div>
+														<span class="text-left">[[${brand.name}]]</span>
+													</a>
+												</div>
+											</div>
+										</div>
+										<div th:if="${hasChildCategories}">
+											<h5 class="text-left px-3 pt-3 user-select-none">
+												Product Categories
+											</h5>
+											<div class="pb-3">
+												<div th:each="cat : ${category.children}">
+													<div class="category-item-container p-3"
+														th:if="${cat.enabled == true}">
+														<a th:href="@{'/c/'+${cat.alias}+'/page/1?sortDir=default&sortField='+@{sortField}}"
+															class="d-flex align-items-center text-decoration-none text-secondary">
+															<div
+																class="category-img-container d-flex align-items-center mr-2">
+																<img th:src="@{${cat.imagePath}}" />
+															</div>
+															<span class="text-left">[[${cat.name}]]</span>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--Category-->
+							<div class="product-container d-flex flex-column ml-sm-3 ml-0 align-items-center">
+								<div th:if="${sortDir} == null" class="w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'default'" class="w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'latest'" class="latest-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'top_sales'" class="top-sales-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'asc'" class="price-asc-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div th:if="${sortDir} == 'desc'" class="price-desc-container w-100">
+									<div th:replace="~{navigation :: header_product}" class="w-100"></div>
+								</div>
+								<div class="product-content-container w-100 my-2">
+									<th:block th:each="product : ${listProducts}">
+										<div class="product-item-container">
+											<div th:replace="~{product/product_fragment :: content}" />
+										</div>
+									</th:block>
+								</div>
+								<!--product in category-->
+								<div class="pagination-container mt-auto">
+									<div
+										th:replace="~{fragments :: pagination('/c/'+${category.alias}, 'product', ${sortDir}, ${sortField})}">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Main content and-->
 
-      <div th:replace="~{navigation :: footer_menu}"></div>
-    </div>
-  </div>
-  <script type="text/javascript">
-    $(".product-detail-rating-star").rating({
-      displayOnly: true,
-      hoverOnClera: false,
-      showCaption: false,
-      theme: "krajee-svg",
-    });
-  </script>
+			<div th:replace="~{navigation :: footer_menu}"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(".product-detail-rating-star").rating({
+			displayOnly: true,
+			hoverOnClera: false,
+			showCaption: false,
+			theme: "krajee-svg",
+		});
+	</script>
 </body>
 
 </html>

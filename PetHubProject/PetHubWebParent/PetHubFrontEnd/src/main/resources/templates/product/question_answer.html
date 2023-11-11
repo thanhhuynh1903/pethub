@@ -3,9 +3,9 @@
 
 <body>
 	<div th:fragment="content">
-		
+
 		<div class="row m-1">
-			<h3 id="qa">Questions &amp; answers for this product:</h3>
+			<h3 id="qa">Questions & answers</h3>
 		</div>
 
 		<div th:replace="~{question/questions_votes :: content}"></div>
@@ -17,11 +17,12 @@
 						questions</a>&nbsp;&nbsp;
 				</th:block>
 			</div>
-			<form class="form-inline my-2" id="formQuestion">
-				<textarea id="question" class="form-control" rows="2" cols="60" placeholder="Type your question here..."
-					required></textarea>
-				&nbsp;&nbsp;
-				<button id="buttonPostQuestion" class="btn btn-secondary my-2">Submit</button>
+			<form class="form-inline my-2 w-100 d-flex justify-content-between" id="formQuestion">
+				<div class="form-textarea">
+					<textarea id="question" class="form-control w-100" rows="2" placeholder="Type your question here..."
+						required></textarea>
+				</div>
+				<button id="buttonPostQuestion" class="btn btn-primary my-2 ml-2">Submit</button>
 			</form>
 		</div>
 		<div sec:authorize="!isAuthenticated()">

@@ -159,3 +159,7 @@ input[type=number]::-webkit-outer-spin-button {
 	background-color: rgba(78,115,223, 0.1);
 	margin: 1rem 0;
 }
+
+.form-textarea {
+	width: 90%;
+}

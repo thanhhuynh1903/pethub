@@ -163,3 +163,7 @@ input[type=number]::-webkit-outer-spin-button {
 .form-textarea {
 	width: 90%;
 }
+
+.question-datetime-container span {
+	font-size: smaller;
+}

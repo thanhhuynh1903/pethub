@@ -139,25 +139,38 @@ h2 {
 }
 
 .sidebar ul {
+	margin:10px;
 	position: relative;
 }
 
 .sidebar ul li {
+	
 	list-style: none;
 	height: 40px;
 }
 
 .sidebar ul li:hover {
+	border-radius: 10px;
 	background-color: rgb(255, 255, 255, 0.3);
 }
 
 .sidebar ul li a {
+	border-radius: 10px;
 	height: inherit;
 	position: relative;
 	display: flex;
 	margin-bottom: 0px;
 	white-space: nowrap;
 	text-decoration: none;
+}
+
+
+.sidebar ul li:hover {
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	animation-name: example;
+  	animation-duration: 1s; /* Duration of the animation */
+  	transform: scale(1.1) ;
+
 }
 
 .sidebar ul li a .icon {
@@ -172,12 +185,13 @@ h2 {
 }
 
 .sidebar ul li a .text {
-	padding-bottom: 15px;
+    font-weight: 400;
+    transform: translateY(3px);
 	position: relative;
-	height: 60px;
+	
 	display: flex;
 	align-items: center;
-	font-size: 1em;
+	font-size: 14px;
 	color: white;
 
 

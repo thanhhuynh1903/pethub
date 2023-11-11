@@ -3,7 +3,7 @@
 
 <body>
 	<div th:fragment="cod_support" th:remove="tag">
-		<a th:if="${rate.codSupported}" class="fas fa-hand-holding-usd fa-2x icon-green"
+		<a th:if="${rate.codSupported}" class="fas fa-hand-holding-usd fa-2x icon-green text-decoration-none"
 			th:href="@{'/shipping_rates/cod/' + ${rate.id} + '/enabled/false'}"
 			title="Disable COD support for this destination"></a> <a th:unless="${rate.codSupported}"
 			class="fas fa-hand-holding-usd fa-2x icon-dark"

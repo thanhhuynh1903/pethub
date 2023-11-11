@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<head>
 <head th:replace="~{fragments :: page_head('Customers - PetHub Admin', 'none')}" />
-
+<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
+</head>
 <body>
 	<div class="container-fluid bg-admin">
 		<div class="w-100">
@@ -72,7 +73,7 @@
 														<div
 															th:replace="~{fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})}" />
 													</td>
-													<td><a class="fas fa-file-alt fa-2x icon-green link-detail"
+													<td><a class="fas fa-file-alt fa-2x icon-green link-detail "
 															th:href="@{'/customers/detail/' + ${customer.id}}" 
 															title="View details of this customer" style="font-size: 24px;color: #A7B9EF;transform: translateY(4px);"></a>
 														&nbsp;

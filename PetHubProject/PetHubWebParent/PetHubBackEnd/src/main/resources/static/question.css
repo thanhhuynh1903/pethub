@@ -1,3 +1,17 @@
 table thead tr th:nth-child(2){
-	width: 32%;
+	width: 22%;
+}
+
+table thead tr th:nth-child(5){
+	font-size: 12px;
+	width: 12%;
+}
+
+td span:nth-child(5){
+	font-size: 14px;
+
+}
+
+a{
+	    font-size: 14px;
 }

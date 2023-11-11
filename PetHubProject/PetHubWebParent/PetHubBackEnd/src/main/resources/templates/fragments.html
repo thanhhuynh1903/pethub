@@ -174,7 +174,7 @@
         th:href="@{${entityURL} + '/enabled/false'}"
         th:title="'Disable this ' + ${entityName}"
       >
-        <i class="bi bi-toggle-on text-primary" style="font-size: 36px"></i>
+        <i class="bi bi-toggle-on text-primary " style="font-size: 36px"></i>
       </a>
 
       <a
@@ -190,7 +190,7 @@
     <!--begin edit button-->
     <div th:fragment="edit(entityName, editURL)" th:remove="tag">
       <a
-        class="icon-blue"
+        class="icon-blue text-decoration-none"
         th:href="@{${editURL}}"
         th:title="'Edit this ' + ${entityName}"
       >
@@ -240,7 +240,7 @@
     <th
       th:fragment="column_link(fieldName, columnLabel, removeTag)"
       th:remove="${removeTag}"
-      class="py-4"
+      class="py-4 text-decoration-none"
     >
       <a
         class="text-dark text-decoration-none"

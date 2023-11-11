@@ -3,6 +3,7 @@
 <head>
 <head th:replace="~{fragments :: page_head('Questions - PetHub Admin', 'none')}" />
 <link rel="stylesheet" type="text/css" th:href="@{/question.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/style-product.css}" />
 </head>
 <body>
 	<div class="container-fluid bg-admin">
@@ -60,11 +61,11 @@
 
 
 													<td>
-														<a th:if="${question.approved == true}" class="fas fa-check-circle fa-2x icon-green"
+														<a th:if="${question.approved == true}" class="fas fa-check-circle fa-2x icon-green text-decoration-none"
 															th:href="@{'/questions/' + ${question.id} + '/disapprove'}"
 															title="Disapprove this question">
 														</a>
-														<a th:unless="${question.approved == true}" class="fas fa-circle fa-2x icon-dark"
+														<a th:unless="${question.approved == true}" class="fas fa-circle fa-2x icon-dark text-decoration-none"
 															th:href="@{'/questions/' + ${question.id} + '/approve'}" title="Approve this question">
 														</a>
 													</td>

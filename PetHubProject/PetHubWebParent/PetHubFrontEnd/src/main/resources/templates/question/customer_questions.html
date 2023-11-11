@@ -51,20 +51,25 @@
 									<tr th:each="question : ${listQuestions}">
 										<td th:text="${question.id}">ID</td>
 										<td>
-											<a class="text-decoration-none" th:href="@{${question.product.URI}}" target="_blank"
+											<a class="text-decoration-none" th:href="@{${question.product.URI}}"
+												target="_blank"
 												th:title="${question.product.name}">[[${question.product.shortName}]]</a>
 										</td>
 										<td th:text="${question.questionContent}">Question</td>
 										<td th:text="${question.askTime}">Ask Time</td>
 
 										<td>
-											<span class="fas"
-												th:classappend="${question.approved ? 'fa-check-circle' : 'fa-circle icon-dark'}"></span>
+											<div class="w-100 d-flex justify-content-center">
+												<span class="fas text-center"
+													th:classappend="${question.approved ? 'fa-check-circle text-success' : 'fa-circle icon-dark'}"></span>
+											</div>
 										</td>
 
 										<td>
-											<span class="fas"
-												th:classappend="${question.answered ? 'fa-check-circle' : 'fa-circle icon-dark'}"></span>
+											<div class="w-100 d-flex justify-content-center">
+												<span class="fas"
+													th:classappend="${question.answered ? 'fa-check-circle text-success' : 'fa-circle icon-dark'}"></span>
+											</div>
 										</td>
 
 										<td>
@@ -77,7 +82,9 @@
 							</table>
 						</div>
 
-						<div th:replace="~{fragments :: pagination('/customer/questions', 'questions', 'asc', ${sortField})}"></div>
+						<div
+							th:replace="~{fragments :: pagination('/customer/questions', 'questions', 'asc', ${sortField})}">
+						</div>
 					</div>
 				</div>
 				<div class="modal fade" id="detailModal">

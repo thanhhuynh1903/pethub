@@ -146,3 +146,16 @@ input[type=number]::-webkit-outer-spin-button {
 .product-detail-container .price-modify span,.product-detail-container .price{
 	font-size: 26px;
 }
+
+.rating-product_rating-number {
+	font-size: 20px;
+	color: #4E73DF;
+}
+
+.product-detail_rating-top-container {
+	border: 1px solid #4E73DF;
+	border-radius: 4px;
+	padding: 1rem;
+	background-color: rgba(78,115,223, 0.1);
+	margin: 1rem 0;
+}

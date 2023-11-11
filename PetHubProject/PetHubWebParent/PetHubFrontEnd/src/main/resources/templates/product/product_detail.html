@@ -54,8 +54,7 @@
     background-color: #f5f5fa;
 ">
 						<div class="row" style="margin-bottom: 15px;    margin-left: 0px;background-color: #f5f5fa;;">
-							<div class="col-sm-5 container-detail-1"
-								style="position: sticky;top: 25px;">
+							<div class="col-sm-5 container-detail-1" style="position: sticky;top: 25px;">
 								<div style="min-width: 346px;max-height: 346px; min-height: 345.9px;">
 									<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid" index="0"
 										style="max-height: inherit;min-width: 100% !important;object-fit: contain;" />
@@ -101,7 +100,8 @@
 									<div class="p-3 first-detail">
 										<div>
 											Brand: <a
-												th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir=default&sortField=dafault'}" class="text-decoration-none"><span>[[${product.brand.name}]]</span></a>
+												th:href="@{'/b/'+${product.brand.name}+'/products/page/1?sortDir=default&sortField=dafault'}"
+												class="text-decoration-none"><span>[[${product.brand.name}]]</span></a>
 										</div>
 										<div>
 											<h1 class="modify-name">[[${product.name}]]</h1>
@@ -188,8 +188,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="d-block " style="padding: 15px;background-color: #fff;border-radius: 10px;">
+						<div style="padding: 15px;background-color: #fff;border-radius: 10px;">
 							<div th:replace="~{product/question_answer :: content}"></div>
+						</div>
+						<div class="mt-3" style="padding: 15px;background-color: #fff;border-radius: 10px;">
 							<div th:replace="~{product/product_top_reviews :: content}"></div>
 						</div>
 					</div>

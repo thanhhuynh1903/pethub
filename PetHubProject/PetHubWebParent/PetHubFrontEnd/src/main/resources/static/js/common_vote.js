@@ -28,7 +28,7 @@ function updateVoteCountAndIcons(currentLink, voteResult, entityName) {
 	voteUpLink = $("#linkVoteUp-" + entityName + "-" + itemId);
 	voteDownLink = $("#linkVoteDown-" + entityName + "-" + itemId);
 	
-	$("#voteCount-" + entityName + "-" + itemId).text(voteResult.voteCount + " Votes");
+	$("#voteCount-" + entityName + "-" + itemId).text(voteResult.voteCount);
 	
 	message = voteResult.message;
 	

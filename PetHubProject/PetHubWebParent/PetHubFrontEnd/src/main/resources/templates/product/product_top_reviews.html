@@ -3,27 +3,30 @@
 
 <body>
 	<div th:fragment="content">
-		
-		<div class="row m-1">
-			<h3 id="review">Customer Reviews:</h3>
-		</div>
 
-		<div class="row m-1">
-			<div class="col-xs">
-				<input type="text" class="product-detail-rating-star" dir="ltr" data-size="md"
-					th:value="${product.averageRating}" />
+		<div class="">
+			<h3 id="review">Product Ratings</h3>
+		</div>
+		<div class="product-detail_rating-top-container">
+			<div class="d-flex justify-content-between">
+				<div class="d-flex align-items-center">
+					<div class="mr-2 font-weight-bold"><span class="rating-product_rating-number"
+							id="ratingNumber">[[${product.averageRating}]]</span></div>
+					<div class="product-detail_rating-product-container">
+						<input type="text" class="product-detail-rating-star" dir="ltr" data-size="sm"
+							th:value="${product.averageRating}" />
+					</div>
+				</div>
+				<div class=" m-1 ml-3">
+					<a th:href="@{'/ratings/' + ${product.alias}}" class="btn btn-outline-primary">View all
+						([[${product.reviewCount}]])</a>
+				</div>
 			</div>
-			<div class="col-xs ml-1 mt-3"><span id="ratingNumber">[[${product.averageRating}]]</span> of 5</div>
+			<div th:if="${customerReviewed}" class="">
+				<span class="text-success">You have already rated this product.</span>
+			</div>
 		</div>
-		<div class="row m-1 ml-3">
-			<a th:href="@{'/ratings/' + ${product.alias}}">View all [[${product.reviewCount}]] ratings</a>
-		</div>
-
-		<div th:if="${customerReviewed}" class="row m-1 ml-3">
-			<span class="text-success">You already reviewed this product.</span>
-		</div>
-
-		<div th:if="${customerCanReview}" class="row m-1 ml-3">
+		<div th:if="${customerCanReview}" class="">
 			<span class="text-info">
 				You purchased and got this product.
 				<b>
@@ -31,9 +34,6 @@
 				</b>
 			</span>
 		</div>
-
-		
-
 		<div th:replace="~{reviews/reviews_votes :: content}"></div>
 	</div>
 </body>

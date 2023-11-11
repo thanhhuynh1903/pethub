@@ -26,13 +26,13 @@
 						<div th:replace="~{navigation :: side_bar_profile}"></div>
 					</div>
 					<div class="w-100 d-flex flex-column align-items-center profile-content-container">
-						<div class="mb-3 mr-auto">
+						<div class="mb-4 mr-auto">
 							<span class="title-header text-left">Profile Information</span>
 						</div>
 						<div
 							class="modal-account-container d-flex justify-content-center align-items-center flex-column w-100">
 							<form th:action="@{/update_account_details}" method="post" th:object="${customer}"
-								class="form-acount-container position-relative py-3">
+								class="form-acount-container position-relative pb-3">
 								<input type="hidden" th:field="*{id}" /> <input type="hidden" name="redirect"
 									th:value="${param.redirect}" />
 

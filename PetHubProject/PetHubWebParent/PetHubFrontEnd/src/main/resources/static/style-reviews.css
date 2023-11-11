@@ -9,8 +9,13 @@
 
 .rating-product-container {
 	background-color: #FFFFFF;
-	margin: 0 20px;
+	margin: 0 5rem;
+	border-radius: 5px;
 }
+
+.rating-product_pagination-container {
+	padding: 0 5rem;
+} 
 
 .rating-product-container .rating-product_vote-container .btn-most-voted,
 .rating-product-container .rating-product_recent-container .btn-most-recent {

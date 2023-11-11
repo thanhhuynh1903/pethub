@@ -16,10 +16,10 @@
 					<div class="d-flex align-items-center">
 						<input type="text" class="product-detail-rating-star" dir="ltr" data-size="xs"
 							th:value="${product.averageRating}" />
-						<small class="ml-1">[[${product.reviewCount}]]</small>
+						
 					</div>
 					<div class="ml-auto d-flex align-items-center">
-						<span class="text-secondary text-sold">5 sold</span>
+						<span class="text-secondary text-sold"><small class="ml-1">[[${product.reviewCount}]] sold</small></span>
 					</div>
 				</div>
 			</div>

@@ -237,6 +237,9 @@ h3 {
  .semibold {
 	 font-weight: 600;
  }
+ .text-break-word {
+	 overflow-wrap: break-word;
+ }
 @media screen and (max-width: 1160px) {
 	.search-product-container {
 		grid-template-columns: repeat(5, 1fr);

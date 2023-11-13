@@ -162,6 +162,7 @@
 			<div th:replace="~{navigation :: footer_menu}"></div>
 		</div>
 	</div>
+	</div>
 	<script th:src="@{https://www.paypal.com/sdk/js(client-id=${paypalClientId},currency=${currencyCode})}"></script>
 	<script type="text/javascript" th:src="@{/js/common_modal.js}"></script>
 	<script type="text/javascript">
@@ -246,6 +247,9 @@
 		}).render("#paypal-button-container");
 
 	</script>
+</body>
+
+</html>
 </body>
 
 </html>

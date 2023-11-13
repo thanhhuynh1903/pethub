@@ -21,7 +21,7 @@ public class ProvinceRestController {
 	@Autowired
 	private ProvinceRepository repo;
 
-	@GetMapping("/Provinces/list_by_country/{id}")
+	@GetMapping("/provinces/list_by_country/{id}")
 	public List<ProvinceDTO> listByCountry(@PathVariable("id") Integer countryId) {
 		List<Province> listProvinces = repo.findByCountryOrderByNameAsc(new Country(countryId));
 		List<ProvinceDTO> result = new ArrayList<>();
@@ -33,13 +33,13 @@ public class ProvinceRestController {
 		return result;
 	}
 
-	@PostMapping("/Provinces/save")
+	@PostMapping("/provinces/save")
 	public String save(@RequestBody Province Province) {
 		Province savedProvince = repo.save(Province);
 		return String.valueOf(savedProvince.getId());
 	}
 
-	@DeleteMapping("/Provinces/delete/{id}")
+	@DeleteMapping("/provinces/delete/{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		repo.deleteById(id);
 	}

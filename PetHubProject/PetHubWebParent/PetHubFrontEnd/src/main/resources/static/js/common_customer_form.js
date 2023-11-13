@@ -1,28 +1,28 @@
 var dropDownCountry;
-var dataListState;
-var fieldState;
+var dataListProvince;
+var fieldProvince;
 
 $(document).ready(function () {
 	dropDownCountry = $("#country");
-	dataListState = $("#listStates");
-	fieldState = $("#state");
+	dataListProvince = $("#listProvinces");
+	fieldProvince = $("#province");
 
 	dropDownCountry.on("change", function () {
-		loadStatesForCountry();
-		fieldState.val("").focus();
+		loadProvincesForCountry();
+		fieldProvince.val("").focus();
 	});
 });
 
-function loadStatesForCountry() {
+function loadProvincesForCountry() {
 	selectedCountry = $("#country option:selected");
 	countryId = selectedCountry.val();
-	url = contextPath + "settings/list_states_by_country/" + countryId;
+	url = contextPath + "settings/list_provinces_by_country/" + countryId;
 
 	$.get(url, function (responseJSON) {
-		dataListState.empty();
+		dataListProvince.empty();
 
-		$.each(responseJSON, function (index, state) {
-			$("<option>").val(state.name).text(state.name).appendTo(dataListState);
+		$.each(responseJSON, function (index, province) {
+			$("<option>").val(province.name).text(province.name).appendTo(dataListProvince);
 		});
 
 	}).fail(function () {

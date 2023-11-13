@@ -26,6 +26,6 @@ function loadProvinces4Country() {
 			$("<option>").val(Province.name).text(Province.name).appendTo(dropdownProvinces);
 		});
 	}).fail(function() {
-		showErrorModal("Error loading Provinces/provinces for the selected country.");
+		showErrorModal("Error loading Provinces for the selected country.");
 	})	
 }	

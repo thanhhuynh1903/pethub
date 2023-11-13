@@ -123,7 +123,7 @@
 										</span>
 										<span th:unless="${defaultAddress.city} == null">[[${defaultAddress.city}]],
 										</span>
-										<span th:unless="${defaultAddress.state} == null">[[${defaultAddress.state}]],
+										<span th:unless="${defaultAddress.province} == null">[[${defaultAddress.province}]],
 										</span>
 										<span
 											th:unless="${defaultAddress.country.name} == null">[[${defaultAddress.country.name}]]</span>
@@ -142,7 +142,7 @@
 										<span th:unless="${customer.addressLine2} == null">[[${customer.addressLine2}]],
 										</span>
 										<span th:unless="${customer.city} == null">[[${customer.city}]], </span>
-										<span th:unless="${customer.state} == null">[[${customer.state}]], </span>
+										<span th:unless="${customer.province} == null">[[${customer.province}]], </span>
 										<span
 											th:unless="${customer.country.name} == null">[[${customer.country.name}]]</span>
 									</div>

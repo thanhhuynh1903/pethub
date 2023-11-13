@@ -104,11 +104,11 @@
 										</div>
 
 										<div class="form-group row">
-											<label for="state" class="col-sm-4 col-form-label">State/Province:</label>
+											<label for="province" class="col-sm-4 col-form-label">Province:</label>
 											<div class="col-sm-8">
-												<input type="text" class="form-control" th:field="*{state}"
-													minlength="3" maxlength="64" list="listStates" />
-												<datalist id="listStates"> </datalist>
+												<input type="text" class="form-control" th:field="*{province}"
+													minlength="3" maxlength="64" list="listProvinces" />
+												<datalist id="listProvinces"> </datalist>
 											</div>
 										</div>
 
@@ -167,7 +167,7 @@
 		}
 	</script>
 	<script th:src="@{/js/common_form.js}"></script>
-	<script th:src="@{/js/common_form_country_state.js}"></script>
+	<script th:src="@{/js/common_form_country_province.js}"></script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@ public abstract class AbstractAddress extends IdBasedEntity {
 	protected String city;
 
 	@Column(nullable = false, length = 45)
-	protected String state;
+	protected String province;
 
 	@Column(name = "postal_code", nullable = false, length = 10)
 	protected String postalCode;
@@ -78,12 +78,12 @@ public abstract class AbstractAddress extends IdBasedEntity {
 		this.city = city;
 	}
 
-	public String getState() {
-		return state;
+	public String getProvince() {
+		return province;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setProvince(String province) {
+		this.province = province;
 	}
 
 	public String getPostalCode() {

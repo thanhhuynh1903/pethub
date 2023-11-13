@@ -184,7 +184,7 @@ public class Order extends AbstractAddress {
 		setCity(customer.getCity());
 		setCountry(customer.getCountry().getName());
 		setPostalCode(customer.getPostalCode());
-		setState(customer.getState());
+		setProvince(customer.getProvince());
 	}
 
 	@Override
@@ -196,8 +196,8 @@ public class Order extends AbstractAddress {
 	@Transient
 	public String getDestination() {
 		String destination = city + ", ";
-		if (state != null && !state.isEmpty())
-			destination += state + ", ";
+		if (province != null && !province.isEmpty())
+			destination += province + ", ";
 		destination += country;
 
 		return destination;
@@ -212,7 +212,7 @@ public class Order extends AbstractAddress {
 		setCity(address.getCity());
 		setCountry(address.getCountry().getName());
 		setPostalCode(address.getPostalCode());
-		setState(address.getState());
+		setProvince(address.getProvince());
 	}
 
 	@Transient
@@ -231,8 +231,8 @@ public class Order extends AbstractAddress {
 		if (!city.isEmpty())
 			address += ", " + city;
 
-		if (state != null && !state.isEmpty())
-			address += ", " + state;
+		if (province != null && !province.isEmpty())
+			address += ", " + province;
 
 		address += ", " + country;
 
@@ -286,9 +286,9 @@ public class Order extends AbstractAddress {
 		if (!city.isEmpty())
 			address += ", " + city;
 
-		if (state != null && !state.isEmpty())
-			address += ", " + state;
-
+		if (province != null && !province.isEmpty())
+			address += ", " + province;
+		
 		address += ", " + country;
 
 		if (!postalCode.isEmpty())

@@ -41,7 +41,7 @@ public class CustomerRepositoryTests {
 		customer.setPhoneNumber("312-462-7518");
 		customer.setAddressLine1("1927  West Drive");
 		customer.setCity("Sacramento");
-		customer.setState("California");
+		customer.setProvince("California");
 		customer.setPostalCode("95867");
 		customer.setCreatedTime(new Date());
 
@@ -66,7 +66,7 @@ public class CustomerRepositoryTests {
 		customer.setAddressLine1("173 , A-, Shah & Nahar Indl.estate, Sunmill Road");
 		customer.setAddressLine2("Dhanraj Mill Compound, Lower Parel (west)");
 		customer.setCity("Mumbai");
-		customer.setState("Maharashtra");
+		customer.setProvince("Maharashtra");
 		customer.setPostalCode("400013");
 		customer.setCreatedTime(new Date());
 

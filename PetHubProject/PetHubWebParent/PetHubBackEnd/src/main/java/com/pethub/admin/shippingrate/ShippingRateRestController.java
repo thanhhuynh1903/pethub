@@ -11,9 +11,9 @@ public class ShippingRateRestController {
 	private ShippingRateService service;
 
 	@PostMapping("/get_shipping_cost")
-	public String getShippingCost(Integer productId, Integer countryId, String state)
+	public String getShippingCost(Integer productId, Integer countryId, String province)
 			throws ShippingRateNotFoundException {
-		float shippingCost = service.calculateShippingCost(productId, countryId, state);
+		float shippingCost = service.calculateShippingCost(productId, countryId, province);
 		return String.valueOf(shippingCost);
 	}
 }

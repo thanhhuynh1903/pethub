@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.pethub.common.entity.Customer;
 import com.pethub.common.entity.order.Order;
 
+
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 	@Query("SELECT DISTINCT o FROM Order o JOIN o.orderDetails od JOIN od.product p " + "WHERE o.customer.id = ?2 "

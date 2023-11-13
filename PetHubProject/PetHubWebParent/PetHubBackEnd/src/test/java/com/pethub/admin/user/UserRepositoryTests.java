@@ -68,7 +68,7 @@ public class UserRepositoryTests {
 
 	@Test
 	public void testUpdateUserDetails() {
-		User userHuyennt = repo.findById(30).get();
+		User userHuyennt = repo.findById(1).get();
 		userHuyennt.setEnabled(true);
 		userHuyennt.setEmail("huyenntse161803@fpt.edu.vn");
 

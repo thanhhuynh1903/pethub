@@ -23,13 +23,5 @@ public class MainController {
 		}
 		return "redirect:/";
 	}
-	
-	@GetMapping("/landing")
-	public String viewLandingPage() {
-		return "landing";
-	}
-	
-	/*
-	 * @GetMapping("/register") public String registerPage() { return "register"; }
-	 */
+
 }

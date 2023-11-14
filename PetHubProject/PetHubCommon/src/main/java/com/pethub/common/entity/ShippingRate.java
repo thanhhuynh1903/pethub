@@ -21,7 +21,7 @@ public class ShippingRate extends IdBasedEntity {
 	private Country country;
 	
 	@Column(nullable = false, length = 45)
-	private String state;
+	private String province;
 
 	public float getRate() {
 		return rate;
@@ -55,18 +55,18 @@ public class ShippingRate extends IdBasedEntity {
 		this.country = country;
 	}
 
-	public String getState() {
-		return state;
+	public String getProvince() {
+		return province;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setProvince(String province) {
+		this.province = province;
 	}
 
 	@Override
 	public String toString() {
 		return "ShippingRate [id=" + id + ", rate=" + rate + ", days=" + days + ", codSupported=" + codSupported
-				+ ", country=" + country.getName() + ", state=" + state + "]";
+				+ ", country=" + country.getName() + ", province=" + province + "]";
 	}
 
 	@Override

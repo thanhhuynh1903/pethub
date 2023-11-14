@@ -44,7 +44,7 @@
 													<th class="py-4"
 														th:replace="~{fragments :: column_link('country', 'Country', 'none')}" />
 													<th class="py-4"
-														th:replace="~{fragments :: column_link('state', 'State', 'none')}" />
+														th:replace="~{fragments :: column_link('province', 'Province', 'none')}" />
 													<th class="py-4"
 														th:replace="~{fragments :: column_link('rate', 'Rate', 'none')}" />
 													<th class="py-4"
@@ -59,7 +59,7 @@
 												<tr th:each="rate : ${shippingRates}">
 													<td>[[${rate.id}]]</td>
 													<td>[[${rate.country.name}]]</td>
-													<td>[[${rate.state}]]</td>
+													<td>[[${rate.province}]]</td>
 													<td>[[${rate.rate}]]</td>
 													<td>[[${rate.days}]]</td>
 													<td>

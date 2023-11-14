@@ -1,4 +1,4 @@
-package com.pethub.admin.setting.state;
+package com.pethub.admin.setting.province;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -22,11 +22,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pethub.admin.setting.country.CountryRepository;
 import com.pethub.common.entity.Country;
-import com.pethub.common.entity.State;
+import com.pethub.common.entity.Province;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StateRestControllerTests {
+public class ProvinceRestControllerTests {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -38,72 +38,72 @@ public class StateRestControllerTests {
 	CountryRepository countryRepo;
 
 	@Autowired
-	StateRepository stateRepo;
+	ProvinceRepository ProvinceRepo;
 
 	@Test
 	@WithMockUser(username = "huyenntse161803", password = "12345678", roles = "Admin")
 	public void testListByCountries() throws Exception {
 		Integer countryId = 2;
-		String url = "/states/list_by_country/" + countryId;
+		String url = "/Provinces/list_by_country/" + countryId;
 
 		MvcResult result = mockMvc.perform(get(url)).andExpect(status().isOk()).andDo(print()).andReturn();
 
 		String jsonResponse = result.getResponse().getContentAsString();
-		State[] states = objectMapper.readValue(jsonResponse, State[].class);
+		Province[] Provinces = objectMapper.readValue(jsonResponse, Province[].class);
 
-		assertThat(states).hasSizeGreaterThan(1);
+		assertThat(Provinces).hasSizeGreaterThan(1);
 	}
 
 	@Test
 	@WithMockUser(username = "huyenntse161803", password = "12345678", roles = "Admin")
-	public void testCreateState() throws Exception {
-		String url = "/states/save";
+	public void testCreateProvince() throws Exception {
+		String url = "/Provinces/save";
 		Integer countryId = 2;
 		Country country = countryRepo.findById(countryId).get();
-		State state = new State("Arizona", country);
+		Province Province = new Province("Arizona", country);
 
 		MvcResult result = mockMvc.perform(
-				post(url).contentType("application/json").content(objectMapper.writeValueAsString(state)).with(csrf()))
+				post(url).contentType("application/json").content(objectMapper.writeValueAsString(Province)).with(csrf()))
 				.andDo(print()).andExpect(status().isOk()).andReturn();
 
 		String response = result.getResponse().getContentAsString();
-		Integer stateId = Integer.parseInt(response);
-		Optional<State> findById = stateRepo.findById(stateId);
+		Integer ProvinceId = Integer.parseInt(response);
+		Optional<Province> findById = ProvinceRepo.findById(ProvinceId);
 
 		assertThat(findById.isPresent());
 	}
 
 	@Test
 	@WithMockUser(username = "huyenntse161803", password = "12345678", roles = "Admin")
-	public void testUpdateState() throws Exception {
-		String url = "/states/save";
-		Integer stateId = 9;
-		String stateName = "Alaska";
+	public void testUpdateProvince() throws Exception {
+		String url = "/Provinces/save";
+		Integer ProvinceId = 9;
+		String ProvinceName = "Alaska";
 
-		State state = stateRepo.findById(stateId).get();
-		state.setName(stateName);
+		Province Province = ProvinceRepo.findById(ProvinceId).get();
+		Province.setName(ProvinceName);
 
 		mockMvc.perform(
-				post(url).contentType("application/json").content(objectMapper.writeValueAsString(state)).with(csrf()))
-				.andDo(print()).andExpect(status().isOk()).andExpect(content().string(String.valueOf(stateId)));
+				post(url).contentType("application/json").content(objectMapper.writeValueAsString(Province)).with(csrf()))
+				.andDo(print()).andExpect(status().isOk()).andExpect(content().string(String.valueOf(ProvinceId)));
 
-		Optional<State> findById = stateRepo.findById(stateId);
+		Optional<Province> findById = ProvinceRepo.findById(ProvinceId);
 		assertThat(findById.isPresent());
 
-		State updatedState = findById.get();
-		assertThat(updatedState.getName()).isEqualTo(stateName);
+		Province updatedProvince = findById.get();
+		assertThat(updatedProvince.getName()).isEqualTo(ProvinceName);
 
 	}
 
 	@Test
 	@WithMockUser(username = "huyenntse161803", password = "12345678", roles = "Admin")
-	public void testDeleteState() throws Exception {
-		Integer stateId = 6;
-		String uri = "/states/delete/" + stateId;
+	public void testDeleteProvince() throws Exception {
+		Integer ProvinceId = 6;
+		String uri = "/Provinces/delete/" + ProvinceId;
 
 		mockMvc.perform(delete(uri).with(csrf())).andExpect(status().isOk());
 
-		Optional<State> findById = stateRepo.findById(stateId);
+		Optional<Province> findById = ProvinceRepo.findById(ProvinceId);
 
 		assertThat(findById).isNotPresent();
 	}

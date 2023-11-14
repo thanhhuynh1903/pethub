@@ -37,7 +37,7 @@ public class AddressRepositoryTests {
 		newAddress.setAddressLine1("4213 Gordon Street");
 		newAddress.setAddressLine2("Novak Building");
 		newAddress.setCity("Chino");
-		newAddress.setState("California");
+		newAddress.setProvince("California");
 		newAddress.setPostalCode("91710");
 
 		Address savedAddress = repo.save(newAddress);

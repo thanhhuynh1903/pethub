@@ -34,7 +34,7 @@ public class OrderService {
 		Sort sort = null;
 		
 		if ("destination".equals(sortField)) {
-			sort = Sort.by("country").and(Sort.by("state")).and(Sort.by("city"));
+			sort = Sort.by("country").and(Sort.by("province")).and(Sort.by("city"));
 		} else {
 			sort = Sort.by(sortField);
 		}

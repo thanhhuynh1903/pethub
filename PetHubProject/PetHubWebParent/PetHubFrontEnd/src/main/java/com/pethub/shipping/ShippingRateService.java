@@ -14,20 +14,20 @@ public class ShippingRateService {
 	private ShippingRateRepository repo;
 
 	public ShippingRate getShippingRateForCustomer(Customer customer) {
-		String state = customer.getState();
-		if (state == null || state.isEmpty()) {
-			state = customer.getCity();
+		String province = customer.getProvince();
+		if (province == null || province.isEmpty()) {
+			province = customer.getCity();
 		}
 
-		return repo.findByCountryAndState(customer.getCountry(), state);
+		return repo.findByCountryAndProvince(customer.getCountry(), province);
 	}
 
 	public ShippingRate getShippingRateForAddress(Address address) {
-		String state = address.getState();
-		if (state == null || state.isEmpty()) {
-			state = address.getCity();
+		String province = address.getProvince();
+		if (province == null || province.isEmpty()) {
+			province = address.getCity();
 		}
 
-		return repo.findByCountryAndState(address.getCountry(), state);
+		return repo.findByCountryAndProvince(address.getCountry(), province);
 	}
 }

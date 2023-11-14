@@ -1,14 +1,14 @@
 package com.pethub.common.entity;
 
-public class StateDTO {
+public class ProvinceDTO {
 	private Integer id;
 	private String name;
 
-	public StateDTO() {
+	public ProvinceDTO() {
 
 	}
 
-	public StateDTO(Integer id, String name) {
+	public ProvinceDTO(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}

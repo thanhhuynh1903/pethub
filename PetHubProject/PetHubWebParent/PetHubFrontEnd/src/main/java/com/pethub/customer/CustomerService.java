@@ -87,7 +87,7 @@ public class CustomerService {
 		customer.setPassword("");
 		customer.setAddressLine1("");
 		customer.setCity("");
-		customer.setState("");
+		customer.setProvince("");
 		customer.setPhoneNumber("");
 		customer.setPostalCode("");
 		customer.setCountry(countryRepo.findByCode(countryCode));

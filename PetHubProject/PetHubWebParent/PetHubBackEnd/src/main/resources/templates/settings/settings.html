@@ -62,9 +62,9 @@
                         <a
                           class="nav-link"
                           data-toggle="tab"
-                          href="#states"
+                          href="#provinces"
                           role="tab"
-                          >State</a
+                          >Province</a
                         >
                       </li>
                       <li class="nav-item">
@@ -112,8 +112,8 @@
                           th:replace="~{settings/countries :: content}"
                         ></div>
                       </div>
-                      <div class="tab-pane" id="states" role="tabpanel">
-                        <div th:replace="~{settings/states :: content}"></div>
+                      <div class="tab-pane" id="provinces" role="tabpanel">
+                        <div th:replace="~{settings/provinces :: content}"></div>
                       </div>
                       <div class="tab-pane p-3" id="mailServer" role="tabpanel">
                         <div
@@ -168,6 +168,6 @@
     </script>
     <script th:src="@{/js/common_form.js}"></script>
     <script th:src="@{/js/countries_setting.js}"></script>
-    <script th:src="@{/js/states_setting.js}"></script>
+    <script th:src="@{/js/provinces_setting.js}"></script>
   </body>
 </html>

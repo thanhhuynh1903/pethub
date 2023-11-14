@@ -34,15 +34,15 @@ public class ShippingRateServiceTests {
 	public void testCalculateShippingCost_NoRateFound() {
 		Integer productId = 1;
 		Integer countryId = 234;
-		String state = "ABCDE";
+		String province = "ABCDE";
 
-		Mockito.when(shipRepo.findByCountryAndState(countryId, state)).thenReturn(null);
+		Mockito.when(shipRepo.findByCountryAndProvince(countryId, province)).thenReturn(null);
 
 		assertThrows(ShippingRateNotFoundException.class, new Executable() {
 
 			@Override
 			public void execute() throws Throwable {
-				shipService.calculateShippingCost(productId, countryId, state);
+				shipService.calculateShippingCost(productId, countryId, province);
 			}
 		});
 	}
@@ -51,12 +51,12 @@ public class ShippingRateServiceTests {
 	public void testCalculateShippingCost_RateFound() throws ShippingRateNotFoundException {
 		Integer productId = 1;
 		Integer countryId = 234;
-		String state = "New York";
+		String province = "New York";
 
 		ShippingRate shippingRate = new ShippingRate();
 		shippingRate.setRate(10);
 
-		Mockito.when(shipRepo.findByCountryAndState(countryId, state)).thenReturn(shippingRate);
+		Mockito.when(shipRepo.findByCountryAndProvince(countryId, province)).thenReturn(shippingRate);
 
 		Product product = new Product();
 		product.setWeight(5);
@@ -66,7 +66,7 @@ public class ShippingRateServiceTests {
 
 		Mockito.when(productRepo.findById(productId)).thenReturn(Optional.of(product));
 
-		float shippingCost = shipService.calculateShippingCost(productId, countryId, state);
+		float shippingCost = shipService.calculateShippingCost(productId, countryId, province);
 
 		assertEquals(50, shippingCost);
 	}

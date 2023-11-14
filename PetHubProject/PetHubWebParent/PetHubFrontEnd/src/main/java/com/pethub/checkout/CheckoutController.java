@@ -60,7 +60,7 @@ public class CheckoutController {
 			model.addAttribute("address", defaultAddress.getAddressLine1()
 					+ ", " + defaultAddress.getAddressLine2() 
 					+ ", " + defaultAddress.getCity() 
-					+ ", " + defaultAddress.getState()
+					+ ", " + defaultAddress.getProvince()
 					+ ", " + defaultAddress.getCountry().getName()
 					);
 			model.addAttribute("cusName", defaultAddress.getLastName() + " " + defaultAddress.getLastName());
@@ -71,7 +71,7 @@ public class CheckoutController {
 			model.addAttribute("address", customer.getAddressLine1()
 					+ ", " + customer.getAddressLine2()
 					+ ", " + customer.getCity()
-					+ ", " + customer.getState()
+					+ ", " + customer.getProvince()
 					+ ", " + customer.getCountry().getName());
 			model.addAttribute("cusName", customer.getFullName());
 			model.addAttribute("cusPhoneNumber", customer.getPhoneNumber());

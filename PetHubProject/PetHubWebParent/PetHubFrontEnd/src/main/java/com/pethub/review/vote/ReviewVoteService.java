@@ -24,7 +24,7 @@ public class ReviewVoteService {
 	
 	public VoteResult undoVote(ReviewVote vote, Integer reviewId, VoteType voteType) {
 		voteRepo.delete(vote);
-		//reviewRepo.updateVoteCount(reviewId);
+		reviewRepo.updateVoteCount(reviewId);
 		Integer voteCount = reviewRepo.getVoteCount(reviewId);
 		
 		return VoteResult.success("You have unvoted " + voteType + " that review.", voteCount);
@@ -63,7 +63,7 @@ public class ReviewVoteService {
 		}
 		
 		voteRepo.save(vote);
-		//reviewRepo.updateVoteCount(reviewId);
+		reviewRepo.updateVoteCount(reviewId);
 		Integer voteCount = reviewRepo.getVoteCount(reviewId);
 		
 		return VoteResult.success("You have successfully voted " + voteType + " that review.", 

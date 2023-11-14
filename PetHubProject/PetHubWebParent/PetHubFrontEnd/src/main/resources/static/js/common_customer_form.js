@@ -4,28 +4,28 @@ var fieldProvince;
 
 $(document).ready(function () {
 	dropDownCountry = $("#country");
-	dataListProvince = $("#listProvinces");
-	fieldProvince = $("#province");
-
-	dropDownCountry.on("change", function () {
-		loadProvincesForCountry();
-		fieldProvince.val("").focus();
+	dataListState = $("#listStates");
+	fieldState = $("#state");
+	
+	dropDownCountry.on("change", function() {
+		loadStatesForCountry();
+		fieldState.val("").focus();
 	});
 });
 
 function loadProvincesForCountry() {
 	selectedCountry = $("#country option:selected");
 	countryId = selectedCountry.val();
-	url = contextPath + "settings/list_provinces_by_country/" + countryId;
-
-	$.get(url, function (responseJSON) {
-		dataListProvince.empty();
-
-		$.each(responseJSON, function (index, province) {
-			$("<option>").val(province.name).text(province.name).appendTo(dataListProvince);
+	url = contextPath + "settings/list_states_by_country/" + countryId;
+	
+	$.get(url, function(responseJSON) {
+		dataListState.empty();
+		
+		$.each(responseJSON, function(index, state) {
+			$("<option>").val(state.name).text(state.name).appendTo(dataListState);
 		});
-
-	}).fail(function () {
+		
+	}).fail(function() {
 		alert('failed to connect to the server!');
 	});
 }

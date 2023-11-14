@@ -11,3 +11,7 @@
 body{
 	padding-right: 0px!important;
 }
+
+table tr th:nth-child(5){
+	width: 15%;
+}

@@ -139,7 +139,7 @@
 		</div>
 	</div>
 
-	<div th:fragment="footer_menu" class="w-100 mt-auto" style="background-color: #FFFFFF;">
+	<div th:fragment="footer_menu" class="w-100 " style="background-color: #FFFFFF;    margin-top: 100px;">
 		<div class="footer-container">
 			<footer class="text-center text-lg-start text-dark"
 				style="background-color: #fff;    box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;">
@@ -161,7 +161,7 @@
 											class="text-dark">Wiki</a>
 									</li>
 									<li>
-										<a href="https://www.wikihow.com/Choose-Between-a-Cat-and-a-Dog"
+										<a th:href="@{/customer/questions}"
 											class="text-dark">Support center</a>
 									</li>
 									<li>
@@ -177,16 +177,9 @@
 								<h5 class="text-uppercase" >Product​</h5>
 								<ul class="list-unstyled mb-0">
 									<li>
-										<a href="#!" class="text-dark">category</a>
+										<a th:href="@{/}" class="text-dark">All products</a>
 									</li>
-									<li>
-										<a href="https://www.wikihow.com/Choose-Between-a-Cat-and-a-Dog"
-											class="text-dark">brand</a>
-									</li>
-									<li>
-										<a href="https://www.wikihow.com/Choose-Between-a-Cat-and-a-Dog"
-											class="text-dark">Best product in 2023</a>
-									</li>
+									
 								</ul>
 
 							</div>

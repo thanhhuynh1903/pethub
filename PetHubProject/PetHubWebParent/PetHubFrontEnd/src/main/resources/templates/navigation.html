@@ -21,16 +21,17 @@
 				<div class="w-100">
 					<form th:action="@{'/search/page/1'}" method="get" class="d-flex w-100">
 						<div class="d-flex search-container align-items-center">
-							<input class="search px-4 search-input" type="search" name="keyword" placeholder="Search for..."
-								th:value="${searchKeyword}" required>
+							<input class="search px-4 search-input" type="search" name="keyword"
+								placeholder="Search for..." th:value="${searchKeyword}" required>
 							<input type="hidden" name="sortDir" value="default">
 							<input type="hidden" name="sortField" value="default">
-							<input value="Search" type="submit" class="border-0 text-primary px-4 search-button"></input>
+							<input value="Search" type="submit"
+								class="border-0 text-primary px-4 search-button"></input>
 						</div>
 					</form>
 
 				</div>
-				
+
 			</div>
 			<div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
 				<div>
@@ -41,8 +42,8 @@
 							</li>
 						</th:block>
 						<li class="nav-item active">
-							<a class="nav-link d-flex justify-content-center align-items-center px-3" th:href="@{/}" id="home"><i
-									class="bi bi-house-fill d-flex align-items-center nav-general"></i><span
+							<a class="nav-link d-flex justify-content-center align-items-center px-3" th:href="@{/}"
+								id="home"><i class="bi bi-house-fill d-flex align-items-center nav-general"></i><span
 									class="nav-general">Home</span><span class="sr-only">(current)</span></a>
 						</li>
 						<!--
@@ -53,8 +54,9 @@
 						</li>
 						-->
 						<li class="nav-item dropdown">
-							<a class="nav-link d-flex justify-content-center align-items-center px-3" id="navbarDarkDropdownMenuLink"
-								role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link d-flex justify-content-center align-items-center px-3"
+								id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
 								<i class="bi bi-emoji-smile d-flex align-items-center nav-general"></i>
 								<th:block sec:authorize="!isAuthenticated()">
 									<span class="nav-general">Account</span>
@@ -65,7 +67,8 @@
 							</a>
 
 							<div class="container">
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDarkDropdownMenuLink">
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDarkDropdownMenuLink">
 									<th:block sec:authorize="!isAuthenticated()">
 										<a class="dropdown-item" th:href="@{/login}" id="login">Login or
 											Register</a>
@@ -78,7 +81,8 @@
 										<!--Logout-->
 										<form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
 											<input type="submit" value="Logout" />
-										</form><a class="dropdown-item" href="javascript: document.logoutForm.submit()">Logout</a>
+										</form><a class="dropdown-item"
+											href="javascript: document.logoutForm.submit()">Logout</a>
 									</th:block>
 								</div>
 							</div>
@@ -87,7 +91,8 @@
 						<li class="nav-item nav-last-item ">
 
 							<a class="nav-link d-flex justify-content-center align-items-center " th:href="@{/cart}"><i
-									class="bi bi-cart d-flex align-items-center nav-general" style="color: #0361ff;"></i></a>
+									class="bi bi-cart d-flex align-items-center nav-general"
+									style="color: #0361ff;"></i></a>
 						</li>
 					</ul>
 					<div class="text-secondary align-items-end justify-content-end mt-3 d-none d-lg-flex">
@@ -100,8 +105,8 @@
 							</th:block>
 							<th:block sec:authorize="isAuthenticated()">
 								<span class="text-secondary">Shipping to: <a th:if="principal.address != null"
-										th:href="@{/address_book}" sec:authentication="principal.address" class="text-decoration-none ml-1"
-										style="font-size: small;"></a>
+										th:href="@{/address_book}" sec:authentication="principal.address"
+										class="text-decoration-none ml-1" style="font-size: small;"></a>
 								</span>
 							</th:block>
 						</a>
@@ -127,7 +132,8 @@
 				<form class="form-inline" th:action="@{/search}" method="get">
 					<input type="search" name="keyword" class="form-control search" th:value="${searchKeyword}"
 						placeholder="Search for..." required style="border-radius: 3px 0 0 3px;" />
-					<input type="submit" value="Search" class="btn btn-outline-primary" style="border-radius: 0 3px 3px 0;" />
+					<input type="submit" value="Search" class="btn btn-outline-primary"
+						style="border-radius: 0 3px 3px 0;" />
 				</form>
 			</div>
 		</div>
@@ -135,7 +141,99 @@
 
 	<div th:fragment="footer_menu" class="w-100 mt-auto" style="background-color: #FFFFFF;">
 		<div class="footer-container">
-			<div class="d-flex justify-content-center p-1 p-sm-3">
+			<footer class="text-center text-lg-start text-dark"
+				style="background-color: #fff;    box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;">
+				<!-- Grid container -->
+				<div class="container pt-4">
+					<!-- Section: Links -->
+					<section class="">
+						<!--Grid row-->
+						<div class="row">
+							<!--Grid column-->
+							<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+								<h5 class="text-uppercase" style="text-align: start;">About Us​</h5>
+
+								<p style="text-align: start;">
+									<strong>Pethub</strong> is a unique platform that offers a wide range of products
+									specifically designed for
+									cats and dogs. From nutritious food, comfortable bedding, to fun toys, we have
+									everything to keep your furry friends happy and healthy. Pethub also offer a wealth
+									of information through our articles, covering a variety of topics about cats and
+									dogs.​
+								</p>
+							</div>
+							<!--Grid column-->
+
+							<!--Grid column-->
+							<div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+								<h5 class="text-uppercase">Blog</h5>
+
+								<ul class="list-unstyled mb-0">
+									<li>
+										<a href="#!" class="text-dark">Article</a>
+									</li>
+									<li>
+										<a href="https://www.wikihow.com/Choose-Between-a-Cat-and-a-Dog"
+											class="text-dark">Wiki</a>
+									</li>
+								</ul>
+							</div>
+							<!--Grid column-->
+
+							<!--Grid column-->
+							<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+								<!-- Links -->
+								<h6 class="text-uppercase fw-bold">Contact</h6>
+
+								<p><i class="fas fa-envelope mr-3"></i> pethubteam@gmail.com</p>
+								<p><i class="fas fa-phone mr-3"></i> 0935664263</p>
+								<p><i class="fas fa-print mr-3"></i> 0934880238</p>
+							</div>
+							<!--Grid column-->
+
+
+
+							<!--Grid column-->
+							<div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+								<h5 class="text-uppercase mb-4">Opening hours</h5>
+
+								<table class="table text-center text-dark">
+									<tbody class="fw-normal">
+										<tr>
+											<td>Mon - Thu:</td>
+											<td>8am - 9pm</td>
+										</tr>
+										<tr>
+											<td>Fri - Sat:</td>
+											<td>8am - 1am</td>
+										</tr>
+										<tr>
+											<td>Sunday:</td>
+											<td>9am - 10pm</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--Grid column-->
+						</div>
+						<!--Grid row-->
+					</section>
+					<!-- Section: Links -->
+
+					<hr class="mb-4" />
+
+					<!-- Section: Social media -->
+
+				</div>
+				<!-- Grid container -->
+
+				<!-- Copyright -->
+				<div th:fragment="footer" class=" text-center p-3">
+					<p class="text-secondary">[[${COPYRIGHT}]]</p>
+				</div>
+				<!-- Copyright -->
+			</footer>
+			<div class="d-flex justify-content-center">
 				<th:block th:each="footerMenu : ${footerMenuItems}">
 					<a class="text-decoration-none text-secondary mr-sm-3 mr-2"
 						th:href="@{'/m/' + ${footerMenu.alias}}">[[${footerMenu.title}]]</a>
@@ -146,13 +244,21 @@
 
 
 		<!-- begin footer-->
-		<div th:fragment="footer" class=" text-center m-3">
-			<p class="text-secondary">[[${COPYRIGHT}]]</p>
-		</div>
+
 	</div>
 
+
+	<!-- Remove the container if you want to extend the Footer to full width. -->
+	<div class="container my-5">
+		<!-- Footer -->
+
+		<!-- Footer -->
+	</div>
+	<!-- End of .container -->
+
 	<div th:fragment="header_product" class="w-100">
-		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
+		<div
+			class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn btn-outline-primary mx-1 mx-xl-3 mx-lg-2 btn-latest"
@@ -161,8 +267,8 @@
 					th:href="${sortDir} == 'top_sales' ? @{'/c/'+${category.alias}+'/page/1?sortDir=default&sortField=default'} : @{'/c/'+${category.alias}+'/page/1?sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">
-					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -177,7 +283,8 @@
 	</div>
 	<!--header search results-->
 	<div th:fragment="header_seach-results" class="w-100">
-		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
+		<div
+			class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn-outline-primary btn-latest btn ml-1 ml-xl-3 ml-lg-2"
@@ -186,8 +293,8 @@
 					th:href="${sortDir} == 'top_sales' ? @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=default&sortField=default'} : @{'/search/page/1?keyword=' + ${keyword} + '&sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">
-					<button class="btn-sort-price btn-outline-primary btn dropdown-toggle" type="button" id="dropdownMenuButton"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn-sort-price btn-outline-primary btn dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -203,7 +310,8 @@
 
 	<!-- header-brand -->
 	<div th:fragment="header_product-brand" class="w-100">
-		<div class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
+		<div
+			class="d-flex w-100 justify-content-between py-3 align-items-center product-container__header px-1 px-lg-3">
 			<div class="mr-1 mr-lg-4 sort-container d-flex align-items-center">
 				<span>Sort by</span>
 				<a role="button" class="btn btn-latest btn-outline-primary mx-1 mx-xl-3 mx-lg-2"
@@ -212,8 +320,8 @@
 					th:href="${sortDir} == 'top_sales' ? @{'/b/'+${brandName}+'/products/page/1?sortDir=default&sortField=default'} : @{'/b/'+${brandName}+'/products/page/1?sortDir=top_sales&sortField=top_sales'}">Top
 					Sales</a>
 				<div class="dropdown">
-					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn-sort-price btn btn-outline-primary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Price
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

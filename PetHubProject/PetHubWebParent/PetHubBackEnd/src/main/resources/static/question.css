@@ -1,6 +1,11 @@
 table thead tr th:nth-child(2){
 	width: 22%;
 }
+table thead tr th:nth-child(3){
+	
+	width: 25%;
+}
+
 
 table thead tr th:nth-child(5){
 	font-size: 12px;

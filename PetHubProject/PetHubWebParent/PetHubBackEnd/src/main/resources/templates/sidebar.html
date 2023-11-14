@@ -119,7 +119,7 @@
 				</a>
 				<!--<a class="nav-link" th:href="@{/shipping}">Shipping</a>-->
 			</li>
-			
+
 			<li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 				<a th:href="@{/categories}" class="logo" style="margin-bottom: 0px">
 					<span class="icon"><i class="fa-solid">
@@ -140,7 +140,7 @@
 
 				<!--<a class="nav-link" th:href="@{/categories}">Categories</a>-->
 			</li>
-			
+
 			<li sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 				<a th:href="@{/brands}" class="logo" style="margin-bottom: 0px">
 					<span class="icon"><i class="fa-solid">
@@ -158,12 +158,12 @@
 					<span class="text">Brands</span>
 				</a>
 			</li>
-			
-			<span class="m-3"
+
+			<span class="m-3" sec:authorize="hasAnyAuthority('Admin','Salesperson')"
 				style="font-weight: 700; color: rgb(241, 241, 241);text-transform:uppercase;font-size: 14px;">
 				User
 			</span>
-			
+
 			<li sec:authorize="hasAnyAuthority('Admin','Salesperson')">
 				<a th:href="@{/customers}" class="logo" style="margin-bottom: 0px">
 					<span class="icon"><i class="fa-solid">
@@ -214,15 +214,15 @@
 				<!--		<a class="nav-link" th:href="@{/users}">Users</a>-->
 			</li>
 
-			
 
-			
+
+
 
 			<!--<a class="nav-link" th:href="@{/brands}">Brands</a>-->
 
 
 
-			<span class="m-3"
+			<span class="m-3" sec:authorize="hasAnyAuthority('Admin', 'Assistant')"
 				style="font-weight: 700; color: rgb(241, 241, 241);text-transform:uppercase;font-size: 14px;">
 				feedback
 			</span>
@@ -289,12 +289,10 @@
           <span class="text"> Questions</span></a>
         <a class="" th:href="@{/reviews}" class="logo" style="margin-bottom: 0px"><span class="text"> Reviews</span></a>
       </li> -->
-
-
-
-
-
-
+			<span class="m-3" sec:authorize="hasAnyAuthority('Admin','Editor')"
+				style="font-weight: 700; color: rgb(241, 241, 241);text-transform:uppercase;font-size: 14px;">
+				Article
+			</span>
 
 
 			<li sec:authorize="hasAnyAuthority('Admin','Editor')">
@@ -318,7 +316,7 @@
 
 			</li>
 
-			<span class="m-3"
+			<span class="m-3" sec:authorize="hasAnyAuthority('Admin','Editor')"
 				style="font-weight: 700; color: rgb(241, 241, 241);text-transform:uppercase;font-size: 14px;">
 				UI setting
 			</span>

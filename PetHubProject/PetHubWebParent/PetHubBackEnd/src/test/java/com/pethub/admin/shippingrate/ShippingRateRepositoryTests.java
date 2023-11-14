@@ -30,7 +30,7 @@ public class ShippingRateRepositoryTests {
 		Country india = new Country(106);
 		ShippingRate newRate = new ShippingRate();
 		newRate.setCountry(india);
-		newRate.setState("Maharashtra");
+		newRate.setProvince("Maharashtra");
 		newRate.setRate(8.25f);
 		newRate.setDays(3);
 		newRate.setCodSupported(true);
@@ -61,10 +61,10 @@ public class ShippingRateRepositoryTests {
 	}
 
 	@Test
-	public void testFindByCountryAndState() {
+	public void testFindByCountryAndProvince() {
 		Integer countryId = 106;
-		String state = "Maharashtra";
-		ShippingRate rate = repo.findByCountryAndState(countryId, state);
+		String province = "Maharashtra";
+		ShippingRate rate = repo.findByCountryAndProvince(countryId, province);
 
 		assertThat(rate).isNotNull();
 		System.out.println(rate);

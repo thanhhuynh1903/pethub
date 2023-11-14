@@ -19,7 +19,7 @@ public class Country extends IdBasedEntity {
 	private String code;
 
 	@OneToMany(mappedBy = "country")
-	private Set<State> states;
+	private Set<Province> provinces;
 
 	public Country() {
 	}

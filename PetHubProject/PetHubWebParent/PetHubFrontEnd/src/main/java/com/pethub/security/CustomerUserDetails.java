@@ -68,7 +68,7 @@ public class CustomerUserDetails implements UserDetails {
 		return this.customer.getAddressLine1() + ", " + 
 				this.customer.getAddressLine2() + ", " +
 				this.customer.getCity() + ", " +
-				this.customer.getState()
+				this.customer.getProvince()
 				;
 	}
 }

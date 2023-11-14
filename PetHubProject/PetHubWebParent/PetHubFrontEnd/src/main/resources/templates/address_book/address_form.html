@@ -72,7 +72,7 @@
 											<label class="col-md-3 col-sm-4 col-form-label">Country:</label>
 											<div class="col-md-9 col-sm-8 ">
 												<select class="form-control" th:field="*{country}">
-													<option th:value="${242}">Load Province/City</option>
+													<option th:value="${242}">Select to load more information</option>
 													<th:block th:each="country : ${listCountries}">
 														<option th:value="${country.id}">[[${country.name}]]</option>
 													</th:block>
@@ -83,10 +83,10 @@
 										<div class="form-group row">
 											<label class="col-md-3 col-sm-4 col-form-label">Province/City:</label>
 											<div class="col-md-9 col-sm-8 ">
-												<input type="text" th:field="*{state}" class="form-control" required
-													maxlength="45" minlength="3" list="listStates"
+												<input type="text" th:field="*{province}" class="form-control"
+													maxlength="45" minlength="3" list="listProvinces"
 													placeholder="Province/City" />
-												<datalist id="listStates"></datalist>
+												<datalist id="listProvinces"></datalist>
 											</div>
 										</div>
 

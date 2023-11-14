@@ -34,8 +34,8 @@ public class AbstractAddressWithCountry extends AbstractAddress {
 		if (!city.isEmpty())
 			address += ", " + city;
 
-		if (state != null && !state.isEmpty())
-			address += ", " + state;
+		if (province != null && !province.isEmpty())
+			address += ", " + province;
 
 		address += ", " + country.getName();
 

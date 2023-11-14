@@ -7,8 +7,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "states")
-public class State extends IdBasedEntity {
+@Table(name = "provinces")
+public class Province extends IdBasedEntity {
 
 	@Column(nullable = false, length = 45)
 	private String name;
@@ -17,11 +17,11 @@ public class State extends IdBasedEntity {
 	@JoinColumn(name = "country_id")
 	private Country country;
 
-	public State() {
+	public Province(){
 
 	}
 
-	public State(String name, Country country) {
+	public Province(String name, Country country) {
 		this.name = name;
 		this.country = country;
 	}
@@ -44,7 +44,7 @@ public class State extends IdBasedEntity {
 
 	@Override
 	public String toString() {
-		return "State [id=" + id + ", name=" + name + "]";
+		return "Province [id=" + id + ", name=" + name + "]";
 	}
 
 }

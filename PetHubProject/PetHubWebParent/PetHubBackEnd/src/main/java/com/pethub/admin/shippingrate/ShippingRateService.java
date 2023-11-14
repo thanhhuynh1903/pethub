@@ -36,14 +36,14 @@ public class ShippingRateService {
 	}
 
 	public void save(ShippingRate rateInForm) throws ShippingRateAlreadyExistsException {
-		ShippingRate rateInDB = shipRepo.findByCountryAndState(rateInForm.getCountry().getId(), rateInForm.getState());
+		ShippingRate rateInDB = shipRepo.findByCountryAndProvince(rateInForm.getCountry().getId(), rateInForm.getProvince());
 		boolean foundExistingRateInNewMode = rateInForm.getId() == null && rateInDB != null;
 		boolean foundDifferentExistingRateInEditMode = rateInForm.getId() != null && rateInDB != null
 				&& !rateInDB.equals(rateInForm);
 
 		if (foundExistingRateInNewMode || foundDifferentExistingRateInEditMode) {
 			throw new ShippingRateAlreadyExistsException("There's already a rate for the destination "
-					+ rateInForm.getCountry().getName() + ", " + rateInForm.getState());
+					+ rateInForm.getCountry().getName() + ", " + rateInForm.getProvince());
 		}
 		shipRepo.save(rateInForm);
 	}
@@ -74,9 +74,9 @@ public class ShippingRateService {
 		shipRepo.deleteById(id);
 	}
 
-	public float calculateShippingCost(Integer productId, Integer countryId, String state)
+	public float calculateShippingCost(Integer productId, Integer countryId, String province)
 			throws ShippingRateNotFoundException {
-		ShippingRate shippingRate = shipRepo.findByCountryAndState(countryId, state);
+		ShippingRate shippingRate = shipRepo.findByCountryAndProvince(countryId, province);
 
 		if (shippingRate == null) {
 			throw new ShippingRateNotFoundException(

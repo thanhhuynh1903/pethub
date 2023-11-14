@@ -50,7 +50,7 @@
 
 													<th>
 														<th
-															th:replace="~{fragments :: column_link('state', 'State', 'tag')}" />
+															th:replace="~{fragments :: column_link('province', 'Province', 'tag')}" />
 													</th>
 
 													<th
@@ -67,13 +67,13 @@
 													<td>[[${customer.lastName}]]</td>
 													<td>[[${customer.email}]]</td>
 													<td>[[${customer.city}]]</td>
-													<td>[[${customer.state}]]</td>
+													<td>[[${customer.province}]]</td>
 													<td>[[${customer.country.name}]]</td>
 													<td style="padding-top: 0px;">
 														<div
 															th:replace="~{fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})}" />
 													</td>
-													<td><a class="fas fa-file-alt fa-2x icon-green link-detail "
+													<td><a class="fas fa-file-alt fa-2x icon-green link-detail"
 															th:href="@{'/customers/detail/' + ${customer.id}}" 
 															title="View details of this customer" style="font-size: 24px;color: #A7B9EF;transform: translateY(4px);"></a>
 														&nbsp;
@@ -117,6 +117,7 @@
 			handleDefaultDetailLinkClick();
 		});
 	</script>
+	
 </body>
 
 </html>

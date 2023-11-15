@@ -29,16 +29,16 @@
 							<div class="form-group w-47">
 								<label class="">First Name</label>
 								<div class="">
-									<input type="text" th:field="*{firstName}" class="form-control" required="required"
-										maxlength="45" minlength="2" placeholder="First Name" />
+									<input type="text" th:field="*{firstName}" class="form-control" required="required" maxlength="45"
+										minlength="2" placeholder="First Name" />
 								</div>
 							</div>
 
 							<div class="form-group w-47">
 								<label class="">Last Name</label>
 								<div class="">
-									<input type="text" th:field="*{lastName}" class="form-control" required="required"
-										maxlength="45" minlength="2" placeholder="Last Name" />
+									<input type="text" th:field="*{lastName}" class="form-control" required="required" maxlength="45"
+										minlength="2" placeholder="Last Name" />
 								</div>
 							</div>
 						</div>
@@ -46,15 +46,19 @@
 							<div class="form-group w-47">
 								<label class="col-form-label">Email Address</label>
 								<div>
-									<input type="email" th:field="*{email}" class="form-control" required="required"
-										maxlength="45" minlength="8" placeholder="Email Address" />
+									<input type="email" id="email" th:field="*{email}" class="form-control" required="required"
+										maxlength="45" minlength="8" placeholder="Email Address"
+										pattern="^[A-Za-z\._\-0-9]*[@][A-Za-z]*([\.][a-z]{2,4}|[\.][a-z]{2,4}[\.][a-z]{2,4})$"
+										title="Please enter a valid email address." />
 								</div>
 							</div>
+
 							<div class="form-group w-47">
 								<label class="col-form-label">Phone Number</label>
 								<div>
-									<input type="text" th:field="*{phoneNumber}" class="form-control"
-										required="required" maxlength="15" minlength="8" placeholder="Phone Number" />
+									<input type="text" th:field="*{phoneNumber}" class="form-control" required="required" maxlength="11"
+										minlength="10" placeholder="Phone Number" pattern="^(\\+84|0)[1-9][0-9]{8,9}$"
+										title="Please enter a valid phone number." />
 								</div>
 							</div>
 						</div>
@@ -62,9 +66,8 @@
 							<div class="form-group w-47">
 								<label class="col-form-label">Password</label>
 								<div>
-									<input type="password" th:field="*{password}" class="form-control"
-										required="required" maxlength="15" minlength="6"
-										oninput="checkPasswordMatch(document.getElementById('confirmPassword'))"
+									<input type="password" th:field="*{password}" class="form-control" required="required" maxlength="15"
+										minlength="6" oninput="checkPasswordMatch(document.getElementById('confirmPassword'))"
 										placeholder="Password" />
 								</div>
 							</div>
@@ -72,9 +75,8 @@
 							<div class="form-group w-47">
 								<label class="col-form-label">Confirm Password</label>
 								<div>
-									<input type="password" id="confirmPassword" class="form-control" required="required"
-										maxlength="15" minlength="6" oninput="checkPasswordMatch(this)"
-										placeholder="Confirm Password" />
+									<input type="password" id="confirmPassword" class="form-control" required="required" maxlength="15"
+										minlength="6" oninput="checkPasswordMatch(this)" placeholder="Confirm Password" />
 								</div>
 							</div>
 						</div>
@@ -82,8 +84,9 @@
 						<div class="form-group">
 							<label class="col-form-label">Address line 1: </label>
 							<div>
-								<input type="text" th:field="*{addressLine1}" class="form-control" required="required"
-									maxlength="64" minlength="3" placeholder="Street Name, House Number" />
+								<input type="text" th:field="*{addressLine1}" class="form-control" required="required" maxlength="64"
+									minlength="3" placeholder="Street Name, House Number" pattern="^[a-zA-Z0-9\s,/]*$"
+									title="Please enter a valid address." />
 							</div>
 						</div>
 
@@ -91,8 +94,9 @@
 						<div class="form-group">
 							<label class="col-form-label">Address line 2: </label>
 							<div>
-								<input type="text" th:field="*{addressLine2}" class="form-control" maxlength="64"
-									minlength="3" placeholder="Apartment/Suite Numbers/Ward" />
+								<input type="text" th:field="*{addressLine2}" class="form-control" maxlength="64" minlength="3"
+									placeholder="Apartment/Suite Numbers/Ward" pattern="^[a-zA-Z0-9\s,]*$"
+									title="Please enter a valid address." />
 							</div>
 						</div>
 
@@ -121,16 +125,16 @@
 							<div class="form-group w-47">
 								<label class="col-form-label">District</label>
 								<div>
-									<input type="text" th:field="*{city}" class="form-control" maxlength="45"
-										minlength="2" placeholder="District" />
+									<input type="text" th:field="*{city}" class="form-control" maxlength="45" minlength="2"
+										placeholder="District" />
 								</div>
 							</div>
 
 							<div class="form-group w-47">
 								<label class="col-form-label">Zip Code</label>
 								<div>
-									<input type="text" th:field="*{postalCode}" class="form-control" maxlength="6"
-										minlength="2" placeholder="Zip Code" />
+									<input type="text" th:field="*{postalCode}" class="form-control" maxlength="6" minlength="2"
+										placeholder="Zip Code" />
 								</div>
 							</div>
 						</div>
@@ -139,8 +143,7 @@
 						</div>
 						<div class="text-center mt-3">
 							<span>
-								Already have an account? <a th:href="@{/login}"
-									class="text-decoration-none"><b>Login</b></a>
+								Already have an account? <a th:href="@{/login}" class="text-decoration-none"><b>Login</b></a>
 							</span>
 						</div>
 					</form>
@@ -160,7 +163,7 @@
 			customerEmail = $("#email").val();
 			csrfValue = $("input[name='_csrf']").val();
 
-			params = {email: customerEmail, _csrf: csrfValue};
+			params = { email: customerEmail, _csrf: csrfValue };
 
 			$.post(url, params, function (response) {
 				if (response == "OK") {

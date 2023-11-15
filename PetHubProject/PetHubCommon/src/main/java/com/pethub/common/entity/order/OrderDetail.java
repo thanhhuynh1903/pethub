@@ -88,39 +88,55 @@ public class OrderDetail extends IdBasedEntity {
 	public void setShippingCost(float shippingCost) {
 
 		this.shippingCost = shippingCost;
-		
+
 	}
 
 	public float getUnitPrice() {
+
 		return unitPrice;
+
 	}
 
 	public void setUnitPrice(float unitPrice) {
+
 		this.unitPrice = unitPrice;
+
 	}
 
 	public float getSubtotal() {
+
 		return subtotal;
+
 	}
 
 	public void setSubtotal(float subtotal) {
+
 		this.subtotal = subtotal;
+
 	}
 
 	public Product getProduct() {
+
 		return product;
+
 	}
 
 	public void setProduct(Product product) {
+
 		this.product = product;
+
 	}
 
 	public Order getOrder() {
+
 		return order;
+
 	}
 
 	public void setOrder(Order order) {
+
 		this.order = order;
+		
 	}
 
 }

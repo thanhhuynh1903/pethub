@@ -52,32 +52,43 @@ public class OrderDetail extends IdBasedEntity {
 		this.productCost = productCost * quantity;
 
 		this.shippingCost = shippingCost;
-		
+
 		this.subtotal = subtotal;
 	}
 
 	public int getQuantity() {
+
 		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
+
 		this.quantity = quantity;
+
 	}
 
 	public float getProductCost() {
+
 		return productCost;
+
 	}
 
 	public void setProductCost(float productCost) {
+
 		this.productCost = productCost;
+
 	}
 
 	public float getShippingCost() {
+
 		return shippingCost;
+
 	}
 
 	public void setShippingCost(float shippingCost) {
+
 		this.shippingCost = shippingCost;
+		
 	}
 
 	public float getUnitPrice() {

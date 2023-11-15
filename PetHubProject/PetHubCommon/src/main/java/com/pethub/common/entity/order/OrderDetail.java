@@ -31,10 +31,15 @@ public class OrderDetail extends IdBasedEntity {
 
 	public OrderDetail(String categoryName, int quantity, float productCost, float shippingCost, float subtotal) {
 		this.product = new Product();
+
 		this.product.setCategory(new Category(categoryName));
+
 		this.quantity = quantity;
+
 		this.productCost = productCost * quantity;
+		
 		this.shippingCost = shippingCost;
+		
 		this.subtotal = subtotal;
 	}
 

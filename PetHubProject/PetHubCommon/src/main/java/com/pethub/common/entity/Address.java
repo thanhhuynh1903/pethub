@@ -18,19 +18,27 @@ public class Address extends AbstractAddressWithCountry {
 	private boolean defaultForShipping;
 
 	public Customer getCustomer() {
+
 		return customer;
+
 	}
 
 	public void setCustomer(Customer customer) {
+
 		this.customer = customer;
+
 	}
 
 	public boolean isDefaultForShipping() {
+
 		return defaultForShipping;
+
 	}
 
 	public void setDefaultForShipping(boolean defaultForShipping) {
+
 		this.defaultForShipping = defaultForShipping;
+		
 	}
 
 }

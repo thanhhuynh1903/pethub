@@ -74,6 +74,7 @@ public abstract class AbstractAddress extends IdBasedEntity {
 		return city;
 	}
 
+	
 	public void setCity(String city) {
 		this.city = city;
 	}

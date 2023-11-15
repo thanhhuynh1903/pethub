@@ -259,12 +259,14 @@ public class Order extends AbstractAddress {
 	}
 
 	public void setDeliverDateOnForm(String dateString) {
+		
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
 			this.deliverDate = dateFormatter.parse(dateString);
 		} catch (ParseException e) {
 			e.printStackTrace();
+
 		}
 	}
 
@@ -274,6 +276,7 @@ public class Order extends AbstractAddress {
 		if (lastName != null && !lastName.isEmpty())
 			name += " " + lastName;
 		return name;
+
 	}
 
 	@Transient

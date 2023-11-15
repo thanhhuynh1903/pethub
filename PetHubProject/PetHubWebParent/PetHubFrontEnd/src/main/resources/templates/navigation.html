@@ -19,7 +19,7 @@
 		<div class="search-nav-item-box-container">
 			<div class="d-none d-sm-flex flex-column justify-content-center">
 				<div class="w-100">
-					<form th:action="@{'/search/page/1'}" method="get" class="d-flex w-100">
+					<form th:if="${currentPage != 'articles_page'}" th:action="@{'/search/page/1'}" method="get" class="d-flex w-100">
 						<div class="d-flex search-container align-items-center">
 							<input class="search px-4 search-input" type="search" name="keyword"
 								placeholder="Search for..." th:value="${searchKeyword}" required>
@@ -29,8 +29,15 @@
 								class="border-0 text-primary px-4 search-button"></input>
 						</div>
 					</form>
-
+					<form th:if="${currentPage == 'articles_page'}" th:action="@{'/searchArticle'}" method="get" class="d-flex w-100">
+						<div class="d-flex search-container align-items-center">
+							<input class="search px-4 search-input" type="search" name="keyword" placeholder="Search for..."
+								th:value="${searchKeyword}" required>
+							<input value="Search" type="submit" class="border-0 text-primary px-4 search-button"></input>
+						</div>
+					</form>
 				</div>
+
 
 			</div>
 			<div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
@@ -46,13 +53,13 @@
 								id="home"><i class="bi bi-house-fill d-flex align-items-center nav-general"></i><span
 									class="nav-general">Home</span><span class="sr-only">(current)</span></a>
 						</li>
-						<!--
+
 						<li class="nav-item">
-							<a class="nav-link d-flex justify-content-center align-items-center px-3" th:href="@{/}" id="career"><i
+							<a class="nav-link d-flex justify-content-center align-items-center px-3" th:href="@{/articles_page}"><i
 									class="bi bi-journals d-flex align-items-center nav-general"></i><span
-									class="nav-general">Career</span></a>
+									class="nav-general">Articles</span></a>
 						</li>
-						-->
+
 						<li class="nav-item dropdown">
 							<a class="nav-link d-flex justify-content-center align-items-center px-3"
 								id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown"
@@ -139,7 +146,7 @@
 		</div>
 	</div>
 
-	<div th:fragment="footer_menu" class="w-100 " style="background-color: #FFFFFF;    margin-top: 100px;">
+	<div th:fragment="footer_menu" class="w-100 " style="background-color: #FFFFFF;    margin-top: auto;">
 		<div class="footer-container">
 			<footer class="text-center text-lg-start text-dark"
 				style="background-color: #fff;    box-shadow: rgb(0, 0, 255, 0.1) 0px 4px 12px;">
@@ -154,7 +161,7 @@
 								<h5 class="text-uppercase" >About Us​</h5>
 								<ul class="list-unstyled mb-0">
 									<li>
-										<a href="#!" class="text-dark">Article</a>
+										<a th:href="@{/articles_page}" class="text-dark">Article</a>
 									</li>
 									<li>
 										<a href="https://www.wikihow.com/Choose-Between-a-Cat-and-a-Dog"

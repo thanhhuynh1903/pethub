@@ -26,30 +26,43 @@ public class CartItem extends IdBasedEntity {
 	private float shippingCost;
 
 	public CartItem() {
+
 	}
 
 	public Customer getCustomer() {
+
 		return customer;
+
 	}
 
 	public void setCustomer(Customer customer) {
+
 		this.customer = customer;
+
 	}
 
 	public Product getProduct() {
+
 		return product;
+
 	}
 
 	public void setProduct(Product product) {
+
 		this.product = product;
+
 	}
 
 	public int getQuantity() {
+
 		return quantity;
+
 	}
 
 	public void setQuantity(int quantity) {
+
 		this.quantity = quantity;
+
 	}
 
 	@Override
@@ -60,16 +73,22 @@ public class CartItem extends IdBasedEntity {
 
 	@Transient
 	public float getSubtotal() {
+
 		return product.getDiscountPrice() * quantity;
+
 	}
 
 	@Transient
 	public float getShippingCost() {
+
 		return shippingCost;
+
 	}
 
 	public void setShippingCost(float shippingCost) {
+
 		this.shippingCost = shippingCost;
+		
 	}
 
 }

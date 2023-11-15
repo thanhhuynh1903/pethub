@@ -29,10 +29,14 @@
 </head>
 
 <body>
+	<div class="w-100 h-100">
+		<div class="w-100 h-100 d-flex flex-column">
   <div th:replace="~{navigation :: header_menu}" class="w-100"></div>
+  <div class="w-100 my-3 px-5 py-4">
+<h2>Articles</h2>
 
   <div th:fragment="content" th:remove="tag">
-    <div class="home_all-product-container__content-container">
+    <div class="home_all-product-container__content-container mt-2">
       <div class="home_all-product-container__content px-2">
         <div th:each="article : ${listArticles}">
           <a th:href="@{'/a/' + ${article.alias}}" class="text-decoration-none">
@@ -51,8 +55,10 @@
       </div>
     </div>
   </div>
+  </div>
   <div th:replace="~{navigation :: footer_menu}"></div>
-
+</div>
+</div>
 </body>
 
 </html>
